@@ -9,14 +9,27 @@ class CategoryRepo
     public function all()
     {
 
+       // $category = Category::whereIn('active', [0, 1])->get();
+
         $category = Category::whereIn('active', [0, 1])->get();
+            foreach ($category as $onecategory)
+            {
+                $categorysuperior = Category::find($onecategory->parent_category);
+                $onecategory->superiorcategory = $categorysuperior;
+            }
         return $category;
+
     }
     public function filteractive()
     {
         //Find By parameters (Item)
         try {
             $category = Category::whereIn('active', [1])->get();
+            foreach ($category as $onecategory)
+            {
+                $categorysuperior = Category::find($onecategory->parent_category);
+                $onecategory->superiorcategory = $categorysuperior;
+            }
 
             return $category;
 
@@ -35,6 +48,7 @@ class CategoryRepo
     {
 
         $category = Category::find($id);
+        
 
         return $category;
     }

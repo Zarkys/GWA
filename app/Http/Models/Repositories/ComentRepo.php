@@ -12,9 +12,20 @@ class ComentRepo
     public function all()
     {
 
+       /* $coment = Coment::with([
+                'Post',
+            ])->whereIn('active', [0, 1])->get();
+        return $coment;*/
+
         $coment = Coment::with([
                 'Post',
             ])->whereIn('active', [0, 1])->get();
+            foreach ($coment as $onecoment)
+            {
+                $answerto = Coment::find($onecoment->id_answer_to);
+                $onecoment->coment = $answerto;
+            }
+       
         return $coment;
     }
     public function filteractive()
@@ -25,6 +36,11 @@ class ComentRepo
             $coment = Coment::with([
                     'Post',
                 ])->whereIn('active', [1])->get();
+            foreach ($coment as $onecoment)
+            {
+                $answerto = Coment::find($onecoment->id_answer_to);
+                $onecoment->coment = $answerto;
+            }
 
             return $coment;
 

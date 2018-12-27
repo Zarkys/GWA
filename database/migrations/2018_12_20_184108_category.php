@@ -22,6 +22,7 @@ class Category extends Migration
             $table->integer('active');
             $table->timestamps();
         });
+
     }
 
     /**

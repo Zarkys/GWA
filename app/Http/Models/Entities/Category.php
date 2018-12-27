@@ -23,6 +23,7 @@
 
         public function PostCategory() {
             return $this->hasOne(PostCategory::class, 'id_category');
-        }       
+        }
+       
         
     }
