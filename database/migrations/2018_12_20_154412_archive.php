@@ -21,10 +21,10 @@ class Archive extends Migration
             $table->string('size');
             $table->string('dimension');
             $table->string('url');
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('legend');
-            $table->string('alternative_text');
-            $table->string('description');
+            $table->string('alternative_text')->nullable();
+            $table->string('description')->nullable();
             $table->integer('id_user');
             $table->integer('active');
             $table->timestamps();

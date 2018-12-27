@@ -135,8 +135,8 @@
         
         public function save(Request $request) {
             $validator = Validator::make($request->all(), [
-                'id_page' => 'required',
-                'id_post' => 'required',
+               // 'id_page' => 'required',
+               // 'id_post' => 'required',
                 'id_archive' => 'required',
             ], $this->custom_message());
             
@@ -260,8 +260,8 @@
         
         public function custom_message() {
             return [
-                'id_page.required' => __('La pagina es requerida'),
-                'id_post.required' => __('El post es requerido'),
+               // 'id_page.required' => __('La pagina es requerida'),
+               // 'id_post.required' => __('El post es requerido'),
                 'id_archive.required' => __('El archivo es requerido'),
             ];
         }

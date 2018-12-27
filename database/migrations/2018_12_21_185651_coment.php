@@ -16,7 +16,7 @@ class Coment extends Migration
         Schema::create('coments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('coment');
-            $table->integer('id_answer_to');
+            $table->integer('id_answer_to')->nullable();
             $table->integer('id_post')->unsigned();
             $table->integer('status_coment');
             $table->datetime('publication_date');

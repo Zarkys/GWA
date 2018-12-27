@@ -129,10 +129,10 @@
                 'size'    => 'required',
                 'dimension'    => 'required',
                 'url'    => 'required',
-                'title'    => 'required',
+               // 'title'    => 'required',
                 'legend'    => 'required',
-                'alternative_text'    => 'required',
-                'description'    => 'required',
+               // 'alternative_text'    => 'required',
+               // 'description'    => 'required',
                 'id_user'    => 'required',
             ], $this->custom_message());
     
@@ -292,10 +292,10 @@
                 'size.required'  => __('El tamaño es requerida'),
                 'dimension.required'  => __('La dimension es requerida'),
                 'url.required'      => __('La url es requerido'),
-                'title.required'  => __('El titulo es requerido'),
+               // 'title.required'  => __('El titulo es requerido'),
                 'legend.required'  => __('La leyenda es requerida'),
-                'alternative_text.required'      => __('El texto alternativo es requerido'),
-                'description.required'  => __('La descripcion es requerida'),
+               // 'alternative_text.required'      => __('El texto alternativo es requerido'),
+                //'description.required'  => __('La descripcion es requerida'),
                 'id_user.required'  => __('El usuario es requerido'),
 
             ];

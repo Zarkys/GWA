@@ -16,8 +16,8 @@ class Tag extends Migration
          Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('slug');
-            $table->string('description');
+            $table->string('slug')->nullable();
+            $table->string('description')->nullable();
             $table->integer('active');
             $table->timestamps();
         });

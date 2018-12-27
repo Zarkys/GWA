@@ -127,7 +127,7 @@
         public function save(Request $request) {
             $validator = Validator::make($request->all(), [
                 'coment'    => 'required',
-                'id_answer_to'    => 'required',
+               // 'id_answer_to'    => 'required',
                 'id_post'    => 'required',
                 'status_coment'    => 'required',
                 'publication_date'    => 'required',
@@ -265,7 +265,7 @@
         public function custom_message() {
             return [
                 'coment.required'  => __('El comentario es requerido'),
-                'id_answer_to.required'      => __('El destinatario es requerido'),
+               // 'id_answer_to.required'      => __('El destinatario es requerido'),
                 'id_post.required'  => __('El post es requerido'),
                 'status_coment.required'  => __('El estatus del comentario es requerido'),
                 'publication_date.required'  => __('La fecha de publicacion es requerida'),

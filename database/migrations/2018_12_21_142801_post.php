@@ -16,15 +16,15 @@ class Post extends Migration
          Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->longText('content');
-            $table->integer('id_featured_image')->unsigned();
+            $table->longText('content')->nullable();
+            $table->integer('id_featured_image')->unsigned()->nullable();
             $table->string('visibility');
             $table->integer('status_post');
             $table->integer('id_user');
             $table->string('permanent_link');
             $table->datetime('creation_date');
-            $table->datetime('publication_date');
-            $table->datetime('modification_date');
+            $table->datetime('publication_date')->nullable();
+            $table->datetime('modification_date')->nullable();
             $table->integer('active');
             $table->timestamps();
 

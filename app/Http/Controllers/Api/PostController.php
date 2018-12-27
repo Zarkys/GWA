@@ -104,15 +104,15 @@
         public function save(Request $request) {
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
-                'content' => 'required',
-                'id_featured_image' => 'required',
+               // 'content' => 'required',
+               // 'id_featured_image' => 'required',
                 'visibility' => 'required',
                 'status_post' => 'required',
                 'id_user' => 'required',
                 'permanent_link' => 'required',
                 'creation_date' => 'required',
-                'publication_date' => 'required',
-                'modification_date' => 'required',
+               // 'publication_date' => 'required',
+               // 'modification_date' => 'required',
             ], $this->custom_message());
             
             if ($validator->fails()) {
@@ -264,15 +264,15 @@
         public function custom_message() {
             return [
                 'title.required' => __('El titulo es requerido'),
-                'content.required' => __('El contenido es requerido'),
-                'id_featured_image.required' => __('La imagen destacada es requerida'),
+               // 'content.required' => __('El contenido es requerido'),
+               // 'id_featured_image.required' => __('La imagen destacada es requerida'),
                 'visibility.required' => __('La visibilidad es requerida'),
                 'status_post.required' => __('El estatus del post es requerido'),
                 'id_user.required' => __('El usuario es requerido'),
                 'permanent_link.required' => __('El link permanente es requerido'),
                 'creation_date.required' => __('La fecha de creacion es requerida'),
-                'publication_date.required' => __('La fecha de publicacion es requerida'),
-                'modification_date.required' => __('La fecha de modificacion es requerida'),
+             //   'publication_date.required' => __('La fecha de publicacion es requerida'),
+               // 'modification_date.required' => __('La fecha de modificacion es requerida'),
             ];
         }
         

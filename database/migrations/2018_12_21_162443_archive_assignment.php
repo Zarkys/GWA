@@ -15,8 +15,8 @@ class ArchiveAssignment extends Migration
     {
          Schema::create('archives_assignments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_post')->unsigned();
-            $table->integer('id_page')->unsigned();
+            $table->integer('id_post')->unsigned()->nullable();
+            $table->integer('id_page')->unsigned()->nullable();
             $table->integer('id_archive')->unsigned();
             $table->integer('active');
             $table->timestamps();

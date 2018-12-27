@@ -124,8 +124,8 @@
         public function save(Request $request) {
             $validator = Validator::make($request->all(), [
                 'name'    => 'required',
-                'slug'    => 'required',
-                'description'    => 'required',
+               // 'slug'    => 'required',
+               // 'description'    => 'required',
             ], $this->custom_message());
     
             if ($validator->fails()) {
@@ -246,8 +246,8 @@
         public function custom_message() {
             return [
                 'name.required'  => __('El nombre es requerido'),
-                'slug.required'      => __('El slug es requerido'),
-                'description.required'  => __('La descripcion es requerida'),
+               /* 'slug.required'      => __('El slug es requerido'),
+                'description.required'  => __('La descripcion es requerida'),*/
             ];
         }
 
