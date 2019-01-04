@@ -4,6 +4,7 @@
     
     use App\Http\Models\Repositories\ComentRepo;
     use App\Http\Models\Repositories\PostRepo;
+    use App\Http\Models\Repositories\UserRepo;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
@@ -12,11 +13,13 @@
         
         private $ComentRepo;
         private $PostRepo;
+        private $UserRepo;
         
-        public function __construct(ComentRepo $ComentRepo, PostRepo $PostRepo) {
+        public function __construct(ComentRepo $ComentRepo, PostRepo $PostRepo, UserRepo $UserRepo) {
             
             $this->ComentRepo = $ComentRepo;
             $this->PostRepo = $PostRepo;
+            $this->UserRepo = $UserRepo;
         }
         
         public function index() {

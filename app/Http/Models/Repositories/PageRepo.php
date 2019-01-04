@@ -12,7 +12,7 @@ class PageRepo
     public function all()
     {
          $page = Page::with([
-                'Archive',
+                'Archive','User',
             ])->whereIn('active', [0, 1])->get();           
          return $page;
     }
@@ -22,7 +22,7 @@ class PageRepo
         try {
         
             $page = Page::with([
-                    'Archive',
+                    'Archive','User',
                 ])->whereIn('active', [1])->get();
                     
                     

@@ -3,22 +3,24 @@
 namespace App\Http\Models\Repositories;
 
 use App\Http\Models\Entities\Archive;
+use App\Http\Models\Entities\User;
 
 class ArchiveRepo
 {
     public function all()
     {
 
-        $archive = Archive::whereIn('active', [0, 1])->get();
-        return $archive;
+        $archive = Archive::with(['User',
+            ])->whereIn('active', [0, 1])->get();           
+         return $archive;
     }
     public function filteractive()
     {
         //Find By parameters (Item)
         try {
-            $archive = Archive::whereIn('active', [1])->get();
-
-            return $archive;
+            $archive = Archive::with(['User',
+            ])->whereIn('active', [1])->get();           
+         return $archive;
 
         } catch (\Exception $ex) {
             Log::error($ex);

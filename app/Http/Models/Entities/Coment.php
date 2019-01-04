@@ -24,7 +24,10 @@
 
          public function Post() {
             return $this->hasOne(Post::class, 'id', 'id_post');
-        }    
+        }  
+        public function User() {
+            return $this->hasOne(User::class, 'id', 'id_user');
+        }  
                 
         
     }

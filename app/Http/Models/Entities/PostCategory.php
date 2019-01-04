@@ -21,7 +21,7 @@
             return $this->hasOne(Post::class, 'id', 'id_post');
         } 
          public function Category() {
-            return $this->hasOne(Tag::class, 'id', 'id_category');
+            return $this->hasOne(Category::class, 'id', 'id_category');
         }        
                
                 

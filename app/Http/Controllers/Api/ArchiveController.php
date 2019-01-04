@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Api;
     
     use App\Http\Models\Repositories\ArchiveRepo;
+    use App\Http\Models\Repositories\UserRepo;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
@@ -10,10 +11,12 @@
     class ArchiveController extends BaseController {
         
         private $ArchiveRepo;
+        private $UserRepo;
         
-        public function __construct(ArchiveRepo $ArchiveRepo) {
+        public function __construct(ArchiveRepo $ArchiveRepo, UserRepo $UserRepo) {
             
             $this->ArchiveRepo = $ArchiveRepo;
+            $this->UserRepo = $UserRepo;
         }
         
         public function index() {

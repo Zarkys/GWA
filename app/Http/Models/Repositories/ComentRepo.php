@@ -18,7 +18,7 @@ class ComentRepo
         return $coment;*/
 
         $coment = Coment::with([
-                'Post',
+                'Post','User',
             ])->whereIn('active', [0, 1])->get();
             foreach ($coment as $onecoment)
             {
@@ -34,7 +34,7 @@ class ComentRepo
         try {
             
             $coment = Coment::with([
-                    'Post',
+                    'Post','User',
                 ])->whereIn('active', [1])->get();
             foreach ($coment as $onecoment)
             {
@@ -69,15 +69,21 @@ class ComentRepo
                     if($item==='id_answer_to'){
 
                         $coment = Coment::with([
-                            'Post',
+                            'Post','User',
                         ])->where('id_answer_to', $id)->whereIn('active', [0, 1])->get();
                     }  
                     if($item==='id_post'){
 
                         $coment = Coment::with([
-                            'Post',
+                            'Post','User',
                         ])->where('id_post', $id)->whereIn('active', [0, 1])->get();
                     } 
+                    if($item==='id_user'){
+
+                        $coment = Coment::with([
+                            'Post','User',
+                        ])->where('id_user', $id)->whereIn('active', [0, 1])->get();
+                    }
                
                     return $coment;
 

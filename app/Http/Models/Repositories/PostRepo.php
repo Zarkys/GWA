@@ -12,7 +12,7 @@ class PostRepo
     public function all()
     {
          $post = Post::with([
-                'Archive',
+                'Archive','User',
             ])->whereIn('active', [0, 1])->get();           
          return $post;
     }
@@ -22,7 +22,7 @@ class PostRepo
         try {
         
             $post = Post::with([
-                    'Archive',
+                    'Archive','User',
                 ])->whereIn('active', [1])->get();
                     
                     

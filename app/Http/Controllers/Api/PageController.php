@@ -5,6 +5,7 @@
     
     use App\Http\Models\Repositories\PageRepo;
     use App\Http\Models\Repositories\ArchiveRepo;
+    use App\Http\Models\Repositories\UserRepo;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
@@ -14,11 +15,13 @@
         
         private $PageRepo;
         private $ArchiveRepo;
+        private $UserRepo;
         
-        public function __construct(PageRepo $PageRepo, ArchiveRepo $ArchiveRepo) {
+        public function __construct(PageRepo $PageRepo, ArchiveRepo $ArchiveRepo, UserRepo $UserRepo) {
             
             $this->PageRepo = $PageRepo;
             $this->ArchiveRepo        = $ArchiveRepo;
+            $this->UserRepo = $UserRepo;
         }
         
         public function index() {
