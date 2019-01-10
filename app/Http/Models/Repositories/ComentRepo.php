@@ -55,7 +55,61 @@ class ComentRepo
             return response()->json($response, 500);
         }
     }
-    public function find($id)
+        public function filterinactive()
+    {
+        //Find By parameters (Item)
+        try {
+            
+            $coment = Coment::with([
+                    'Post','User',
+                ])->whereIn('active', [0])->get();
+            foreach ($coment as $onecoment)
+            {
+                $answerto = Coment::find($onecoment->id_answer_to);
+                $onecoment->coment = $answerto;
+            }
+
+            return $coment;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+        public function filterdeleted()
+    {
+        //Find By parameters (Item)
+        try {
+            
+            $coment = Coment::with([
+                    'Post','User',
+                ])->whereIn('active', [2])->get();
+            foreach ($coment as $onecoment)
+            {
+                $answerto = Coment::find($onecoment->id_answer_to);
+                $onecoment->coment = $answerto;
+            }
+
+            return $coment;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+    public function findbyid($id)
     {
 
         $coment = Coment::find($id);
@@ -111,6 +165,23 @@ class ComentRepo
     }
 
     public function update($coment, $data)
+    {
+
+        $coment->fill($data);
+        $coment->save();
+
+        return $coment;
+    }
+
+        public function activate($coment, $data)
+    {
+
+        $coment->fill($data);
+        $coment->save();
+
+        return $coment;
+    }
+        public function inactivate($coment, $data)
     {
 
         $coment->fill($data);

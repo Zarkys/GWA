@@ -43,10 +43,64 @@
             
         }
         
-             public function indexactive() {
+             public function filteractive() {
             
             try {
                 $category = $this->CategoryRepo->filteractive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $category,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function filterinactive() {
+            
+            try {
+                $category = $this->CategoryRepo->filterinactive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $category,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function filterdeleted() {
+            
+            try {
+                $category = $this->CategoryRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
@@ -95,16 +149,42 @@
             }
             
         }
-        public function find($id) {
+        public function findbyid($id) {
             
             try {
-                $category = $this->CategoryRepo->find($id);
+                $category = $this->CategoryRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
                     'data'    => $category,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function findbyunique($item, $string) {
+            
+            try {
+                $Category = $this->CategoryRepo->findbyunique($item,$string);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $Category,
                 ];
                 
                 return response()->json($response, 200);
@@ -148,6 +228,13 @@
                     'parent_category'    => $request->get('parent_category'),
                     'active' => 1,
                 ];
+
+                $item = 'name';
+                $string = $data['name'];
+                $CategoryDuple = $this->CategoryRepo->checkduplicate($item,$string);
+             
+
+            if ($CategoryDuple==0) {
         
                 $category     = $this->CategoryRepo->store($data);
                 $response = [
@@ -158,6 +245,18 @@
                 ];
         
                 return response()->json($response, 200);
+            }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La categoria fue registrada anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -174,7 +273,7 @@
         public function update(Request $request,$id) {
             
             Log::debug($request);
-            $category = $this->CategoryRepo->find($id);
+            $category = $this->CategoryRepo->findbyid($id);
 
             
             if($request->has('name')){
@@ -191,6 +290,13 @@
             }
     
             try {
+
+              $item = 'name';
+              $string = $data['name'];
+              $CategoryDuple = $this->CategoryRepo->checkduplicate($item,$string);
+             
+
+            if ($CategoryDuple==0) { 
                
                 $category = $this->CategoryRepo->update($category, $data);
                 
@@ -202,6 +308,18 @@
                 ];
                 
                 return response()->json($response, 200);
+                }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La categoria fue registrada anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -213,15 +331,72 @@
                 return response()->json($response, 500);
             }
         }
-        
-        public function delete($id, Request $request) {
-          
-         
-            
+
+        public function activate($id, Request $request) {
+       
             try {
                 
-                $category = $this->CategoryRepo->find($id);
-                $category = $this->CategoryRepo->delete($category, ['active' => 0]);
+                $category = $this->CategoryRepo->findbyid($id);
+                $category = $this->CategoryRepo->activate($category, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La categoria ha sido eliminada correctamente'),
+                    'data'    => $category,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function inactivate($id, Request $request) {
+       
+            try {
+                
+                $category = $this->CategoryRepo->findbyid($id);
+                $category = $this->CategoryRepo->inactivate($category, ['active' => 0]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La categoria ha sido eliminada correctamente'),
+                    'data'    => $category,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        
+        public function delete($id, Request $request) {
+       
+            try {
+                
+                $category = $this->CategoryRepo->findbyid($id);
+                $category = $this->CategoryRepo->delete($category, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',

@@ -53,10 +53,64 @@
             
         }
         
-        public function indexactive() {
+        public function filteractive() {
             
             try {
                 $archiveassignment = $this->ArchiveAssignmentRepo->filteractive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $archiveassignment,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function filterinactive() {
+            
+            try {
+                $archiveassignment = $this->ArchiveAssignmentRepo->filterinactive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $archiveassignment,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function filterdeleted() {
+            
+            try {
+                $archiveassignment = $this->ArchiveAssignmentRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
@@ -107,10 +161,10 @@
             
         }
         
-        public function find($id) {
+        public function findbyid($id) {
             
             try {
-                $archiveassignment = $this->ArchiveAssignmentRepo->find($id);
+                $archiveassignment = $this->ArchiveAssignmentRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
@@ -160,6 +214,19 @@
                     'id_archive' => $request->get('id_archive'),
                     'active'     => 1,
                 ];
+
+                $item = 'id_post';
+                $string = $data['id_post'];
+                $ArchiveAssignmentDuplepost = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
+                $item = 'id_page';
+                $string = $data['id_page'];
+                $ArchiveAssignmentDuplepage = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
+                $item = 'id_archive';
+                $string = $data['id_archive'];
+                $ArchiveAssignmentDuplearchive = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
+             
+
+            if ($ArchiveAssignmentDuple==0) { 
                 
                 $archiveassignment = $this->ArchiveAssignmentRepo->store($data);
                 $response       = [
@@ -170,6 +237,18 @@
                 ];
                 
                 return response()->json($response, 200);
+            }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('Estos datos fueron registrados anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -186,7 +265,7 @@
         public function update(Request $request, $id) {
             
             Log::debug($request);
-            $archiveassignment = $this->ArchiveAssignmentRepo->find($id);
+            $archiveassignment = $this->ArchiveAssignmentRepo->findbyid($id);
             
             
             if ($request->has('id_page')) {
@@ -203,6 +282,19 @@
             }
             
             try {
+
+             $item = 'id_post';
+                $string = $data['id_post'];
+                $ArchiveAssignmentDuplepost = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
+                $item = 'id_page';
+                $string = $data['id_page'];
+                $ArchiveAssignmentDuplepage = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
+                $item = 'id_archive';
+                $string = $data['id_archive'];
+                $ArchiveAssignmentDuplearchive = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
+             
+
+            if ($ArchiveAssignmentDuple==0) {  
                 
                 $archiveassignment = $this->ArchiveAssignmentRepo->update($archiveassignment, $data);
                 
@@ -214,6 +306,18 @@
                 ];
                 
                 return response()->json($response, 200);
+            }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('Estos datos fueron registrados anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -225,14 +329,76 @@
                 return response()->json($response, 500);
             }
         }
+
+        public function activate($id, Request $request) {
+            
+            
+            try {
+                
+                $archiveassignment = $this->ArchiveAssignmentRepo->findbyid($id);
+                $archiveassignment = $this->ArchiveAssignmentRepo->activate($archiveassignment, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El archivo ha sido activado correctamente del post o pagina'),
+                    'data'    => $archiveassignment,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function inactivate($id, Request $request) {
+            
+            
+            try {
+                
+                $archiveassignment = $this->ArchiveAssignmentRepo->findbyid($id);
+                $archiveassignment = $this->ArchiveAssignmentRepo->inactivate($archiveassignment, ['active' => 0]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El archivo ha sido inactivado correctamente del post o pagina'),
+                    'data'    => $archiveassignment,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function delete($id, Request $request) {
             
             
             try {
                 
-                $archiveassignment = $this->ArchiveAssignmentRepo->find($id);
-                $archiveassignment = $this->ArchiveAssignmentRepo->delete($archiveassignment, ['active' => 0]);
+                $archiveassignment = $this->ArchiveAssignmentRepo->findbyid($id);
+                $archiveassignment = $this->ArchiveAssignmentRepo->delete($archiveassignment, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',

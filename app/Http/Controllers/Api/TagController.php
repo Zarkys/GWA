@@ -43,10 +43,63 @@
             
         }
         
-             public function indexactive() {
+             public function filteractive() {
             
             try {
                 $tag = $this->TagRepo->filteractive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $tag,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+          public function filterinactive() {
+            
+            try {
+                $tag = $this->TagRepo->filterinactive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $tag,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+          public function filterdeleted() {
+            
+            try {
+                $tag = $this->TagRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
@@ -95,16 +148,42 @@
             }
             
         }
-        public function find($id) {
+        public function findbyid($id) {
             
             try {
-                $tag = $this->TagRepo->find($id);
+                $tag = $this->TagRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
                     'data'    => $tag,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function findbyunique($item, $string) {
+            
+            try {
+                $Tag = $this->TagRepo->findbyunique($item,$string);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $Tag,
                 ];
                 
                 return response()->json($response, 200);
@@ -146,6 +225,16 @@
                     'description'    => $request->get('description'),
                     'active' => 1,
                 ];
+
+                $item = 'name';
+              $string = $data['name'];
+              $TagDuple = $this->TagRepo->checkduplicate($item,$string);
+              $item = 'slug';
+              $string = $data['slug'];
+              $TagDuple = $this->TagRepo->checkduplicate($item,$string);
+             
+
+            if ($TagDuple==0) { 
         
                 $tag     = $this->TagRepo->store($data);
                 $response = [
@@ -156,6 +245,18 @@
                 ];
         
                 return response()->json($response, 200);
+                }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La etiqueta fue registrada anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -172,7 +273,7 @@
         public function update(Request $request,$id) {
             
             Log::debug($request);
-            $tag = $this->TagRepo->find($id);
+            $tag = $this->TagRepo->findbyid($id);
 
             
             if($request->has('name')){
@@ -186,6 +287,16 @@
             }
     
             try {
+
+              $item = 'name';
+              $string = $data['name'];
+              $TagDuple = $this->TagRepo->checkduplicate($item,$string);
+              $item = 'slug';
+              $string = $data['slug'];
+              $TagDuple = $this->TagRepo->checkduplicate($item,$string);
+             
+
+            if ($TagDuple==0) { 
                
                 $tag = $this->TagRepo->update($tag, $data);
                 
@@ -197,6 +308,19 @@
                 ];
                 
                 return response()->json($response, 200);
+
+                 }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La etiqueta fue registrada anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -208,6 +332,70 @@
                 return response()->json($response, 500);
             }
         }
+
+         public function activate($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $tag = $this->TagRepo->findbyid($id);
+                $tag = $this->TagRepo->activate($tag, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La etiqueta ha sido activada correctamente'),
+                    'data'    => $tag,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+         public function inactivate($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $tag = $this->TagRepo->findbyid($id);
+                $tag = $this->TagRepo->inactivate($tag, ['active' => 2]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La etiqueta ha sido inactivada correctamente'),
+                    'data'    => $tag,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function delete($id, Request $request) {
           
@@ -215,8 +403,8 @@
             
             try {
                 
-                $tag = $this->TagRepo->find($id);
-                $tag = $this->TagRepo->delete($tag, ['active' => 0]);
+                $tag = $this->TagRepo->findbyid($id);
+                $tag = $this->TagRepo->delete($tag, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',

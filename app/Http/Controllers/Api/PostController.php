@@ -51,7 +51,7 @@
             
         }
         
-        public function indexactive() {
+        public function filteractive() {
             
             try {
                 $post = $this->PostRepo->filteractive();
@@ -77,17 +77,97 @@
             }
             
         }
-        
-        public function find($id) {
+
+        public function filterinactive() {
             
             try {
-                $post = $this->PostRepo->find($id);
+                $post = $this->PostRepo->filterinactive();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
                     'data'    => $post,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function filterdeleted() {
+            
+            try {
+                $post = $this->PostRepo->filterdeleted();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $post,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        
+        public function findbyid($id) {
+            
+            try {
+                $post = $this->PostRepo->findbyid($id);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $post,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function findbyunique($item, $string) {
+            
+            try {
+                $Post = $this->PostRepo->findbyunique($item,$string);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $Post,
                 ];
                 
                 return response()->json($response, 200);
@@ -145,6 +225,16 @@
                     'modification_date' => $request->get('modification_date'),
                     'active'     => 1,
                 ];
+
+                $item = 'title';
+              $string = $data['title'];
+              $PosttitleDuple = $this->PostRepo->checkduplicate($item,$string);
+              $item = 'permanent_link';
+              $string = $data['permanent_link'];
+              $PostlinkDuple = $this->PostRepo->checkduplicate($item,$string);
+             
+
+            if ($PostDuple==0) { 
                 
                 $post = $this->PostRepo->store($data);
                 $response       = [
@@ -155,6 +245,19 @@
                 ];
                 
                 return response()->json($response, 200);
+
+                  }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('El post fue registrada anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -171,7 +274,7 @@
         public function update(Request $request, $id) {
             
             Log::debug($request);
-            $post = $this->PostRepo->find($id);
+            $post = $this->PostRepo->findbyid($id);
             
             
             if ($request->has('title')) {
@@ -209,6 +312,16 @@
             }
             
             try {
+
+              $item = 'title';
+              $string = $data['title'];
+              $PosttitleDuple = $this->PostRepo->checkduplicate($item,$string);
+              $item = 'permanent_link';
+              $string = $data['permanent_link'];
+              $PostlinkDuple = $this->PostRepo->checkduplicate($item,$string);
+             
+
+            if ($PostDuple==0) { 
                 
                 $post = $this->PostRepo->update($post , $data);
                 
@@ -220,6 +333,19 @@
                 ];
                 
                 return response()->json($response, 200);
+
+                 }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('El post fue registrada anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -231,14 +357,76 @@
                 return response()->json($response, 500);
             }
         }
+
+        public function activate($id, Request $request) {
+            
+            
+            try {
+                
+                $post = $this->PostRepo->findbyid($id);
+                $post = $this->PostRepo->activate($post, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El post ha sido activado correctamente '),
+                    'data'    => $post,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function inactivate($id, Request $request) {
+            
+            
+            try {
+                
+                $post = $this->PostRepo->findbyid($id);
+                $post = $this->PostRepo-inactivate($post, ['active' => 2]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El post ha sido inactivado correctamente '),
+                    'data'    => $post,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function delete($id, Request $request) {
             
             
             try {
                 
-                $post = $this->PostRepo->find($id);
-                $post = $this->PostRepo->delete($post, ['active' => 0]);
+                $post = $this->PostRepo->findbyid($id);
+                $post = $this->PostRepo->delete($post, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',

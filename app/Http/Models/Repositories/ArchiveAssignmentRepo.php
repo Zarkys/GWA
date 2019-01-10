@@ -43,7 +43,55 @@ class ArchiveAssignmentRepo
             return response()->json($response, 500);
         }
     }
-    public function find($id)
+        public function filterinactive()
+    {
+        //Find By parameters (Item)
+        try {
+           
+            $archiveassignment = ArchiveAssignment::with([
+                    'Post', 'Page','Archive',
+                ])->whereIn('active', [0])->get();
+                    
+                    
+               
+            return $archiveassignment;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+        public function filterdeleted()
+    {
+        //Find By parameters (Item)
+        try {
+           
+            $archiveassignment = ArchiveAssignment::with([
+                    'Post', 'Page','Archive',
+                ])->whereIn('active', [2])->get();
+                    
+                    
+               
+            return $archiveassignment;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+    public function findbyid($id)
     {
 
         $archiveassignment = ArchiveAssignment::find($id);
@@ -105,6 +153,22 @@ class ArchiveAssignmentRepo
 
         return $archiveassignment;
     }
+     public function activate($archiveassignment, $data)
+    {
+
+        $archiveassignment->fill($data);
+        $archiveassignment->save();
+
+        return $archiveassignment;
+    }
+     public function inactivate($archiveassignment, $data)
+    {
+
+        $archiveassignment->fill($data);
+        $archiveassignment->save();
+
+        return $archiveassignment;
+    }
 
     public function delete($archiveassignment, $data)
     {
@@ -114,4 +178,47 @@ class ArchiveAssignmentRepo
 
         return $archiveassignment;
     }
+
+    public function checkduplicate($item,$string) {
+            //Find By parameters (Item)
+            try {
+                    if($item==='id_post')
+                    {
+
+                        $archiveassignment = ArchiveAssignment::where('id_post', $string)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
+
+                    }  
+
+                    if($item==='id_page')
+                    {
+
+                        $archiveassignment = ArchiveAssignment::where('id_page', $string)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
+
+                    } 
+
+                    if($item==='id_archive')
+                    {
+
+                        $archiveassignment = ArchiveAssignment::where('id_archive', $string)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
+
+                    } 
+                    return $archiveassignment;
+
+            } catch (\Exception $ex) {
+                
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error internor') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        } 
 }

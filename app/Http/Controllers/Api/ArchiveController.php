@@ -46,10 +46,62 @@
             
         }
         
-             public function indexactive() {
+             public function filteractive() {
             
             try {
                 $archive = $this->ArchiveRepo->filteractive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $archive,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function filterinactive() {
+            
+            try {
+                $archive = $this->ArchiveRepo->filterinactive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $archive,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function filterdeleted() {
+            
+            try {
+                $archive = $this->ArchiveRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
@@ -98,16 +150,42 @@
             }
             
         }
-        public function find($id) {
+
+        public function findbyid($id) {
             
             try {
-                $archive = $this->ArchiveRepo->find($id);
+                $archive = $this->ArchiveRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
                     'data'    => $archive,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+         public function findbyunique($item, $string) {
+            
+            try {
+                $$archive = $this->ArchiveRepo->findbyunique($item,$string);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $$archive,
                 ];
                 
                 return response()->json($response, 200);
@@ -165,6 +243,13 @@
                     'id_user'    => $request->get('id_user'),
                     'active' => 1,
                 ];
+
+                $item = 'name';
+                $string = $data['name'];
+                $ArchiveDuple = $this->ArchiveRepo->checkduplicate($item,$string);
+             
+
+            if ($ArchiveDuple==0) { 
         
                 $archive     = $this->ArchiveRepo->store($data);
                 $response = [
@@ -175,6 +260,18 @@
                 ];
         
                 return response()->json($response, 200);
+                }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('El archivo fue registrado anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -191,7 +288,7 @@
         public function update(Request $request,$id) {
             
             Log::debug($request);
-            $archive = $this->ArchiveRepo->find($id);
+            $archive = $this->ArchiveRepo->findbyid($id);
 
             
             if($request->has('name')){
@@ -230,6 +327,13 @@
 
     
             try {
+
+                $item = 'name';
+                $string = $data['name'];
+                $ArchiveDuple = $this->ArchiveRepo->checkduplicate($item,$string);
+             
+
+            if ($ArchiveDuple==0) {
                
                 $archive = $this->ArchiveRepo->update($archive, $data);
                 
@@ -241,6 +345,18 @@
                 ];
                 
                 return response()->json($response, 200);
+                   }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('El archivo fue registrado anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -252,6 +368,70 @@
                 return response()->json($response, 500);
             }
         }
+
+         public function activate($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $archive = $this->ArchiveRepo->findbyid($id);
+                $archive = $this->ArchiveRepo->activate($archive, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El archivo ha sido activado correctamente'),
+                    'data'    => $archive,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+         public function inactivate($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $archive = $this->ArchiveRepo->findbyid($id);
+                $archive = $this->ArchiveRepo->delete($archive, ['active' => 0]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El archivo ha sido inactivado correctamente'),
+                    'data'    => $archive,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function delete($id, Request $request) {
           
@@ -259,8 +439,8 @@
             
             try {
                 
-                $archive = $this->ArchiveRepo->find($id);
-                $archive = $this->ArchiveRepo->delete($archive, ['active' => 0]);
+                $archive = $this->ArchiveRepo->findbyid($id);
+                $archive = $this->ArchiveRepo->delete($archive, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',

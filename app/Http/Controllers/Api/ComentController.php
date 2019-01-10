@@ -49,10 +49,62 @@
             
         }
         
-             public function indexactive() {
+             public function filteractive() {
             
             try {
                 $coment = $this->ComentRepo->filteractive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $coment,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function filterinactive() {
+            
+            try {
+                $coment = $this->ComentRepo->filterinactive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $coment,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function filterdeleted() {
+            
+            try {
+                $coment = $this->ComentRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
@@ -101,10 +153,10 @@
             }
             
         }
-        public function find($id) {
+        public function findbyid($id) {
             
             try {
-                $coment = $this->ComentRepo->find($id);
+                $coment = $this->ComentRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
@@ -184,7 +236,7 @@
         public function update(Request $request,$id) {
             
             Log::debug($request);
-            $coment = $this->ComentRepo->find($id);
+            $coment = $this->ComentRepo->findbyid($id);
 
 
             if($request->has('coment')){
@@ -230,6 +282,70 @@
                 return response()->json($response, 500);
             }
         }
+
+         public function activate($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $coment = $this->ComentRepo->findbyid($id);
+                $coment = $this->ComentRepo->activate($coment, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El archivo ha sido eliminado correctamente'),
+                    'data'    => $coment,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+         public function inactivate($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $coment = $this->ComentRepo->findbyid($id);
+                $coment = $this->ComentRepo->inactivate($coment, ['active' => 0]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El archivo ha sido eliminado correctamente'),
+                    'data'    => $coment,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function delete($id, Request $request) {
           
@@ -237,8 +353,8 @@
             
             try {
                 
-                $coment = $this->ComentRepo->find($id);
-                $coment = $this->ComentRepo->delete($coment, ['active' => 0]);
+                $coment = $this->ComentRepo->findbyid($id);
+                $coment = $this->ComentRepo->delete($coment, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',

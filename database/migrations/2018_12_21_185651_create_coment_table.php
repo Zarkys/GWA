@@ -20,12 +20,12 @@ class CreateComentTable extends Migration
             $table->integer('id_post')->unsigned();
             $table->integer('status_coment');
             $table->datetime('publication_date');
-            $table->integer('id_user')->unsigned();
+            $table->integer('id_user');
             $table->integer('active');
             $table->timestamps();
 
             $table->foreign('id_post')->references('id')->on('posts')->onDelete('cascade');
-         $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+          //  $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
         
     }

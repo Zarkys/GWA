@@ -51,7 +51,6 @@ return array(
     'App\\Http\\Models\\Entities\\User' => $baseDir . '/app/Http/Models/Entities/User.php',
     'App\\Http\\Models\\Enums\\Permissions' => $baseDir . '/app/Http/Models/Enums/Permissions.php',
     'App\\Http\\Models\\Enums\\Roles' => $baseDir . '/app/Http/Models/Enums/Roles.php',
-    'App\\Http\\Models\\Enums\\RolesTeams' => $baseDir . '/app/Http/Models/Enums/RolesTeams.php',
     'App\\Http\\Models\\Repositories\\ArchiveAssignmentRepo' => $baseDir . '/app/Http/Models/Repositories/ArchiveAssignmentRepo.php',
     'App\\Http\\Models\\Repositories\\ArchiveRepo' => $baseDir . '/app/Http/Models/Repositories/ArchiveRepo.php',
     'App\\Http\\Models\\Repositories\\CategoryRepo' => $baseDir . '/app/Http/Models/Repositories/CategoryRepo.php',

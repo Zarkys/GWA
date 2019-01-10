@@ -51,7 +51,7 @@
             
         }
         
-        public function indexactive() {
+        public function filteractive() {
             
             try {
                 $page = $this->PageRepo->filteractive();
@@ -77,11 +77,90 @@
             }
             
         }
-        
-        public function find($id) {
+
+        public function filterinactive() {
             
             try {
-                $page = $this->PageRepo->find($id);
+                $page = $this->PageRepo->filterinactive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $page,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function filterdeleted() {
+            
+            try {
+                $page = $this->PageRepo->filterdeleted();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $page,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        
+        public function findbyid($id) {
+            
+            try {
+                $page = $this->PageRepo->findbyid($id);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $page,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function findbyunique($item, $string) {
+            
+            try {
+                $page = $this->PageRepo->findbyunique($item,$string);
                 
                 $response = [
                     'status'  => 'OK',
@@ -145,6 +224,16 @@
                     'modification_date' => $request->get('modification_date'),
                     'active'     => 1,
                 ];
+
+              $item = 'title';
+              $string = $data['title'];
+              $PageDupletitle = $this->PageRepo->checkduplicate($item,$string);
+              $item = 'permanent_link';
+              $string = $data['permanent_link'];
+              $PageDupletitle = $this->PageRepo->checkduplicate($item,$string);
+             
+
+            if ($PageDuple==0) {
                 
                 $page = $this->PageRepo->store($data);
                 $response       = [
@@ -155,6 +244,19 @@
                 ];
                 
                 return response()->json($response, 200);
+
+                }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La pagina fue registrada anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -171,7 +273,7 @@
         public function update(Request $request, $id) {
             
             Log::debug($request);
-            $page = $this->PageRepo->find($id);
+            $page = $this->PageRepo->findbyid($id);
             
             
             if ($request->has('title')) {
@@ -209,6 +311,16 @@
             }
             
             try {
+
+                $item = 'title';
+              $string = $data['title'];
+              $PageDupletitle = $this->PageRepo->checkduplicate($item,$string);
+              $item = 'permanent_link';
+              $string = $data['permanent_link'];
+              $PageDupletitle = $this->PageRepo->checkduplicate($item,$string);
+             
+
+            if ($PageDuple==0) {
                 
                 $page = $this->PageRepo->update($page , $data);
                 
@@ -220,6 +332,19 @@
                 ];
                 
                 return response()->json($response, 200);
+
+                 }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La pagina fue registrada anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -231,19 +356,81 @@
                 return response()->json($response, 500);
             }
         }
+
+        public function activate($id, Request $request) {
+            
+            
+            try {
+                
+                $page = $this->PageRepo->findbyid($id);
+                $page = $this->PageRepo->activate($page, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La pagina ha sido activada correctamente '),
+                    'data'    => $page,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function inactivate($id, Request $request) {
+            
+            
+            try {
+                
+                $page = $this->PageRepo->findbyid($id);
+                $page = $this->PageRepo->inactivate($page, ['active' => 0]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La pagina ha sido inactivada correctamente '),
+                    'data'    => $page,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function delete($id, Request $request) {
             
             
             try {
                 
-                $page = $this->PageRepo->find($id);
-                $page = $this->PageRepo->delete($page, ['active' => 0]);
+                $page = $this->PageRepo->findbyid($id);
+                $page = $this->PageRepo->delete($page, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El Page ha sido eliminado correctamente '),
+                    'message' => __('La pagina ha sido eliminada correctamente '),
                     'data'    => $page,
                 ];
                 

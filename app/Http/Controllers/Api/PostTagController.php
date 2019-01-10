@@ -50,10 +50,62 @@
             
         }
         
-        public function indexactive() {
+        public function filteractive() {
             
             try {
                 $posttag = $this->PostTagRepo->filteractive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $posttag,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function filterinactive() {
+            
+            try {
+                $posttag = $this->PostTagRepo->filterinactive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $posttag,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function filterdeleted() {
+            
+            try {
+                $posttag = $this->PostTagRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
@@ -104,10 +156,10 @@
             
         }
         
-        public function find($id) {
+        public function findbyid($id) {
             
             try {
-                $posttag = $this->PostTagRepo->find($id);
+                $posttag = $this->PostTagRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
@@ -155,6 +207,16 @@
                     'id_post' => $request->get('id_post'),
                     'active'     => 1,
                 ];
+
+              $item = 'id_tag';
+              $string = $data['id_tag'];
+              $PostTagtagDuple = $this->PostTagRepo->checkduplicate($item,$string);
+              $item = 'id_post';
+              $string = $data['id_post'];
+              $PostTagpostDuple = $this->PostTagRepo->checkduplicate($item,$string);
+             
+
+            if ($PostTagDuple==0) {
                 
                 $posttag = $this->PostTagRepo->store($data);
                 $response       = [
@@ -165,6 +227,19 @@
                 ];
                 
                 return response()->json($response, 200);
+
+                    }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La categoria fue registrada para este post anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -181,7 +256,7 @@
         public function update(Request $request, $id) {
             
             Log::debug($request);
-            $posttag = $this->PostTagRepo->find($id);
+            $posttag = $this->PostTagRepo->findbyid($id);
             
             
             if ($request->has('id_tag')) {
@@ -196,7 +271,15 @@
             }
             
             try {
-                
+                $item = 'id_tag';
+              $string = $data['id_tag'];
+              $PostTagtagDuple = $this->PostTagRepo->checkduplicate($item,$string);
+              $item = 'id_post';
+              $string = $data['id_post'];
+              $PostTagpostDuple = $this->PostTagRepo->checkduplicate($item,$string);
+             
+
+            if ($PostTagDuple==0) {
                 $posttag = $this->PostTagRepo->update($posttag, $data);
                 
                 $response = [
@@ -207,6 +290,18 @@
                 ];
                 
                 return response()->json($response, 200);
+                  }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La categoria fue registrada para este post anteriormente') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -218,14 +313,75 @@
                 return response()->json($response, 500);
             }
         }
+        public function activate($id, Request $request) {
+            
+            
+            try {
+                
+                $posttag = $this->PostTagRepo->findbyid($id);
+                $posttag = $this->PostTagRepo->activate($posttag, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La etiqueta ha sido eliminada correctamente del post'),
+                    'data'    => $posttag,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+        public function inactivate($id, Request $request) {
+            
+            
+            try {
+                
+                $posttag = $this->PostTagRepo->findbyid($id);
+                $posttag = $this->PostTagRepo->inactivate($posttag, ['active' => 0]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La etiqueta ha sido eliminada correctamente del post'),
+                    'data'    => $posttag,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function delete($id, Request $request) {
             
             
             try {
                 
-                $posttag = $this->PostTagRepo->find($id);
-                $posttag = $this->PostTagRepo->delete($posttag, ['active' => 0]);
+                $posttag = $this->PostTagRepo->findbyid($id);
+                $posttag = $this->PostTagRepo->delete($posttag, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',

@@ -39,7 +39,51 @@ class PostTagRepo
             return response()->json($response, 500);
         }
     }
-    public function find($id)
+        public function filterinactive()
+    {
+        //Find By parameters (Item)
+        try {
+           
+            $posttag = PostTag::with([
+                    'Post', 'Tag',
+                ])->whereIn('active', [0])->get();
+
+            return $posttag;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+        public function filterdeleted()
+    {
+        //Find By parameters (Item)
+        try {
+           
+            $posttag = PostTag::with([
+                    'Post', 'Tag',
+                ])->whereIn('active', [2])->get();
+
+            return $posttag;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+    public function findbyid($id)
     {
 
         $posttag = PostTag::find($id);
@@ -96,6 +140,22 @@ class PostTagRepo
 
         return $posttag;
     }
+        public function activate($posttag, $data)
+    {
+
+        $posttag->fill($data);
+        $posttag->save();
+
+        return $posttag;
+    }
+        public function inactivate($posttag, $data)
+    {
+
+        $posttag->fill($data);
+        $posttag->save();
+
+        return $posttag;
+    }
 
     public function delete($posttag, $data)
     {
@@ -105,4 +165,37 @@ class PostTagRepo
 
         return $posttag;
     }
+
+           public function checkduplicate($item,$string) {
+            //Find By parameters (Item)
+            try {
+                    if($item==='id_post')
+                    {
+
+                        $posttag = PostTag::where('id_post', $string)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
+
+                    } 
+                    if($item==='id_tag')
+                    {
+
+                        $posttag = PostTag::where('id_tag', $string)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
+
+                    } 
+                    return $posttag;
+
+            } catch (\Exception $ex) {
+                
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error internor') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        } 
 }

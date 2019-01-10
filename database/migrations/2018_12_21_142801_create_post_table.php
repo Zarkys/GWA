@@ -20,7 +20,7 @@ class CreatePostTable extends Migration
             $table->integer('id_featured_image')->unsigned()->nullable();
             $table->string('visibility');
             $table->integer('status_post');
-            $table->integer('id_user')->unsigned();
+            $table->integer('id_user');
             $table->string('permanent_link')->unique();
             $table->datetime('creation_date');
             $table->datetime('publication_date')->nullable();
@@ -29,7 +29,7 @@ class CreatePostTable extends Migration
             $table->timestamps();
 
              $table->foreign('id_featured_image')->references('id')->on('archives')->onDelete('cascade');
-             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
          
     }

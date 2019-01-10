@@ -50,10 +50,63 @@
             
         }
         
-        public function indexactive() {
+        public function filteractive() {
             
             try {
                 $postcategory = $this->PostCategoryRepo->filteractive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $postcategory,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+         public function filterinactive() {
+            
+            try {
+                $postcategory = $this->PostCategoryRepo->filterinactive();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $postcategory,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+         public function filterdeleted() {
+            
+            try {
+                $postcategory = $this->PostCategoryRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
@@ -104,10 +157,10 @@
             
         }
         
-        public function find($id) {
+        public function findbyid($id) {
             
             try {
-                $postcategory = $this->PostCategoryRepo->find($id);
+                $postcategory = $this->PostCategoryRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
@@ -155,6 +208,16 @@
                     'id_post' => $request->get('id_post'),
                     'active'     => 1,
                 ];
+
+              $item = 'id_category';
+              $string = $data['id_category'];
+              $PostCategorycategoryDuple = $this->PostCategoryRepo->checkduplicate($item,$string);
+              $item = 'id_post';
+              $string = $data['id_post'];
+              $PostCategorypostDuple = $this->PostCategoryRepo->checkduplicate($item,$string);
+             
+
+            if ($PostCategoryDuple==0) { 
                 
                 $postcategory = $this->PostCategoryRepo->store($data);
                 $response       = [
@@ -165,6 +228,20 @@
                 ];
                 
                 return response()->json($response, 200);
+
+                
+                }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La categoria fue registrada anteriormente para un post') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -181,7 +258,7 @@
         public function update(Request $request, $id) {
             
             Log::debug($request);
-            $postcategory = $this->PostCategoryRepo->find($id);
+            $postcategory = $this->PostCategoryRepo->findbyid($id);
             
             
             if ($request->has('id_category')) {
@@ -197,6 +274,16 @@
             
             try {
                 
+
+                $item = 'id_category';
+              $string = $data['id_category'];
+              $PostCategorycategoryDuple = $this->PostCategoryRepo->checkduplicate($item,$string);
+              $item = 'id_post';
+              $string = $data['id_post'];
+              $PostCategorypostDuple = $this->PostCategoryRepo->checkduplicate($item,$string);
+             
+
+            if ($PostCategoryDuple==0) {
                 $postcategory = $this->PostCategoryRepo->update($postcategory, $data);
                 
                 $response = [
@@ -207,6 +294,19 @@
                 ];
                 
                 return response()->json($response, 200);
+
+                }
+            else
+            {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 409,
+                    'message' => _('La categoria fue registrada anteriormente para un post') . '.',
+        
+                ];
+        
+                return response()->json($response, 409); 
+            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -218,14 +318,76 @@
                 return response()->json($response, 500);
             }
         }
+
+        public function activate($id, Request $request) {
+            
+            
+            try {
+                
+                $postcategory = $this->PostCategoryRepo->findbyid($id);
+                $postcategory = $this->PostCategoryRepo->activate($postcategory, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La categoria ha sido activada correctamente del post'),
+                    'data'    => $postcategory,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+         public function inactivate($id, Request $request) {
+            
+            
+            try {
+                
+                $postcategory = $this->PostCategoryRepo->findbyid($id);
+                $postcategory = $this->PostCategoryRepo->inactivate($postcategory, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('La categoria ha sido inactivada correctamente del post'),
+                    'data'    => $postcategory,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function delete($id, Request $request) {
             
             
             try {
                 
-                $postcategory = $this->PostCategoryRepo->find($id);
-                $postcategory = $this->PostCategoryRepo->delete($postcategory, ['active' => 0]);
+                $postcategory = $this->PostCategoryRepo->findbyid($id);
+                $postcategory = $this->PostCategoryRepo->delete($postcategory, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',
