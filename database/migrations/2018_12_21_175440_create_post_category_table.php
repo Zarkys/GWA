@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Coment extends Migration
+class CreatePostCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,19 @@ class Coment extends Migration
      */
     public function up()
     {
-        Schema::create('coments', function (Blueprint $table) {
+         Schema::create('posts_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('coment');
-            $table->integer('id_answer_to')->nullable();
             $table->integer('id_post')->unsigned();
-            $table->integer('status_coment');
-            $table->datetime('publication_date');
-            $table->integer('id_user');
+            $table->integer('id_category')->unsigned();
             $table->integer('active');
             $table->timestamps();
 
             $table->foreign('id_post')->references('id')->on('posts')->onDelete('cascade');
-        // $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+         $table->foreign('id_category')->references('id')->on('categories')->onDelete('cascade');
         });
-        
-    }
 
-     
+         
+    }
 
     /**
      * Reverse the migrations.
@@ -39,6 +34,6 @@ class Coment extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('coments');
+        Schema::dropIfExists('posts_categories');
     }
 }

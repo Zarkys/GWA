@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Archive extends Migration
+class CreateArchiveTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class Archive extends Migration
     {
         Schema::create('archives', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('type');
             $table->datetime('creation_date');
             $table->string('size');
@@ -25,13 +25,15 @@ class Archive extends Migration
             $table->string('legend');
             $table->string('alternative_text')->nullable();
             $table->string('description')->nullable();
-            $table->integer('id_user');
+            $table->integer('id_user')->unsigned();
             $table->integer('active');
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
     
-        // $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+        // 
 
     /**
      * Reverse the migrations.

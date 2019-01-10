@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Post extends Migration
+class CreatePostTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,13 @@ class Post extends Migration
     {
          Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->longText('content')->nullable();
             $table->integer('id_featured_image')->unsigned()->nullable();
             $table->string('visibility');
             $table->integer('status_post');
-            $table->integer('id_user');
-            $table->string('permanent_link');
+            $table->integer('id_user')->unsigned();
+            $table->string('permanent_link')->unique();
             $table->datetime('creation_date');
             $table->datetime('publication_date')->nullable();
             $table->datetime('modification_date')->nullable();
@@ -29,7 +29,7 @@ class Post extends Migration
             $table->timestamps();
 
              $table->foreign('id_featured_image')->references('id')->on('archives')->onDelete('cascade');
-        // $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
          
     }

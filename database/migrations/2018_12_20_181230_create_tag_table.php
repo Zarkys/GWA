@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Tag extends Migration
+class CreateTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class Tag extends Migration
     {
          Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('slug')->nullable();
+            $table->string('name')->unique();
+            $table->string('slug')->unique()->nullable();
             $table->string('description')->nullable();
             $table->integer('active');
             $table->timestamps();
