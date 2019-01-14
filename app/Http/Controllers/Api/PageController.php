@@ -157,6 +157,32 @@
             
         }
 
+        public function filterby($item, $id) {
+            
+            try {
+                $page = $this->PageRepo->filterby($item,$id);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $page,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
         public function findbyunique($item, $string) {
             
             try {

@@ -226,15 +226,15 @@
                     'active' => 1,
                 ];
 
-                $item = 'name';
+              $item = 'name';
               $string = $data['name'];
-              $TagDuple = $this->TagRepo->checkduplicate($item,$string);
+              $TagDuplename = $this->TagRepo->checkduplicate($item,$string);
               $item = 'slug';
               $string = $data['slug'];
-              $TagDuple = $this->TagRepo->checkduplicate($item,$string);
+              $TagDupleslug = $this->TagRepo->checkduplicate($item,$string);
              
 
-            if ($TagDuple==0) { 
+            if ($TagDuplename==0 && $TagDupleslug==0) { 
         
                 $tag     = $this->TagRepo->store($data);
                 $response = [
@@ -290,13 +290,13 @@
 
               $item = 'name';
               $string = $data['name'];
-              $TagDuple = $this->TagRepo->checkduplicate($item,$string);
+              $TagDuplename = $this->TagRepo->checkduplicate($item,$string);
               $item = 'slug';
               $string = $data['slug'];
-              $TagDuple = $this->TagRepo->checkduplicate($item,$string);
+              $TagDupleslug = $this->TagRepo->checkduplicate($item,$string);
              
 
-            if ($TagDuple==0) { 
+            if ($TagDuplename==0 && $TagDupleslug==0) { 
                
                 $tag = $this->TagRepo->update($tag, $data);
                 
@@ -372,7 +372,7 @@
             try {
                 
                 $tag = $this->TagRepo->findbyid($id);
-                $tag = $this->TagRepo->inactivate($tag, ['active' => 2]);
+                $tag = $this->TagRepo->inactivate($tag, ['active' => 0]);
                 
                 $response = [
                     'status'  => 'OK',

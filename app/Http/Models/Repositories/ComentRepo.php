@@ -138,6 +138,12 @@ class ComentRepo
                             'Post','User',
                         ])->where('id_user', $id)->whereIn('active', [0, 1])->get();
                     }
+                     if($item==='status_coment'){
+
+                        $coment = Coment::with([
+                            'Post','User',
+                        ])->where('status_coment', $id)->whereIn('active', [0, 1])->get();
+                    }
                
                     return $coment;
 

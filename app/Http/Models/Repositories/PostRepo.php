@@ -96,6 +96,35 @@ class PostRepo
         return $post;
     }
 
+     public function filterby($item,$id) {
+            //Find By parameters (Item)
+            try {
+                    if($item==='status_post'){
+
+                        $post = Post::with([
+                    'Archive','User',
+                ])->where('status_post', $id)->whereIn('active', [0, 1])->get();
+                    } 
+                     if($item==='id_user'){
+
+                        $post = Post::with([
+                    'Archive','User',
+                ])->where('id_user', $id)->whereIn('active', [0, 1])->get();
+                    } 
+                    return $post;
+
+            } catch (\Exception $ex) {
+                
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error internor') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        } 
+
     public function findbyunique($item,$string) {
             //Find By parameters (Item)
             try {

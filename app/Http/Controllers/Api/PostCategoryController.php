@@ -356,7 +356,7 @@
             try {
                 
                 $postcategory = $this->PostCategoryRepo->findbyid($id);
-                $postcategory = $this->PostCategoryRepo->inactivate($postcategory, ['active' => 1]);
+                $postcategory = $this->PostCategoryRepo->inactivate($postcategory, ['active' => 0]);
                 
                 $response = [
                     'status'  => 'OK',

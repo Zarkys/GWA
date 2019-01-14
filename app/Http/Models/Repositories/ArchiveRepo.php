@@ -79,6 +79,29 @@ class ArchiveRepo
         return $archive;
     }
 
+    public function filterby($item,$id) {
+            //Find By parameters (Item)
+            try {
+                    if($item==='id_user'){
+
+                        $archive = Archive::with(['User',
+            ])->where('id_user', $id)->whereIn('active', [0, 1])->get();
+                    }  
+                    return $archive;
+
+            } catch (\Exception $ex) {
+               Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        } 
+
+
     public function findbyunique($item,$string) {
             //Find By parameters (Item)
             try {

@@ -158,6 +158,33 @@
             
         }
 
+        public function filterby($item, $id) {
+            
+            try {
+                $Post = $this->PostRepo->filterby($item,$id);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $Post,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        
+
         public function findbyunique($item, $string) {
             
             try {
@@ -389,13 +416,13 @@
             
         }
 
-        public function inactivate($id, Request $request) {
+       public function inactivate($id, Request $request) {
             
             
             try {
                 
                 $post = $this->PostRepo->findbyid($id);
-                $post = $this->PostRepo-inactivate($post, ['active' => 2]);
+                $post = $this->PostRepo->inactivate($post, ['active' => 0]);
                 
                 $response = [
                     'status'  => 'OK',
@@ -412,7 +439,7 @@
                 $response = [
                     'status'  => 'FAILED',
                     'code'    => 500,
-                    'message' => _('Ocurrio un error interno') . '.',
+                    'message' => _('Ocurrio un error internoc') . '.',
                 ];
                 
                 return response()->json($response, 500);

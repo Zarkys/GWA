@@ -102,6 +102,32 @@ class CategoryRepo
         return $category;
     }
 
+    public function filterby($item,$id) {
+            //Find By parameters (Item)
+            try {
+                    if($item==='parent_category'){
+ $category = Category::where('parent_category', $id)
+                        ->whereIn('active', [0,1])->get();
+                        foreach ($category as $onecategory)
+                        {
+                            $categorysuperior = Category::find($onecategory->parent_category);
+                            $onecategory->superiorcategory = $categorysuperior;
+                        }
+                    }  
+                    return $category;
+
+            } catch (\Exception $ex) {
+               Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        } 
+
     public function findbyunique($item,$string) {
             //Find By parameters (Item)
             try {
@@ -197,6 +223,14 @@ class CategoryRepo
                         -> exists();
 
                     }  
+                     if($item==='slug')
+                    {
+
+                        $category = Category::where('slug', $string)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
+
+                    } 
                     return $category;
 
             } catch (\Exception $ex) {

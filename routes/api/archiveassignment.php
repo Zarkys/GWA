@@ -14,12 +14,12 @@
             'uses' => 'Api\ArchiveAssignmentController@index',
         ]);
         Route::get('/active', [
-            'as'   => 'api.archiveassignment.filteractivate',
-            'uses' => 'Api\ArchiveAssignmentController@filteractivate',
+            'as'   => 'api.archiveassignment.filteractive',
+            'uses' => 'Api\ArchiveAssignmentController@filteractive',
         ]);
         Route::get('/inactive', [
-            'as'   => 'api.archiveassignment.filterinactivate',
-            'uses' => 'Api\ArchiveAssignmentController@filterinactivate',
+            'as'   => 'api.archiveassignment.filterinactive',
+            'uses' => 'Api\ArchiveAssignmentController@filterinactive',
         ]);
         Route::get('/deleted', [
             'as'   => 'api.archiveassignment.filterdeleted',

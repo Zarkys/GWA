@@ -33,6 +33,10 @@
             'as'   => 'api.category.findbyunique',
             'uses' => 'Api\CategoryController@findbyunique',
         ]);
+        Route::get('/filterby/{item}/{id}', [
+            'as'   => 'api.category.filterby',
+            'uses' => 'Api\CategoryController@filterby',
+        ]);
         Route::post('/', [
             'as'   => 'api.category.save',
             'uses' => 'Api\CategoryController@save',
@@ -42,12 +46,12 @@
             'uses' => 'Api\CategoryController@update',
         ]);
         Route::delete('/change/active/{id}', [
-            'as'   => 'api.category.active',
-            'uses' => 'Api\CategoryController@active',
+            'as'   => 'api.category.activate',
+            'uses' => 'Api\CategoryController@activate',
         ]);
         Route::delete('/change/inactive/{id}', [
-            'as'   => 'api.category.inactive',
-            'uses' => 'Api\CategoryController@inactive',
+            'as'   => 'api.category.inactivate',
+            'uses' => 'Api\CategoryController@inactivate',
         ]);
         Route::delete('/change/delete/{id}', [
             'as'   => 'api.category.delete',

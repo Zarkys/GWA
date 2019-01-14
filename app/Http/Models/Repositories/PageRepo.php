@@ -96,6 +96,37 @@ class PageRepo
         return $page;
     }
 
+    public function filterby($item,$id) {
+            //Find By parameters (Item)
+            try {
+                    if($item==='status_page'){
+
+                        $page = Page::with([
+                    'Archive','User',
+                ])->where('status_page', $id)->whereIn('active', [0, 1])->get();
+                    }  
+                    if($item==='id_user'){
+
+                        $page = Page::with([
+                    'Archive','User',
+                ])->where('id_user', $id)->whereIn('active', [0, 1])->get();
+                    }
+                    return $page;
+
+            } catch (\Exception $ex) {
+                
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error internor') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        }
+
+
+
     public function findbyunique($item,$string) {
             //Find By parameters (Item)
             try {

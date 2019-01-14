@@ -33,6 +33,10 @@
             'as'   => 'api.archive.findbyunique',
             'uses' => 'Api\ArchiveController@findbyunique',
         ]);
+        Route::get('/filterby/{item}/{id}', [
+            'as'   => 'api.archive.filterby',
+            'uses' => 'Api\ArchiveController@filterby',
+        ]);
         Route::post('/', [
             'as'   => 'api.archive.save',
             'uses' => 'Api\ArchiveController@save',

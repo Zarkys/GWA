@@ -231,10 +231,13 @@
 
                 $item = 'name';
                 $string = $data['name'];
-                $CategoryDuple = $this->CategoryRepo->checkduplicate($item,$string);
+                $CategoryDuplename = $this->CategoryRepo->checkduplicate($item,$string);
+                $item = 'slug';
+                $string = $data['slug'];
+                $CategoryDupleslug = $this->CategoryRepo->checkduplicate($item,$string);
              
 
-            if ($CategoryDuple==0) {
+            if ($CategoryDuplename==0 && $CategoryDupleslug==0) {
         
                 $category     = $this->CategoryRepo->store($data);
                 $response = [
@@ -291,12 +294,15 @@
     
             try {
 
-              $item = 'name';
-              $string = $data['name'];
-              $CategoryDuple = $this->CategoryRepo->checkduplicate($item,$string);
+                $item = 'name';
+                $string = $data['name'];
+                $CategoryDuplename = $this->CategoryRepo->checkduplicate($item,$string);
+                $item = 'slug';
+                $string = $data['slug'];
+                $CategoryDupleslug = $this->CategoryRepo->checkduplicate($item,$string);
              
 
-            if ($CategoryDuple==0) { 
+            if ($CategoryDuplename==0 && $CategoryDupleslug==0) {
                
                 $category = $this->CategoryRepo->update($category, $data);
                 

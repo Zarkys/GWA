@@ -179,13 +179,14 @@
          public function findbyunique($item, $string) {
             
             try {
-                $$archive = $this->ArchiveRepo->findbyunique($item,$string);
+                
+                $archive = $this->ArchiveRepo->findbyunique($item,$string);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $$archive,
+                    'data'    => $archive,
                 ];
                 
                 return response()->json($response, 200);
