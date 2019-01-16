@@ -253,15 +253,15 @@
                     'active'     => 1,
                 ];
 
-                $item = 'title';
+              $item = 'title';
               $string = $data['title'];
-              $PosttitleDuple = $this->PostRepo->checkduplicate($item,$string);
+              $PostDupletitle = $this->PostRepo->checkduplicate($item,$string);
               $item = 'permanent_link';
               $string = $data['permanent_link'];
-              $PostlinkDuple = $this->PostRepo->checkduplicate($item,$string);
+              $PostDuplelink = $this->PostRepo->checkduplicate($item,$string);
              
 
-            if ($PostDuple==0) { 
+            if ($PostDupletitle==0 && $PostDuplelink==0) { 
                 
                 $post = $this->PostRepo->store($data);
                 $response       = [
@@ -342,13 +342,13 @@
 
               $item = 'title';
               $string = $data['title'];
-              $PosttitleDuple = $this->PostRepo->checkduplicate($item,$string);
+              $PostDupletitle = $this->PostRepo->checkduplicate($item,$string);
               $item = 'permanent_link';
               $string = $data['permanent_link'];
-              $PostlinkDuple = $this->PostRepo->checkduplicate($item,$string);
+              $PostDuplelink = $this->PostRepo->checkduplicate($item,$string);
              
 
-            if ($PostDuple==0) { 
+            if ($PostDupletitle==0 && $PostDuplelink==0) { 
                 
                 $post = $this->PostRepo->update($post , $data);
                 

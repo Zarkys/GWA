@@ -256,10 +256,10 @@
               $PageDupletitle = $this->PageRepo->checkduplicate($item,$string);
               $item = 'permanent_link';
               $string = $data['permanent_link'];
-              $PageDupletitle = $this->PageRepo->checkduplicate($item,$string);
+              $PageDuplelink = $this->PageRepo->checkduplicate($item,$string);
              
 
-            if ($PageDuple==0) {
+            if ($PageDupletitle==0 && $PageDuplelink==0) {
                 
                 $page = $this->PageRepo->store($data);
                 $response       = [
@@ -338,15 +338,15 @@
             
             try {
 
-                $item = 'title';
+              $item = 'title';
               $string = $data['title'];
               $PageDupletitle = $this->PageRepo->checkduplicate($item,$string);
               $item = 'permanent_link';
               $string = $data['permanent_link'];
-              $PageDupletitle = $this->PageRepo->checkduplicate($item,$string);
+              $PageDuplelink = $this->PageRepo->checkduplicate($item,$string);
              
 
-            if ($PageDuple==0) {
+            if ($PageDupletitle==0 && $PageDuplelink==0) {
                 
                 $page = $this->PageRepo->update($page , $data);
                 

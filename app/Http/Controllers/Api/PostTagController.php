@@ -207,16 +207,15 @@
                     'id_post' => $request->get('id_post'),
                     'active'     => 1,
                 ];
-
-              $item = 'id_tag';
-              $string = $data['id_tag'];
-              $PostTagtagDuple = $this->PostTagRepo->checkduplicate($item,$string);
-              $item = 'id_post';
-              $string = $data['id_post'];
-              $PostTagpostDuple = $this->PostTagRepo->checkduplicate($item,$string);
+              $itemfirst = 'id_post';
+              $stringfirst = $data['id_post'];
+              $itemsecond = 'id_tag';
+              $stringsecond = $data['id_tag'];
+              $PostTagDuple = $this->PostTagRepo->checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond);
              
 
             if ($PostTagDuple==0) {
+                
                 
                 $posttag = $this->PostTagRepo->store($data);
                 $response       = [
@@ -271,12 +270,11 @@
             }
             
             try {
-                $item = 'id_tag';
-              $string = $data['id_tag'];
-              $PostTagtagDuple = $this->PostTagRepo->checkduplicate($item,$string);
-              $item = 'id_post';
-              $string = $data['id_post'];
-              $PostTagpostDuple = $this->PostTagRepo->checkduplicate($item,$string);
+                $itemfirst = 'id_post';
+              $stringfirst = $data['id_post'];
+              $itemsecond = 'id_tag';
+              $stringsecond = $data['id_tag'];
+              $PostTagDuple = $this->PostTagRepo->checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond);
              
 
             if ($PostTagDuple==0) {
@@ -405,6 +403,8 @@
             }
             
         }
+
+
         
         
         public function custom_message() {

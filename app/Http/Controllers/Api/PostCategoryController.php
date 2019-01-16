@@ -209,12 +209,13 @@
                     'active'     => 1,
                 ];
 
-              $item = 'id_category';
-              $string = $data['id_category'];
-              $PostCategorycategoryDuple = $this->PostCategoryRepo->checkduplicate($item,$string);
-              $item = 'id_post';
-              $string = $data['id_post'];
-              $PostCategorypostDuple = $this->PostCategoryRepo->checkduplicate($item,$string);
+             
+              $itemfirst = 'id_post';
+              $stringfirst = $data['id_post'];
+              $itemsecond = 'id_category';
+              $stringsecond = $data['id_category'];
+              $PostCategoryDuple = $this->PostCategoryRepo->checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond);
+              
              
 
             if ($PostCategoryDuple==0) { 
@@ -275,12 +276,11 @@
             try {
                 
 
-                $item = 'id_category';
-              $string = $data['id_category'];
-              $PostCategorycategoryDuple = $this->PostCategoryRepo->checkduplicate($item,$string);
-              $item = 'id_post';
-              $string = $data['id_post'];
-              $PostCategorypostDuple = $this->PostCategoryRepo->checkduplicate($item,$string);
+              $itemfirst = 'id_post';
+              $stringfirst = $data['id_post'];
+              $itemsecond = 'id_category';
+              $stringsecond = $data['id_category'];
+              $PostCategoryDuple = $this->PostCategoryRepo->checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond);
              
 
             if ($PostCategoryDuple==0) {
@@ -401,6 +401,32 @@
                 
             } catch (\Exception $ex) {
                 Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+         public function checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond) {
+            
+            try {
+                $postcategory = $this->PostCategoryRepo->checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $postcategory,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
                 $response = [
                     'status'  => 'FAILED',
                     'code'    => 500,

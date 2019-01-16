@@ -23,7 +23,7 @@ class ComentRepo
             foreach ($coment as $onecoment)
             {
                 $answerto = Coment::find($onecoment->id_answer_to);
-                $onecoment->coment = $answerto;
+                $onecoment->answer_to = $answerto;
             }
        
         return $coment;
@@ -39,7 +39,7 @@ class ComentRepo
             foreach ($coment as $onecoment)
             {
                 $answerto = Coment::find($onecoment->id_answer_to);
-                $onecoment->coment = $answerto;
+                $onecoment->answer_to = $answerto;
             }
 
             return $coment;
@@ -66,7 +66,7 @@ class ComentRepo
             foreach ($coment as $onecoment)
             {
                 $answerto = Coment::find($onecoment->id_answer_to);
-                $onecoment->coment = $answerto;
+                $onecoment->answer_to = $answerto;
             }
 
             return $coment;
@@ -93,7 +93,7 @@ class ComentRepo
             foreach ($coment as $onecoment)
             {
                 $answerto = Coment::find($onecoment->id_answer_to);
-                $onecoment->coment = $answerto;
+                $onecoment->answer_to = $answerto;
             }
 
             return $coment;
@@ -125,24 +125,45 @@ class ComentRepo
                         $coment = Coment::with([
                             'Post','User',
                         ])->where('id_answer_to', $id)->whereIn('active', [0, 1])->get();
+                      foreach ($coment as $onecoment)
+                        {
+                            $answerto = Coment::find($onecoment->id_answer_to);
+                            $onecoment->answer_to = $answerto;
+                        }
+
                     }  
                     if($item==='id_post'){
 
                         $coment = Coment::with([
                             'Post','User',
                         ])->where('id_post', $id)->whereIn('active', [0, 1])->get();
+                        foreach ($coment as $onecoment)
+                        {
+                            $answerto = Coment::find($onecoment->id_answer_to);
+                            $onecoment->answer_to = $answerto;
+                        }
                     } 
                     if($item==='id_user'){
 
                         $coment = Coment::with([
                             'Post','User',
                         ])->where('id_user', $id)->whereIn('active', [0, 1])->get();
+                        foreach ($coment as $onecoment)
+                        {
+                            $answerto = Coment::find($onecoment->id_answer_to);
+                            $onecoment->answer_to = $answerto;
+                        }
                     }
                      if($item==='status_coment'){
 
                         $coment = Coment::with([
                             'Post','User',
                         ])->where('status_coment', $id)->whereIn('active', [0, 1])->get();
+                        foreach ($coment as $onecoment)
+                        {
+                            $answerto = Coment::find($onecoment->id_answer_to);
+                            $onecoment->answer_to = $answerto;
+                        }
                     }
                
                     return $coment;

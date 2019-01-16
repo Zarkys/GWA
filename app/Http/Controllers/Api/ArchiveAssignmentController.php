@@ -215,19 +215,8 @@
                     'active'     => 1,
                 ];
 
-                $item = 'id_post';
-                $string = $data['id_post'];
-                $ArchiveAssignmentDuplepost = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
-                $item = 'id_page';
-                $string = $data['id_page'];
-                $ArchiveAssignmentDuplepage = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
-                $item = 'id_archive';
-                $string = $data['id_archive'];
-                $ArchiveAssignmentDuplearchive = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
-             
+                log::debug('pagina'.$data['id_page']);
 
-            if ($ArchiveAssignmentDuple==0) { 
-                
                 $archiveassignment = $this->ArchiveAssignmentRepo->store($data);
                 $response       = [
                     'status'  => 'OK',
@@ -237,18 +226,7 @@
                 ];
                 
                 return response()->json($response, 200);
-            }
-            else
-            {
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 409,
-                    'message' => _('Estos datos fueron registrados anteriormente') . '.',
-        
-                ];
-        
-                return response()->json($response, 409); 
-            }
+           
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -283,18 +261,7 @@
             
             try {
 
-             $item = 'id_post';
-                $string = $data['id_post'];
-                $ArchiveAssignmentDuplepost = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
-                $item = 'id_page';
-                $string = $data['id_page'];
-                $ArchiveAssignmentDuplepage = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
-                $item = 'id_archive';
-                $string = $data['id_archive'];
-                $ArchiveAssignmentDuplearchive = $this->ArchiveAssignmentRepo->checkduplicate($item,$string);
-             
-
-            if ($ArchiveAssignmentDuple==0) {  
+            
                 
                 $archiveassignment = $this->ArchiveAssignmentRepo->update($archiveassignment, $data);
                 
@@ -306,18 +273,7 @@
                 ];
                 
                 return response()->json($response, 200);
-            }
-            else
-            {
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 409,
-                    'message' => _('Estos datos fueron registrados anteriormente') . '.',
         
-                ];
-        
-                return response()->json($response, 409); 
-            }
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [

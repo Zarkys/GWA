@@ -166,21 +166,14 @@ class PostTagRepo
         return $posttag;
     }
 
-           public function checkduplicate($item,$string) {
+           public function checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond) {
             //Find By parameters (Item)
             try {
-                    if($item==='id_post')
+                    if($itemfirst==='id_post' && $itemsecond==='id_tag')
                     {
 
-                        $posttag = PostTag::where('id_post', $string)
-                        ->whereIn('active', [0, 1])
-                        -> exists();
-
-                    } 
-                    if($item==='id_tag')
-                    {
-
-                        $posttag = PostTag::where('id_tag', $string)
+                        $posttag = PostTag::where('id_post', $stringfirst)
+                        ->where('id_tag', $stringsecond)
                         ->whereIn('active', [0, 1])
                         -> exists();
 

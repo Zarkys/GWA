@@ -7,6 +7,7 @@ namespace App\Http\Models\Repositories;
     use App\Http\Models\Entities\Post;  
     use App\Http\Models\Entities\Category;
     use App\Http\Models\Entities\PostCategory;
+    use Illuminate\Support\Facades\Log;
 
 class PostCategoryRepo
 {
@@ -174,25 +175,18 @@ class PostCategoryRepo
         return $postcategory;
     }
 
-    public function checkduplicate($item,$string) {
+    public function checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond) {
             //Find By parameters (Item)
             try {
-                    if($item==='id_post')
+                    if($itemfirst==='id_post' && $itemsecond==='id_category')
                     {
 
-                        $postcategory = PostCategory::where('id_post', $string)
+                        $postcategory = PostCategory::where('id_post', $stringfirst)
+                        ->where('id_category', $stringsecond)
                         ->whereIn('active', [0, 1])
-                        -> exists();
+                        ->exists();
 
-                    } 
-                    if($item==='id_category')
-                    {
-
-                        $postcategory = PostCategory::where('id_category', $string)
-                        ->whereIn('active', [0, 1])
-                        -> exists();
-
-                    } 
+                    }  
                     return $postcategory;
 
             } catch (\Exception $ex) {
