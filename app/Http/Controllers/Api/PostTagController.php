@@ -214,7 +214,7 @@
               $PostTagDuple = $this->PostTagRepo->checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond);
              
 
-            if ($PostTagDuple==0) {
+           if ($PostTagDuple==0) { 
                 
                 
                 $posttag = $this->PostTagRepo->store($data);

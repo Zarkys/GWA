@@ -207,15 +207,13 @@
                 return response()->json($response);
             }
             try {
-                
+
                 $data = [
                     'id_page' => $request->get('id_page'),
                     'id_post' => $request->get('id_post'),
                     'id_archive' => $request->get('id_archive'),
                     'active'     => 1,
                 ];
-
-                log::debug('pagina'.$data['id_page']);
 
                 $archiveassignment = $this->ArchiveAssignmentRepo->store($data);
                 $response       = [
