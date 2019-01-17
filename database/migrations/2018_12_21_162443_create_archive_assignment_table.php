@@ -21,9 +21,9 @@ class CreateArchiveAssignmentTable extends Migration
             $table->integer('active');
             $table->timestamps();
 
-           //  $table->foreign('id_post')->references('id')->on('posts')->onDelete('cascade');
-            // $table->foreign('id_page')->references('id')->on('pages')->onDelete('cascade');
-            // $table->foreign('id_archive')->references('id')->on('archives')->onDelete('cascade');
+           $table->foreign('id_post')->references('id')->on('posts')->onDelete('cascade');
+           $table->foreign('id_page')->references('id')->on('pages')->onDelete('cascade');
+           $table->foreign('id_archive')->references('id')->on('archives')->onDelete('cascade');
         });
 
         

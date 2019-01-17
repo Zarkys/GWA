@@ -30,7 +30,7 @@ class ComentSeeder extends Seeder
             'id_post' => 2,
             'status_coment'=> 2, 
             'publication_date' => '2018-12-02 02:00:00',
-            'id_user'=> 2,          
+            'id_user'=> 1,          
             'active'=> 2               
            
         ]);

@@ -36,7 +36,7 @@ class PostSeeder extends Seeder
             'id_featured_image' => 2,
             'visibility'=> 'visible', 
             'status_post'=> 2,   
-            'id_user' => 2,
+            'id_user' => 1,
             'permanent_link'=> 'permanent_link2',
             'creation_date' => '2018-12-02 02:00:00',
             'publication_date' => '2018-12-02 02:00:00',
