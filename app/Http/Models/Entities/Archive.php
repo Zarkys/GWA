@@ -27,9 +27,7 @@
             'updated_at',
         ];    
 
-        public function ArchiveAssignment() {
-            return $this->hasOne(ArchiveAssignment::class, 'id_archive');
-        } 
+       
         public function User() {
             return $this->hasOne(User::class, 'id', 'id_user');
         }   

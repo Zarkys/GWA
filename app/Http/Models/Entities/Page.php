@@ -32,10 +32,7 @@
         } 
         public function User() {
             return $this->hasOne(User::class, 'id', 'id_user');
-        }
-         public function ArchiveAssignment() {
-            return $this->hasOne(ArchiveAssignment::class, 'id_page');
-        }    
+        }   
                 
         
     }

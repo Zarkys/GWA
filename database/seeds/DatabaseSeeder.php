@@ -25,6 +25,5 @@ class DatabaseSeeder extends Seeder
          $this->call(PageSeeder::class);
          $this->call(PostCategorySeeder::class);
          $this->call(PostTagSeeder::class);
-         $this->call(ArchiveAssignmentSeeder::class);
     }
 }

@@ -41,9 +41,6 @@
         } 
          public function Coment() {
             return $this->hasOne(Coment::class, 'id_post');
-        } 
-         public function ArchiveAssignment() {
-            return $this->hasOne(ArchiveAssignment::class, 'id_post');
         }    
                 
         
