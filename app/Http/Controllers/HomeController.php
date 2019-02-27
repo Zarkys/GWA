@@ -47,6 +47,11 @@ class HomeController extends Controller
     {
         return view('catalog/products/products');
     }
+    public function productsnew()
+    {
+        return view('catalog/products/product_new');
+    }
+
     public function typeproducts()
     {
         return view('catalog/typeproducts/type_products');

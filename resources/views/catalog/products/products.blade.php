@@ -22,11 +22,39 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
+            <div class="row">
+                <div class="col-md-8">
                 <h6 class="m-0 font-weight-bold text-primary">Listado de Productos</h6>
+                </div>
+                <div class="col-md-4">
+                <a href="products/new" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Nuevo Producto</span>
+                  </a>
+                </div>
+            </div>
+                
+                
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="product in products">@{{product.name}}</li>
+                    <li class="list-group-item" v-for="product in products">
+                    <div class="row">
+                    <div class="col-md-6">
+                    @{{product.name}}
+                    </div>
+                    <div class="col-md-4">
+                    @{{product.type_product.name}}
+                    </div>
+                    <div class="col-md-2">
+                    <a href="#" class="btn btn-primary btn-circle">
+                    <i class="fas fa-edit"></i>
+                    </a>
+                    </div>
+                    </div>
+                    </li>
 
                 </ul>
             </div>
