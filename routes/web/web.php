@@ -12,12 +12,27 @@
 */
 
 
-Route::get('/', 'HomeController@login')->name('login');
+Route::get('/goadmin', 'HomeController@login')->name('login');
 
 
 
 
-//Auth::routes();
-
+//ADMIN
 Route::get('/home', 'HomeController@home')->name('home');
+//ADMIN - BLOG
+Route::get('/posts', 'HomeController@posts')->name('posts');
+Route::get('/pages', 'HomeController@pages')->name('pages');
+Route::get('/comments', 'HomeController@comments')->name('comments');
+//ADMIN - CATALOG
+Route::get('/products', 'HomeController@products')->name('products');
+Route::get('/typeproducts', 'HomeController@home')->name('typeproducts');
+Route::get('/attributes', 'HomeController@attributes')->name('attributes');
+Route::get('/texts', 'HomeController@texts')->name('texts');
+//USER
+Route::get('/profile', 'HomeController@profile')->name('profile');
+
+
+//LANDING PAGE ROUTES
+Route::get('/', 'LandingController@index')->name('index');
+
 
