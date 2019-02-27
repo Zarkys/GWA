@@ -31,5 +31,34 @@ class HomeController extends Controller
         return view('login');
     }
 
+    public function posts()
+    {
+        return view('blog/posts/posts');
+    }
+    public function pages()
+    {
+        return view('blog/pages/pages');
+    }
+    public function comments()
+    {
+        return view('blog/comments/comments');
+    }
+    public function products()
+    {
+        return view('catalog/products/products');
+    }
+    public function typeproducts()
+    {
+        return view('catalog/typeproducts/type_products');
+    }
+    public function attributes()
+    {
+        return view('catalog/attributes/attributes');
+    }
+    public function texts()
+    {
+        return view('landing/texts');
+    }
+
     
 }

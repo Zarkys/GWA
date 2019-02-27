@@ -25,7 +25,7 @@ Route::get('/pages', 'HomeController@pages')->name('pages');
 Route::get('/comments', 'HomeController@comments')->name('comments');
 //ADMIN - CATALOG
 Route::get('/products', 'HomeController@products')->name('products');
-Route::get('/typeproducts', 'HomeController@home')->name('typeproducts');
+Route::get('/typeproducts', 'HomeController@typeproducts')->name('typeproducts');
 Route::get('/attributes', 'HomeController@attributes')->name('attributes');
 Route::get('/texts', 'HomeController@texts')->name('texts');
 //USER
