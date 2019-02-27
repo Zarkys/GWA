@@ -11,14 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/api/v1/users', [
-    'as'   => 'api.user',
-    'uses' => 'Api\UserController@index',
-]);
+
+Route::get('/', 'HomeController@login')->name('login');
+
+
+
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@home')->name('home');
+
