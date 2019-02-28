@@ -51,6 +51,10 @@ class HomeController extends Controller
     {
         return view('catalog/products/product_new');
     }
+    public function productsupdate()
+    {
+        return view('catalog/products/product_update');
+    }
 
     public function typeproducts()
     {

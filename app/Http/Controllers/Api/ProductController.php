@@ -334,49 +334,29 @@
                 return response()->json($response, 500);
             }
         }
-        public function activate($id, Request $request) {
-            
-            
-            try {
-                
-                $product = $this->ProductRepo->findbyid($id);
-                $product = $this->ProductRepo->activate($product, ['active' => 1]);
-                
-                $response = [
-                    'status'  => 'OK',
-                    'code'    => 200,
-                    'message' => __('El producto fue activado correctamente '),
-                    'data'    => $product,
-                ];
-                
-                return response()->json($response, 200);
-                
-                
-            } catch (\Exception $ex) {
-                Log::error($ex);
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error interno') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            }
-            
-        }
+      
 
-        public function inactivate($id, Request $request) {
+        public function changue($id, Request $request) {
             
             
             try {
                 
                 $product = $this->ProductRepo->findbyid($id);
-                $product = $this->ProductRepo->inactivate($product, ['active' => 0]);
+
+                if($product->active === 0)
+                {
+                    $product = $this->ProductRepo->update($product, ['active' => 1]);
+                }
+                else
+                {
+                    $product = $this->ProductRepo->update($product, ['active' => 0]);
+                }
+                
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El producto fue inactivado correctamente '),
+                    'message' => __('El producto fue cambiado correctamente '),
                     'data'    => $product,
                 ];
                 

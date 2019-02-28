@@ -1,6 +1,6 @@
 @include('layouts.header')
 <!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="{{ asset('/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 @include('layouts.sidebar')
 @include('layouts.navbar')
 <!-- End of Topbar -->
@@ -21,7 +21,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Agregar Producto</h6>
                 </div>
                 <div class="col-md-4">
-                <a href="products/new" class="btn btn-warning btn-icon-split">
+                <a href="{{ url()->previous() }}" class="btn btn-warning btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-arrow-left"></i>
                     </span>
@@ -38,20 +38,14 @@
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp" placeholder="Nombre del Producto">
+                    <input type="text" class="form-control" id="inputName" v-model="name_product" aria-describedby="nameHelp" placeholder="Nombre del Producto">
                     <small id="emailHelp" class="form-text text-muted">Sera el nombre mostrado en el titulo del producto</small>
                 </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Tipo de Producto</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        </select>
+                        <v-select :options="typeproducts" label="name" v-model="typeproduct"></v-select>
                     </div>
                     </div>
                    
@@ -60,7 +54,7 @@
               
               
               
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button v-on:click="saveRow" type="button" class="btn btn-primary">Guardar</button>
                 </form>
             </div>
         </div>
@@ -80,23 +74,32 @@
 <!-- Additional Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <script src="{{ asset('/js/axios.js') }}"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <!-- Custom page Script -->
 <script>
+Vue.component('v-select', VueSelect.VueSelect)
+
     var app = new Vue({
         el: '#app',
         data() {
             return {
                 message: '',
+                name_product:'',
                 products: {},
+                typeproduct:'',
+                typeproducts: []
             }
         },
         mounted() {
-            loadElements('product', '').then(
+               
+
+                loadElements('typeproduct', '').then(
                     response => {
                         if (response.data.code !== 500) {                          
-                            this.products = response.data.data;                         
-
+                            this.typeproducts = response.data.data; 
                         } else {
                             console.log(response.data);
                         }
@@ -112,8 +115,45 @@
             back() {
 
             },
-            editSubmit() {
+            saveRow() {
+                Swal.fire({
+                    title: 'Estas seguro de guardar el elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Guardar'
+                    }).then((result) => {
+                    if (result.value) {
+                        let form = {
+                                name: this.name_product,
+                                id_type_product: this.typeproduct.id
+                            }
 
+                            saveElement('product', form).then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Elemento Guardado',
+                                                'La información se almaceno correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.href = '/products';
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
             },
             cleanform() {
 

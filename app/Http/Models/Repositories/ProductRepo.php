@@ -85,7 +85,9 @@ class ProductRepo
     public function findbyid($id)
     {
 
-        $product = Product::find($id);
+        $product = Product::with([
+            'TypeProduct',
+        ])->find($id);
 
         return $product;
     }

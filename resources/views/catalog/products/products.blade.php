@@ -1,6 +1,8 @@
 @include('layouts.header')
 <!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<link href="{{ asset('/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
 @include('layouts.sidebar')
 @include('layouts.navbar')
 <!-- End of Topbar -->
@@ -49,8 +51,18 @@
                     @{{product.type_product.name}}
                     </div>
                     <div class="col-md-2">
-                    <a href="#" class="btn btn-primary btn-circle">
+                    <a href="#" v-on:click="updateRow(product.id)" class="btn btn-primary btn-circle">
                     <i class="fas fa-edit"></i>
+                    </a>
+
+                    <a v-if="product.active === 1" href="#" v-on:click="checkRow(product.id)" class="btn btn-success btn-circle">
+                    <i class="fas fa-check"></i>
+                    </a>
+                    <a v-if="product.active === 0" href="#" v-on:click="checkRow(product.id)" class="btn btn-warning btn-circle">
+                    <i class="fas fa-times"></i>
+                    </a>
+                    <a href="#" v-on:click="trashRow(product.id)" class="btn btn-danger btn-circle">
+                    <i class="fas fa-trash"></i>
                     </a>
                     </div>
                     </div>
@@ -75,6 +87,7 @@
 <!-- Additional Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="{{ asset('/js/axios.js') }}"></script>
 <!-- Custom page Script -->
 <script>
@@ -112,6 +125,88 @@
             },
             editSubmit() {
 
+            },
+            trashRow(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de eliminar el elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                            trashElement('product/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Elemento Eliminado',
+                                                'Elemento eliminado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.href = '/products';
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            checkRow(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de cambiar el estatus del elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cambiar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                        changueElement('product/change/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Estatus Cambiado',
+                                                'Estatus modificado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.href = '/products';
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            updateRow(idelement)
+            {
+                window.location.href = '/products/update/'+idelement;
             },
             cleanform() {
 

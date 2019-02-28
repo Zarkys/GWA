@@ -26,6 +26,7 @@ Route::get('/comments', 'HomeController@comments')->name('comments');
 //ADMIN - CATALOG
 Route::get('/products', 'HomeController@products')->name('products');
 Route::get('/products/new', 'HomeController@productsnew')->name('productsnew');
+Route::get('/products/update/{idelement}', 'HomeController@productsupdate')->name('productsupdate');
 
 Route::get('/typeproducts', 'HomeController@typeproducts')->name('typeproducts');
 Route::get('/attributes', 'HomeController@attributes')->name('attributes');
