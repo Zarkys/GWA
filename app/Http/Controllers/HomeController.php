@@ -43,6 +43,7 @@ class HomeController extends Controller
     {
         return view('blog/comments/comments');
     }
+    //PRODUCTS
     public function products()
     {
         return view('catalog/products/products');
@@ -55,18 +56,44 @@ class HomeController extends Controller
     {
         return view('catalog/products/product_update');
     }
-
+    //TYPEPRODUCTS
     public function typeproducts()
     {
         return view('catalog/typeproducts/type_products');
     }
+    public function typeproductsnew()
+    {
+        return view('catalog/typeproducts/type_product_new');
+    }
+    public function typeproductsupdate()
+    {
+        return view('catalog/typeproducts/type_product_update');
+    }
+    //ATTRIBUTES
     public function attributes()
     {
         return view('catalog/attributes/attributes');
     }
+    public function attributesnew()
+    {
+        return view('catalog/attributes/attributes_new');
+    }
+    public function attributesupdate()
+    {
+        return view('catalog/attributes/attributes_update');
+    }
+    //TEXT
     public function texts()
     {
-        return view('landing/texts');
+        return view('config_web/texts');
+    }
+    public function textsnew()
+    {
+        return view('config_web/textnew');
+    }
+    public function textsupdate()
+    {
+        return view('config_web/textupdate');
     }
 
     

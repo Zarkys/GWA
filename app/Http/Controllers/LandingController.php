@@ -23,7 +23,24 @@ class LandingController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        return view('website_public/index');
+    }
+    public function know()
+    {
+        return view('website_public/know');
+    }
+    public function catalog()
+    {
+        return view('website_public/catalog');
+    }
+    public function catalog_detail()
+    {
+        return view('website_public/catalog_detail');
+    }
+    
+    public function contact()
+    {
+        return view('website_public/contact');
     }
     
 }

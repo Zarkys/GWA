@@ -1,33 +1,35 @@
-var prefix = 'api/1.0/';
-var domain = 'http://gwa.local/';
+var prefix = '/api/1.0/';
+var domain = window.location.hostname;
+var getUrl = window.location;
+var baseUrl = getUrl .protocol + "//" + getUrl.host;
 function loadElements (url,params) {
    
-    return axios.get(domain+prefix+url)
+    return axios.get(baseUrl+prefix+url)
           
 }
 function loadOneElement (url,params) {
    
-    return axios.get(domain+prefix+url)
+    return axios.get(baseUrl+prefix+url)
           
 }
 
 function saveElement (url,params) {
    
-    return axios.post(domain+prefix+url, params)
+    return axios.post(baseUrl+prefix+url, params)
           
 }
 function updateElement (url,params) {
    
-    return axios.put(domain+prefix+url, params)
+    return axios.put(baseUrl+prefix+url, params)
           
 }
 function trashElement (url,params) {
    
-    return axios.delete(domain+prefix+url, params)
+    return axios.delete(baseUrl+prefix+url, params)
           
 }
 function changueElement (url,params) {
    
-    return axios.put(domain+prefix+url, params)
+    return axios.put(baseUrl+prefix+url, params)
           
 }

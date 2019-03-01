@@ -41,19 +41,17 @@
             'as'   => 'api.type.product.save',
             'uses' => 'Api\TypeProductController@save',
         ]);
+        Route::put('/change/{id}', [
+            'as'   => 'api.type.product.change',
+            'uses' => 'Api\TypeProductController@change',
+        ]);
         Route::put('/{id}', [
             'as'   => 'api.type.product.update',
             'uses' => 'Api\TypeProductController@update',
         ]);
-        Route::delete('/change/active/{id}', [
-            'as'   => 'api.type.product.activate',
-            'uses' => 'Api\TypeProductController@activate',
-        ]);
-        Route::delete('/change/inactive/{id}', [
-            'as'   => 'api.type.product.inactivate',
-            'uses' => 'Api\TypeProductController@inactivate',
-        ]);
-        Route::delete('/change/delete/{id}', [
+      
+      
+        Route::delete('/{id}', [
             'as'   => 'api.type.product.delete',
             'uses' => 'Api\TypeProductController@delete',
         ]);

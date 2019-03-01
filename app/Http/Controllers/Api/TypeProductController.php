@@ -322,52 +322,28 @@
             }
         }
 
-         public function activate($id, Request $request) {
-          
-         
+        public function change($id, Request $request) {
+            
             
             try {
                 
-                $typeproduct = $this->TypeProductRepo->findbyid($id);
-                $typeproduct = $this->TypeProductRepo->activate($typeproduct, ['active' => 1]);
-                
-                $response = [
-                    'status'  => 'OK',
-                    'code'    => 200,
-                    'message' => __('El tipo de producto  ha sido activado correctamente'),
-                    'data'    => $typeproduct,
-                ];
-                
-                return response()->json($response, 200);
-                
-                
-            } catch (\Exception $ex) {
-                Log::error($ex);
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error interno') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            }
-            
-        }
+                $product = $this->TypeProductRepo->findbyid($id);
 
-         public function inactivate($id, Request $request) {
-          
-         
-            
-            try {
+                if($product->active === 0)
+                {
+                    $product = $this->TypeProductRepo->update($product, ['active' => 1]);
+                }
+                else
+                {
+                    $product = $this->TypeProductRepo->update($product, ['active' => 0]);
+                }
                 
-                $typeproduct = $this->TypeProductRepo->findbyid($id);
-                $typeproduct = $this->TypeProductRepo->inactivate($typeproduct, ['active' => 0]);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El tipo de producto  ha sido inactivado correctamente'),
-                    'data'    => $typeproduct,
+                    'message' => __('El producto fue cambiado correctamente '),
+                    'data'    => $product,
                 ];
                 
                 return response()->json($response, 200);

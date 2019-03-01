@@ -6,6 +6,12 @@ npm-debug.log
 bootstrap/compiled.php
 app/storage/
 
+#WEBSITE IGNORE CORE
+public/website_assets
+resources/views/website_public
+routes/website_public
+#app/Http/Controllers/LandingController.php
+
 # Laravel 5 & Lumen specific
 public/storage
 public/hot

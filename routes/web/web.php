@@ -29,13 +29,20 @@ Route::get('/products/new', 'HomeController@productsnew')->name('productsnew');
 Route::get('/products/update/{idelement}', 'HomeController@productsupdate')->name('productsupdate');
 
 Route::get('/typeproducts', 'HomeController@typeproducts')->name('typeproducts');
+Route::get('/typeproducts/new', 'HomeController@typeproductsnew')->name('typeproductsnew');
+Route::get('/typeproducts/update/{idelement}', 'HomeController@typeproductsupdate')->name('typeproductsupdate');
+
 Route::get('/attributes', 'HomeController@attributes')->name('attributes');
+Route::get('/attributes/new', 'HomeController@attributesnew')->name('attributesnew');
+Route::get('/attributes/update/{idelement}', 'HomeController@attributesupdate')->name('attributesupdate');
+
 Route::get('/texts', 'HomeController@texts')->name('texts');
+Route::get('/texts/new', 'HomeController@textsnew')->name('textsnew');
+Route::get('/texts/update/{idelement}', 'HomeController@textsupdate')->name('textsupdate');
 //USER
 Route::get('/profile', 'HomeController@profile')->name('profile');
 
 
-//LANDING PAGE ROUTES
-Route::get('/', 'LandingController@index')->name('index');
+
 
 
