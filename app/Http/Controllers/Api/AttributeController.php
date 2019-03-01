@@ -322,51 +322,27 @@
             }
         }
 
-         public function activate($id, Request $request) {
-          
-         
+        public function change($id, Request $request) {
+            
             
             try {
                 
                 $attribute = $this->AttributeRepo->findbyid($id);
-                $attribute = $this->AttributeRepo->activate($attribute, ['active' => 1]);
-                
-                $response = [
-                    'status'  => 'OK',
-                    'code'    => 200,
-                    'message' => __('El attributo ha sido activado correctamente'),
-                    'data'    => $attribute,
-                ];
-                
-                return response()->json($response, 200);
-                
-                
-            } catch (\Exception $ex) {
-                Log::error($ex);
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error interno') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            }
-            
-        }
 
-         public function inactivate($id, Request $request) {
-          
-         
-            
-            try {
+                if($attribute->active === 0)
+                {
+                    $attribute = $this->AttributeRepo->update($attribute, ['active' => 1]);
+                }
+                else
+                {
+                    $attribute = $this->AttributeRepo->update($attribute, ['active' => 0]);
+                }
                 
-                $attribute = $this->AttributeRepo->findbyid($id);
-                $attribute = $this->AttributeRepo->inactivate($attribute, ['active' => 0]);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El attributo ha sido inactivado correctamente'),
+                    'message' => __('El producto fue cambiado correctamente '),
                     'data'    => $attribute,
                 ];
                 

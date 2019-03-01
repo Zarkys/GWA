@@ -1,7 +1,7 @@
 @include('layouts.header')
 <!-- Custom styles for this page -->
 
-<link href="{{ asset('/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
 
 @include('layouts.sidebar')
 @include('layouts.navbar')
@@ -50,18 +50,18 @@
                     <div class="col-md-4">
                     @{{typeproduct.description}}
                     </div>
-                    <div class="col-md-2">
-                    <a href="#" v-on:click="updateRow(typeproduct.id)" class="btn btn-primary btn-circle">
+                    <div class="col-md-2" >
+                    <a href="#" data-toggle="tooltip" data-placement="top" title="Actualizar" v-on:click="updateRow(typeproduct.id)" class="btn btn-primary btn-circle">
                     <i class="fas fa-edit"></i>
                     </a>
 
-                    <a v-if="typeproduct.active === 1" href="#" v-on:click="checkRow(typeproduct.id)" class="btn btn-success btn-circle">
+                    <a v-if="typeproduct.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRow(typeproduct.id)" class="btn btn-success btn-circle">
                     <i class="fas fa-check"></i>
                     </a>
-                    <a v-if="typeproduct.active === 0" href="#" v-on:click="checkRow(typeproduct.id)" class="btn btn-warning btn-circle">
+                    <a v-if="typeproduct.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRow(typeproduct.id)" class="btn btn-warning btn-circle">
                     <i class="fas fa-times"></i>
                     </a>
-                    <a href="#" v-on:click="trashRow(typeproduct.id)" class="btn btn-danger btn-circle">
+                    <a href="#" v-on:click="trashRow(typeproduct.id)" data-placement="top" title="Eliminar" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                     </a>
                     </div>

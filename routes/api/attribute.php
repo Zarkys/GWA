@@ -40,16 +40,12 @@
         Route::put('/{id}', [
             'as'   => 'api.attribute.update',
             'uses' => 'Api\AttributeController@update',
+        ]);     
+        Route::put('/change/{id}', [
+            'as'   => 'api.attribute.change',
+            'uses' => 'Api\AttributeController@change',
         ]);
-        Route::delete('/change/active/{id}', [
-            'as'   => 'api.attribute.activate',
-            'uses' => 'Api\AttributeController@activate',
-        ]);
-        Route::delete('/change/inactive/{id}', [
-            'as'   => 'api.attribute.inactivate',
-            'uses' => 'Api\AttributeController@inactivate',
-        ]);
-        Route::delete('/change/delete/{id}', [
+        Route::delete('/{id}', [
             'as'   => 'api.attribute.delete',
             'uses' => 'Api\AttributeController@delete',
         ]);

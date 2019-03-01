@@ -161,7 +161,7 @@ class TypeProductAttributeRepo
     {
 
         $typeproductattribute->fill($data);
-        $typeproductattribute->save();
+        $typeproductattribute->delete();
 
         return $typeproductattribute;
     }

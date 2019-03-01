@@ -337,50 +337,28 @@
                 return response()->json($response, 500);
             }
         }
-        public function activate($id, Request $request) {
+        public function change($id, Request $request) {
             
             
             try {
                 
-                $typeproductattribute = $this->TypeProductAttributeRepo->findbyid($id);
-                $typeproductattribute = $this->TypeProductAttributeRepo->activate($typeproductattribute, ['active' => 1]);
-                
-                $response = [
-                    'status'  => 'OK',
-                    'code'    => 200,
-                    'message' => __('El atributo fue activado correctamente para el tipo de producto'),
-                    'data'    => $typeproductattribute,
-                ];
-                
-                return response()->json($response, 200);
-                
-                
-            } catch (\Exception $ex) {
-                Log::error($ex);
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error interno') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            }
-            
-        }
+                $product = $this->TypeProductAttributeRepo->findbyid($id);
 
-        public function inactivate($id, Request $request) {
-            
-            
-            try {
+                if($product->active === 0)
+                {
+                    $product = $this->TypeProductAttributeRepo->update($product, ['active' => 1]);
+                }
+                else
+                {
+                    $product = $this->TypeProductAttributeRepo->update($product, ['active' => 0]);
+                }
                 
-                $typeproductattribute = $this->TypeProductAttributeRepo->findbyid($id);
-                $typeproductattribute = $this->TypeProductAttributeRepo->inactivate($typeproductattribute, ['active' => 0]);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El atributo fue inactivado correctamente para el tipo de producto '),
-                    'data'    => $typeproductattribute,
+                    'message' => __('El tipo de producto fue cambiado correctamente '),
+                    'data'    => $product,
                 ];
                 
                 return response()->json($response, 200);
