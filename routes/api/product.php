@@ -17,6 +17,14 @@
             'as'   => 'api.product.filteractive',
             'uses' => 'Api\ProductController@filteractive',
         ]);
+        Route::get('/attributes/active', [
+            'as'   => 'api.product.filteractive',
+            'uses' => 'Api\ProductController@getProductsWithAttributes',
+        ]);
+        Route::get('/attributes/{idproduct}', [
+            'as'   => 'api.product.filteractive',
+            'uses' => 'Api\ProductController@getProductWithAttributes',
+        ]);
         Route::get('/inactive', [
             'as'   => 'api.product.filterinactive',
             'uses' => 'Api\ProductController@filterinactive',

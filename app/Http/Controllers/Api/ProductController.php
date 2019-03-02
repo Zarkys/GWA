@@ -73,6 +73,58 @@
             }
             
         }
+        public function getProductWithAttributes($idproduct) {
+            
+            try {
+                $product = $this->ProductRepo->getProductWithAttributes($idproduct);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $product,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        public function getProductsWithAttributes() {
+            
+            try {
+                $product = $this->ProductRepo->getProductsWithAttributes();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $product,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         public function filterinactive() {
             
             try {

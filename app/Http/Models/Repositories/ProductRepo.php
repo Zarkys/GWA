@@ -6,7 +6,7 @@ use Mockery\Matcher\Type;
 
 use App\Http\Models\Entities\TypeProduct;  
 use App\Http\Models\Entities\Product;
-
+use App\Http\Models\Entities\ProductAttribute;
 class ProductRepo
 {
     public function all()
@@ -47,6 +47,67 @@ class ProductRepo
                     'TypeProduct',
                 ])->whereIn('active', [0])->get();
 
+            return $product;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+    public function getProductsWithAttributes()
+    {
+        //Find By parameters (Item)
+        try {
+           
+            $product = Product::with([
+                    'TypeProduct',
+                ])->whereIn('active', [1])->get();
+
+            foreach($product as $prod)
+            {
+                $attributes = ProductAttribute::with([
+                    'Attribute',
+                ])->where('id_product',$prod->id)->get();
+                $prod['attributes'] = $attributes;
+        
+            }
+            
+            return $product;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
+    public function getProductWithAttributes($idproduct)
+    {
+        //Find By parameters (Item)
+        try {
+           
+            $product = Product::with([
+                    'TypeProduct',
+                ])->find($idproduct);
+
+        
+                $attributes = ProductAttribute::with([
+                    'Attribute',
+                ])->where('id_product',$product->id)->get();
+                $product['attributes'] = $attributes;
+        
+           
+            
             return $product;
 
         } catch (\Exception $ex) {
