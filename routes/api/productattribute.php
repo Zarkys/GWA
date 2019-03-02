@@ -29,6 +29,10 @@
             'as'   => 'api.product.attribute.filterby',
             'uses' => 'Api\ProductAttributeController@filterby',
         ]);
+        Route::get('/getattributes/{idproduct}', [
+            'as'   => 'api.product.attribute.getattributes',
+            'uses' => 'Api\ProductAttributeController@getAttributesValue',
+        ]);
         Route::get('/{id}', [
             'as'   => 'api.product.attribute.findbyid',
             'uses' => 'Api\ProductAttributeController@findbyid',
@@ -37,9 +41,16 @@
             'as'   => 'api.product.attribute.findbyunique',
             'uses' => 'Api\ProductAttributeController@findbyunique',
         ]);
+       
+        
         Route::post('/', [
             'as'   => 'api.product.attribute.save',
             'uses' => 'Api\ProductAttributeController@save',
+        ]);
+        
+        Route::put('/updateAttributes/{id}', [
+            'as'   => 'api.product.attribute.updateattributes',
+            'uses' => 'Api\ProductAttributeController@updateAttributes',
         ]);
         Route::put('/{id}', [
             'as'   => 'api.product.attribute.update',

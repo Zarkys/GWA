@@ -10,6 +10,7 @@
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Support\Facades\Log;
     
+    
     class ProductAttributeController extends BaseController {
         
         private $ProductAttributeRepo;
@@ -155,6 +156,32 @@
             }
             
         }
+        public function getAttributesValue($idproduct) {
+            
+            try {
+                $productattribute = $this->ProductAttributeRepo->getAttributesValue($idproduct);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $productattribute,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrios un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function findbyid($id) {
             
@@ -277,7 +304,41 @@
                 return response()->json($response, 500);
             }
         }
-        
+        public function updateAttributes(Request $request, $id) {
+            
+            try {
+              
+                  
+                  $input = $request->all();                 
+                    
+                 
+                $productattribute = $this->ProductAttributeRepo->updateAttributes($input, $id);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El atributo  fue modificado correctamente para el producto'),
+                    'data'    => $productattribute,
+                ];
+                
+                return response()->json($response, 200);
+                  
+          
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+
+
+
+
+        }
         public function update(Request $request, $id) {
             
             Log::debug($request);

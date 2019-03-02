@@ -17,6 +17,7 @@ class CreateProductAttributeTable extends Migration
             $table->increments('id');
             $table->integer('id_product')->unsigned();
             $table->integer('id_attribute')->unsigned();
+            $table->string('value')->nullable();
             $table->integer('active');
             $table->timestamps();
 

@@ -12,7 +12,8 @@
         protected $fillable = [
             'id',
             'id_product',           
-            'id_attribute', 
+            'id_attribute',
+            'value',  
             'active',
             'created_at',
             'updated_at',

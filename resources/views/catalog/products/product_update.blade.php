@@ -5,68 +5,135 @@
 @include('layouts.navbar')
 <!-- End of Topbar -->
 <div id="app">
-<!-- Begin Page Content -->
-<div class="container-fluid">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Actualizar Producto</h1>
-    </div>      
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Actualizar Producto</h1>
+        </div>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-            <div class="row">
-                <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Nuevos datos del Producto</h6>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h6 class="m-0 font-weight-bold text-primary">Nuevos datos del Producto</h6>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ url()->previous() }}" class="btn btn-warning btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-arrow-left"></i>
+                            </span>
+                            <span class="text">Volver</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                <a href="{{ url()->previous() }}" class="btn btn-warning btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-arrow-left"></i>
-                    </span>
-                    <span class="text">Volver</span>
-                  </a>
-                </div>
-            </div>
-                
-                
+
+
             </div>
             <div class="card-body">
-            <form>
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nombre</label>
+                                <input type="text" class="form-control" id="inputName" v-model="name_product"
+                                    aria-describedby="nameHelp" placeholder="Nombre del Producto">
+                                <small id="emailHelp" class="form-text text-muted">Sera el nombre mostrado en el titulo
+                                    del producto</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Tipo de Producto</label>
+                                <v-select :options="typeproducts" label="name" v-model="typeproduct"></v-select>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                    <button v-on:click="updateRow" type="button" class="btn btn-primary">Actualizar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
                 <div class="row">
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" v-model="name_product" aria-describedby="nameHelp" placeholder="Nombre del Producto">
-                    <small id="emailHelp" class="form-text text-muted">Sera el nombre mostrado en el titulo del producto</small>
-                </div>
+                    <div class="col-md-12">
+                        <h6 class="m-0 font-weight-bold text-primary">Caracteristicas del Producto</h6>
+                        <p>Indica los valores que deseas mostrar del producto</p>
                     </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="exampleFormControlSelect1">Tipo de Producto</label>
-                        <v-select :options="typeproducts" label="name" v-model="typeproduct"></v-select>
-                    </div>
-                    </div>
-                   
 
                 </div>
-              
-              
-              
-                <button v-on:click="updateRow" type="button" class="btn btn-primary">Actualizar</button>
+
+
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                            <ul class="list-group">
+                                <li class="list-group-item" v-for="attributetype in attributetypes">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            @{{attributetype.attribute.name}}
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="inputName" v-model="attributetype.value"
+                                                    aria-describedby="nameHelp" placeholder="Nombre del Producto">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+
+                                            <a v-if="attributetype.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo"
+                                                href="#" v-on:click="checkRow(attributetype.id)" class="btn btn-success btn-circle">
+                                                <i class="fas fa-check"></i>
+                                            </a>
+                                            <a v-if="attributetype.active === 0" data-placement="top" title="Cambiar Estatus a Activo"
+                                                href="#" v-on:click="checkRow(attributetype.id)" class="btn btn-warning btn-circle">
+                                                <i class="fas fa-times"></i>
+                                            </a>
+                                            <a href="#" v-on:click="trashRow(typeproduct.id)" data-placement="top"
+                                                title="Eliminar" class="btn btn-danger btn-circle">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <button v-on:click="updateAttributes" type="button" class="btn btn-primary">Actualizar Caracteristicas</button>
                 </form>
             </div>
         </div>
 
     </div>
-   
-    <!-- /.container-fluid -->
-
-
 
 </div>
-</div>
+
+<!-- /.container-fluid -->
+
+
+
 <!-- End of Main Content -->
 @include('layouts.footer')
 @include('layouts.footscript')
@@ -80,29 +147,44 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <!-- Custom page Script -->
 <script>
-Vue.component('v-select', VueSelect.VueSelect)
+    Vue.component('v-select', VueSelect.VueSelect)
 
     var app = new Vue({
         el: '#app',
         data() {
             return {
                 message: '',
-                name_product:'',
+                name_product: '',
                 product: {},
-                typeproduct:'',
+                attributetypes: [],
+                attributetype: {},
+                typeproduct: '',
                 typeproducts: []
             }
         },
         mounted() {
-           var pageURL = window.location.href;
+            var pageURL = window.location.href;
             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
             console.log(idurl);
-            loadOneElement('product/'+idurl, '').then(
+            loadOneElement('product/' + idurl, '').then(
                     response => {
-                        if (response.data.code !== 500) {                          
-                            this.product = response.data.data; 
+                        if (response.data.code !== 500) {
+                            this.product = response.data.data;
                             this.name_product = this.product.name;
                             this.typeproduct = this.product.type_product;
+
+                            loadElements('productattribute/getattributes/' + idurl, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {
+                                            this.attributetypes = response.data.data;
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
                         } else {
                             console.log(response.data);
                         }
@@ -111,10 +193,10 @@ Vue.component('v-select', VueSelect.VueSelect)
                     console.log(error);
                 });
 
-                loadElements('typeproduct', '').then(
+            loadElements('typeproduct', '').then(
                     response => {
-                        if (response.data.code !== 500) {                          
-                            this.typeproducts = response.data.data; 
+                        if (response.data.code !== 500) {
+                            this.typeproducts = response.data.data;
                         } else {
                             console.log(response.data);
                         }
@@ -122,6 +204,8 @@ Vue.component('v-select', VueSelect.VueSelect)
                 .catch(error => {
                     console.log(error);
                 });
+
+
 
 
 
@@ -129,6 +213,61 @@ Vue.component('v-select', VueSelect.VueSelect)
         methods: {
             back() {
 
+            },
+            updateAttributes() {
+                Swal.fire({
+                    title: 'Estas seguro de actualizar los atributos del producto?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Actualizar'
+                }).then((result) => {
+                    if (result.value) {
+                       
+
+                        console.log(this.attributetypes.length);
+                        var newArray = []
+                        this.attributetypes.forEach(function(entry) {
+                            var newObject ={
+                                id: entry.id,
+                                id_attribute:entry.id_attribute,
+                                id_product_attribute:entry.id_product_attribute,
+                                id_type_product:entry.id_type_product,
+                                value:entry.value
+                            }
+                            newArray.push(newObject);
+                        });
+                        console.log(newArray);
+
+                        
+                        var pageURL = window.location.href;
+                        var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+
+                        updateElement('productattribute/updateAttributes/' + idurl, newArray).then(
+                                response => {
+                                    if (response.data.code !== 500) {
+                                        // this.typeproducts = response.data.data; 
+                                        Swal.fire(
+                                            'Elemento Actualizado',
+                                            'La información se actualizo correctamente',
+                                            'success'
+                                        ).then((result) => {
+                                            window.location.reload();
+                                        });
+
+
+                                    } else {
+                                        console.log(response.data);
+                                    }
+                                })
+                            .catch(error => {
+                                console.log(error);
+                            });
+
+                    }
+                }) 
             },
             updateRow() {
                 Swal.fire({
@@ -139,38 +278,38 @@ Vue.component('v-select', VueSelect.VueSelect)
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Actualizar'
-                    }).then((result) => {
+                }).then((result) => {
                     if (result.value) {
                         let form = {
-                                name: this.name_product,
-                                id_type_product: this.typeproduct.id
-                            }
-                            var pageURL = window.location.href;
-                            var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
-         
-                            updateElement('product/'+idurl, form).then(
-                                    response => {
-                                        if (response.data.code !== 500) {                          
-                                           // this.typeproducts = response.data.data; 
-                                           Swal.fire(
-                                                'Elemento Actualizado',
-                                                'La información se actualizo correctamente',
-                                                'success'
-                                                ).then((result) => {
-                                                    window.location.href = '/products';
-                                                });
-                                               
-                                            
-                                        } else {
-                                            console.log(response.data);
-                                        }
-                                    })
-                                .catch(error => {
-                                    console.log(error);
-                                });
+                            name: this.name_product,
+                            id_type_product: this.typeproduct.id
+                        }
+                        var pageURL = window.location.href;
+                        var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+
+                        updateElement('product/' + idurl, form).then(
+                                response => {
+                                    if (response.data.code !== 500) {
+                                        // this.typeproducts = response.data.data; 
+                                        Swal.fire(
+                                            'Elemento Actualizado',
+                                            'La información se actualizo correctamente',
+                                            'success'
+                                        ).then((result) => {
+                                            window.location.href = '/products';
+                                        });
+
+
+                                    } else {
+                                        console.log(response.data);
+                                    }
+                                })
+                            .catch(error => {
+                                console.log(error);
+                            });
 
                     }
-                    })
+                })
             },
             cleanform() {
 
