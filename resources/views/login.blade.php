@@ -39,12 +39,12 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Bienvenido a la administracion del Website</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" method="POST" action="{{route('auth.login.post')}}" >
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingresa correo electrónico">
+                      <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingresa correo electrónico">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
+                      <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -52,9 +52,9 @@
                         <!--<label class="custom-control-label" for="customCheck">Remember Me</label>-->
                       </div>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
                       Acceder
-                    </a>
+                    </button>
                  
                   </form>
               
