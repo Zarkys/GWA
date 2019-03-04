@@ -29,7 +29,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Listado de Tipos Productos</h6>
                 </div>
                 <div class="col-md-4">
-                <a href="typeproducts/new" class="btn btn-primary btn-icon-split">
+                <a href="/goadmin/typeproducts/new" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
@@ -206,7 +206,7 @@
             },
             updateRow(idelement)
             {
-                window.location.href = '/typeproducts/update/'+idelement;
+                window.location.href = '/goadmin/typeproducts/update/'+idelement;
             },
             cleanform() {
 

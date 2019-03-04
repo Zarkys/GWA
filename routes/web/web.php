@@ -49,8 +49,7 @@
          Route::get('/profile', 'HomeController@config')->name('config');
 
 
-        //USER
-        Route::get('/profile', 'HomeController@profile')->name('profile');
+       
         
     });
 

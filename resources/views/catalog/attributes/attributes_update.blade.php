@@ -146,7 +146,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                                                 'La información se actualizo correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/attributes';
+                                                    window.location.reload();
                                                 });
                                                
                                             

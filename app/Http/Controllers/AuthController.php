@@ -55,6 +55,7 @@
                 $unique_permissions = $permissions->unique()->values()->all();
                 Log::debug($unique_permissions);
                 Session::put('permissions', $unique_permissions);
+               
                 if (Gate::allows('permission', [
                     Permissions::$login,
                     $unique_permissions,

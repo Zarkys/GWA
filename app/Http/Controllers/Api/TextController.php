@@ -8,7 +8,7 @@
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Support\Facades\Log;
-    
+    use Illuminate\Support\Facades\Session;
     class TextController extends BaseController {
         
         private $TextRepo;
@@ -414,7 +414,8 @@
             
         }
 
-
+       
+       
         
         
         public function custom_message() {

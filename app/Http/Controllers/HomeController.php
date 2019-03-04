@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function home()
     {
-      
+        
         return view('home');
     }
 
@@ -120,6 +120,7 @@ class HomeController extends Controller
      {
          return view('config_web/configs/config');
      }
+
     
 
     

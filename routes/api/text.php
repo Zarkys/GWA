@@ -54,5 +54,6 @@
             'as'   => 'api.text.delete',
             'uses' => 'Api\TextController@delete',
         ]);
-        
+       
+       
     });

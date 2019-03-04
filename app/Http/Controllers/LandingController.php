@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class LandingController extends Controller
 {
     /**
@@ -27,10 +27,12 @@ class LandingController extends Controller
     }
     public function know()
     {
+
         return view('website_public/know');
     }
     public function catalog()
     {
+        
         return view('website_public/catalog');
     }
     public function catalog_detail()
@@ -42,5 +44,13 @@ class LandingController extends Controller
     {
         return view('website_public/contact');
     }
+    public function changue_lang($lang)
+    {
+       
+        session(['lang' => $lang]);
+        //dd(session('lang'));
+        return response()->json($lang, 200);
+    }
+    
     
 }

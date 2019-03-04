@@ -296,7 +296,7 @@
                                             'La información se actualizo correctamente',
                                             'success'
                                         ).then((result) => {
-                                            window.location.href = '/products';
+                                            window.location.reload();
                                         });
 
 

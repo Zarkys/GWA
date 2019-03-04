@@ -40,13 +40,41 @@
                 
             </div>
             <div class="card-body">
+                    <ul class="list-group">
+                            <li class="list-group-item">
+                            <div class="row">
+                            <div class="col-md-2">
+                            <strong>Nombre</strong>
+                            </div>
+                            <div class="col-md-3">
+                                    <strong>Espanol</strong>
+                                    </div>
+                                    <div class="col-md-3">
+                                           <strong>Ingles</strong>
+                                            </div>
+                            <div class="col-md-2">
+                              <strong>Seccion</strong>
+                            </div>
+                            <div class="col-md-2">
+                          
+                            </div>
+                            </div>
+                            </li>
+        
+                        </ul>
                 <ul class="list-group">
                     <li class="list-group-item" v-for="text in texts">
                     <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                     @{{text.name}}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3" style="font-size:12px">
+                            @{{text.value_es}}
+                            </div>
+                            <div class="col-md-3" style="font-size:12px">
+                                    @{{text.value_en}}
+                                    </div>
+                    <div class="col-md-2">
                         @{{text.section.title}}
                     </div>
                     <div class="col-md-2">

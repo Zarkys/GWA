@@ -6,7 +6,8 @@ use Mockery\Matcher\Type;
 
 use App\Http\Models\Entities\Section;  
 use App\Http\Models\Entities\Text;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 class TextRepo
 {
     public function all()
@@ -95,16 +96,28 @@ class TextRepo
     public function filterby($item,$id) {
             //Find By parameters (Item)
             try {
+                $strings_es = [];
+                $strings_en = [];
                     if($item==='id_section'){
                         //$textstation = TextStation::where('id_text', $id)->get();
 
                         $text = Text::with([
                             'Section',
                         ])->where('id_section', $id)->whereIn('active', [0, 1])->get();
-                    }                 
                       
+                        foreach($text as $t)
+                        {
+                            $strings_es[$t->name] = $t->value_es;
+                            $strings_en[$t->name] = $t->value_en;
+                        }
+                        
+                       
+                    }                 
+                    $object = new \stdClass();
+                    $object->es = $strings_es;
+                    $object->en = $strings_en;
                
-                    return $text;
+                    return $object;
 
             } catch (\Exception $ex) {
                 Log::error($ex);

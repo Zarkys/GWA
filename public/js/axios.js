@@ -33,3 +33,8 @@ function changueElement (url,params) {
     return axios.put(baseUrl+prefix+url, params)
           
 }
+function changueLang (url,params) {
+   
+    return axios.get(baseUrl+url, params)
+          
+}
