@@ -65,16 +65,18 @@ class ProductRepo
         //Find By parameters (Item)
         try {
            
-            $product = Product::with([
-                    'TypeProduct',
-                ])->whereIn('active', [1])->get();
+            $product = Product::whereIn('active', [1])->get();
 
             foreach($product as $prod)
             {
                 $attributes = ProductAttribute::with([
                     'Attribute',
                 ])->where('id_product',$prod->id)->get();
-                $prod['attributes'] = $attributes;
+                foreach($attributes as $att)
+                {
+                $prod[$att->attribute->name]=$att->value;
+
+                }
         
             }
             
@@ -96,15 +98,18 @@ class ProductRepo
         //Find By parameters (Item)
         try {
            
-            $product = Product::with([
-                    'TypeProduct',
-                ])->find($idproduct);
+            $product = Product::find($idproduct);
 
         
                 $attributes = ProductAttribute::with([
                     'Attribute',
                 ])->where('id_product',$product->id)->get();
-                $product['attributes'] = $attributes;
+                foreach($attributes as $att)
+                {
+                $product[$att->attribute->name]=$att->value;
+
+                }
+               
         
            
             

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTextTable extends Migration
+class ProducsArchives extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateTextTable extends Migration
      */
     public function up()
     {
-        Schema::create('texts', function (Blueprint $table) {
+        Schema::create('products_archives', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('value_es')->unique()->nullable();
-            $table->string('value_en')->unique()->nullable();
-            $table->integer('id_section')->unsigned();
+            $table->integer('id_product')->unsigned();
+            $table->integer('id_archive')->unsigned();          
             $table->integer('active');
             $table->timestamps();
 
-            $table->foreign('id_section')->references('id')->on('sections')->onDelete('cascade');
+           $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
+           $table->foreign('id_archive')->references('id')->on('archives')->onDelete('cascade');
         });
     }
 
@@ -33,6 +32,6 @@ class CreateTextTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('texts');
+        Schema::dropIfExists('products_archives');
     }
 }

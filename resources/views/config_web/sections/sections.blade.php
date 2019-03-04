@@ -11,12 +11,12 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Atributos</h1>
+        <h1 class="h3 mb-0 text-gray-800">Secciones</h1>
     </div>
 
 
 
-    <p class="mb-4">En esta lista puedes visualizar todos los atributos que existen actualmente </p>
+    <p class="mb-4">En esta lista puedes visualizar todas las secciones del sitio web que existen actualmente </p>
    
        
 
@@ -25,14 +25,14 @@
             <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Lista de Atributos</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Lista de Secciones</h6>
                 </div>
                 <div class="col-md-4">
-                <a href="attributes/new" class="btn btn-primary btn-icon-split">
+                <a href="sections/new" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Nuevo Atributo</span>
+                    <span class="text">Nueva Seccion</span>
                   </a>
                 </div>
             </div>
@@ -41,26 +41,26 @@
             </div>
             <div class="card-body">
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="attribute in attributes">
+                    <li class="list-group-item" v-for="section in sections">
                     <div class="row">
                     <div class="col-md-6">
-                    @{{attribute.name}}
+                    @{{section.title}}
                     </div>
                     <div class="col-md-4">
-                    @{{attribute.description}}
+                   
                     </div>
                     <div class="col-md-2">
-                    <a href="#" v-on:click="updateRow(attribute.id)" class="btn btn-primary btn-circle">
+                    <a href="#" v-on:click="updateRow(section.id)" class="btn btn-primary btn-circle">
                     <i class="fas fa-edit"></i>
                     </a>
 
-                    <a v-if="attribute.active === 1" href="#" v-on:click="checkRow(attribute.id)" class="btn btn-success btn-circle">
+                    <a v-if="section.active === 1" href="#" v-on:click="checkRow(section.id)" class="btn btn-success btn-circle">
                     <i class="fas fa-check"></i>
                     </a>
-                    <a v-if="attribute.active === 0" href="#" v-on:click="checkRow(attribute.id)" class="btn btn-warning btn-circle">
+                    <a v-if="section.active === 0" href="#" v-on:click="checkRow(section.id)" class="btn btn-warning btn-circle">
                     <i class="fas fa-times"></i>
                     </a>
-                    <a href="#" v-on:click="trashRow(attribute.id)" class="btn btn-danger btn-circle">
+                    <a href="#" v-on:click="trashRow(section.id)" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                     </a>
                     </div>
@@ -95,17 +95,17 @@
         data() {
             return {
                 message: '',
-                attributes: {},
+                sections: {},
             }
         },
         mounted() {
-            loadElements('attribute', '').then(
+            loadElements('section', '').then(
                     response => {
                         if (response.data.code !== 500) {
 
                             console.log(response.data.data)
-                            this.attributes = response.data.data;
-                            console.log(this.attributes);
+                            this.sections = response.data.data;
+                            console.log(this.sections);
 
                         } else {
                             console.log(response.data);
@@ -140,16 +140,16 @@
                       
                        
 
-                            trashElement('attribute/'+idelement, '').then(
+                            trashElement('section/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
-                                           // this.typeattributes = response.data.data; 
+                                           // this.typesections = response.data.data; 
                                            Swal.fire(
                                                 'Elemento Eliminado',
                                                 'Elemento eliminado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/attributes';
+                                                    window.location.reload();
                                                 });
                                                
                                             
@@ -179,16 +179,16 @@
                       
                        
 
-                        changueElement('attribute/change/'+idelement, '').then(
+                        changueElement('section/change/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
-                                           // this.typeattributes = response.data.data; 
+                                           // this.typesections = response.data.data; 
                                            Swal.fire(
                                                 'Estatus Cambiado',
                                                 'Estatus modificado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = 'attributes';
+                                                    window.location.reload();
                                                 });
                                                
                                             
@@ -205,7 +205,7 @@
             },
             updateRow(idelement)
             {
-                window.location.href = 'attributes/update/'+idelement;
+                window.location.href = 'sections/update/'+idelement;
             },
             cleanform() {
 

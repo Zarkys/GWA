@@ -27,18 +27,25 @@
         Route::get('/products', 'HomeController@products')->name('products');
         Route::get('/products/new', 'HomeController@productsnew')->name('productsnew');
         Route::get('/products/update/{idelement}', 'HomeController@productsupdate')->name('productsupdate');
-    
+        //ADMIN - TYPE PRODUCTS
         Route::get('/typeproducts', 'HomeController@typeproducts')->name('typeproducts');
         Route::get('/typeproducts/new', 'HomeController@typeproductsnew')->name('typeproductsnew');
         Route::get('/typeproducts/update/{idelement}', 'HomeController@typeproductsupdate')->name('typeproductsupdate');
-    
+        //ADMIN - ATTRIBUTES
         Route::get('/attributes', 'HomeController@attributes')->name('attributes');
         Route::get('/attributes/new', 'HomeController@attributesnew')->name('attributesnew');
         Route::get('/attributes/update/{idelement}', 'HomeController@attributesupdate')->name('attributesupdate');
-    
+        //ADMIN - TEXTS
         Route::get('/texts', 'HomeController@texts')->name('texts');
         Route::get('/texts/new', 'HomeController@textsnew')->name('textsnew');
         Route::get('/texts/update/{idelement}', 'HomeController@textsupdate')->name('textsupdate');
+        //ADMIN - SECTIONS
+        Route::get('/sections', 'HomeController@sections')->name('sections');
+        Route::get('/sections/new', 'HomeController@sectionsnew')->name('sectionsnew');
+        Route::get('/sections/update/{idelement}', 'HomeController@sectionsupdate')->name('sectionsupdate');
+       
+
+
         //USER
         Route::get('/profile', 'HomeController@profile')->name('profile');
         

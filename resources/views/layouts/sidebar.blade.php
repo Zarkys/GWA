@@ -70,9 +70,9 @@
         <div id="collapseCatalog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
           
-            <a class="collapse-item" href="products">Productos</a>
-            <a class="collapse-item" href="typeproducts">Tipos de Producto</a>
-            <a class="collapse-item" href="attributes">Atributos</a>
+          <a class="collapse-item" href="{{url('goadmin/products')}}">Productos</a>
+            <a class="collapse-item" href="{{url('goadmin/typeproducts')}}">Tipos de Producto</a>
+            <a class="collapse-item" href="{{url('goadmin/attributes')}}">Atributos</a>
            
           </div>
         </div>
@@ -82,7 +82,12 @@
         Zona de Websiite
       </div>
       <li class="nav-item">
-        <a class="nav-link" href="texts">
+          <a class="nav-link" href="{{url('goadmin/sections')}}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Secciones en Website</span></a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{url('goadmin/texts')}}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Textos en Website</span></a>
       </li>

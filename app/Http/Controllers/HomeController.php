@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function home()
     {
-        dd(Auth::user(), session()->get('permissions'));
+      // dd(Auth::user(), session()->get('permissions'));
         return view('home');
     }
 
@@ -84,19 +84,32 @@ class HomeController extends Controller
     {
         return view('catalog/attributes/attributes_update');
     }
-    //TEXT
-    public function texts()
+    //SECTION
+    public function sections()
     {
-        return view('config_web/texts');
+        return view('config_web/sections/sections');
     }
-    public function textsnew()
+    public function sectionsnew()
     {
-        return view('config_web/textnew');
+        return view('config_web/sections/sectionnew');
     }
-    public function textsupdate()
+    public function sectionsupdate()
     {
-        return view('config_web/textupdate');
+        return view('config_web/sections/sectionupdate');
     }
+     //TEXT
+     public function texts()
+     {
+         return view('config_web/texts/texts');
+     }
+     public function textsnew()
+     {
+         return view('config_web/texts/textnew');
+     }
+     public function textsupdate()
+     {
+         return view('config_web/texts/textupdate');
+     }
 
     
 }

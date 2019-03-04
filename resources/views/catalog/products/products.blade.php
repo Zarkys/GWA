@@ -150,7 +150,7 @@
                                                 'Elemento eliminado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/products';
+                                                    window.location.href = 'products';
                                                 });
                                                
                                             
@@ -189,7 +189,7 @@
                                                 'Estatus modificado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/products';
+                                                    window.location.href = 'products';
                                                 });
                                                
                                             
@@ -206,7 +206,7 @@
             },
             updateRow(idelement)
             {
-                window.location.href = '/products/update/'+idelement;
+                window.location.href = 'products/update/'+idelement;
             },
             cleanform() {
 

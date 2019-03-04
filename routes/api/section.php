@@ -45,15 +45,12 @@
             'as'   => 'api.section.update',
             'uses' => 'Api\SectionController@update',
         ]);
-        Route::delete('/change/active/{id}', [
-            'as'   => 'api.section.activate',
-            'uses' => 'Api\SectionController@activate',
+       
+        Route::put('/change/{id}', [
+            'as'   => 'api.section.change',
+            'uses' => 'Api\SectionController@change',
         ]);
-        Route::delete('/change/inactive/{id}', [
-            'as'   => 'api.section.inactivate',
-            'uses' => 'Api\SectionController@inactivate',
-        ]);
-        Route::delete('/change/delete/{id}', [
+        Route::delete('/{id}', [
             'as'   => 'api.section.delete',
             'uses' => 'Api\SectionController@delete',
         ]);

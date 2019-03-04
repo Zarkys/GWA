@@ -13,16 +13,18 @@ class TextSeeder extends Seeder
     {
          $text = \App\Http\Models\Entities\Text::create([    
 
-            'name' => 'titulo seccion1', 
-            'value' => 'value section 1', 
+            'name' => 'title', 
+            'value_es' => 'seccion prueba',
+            'value_en' => 'section test', 
             'id_section' => 1,             
             'active'=> 1                
            
         ]);
         $text = \App\Http\Models\Entities\Text::create([    
 
-            'name' => 'titulo seccion 2',  
-            'value' => 'value section 2', 
+            'name' => 'title2', 
+            'value_es' => 'seccion prueba 2',
+            'value_en' => 'section test 2', 
             'id_section' => 2,             
             'active'=> 1                
            

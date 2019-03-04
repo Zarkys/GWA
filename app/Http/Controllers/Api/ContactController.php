@@ -2,30 +2,30 @@
     
     namespace App\Http\Controllers\Api;
     
-    use App\Http\Models\Repositories\SectionRepo;
+    use App\Http\Models\Repositories\ContactRepo;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Support\Facades\Log;
-    class SectionController extends BaseController {
+    class ContactController extends BaseController {
         
-        private $SectionRepo;
+        private $ContactRepo;
         
-        public function __construct(SectionRepo $SectionRepo) {
+        public function __construct(ContactRepo $ContactRepo) {
             
-            $this->SectionRepo = $SectionRepo;
+            $this->ContactRepo = $ContactRepo;
         }
         
         public function index() {
             
             try {
-                $section = $this->SectionRepo->all();
+                $contact = $this->ContactRepo->all();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $section,
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -46,13 +46,13 @@
              public function filteractive() {
             
             try {
-                $section = $this->SectionRepo->filteractive();
+                $contact = $this->ContactRepo->filteractive();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $section,
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -73,13 +73,13 @@
           public function filterinactive() {
             
             try {
-                $section = $this->SectionRepo->filterinactive();
+                $contact = $this->ContactRepo->filterinactive();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $section,
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -99,13 +99,13 @@
           public function filterdeleted() {
             
             try {
-                $section = $this->SectionRepo->filterdeleted();
+                $contact = $this->ContactRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $section,
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -125,13 +125,13 @@
         public function filterby($item,$id) {
             
             try {
-                $section = $this->SectionRepo->filterby($item,$id);
+                $contact = $this->ContactRepo->filterby($item,$id);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $section,
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -151,13 +151,13 @@
         public function findbyid($id) {
             
             try {
-                $section = $this->SectionRepo->findbyid($id);
+                $contact = $this->ContactRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $section,
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -177,13 +177,13 @@
         public function findbyunique($item, $string) {
             
             try {
-                $Section = $this->SectionRepo->findbyunique($item,$string);
+                $contact = $this->ContactRepo->findbyunique($item,$string);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $Section,
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -202,9 +202,8 @@
         
         public function save(Request $request) {
             $validator = Validator::make($request->all(), [
-                'title'    => 'required',
-               // 'slug'    => 'required',
-               // 'description'    => 'required',
+                'name'    => 'required',
+                'description'    => 'required',
             ], $this->custom_message());
     
             if ($validator->fails()) {
@@ -220,25 +219,24 @@
             try {
         
                 $data = [
-                    'title'    => $request->get('title'),
-                    'slug' => $request->get('slug'),
+                    'name'    => $request->get('name'),
                     'description'    => $request->get('description'),
                     'active' => 1,
                 ];
 
-              $item = 'title';
-              $string = $data['title'];
-              $SectionDupletitle = $this->SectionRepo->checkduplicate($item,$string);
+              $item = 'name';
+              $string = $data['name'];
+              $ContactDuplename = $this->ContactRepo->checkduplicate($item,$string);
              
 
-            if ($SectionDupletitle==0 ) { 
+            if ($ContactDuplename==0 ) { 
         
-                $section     = $this->SectionRepo->store($data);
+                $contact     = $this->ContactRepo->store($data);
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('La seccion ha sido registrada  correctamente'),
-                    'data'    => $section,
+                    'message' => __('El atributo ha sido registrado  correctamente'),
+                    'data'    => $contact,
                 ];
         
                 return response()->json($response, 200);
@@ -248,7 +246,7 @@
                 $response = [
                     'status'  => 'FAILED',
                     'code'    => 409,
-                    'message' => _('La seccion fue registrada anteriormente') . '.',
+                    'message' => _('El attributo fue registrado anteriormente') . '.',
         
                 ];
         
@@ -270,29 +268,32 @@
         public function update(Request $request,$id) {
             
             Log::debug($request);
-            $section = $this->SectionRepo->findbyid($id);
+            $contact = $this->ContactRepo->findbyid($id);
 
             
-            if($request->has('title')){
-                $data['title'] = $request->get('title');
+            if($request->has('name')){
+                $data['name'] = $request->get('name');
+            }
+            if($request->has('description')){
+                $data['description'] = $request->get('description');
             }
     
             try {
 
-              $item = 'title';
-              $string = $data['title'];
-              $SectionDupletitle = $this->SectionRepo->checkduplicate($item,$string);
+              $item = 'name';
+              $string = $data['name'];
+              $ContactDuplename = $this->ContactRepo->checkduplicate($item,$string);
              
 
-            if ($SectionDupletitle==0) { 
+            if ($ContactDuplename==0 ) { 
                
-                $section = $this->SectionRepo->update($section, $data);
+                $contact = $this->ContactRepo->update($contact, $data);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('La seccion ha sido modificada correctamente '),
-                    'data'    => $section,
+                    'message' => __('El attributo ha sido modificado correctamente '),
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -303,7 +304,7 @@
                 $response = [
                     'status'  => 'FAILED',
                     'code'    => 409,
-                    'message' => _('La seccion fue registrada anteriormente') . '.',
+                    'message' => _('El tipo de producto fue registrado anteriormente') . '.',
         
                 ];
         
@@ -326,15 +327,15 @@
             
             try {
                 
-                $section = $this->SectionRepo->findbyid($id);
+                $contact = $this->ContactRepo->findbyid($id);
 
-                if($section->active === 0)
+                if($contact->active === 0)
                 {
-                    $section = $this->SectionRepo->update($section, ['active' => 1]);
+                    $contact = $this->ContactRepo->update($contact, ['active' => 1]);
                 }
                 else
                 {
-                    $section = $this->SectionRepo->update($section, ['active' => 0]);
+                    $contact = $this->ContactRepo->update($contact, ['active' => 0]);
                 }
                 
                 
@@ -342,7 +343,7 @@
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('El producto fue cambiado correctamente '),
-                    'data'    => $section,
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -367,14 +368,14 @@
             
             try {
                 
-                $section = $this->SectionRepo->findbyid($id);
-                $section = $this->SectionRepo->delete($section, ['active' => 2]);
+                $contact = $this->ContactRepo->findbyid($id);
+                $contact = $this->ContactRepo->delete($contact, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('La seccion ha sido eliminada correctamente'),
-                    'data'    => $section,
+                    'message' => __('El attributo ha sido eliminado correctamente'),
+                    'data'    => $contact,
                 ];
                 
                 return response()->json($response, 200);
@@ -397,7 +398,8 @@
     
         public function custom_message() {
             return [
-                'title.required'  => __('El nombre es requerido'),
+                'name.required'  => __('El nombre es requerido'),
+                'description.required'  => __('La descripcion es requerida'),
             ];
         }
 
