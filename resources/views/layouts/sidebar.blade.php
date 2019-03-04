@@ -84,13 +84,23 @@
       <li class="nav-item">
           <a class="nav-link" href="{{url('goadmin/sections')}}">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Secciones en Website</span></a>
+            <span>Secciones</span></a>
         </li>
       <li class="nav-item">
         <a class="nav-link" href="{{url('goadmin/texts')}}">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Textos en Website</span></a>
+          <span>Textos</span></a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="{{url('goadmin/contacts')}}">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Contactos</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('goadmin/config')}}">
+              <i class="fas fa-fw fa-chart-area"></i>
+              <span>Configuracion</span></a>
+          </li>
 
     
 

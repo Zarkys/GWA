@@ -16,9 +16,10 @@ class Contacts extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name_client')->unique();
-            $table->string('email_client')->unique()->nullable();
-            $table->string('phone_client')->unique()->nullable();
-            $table->integer('message_client')->unsigned();          
+            $table->string('email_client')->nullable();
+            $table->string('phone_client')->nullable();
+            $table->longText('message_client')->nullable(); 
+            $table->integer('active')->unsigned();          
             $table->timestamps();         
         });
     }

@@ -150,7 +150,7 @@ class ContactRepo
                     if($item==='name')
                     {
 
-                        $contact = Contact::where('name', $string)
+                        $contact = Contact::where('name_client', $string)
                         ->whereIn('active', [0, 1])
                         -> exists();
 

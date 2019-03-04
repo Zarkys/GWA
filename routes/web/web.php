@@ -43,7 +43,10 @@
         Route::get('/sections', 'HomeController@sections')->name('sections');
         Route::get('/sections/new', 'HomeController@sectionsnew')->name('sectionsnew');
         Route::get('/sections/update/{idelement}', 'HomeController@sectionsupdate')->name('sectionsupdate');
-       
+        //CONTACTS
+        Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+         //CONFIGS
+         Route::get('/profile', 'HomeController@config')->name('config');
 
 
         //USER

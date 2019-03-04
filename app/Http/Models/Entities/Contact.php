@@ -14,7 +14,8 @@
             'name_client',           
             'email_client', 
             'phone_client',
-            'message_client',           
+            'message_client', 
+            'active',          
             'created_at',
             'updated_at',
         ]; 

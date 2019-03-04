@@ -202,8 +202,8 @@
         
         public function save(Request $request) {
             $validator = Validator::make($request->all(), [
-                'name'    => 'required',
-                'description'    => 'required',
+                'name_client'    => 'required',
+                'email_client'    => 'required',
             ], $this->custom_message());
     
             if ($validator->fails()) {
@@ -219,14 +219,16 @@
             try {
         
                 $data = [
-                    'name'    => $request->get('name'),
-                    'description'    => $request->get('description'),
+                    'name_client'    => $request->get('name_client'),
+                    'phone_client'    => $request->get('phone_client'),
+                    'email_client'    => $request->get('email_client'),
+                    'message_client'    => $request->get('message_client'),                    
                     'active' => 1,
                 ];
 
-              $item = 'name';
-              $string = $data['name'];
-              $ContactDuplename = $this->ContactRepo->checkduplicate($item,$string);
+              $item = 'name_client';
+              $string = $data['name_client'];
+              $ContactDuplename = 0;
              
 
             if ($ContactDuplename==0 ) { 

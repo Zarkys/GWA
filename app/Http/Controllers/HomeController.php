@@ -110,6 +110,17 @@ class HomeController extends Controller
      {
          return view('config_web/texts/textupdate');
      }
+     //CONTACTS
+     public function contacts()
+     {
+         return view('config_web/contacts/contacts');
+     }     
+     //TEXT
+     public function config()
+     {
+         return view('config_web/configs/config');
+     }
+    
 
     
 }
