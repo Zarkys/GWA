@@ -7,4 +7,5 @@
         
         public static $root   = 1;
         public static $admin  = 2;
+        public static $company  = 3;
     }

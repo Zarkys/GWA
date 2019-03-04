@@ -94,18 +94,18 @@
                                         </div>
                                         <div class="col-md-3">
 
-                                            <a v-if="attributetype.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo"
+                                           <!--   <a v-if="attributetype.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo"
                                                 href="#" v-on:click="checkRow(attributetype.id)" class="btn btn-success btn-circle">
                                                 <i class="fas fa-check"></i>
                                             </a>
-                                            <a v-if="attributetype.active === 0" data-placement="top" title="Cambiar Estatus a Activo"
+                                           <a v-if="attributetype.active === 0" data-placement="top" title="Cambiar Estatus a Activo"
                                                 href="#" v-on:click="checkRow(attributetype.id)" class="btn btn-warning btn-circle">
                                                 <i class="fas fa-times"></i>
                                             </a>
-                                            <a href="#" v-on:click="trashRow(typeproduct.id)" data-placement="top"
+                                           <a href="#" v-on:click="trashRow(typeproduct.id)" data-placement="top"
                                                 title="Eliminar" class="btn btn-danger btn-circle">
                                                 <i class="fas fa-trash"></i>
-                                            </a>
+                                            </a> -->
                                         </div>
                                     </div>
                                 </li>

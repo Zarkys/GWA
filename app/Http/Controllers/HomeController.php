@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function home()
     {
-      // dd(Auth::user(), session()->get('permissions'));
+      
         return view('home');
     }
 

@@ -60,9 +60,11 @@
                     <a v-if="text.active === 0" href="#" v-on:click="checkRow(text.id)" class="btn btn-warning btn-circle">
                     <i class="fas fa-times"></i>
                     </a>
+                    @if(Auth::user()->rol===2)
                     <a href="#" v-on:click="trashRow(text.id)" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                     </a>
+                    @endif
                     </div>
                     </div>
                     </li>

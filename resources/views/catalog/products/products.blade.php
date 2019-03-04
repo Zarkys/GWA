@@ -54,16 +54,18 @@
                     <a href="#" v-on:click="updateRow(product.id)" class="btn btn-primary btn-circle">
                     <i class="fas fa-edit"></i>
                     </a>
-
+                    @if(Auth::user()->rol===2)
                     <a v-if="product.active === 1" href="#" v-on:click="checkRow(product.id)" class="btn btn-success btn-circle">
                     <i class="fas fa-check"></i>
                     </a>
                     <a v-if="product.active === 0" href="#" v-on:click="checkRow(product.id)" class="btn btn-warning btn-circle">
                     <i class="fas fa-times"></i>
                     </a>
+                   
                     <a href="#" v-on:click="trashRow(product.id)" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                     </a>
+                    @endif
                     </div>
                     </div>
                     </li>

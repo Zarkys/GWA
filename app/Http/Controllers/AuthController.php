@@ -8,7 +8,7 @@
     use App\Http\Models\Enums\Roles;
     use App\Http\Models\Repositories\RoleRepo;
     use Illuminate\Http\Request;
-    
+    use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Gate;
     use Illuminate\Support\Facades\Session;
@@ -53,7 +53,7 @@
                 }
                 
                 $unique_permissions = $permissions->unique()->values()->all();
-                
+                Log::debug($unique_permissions);
                 Session::put('permissions', $unique_permissions);
                 if (Gate::allows('permission', [
                     Permissions::$login,
@@ -62,14 +62,16 @@
                     Session::flash('message', 'Bienvenido: ' . Auth::user()->name);
                     
                     if ($user->rol === Roles::$root) {
+                        Log::debug('Accediendo como Root');
                         return redirect()->route('root.index');
-                    } else {
+                    } else if($user->rol === Roles::$company){
+                        Log::debug('Accediendo como Cliente');
                         return redirect()->route('admin.home');
                     }
                     
                     
                 } else {
-                    
+                    Log::debug('No esta accediendo');
                     Session::flash('warning', 'Usted no tiene acceso...');
                     
                     Auth::logout();

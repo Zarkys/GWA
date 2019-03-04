@@ -21,14 +21,14 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{url('goadmin/home')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Inicio</span></a>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-
+      @if(Auth::user()->rol===2)
       <!-- Heading -->
       <div class="sidebar-heading">
         Zona de Blog
@@ -52,7 +52,7 @@
       <li class="nav-item">
      
       </li>     
-
+      @endif
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -71,9 +71,10 @@
           <div class="bg-white py-2 collapse-inner rounded">
           
           <a class="collapse-item" href="{{url('goadmin/products')}}">Productos</a>
+          @if(Auth::user()->rol===2)
             <a class="collapse-item" href="{{url('goadmin/typeproducts')}}">Tipos de Producto</a>
             <a class="collapse-item" href="{{url('goadmin/attributes')}}">Atributos</a>
-           
+           @endif
           </div>
         </div>
       </li> 
@@ -81,11 +82,13 @@
       <div class="sidebar-heading">
         Zona de Websiite
       </div>
+      @if(Auth::user()->rol===2)
       <li class="nav-item">
           <a class="nav-link" href="{{url('goadmin/sections')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Secciones</span></a>
         </li>
+        @endif
       <li class="nav-item">
         <a class="nav-link" href="{{url('goadmin/texts')}}">
           <i class="fas fa-fw fa-chart-area"></i>
@@ -96,12 +99,13 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Contactos</span></a>
         </li>
+        @if(Auth::user()->rol===2)
         <li class="nav-item">
             <a class="nav-link" href="{{url('goadmin/config')}}">
               <i class="fas fa-fw fa-chart-area"></i>
               <span>Configuracion</span></a>
           </li>
-
+          @endif
     
 
       <!-- Divider -->
