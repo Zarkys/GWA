@@ -208,7 +208,8 @@
         public function save(Request $request) {
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
-                'value' => 'required',
+                'value_es' => 'required',
+                'value_en' => 'required',
                 'id_section' => 'required',
             ], $this->custom_message());
             
@@ -228,7 +229,8 @@
                 
                 $data = [
                     'name' => $request->get('name'),
-                    'value' => $request->get('value'),
+                    'value_es' => $request->get('value_es'),
+                    'value_en' => $request->get('value_en'),
                     'id_section' => $request->get('id_section'),
                     'active'     => 1,
                 ];
@@ -286,8 +288,11 @@
             if ($request->has('name')) {
                 $data['name'] = $request->get('name');
             }
-            if ($request->has('value')) {
-                $data['value'] = $request->get('value');
+            if ($request->has('value_es')) {
+                $data['value_es'] = $request->get('value_es');
+            }
+            if ($request->has('value_en')) {
+                $data['value_en'] = $request->get('value_en');
             }
             if ($request->has('id_section')) {
                 $data['id_section'] = $request->get('id_section');
@@ -338,49 +343,27 @@
                 return response()->json($response, 500);
             }
         }
-        public function activate($id, Request $request) {
+        public function change($id, Request $request) {
             
             
             try {
                 
                 $text = $this->TextRepo->findbyid($id);
-                $text = $this->TextRepo->activate($text, ['active' => 1]);
-                
-                $response = [
-                    'status'  => 'OK',
-                    'code'    => 200,
-                    'message' => __('El texto fue activado correctamente '),
-                    'data'    => $text,
-                ];
-                
-                return response()->json($response, 200);
-                
-                
-            } catch (\Exception $ex) {
-                Log::error($ex);
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error interno') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            }
-            
-        }
 
-        public function inactivate($id, Request $request) {
-            
-            
-            try {
+                if($text->active === 0)
+                {
+                    $text = $this->TextRepo->update($text, ['active' => 1]);
+                }
+                else
+                {
+                    $text = $this->TextRepo->update($text, ['active' => 0]);
+                }
                 
-                $text = $this->TextRepo->findbyid($id);
-                $text = $this->TextRepo->inactivate($text, ['active' => 0]);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El texto fue inactivado correctamente '),
+                    'message' => __('El producto fue cambiado correctamente '),
                     'data'    => $text,
                 ];
                 

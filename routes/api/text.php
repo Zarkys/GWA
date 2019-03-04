@@ -45,15 +45,12 @@
             'as'   => 'api.text.update',
             'uses' => 'Api\TextController@update',
         ]);
-        Route::delete('/change/active/{id}', [
-            'as'   => 'api.text.activate',
-            'uses' => 'Api\TextController@activate',
+        Route::put('/change/{id}', [
+            'as'   => 'api.text.change',
+            'uses' => 'Api\TextController@change',
         ]);
-        Route::delete('/change/inactive/{id}', [
-            'as'   => 'api.text.inactivate',
-            'uses' => 'Api\TextController@inactivate',
-        ]);
-        Route::delete('/change/delete/{id}', [
+      
+        Route::delete('/{id}', [
             'as'   => 'api.text.delete',
             'uses' => 'Api\TextController@delete',
         ]);

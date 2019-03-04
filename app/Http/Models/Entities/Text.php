@@ -12,7 +12,8 @@
         protected $fillable = [
             'id',
             'name',           
-            'value', 
+            'value_es',
+            'value_en', 
             'id_section',
             'active',
             'created_at',

@@ -85,7 +85,9 @@ class TextRepo
     public function findbyid($id)
     {
 
-        $text = Text::find($id);
+        $text = Text::with([
+            'Section',
+        ])->find($id);
 
         return $text;
     }
