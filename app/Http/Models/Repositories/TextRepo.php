@@ -221,4 +221,29 @@ class TextRepo
                 return response()->json($response, 500);
             } 
         } 
+        public function checkduplicateUpdate($itemfirst,$stringfirst,$itemsecond,$stringsecond,$idelement) {
+            //Find By parameters (Item)
+            try {
+                    if($itemfirst==='name' && $itemsecond==='id_section')
+                    {
+
+                        $text = Text::where('name', $stringfirst)
+                        ->where('id','!=',$idelement)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
+
+                    } 
+                    return $text;
+
+            } catch (\Exception $ex) {
+                
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error internor') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        } 
 }

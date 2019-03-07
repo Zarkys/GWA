@@ -306,7 +306,7 @@
               $stringfirst = $data['name'];
               $itemsecond = 'id_section';
               $stringsecond = $data['id_section'];
-              $TextDuple = $this->TextRepo->checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond);
+              $TextDuple = $this->TextRepo->checkduplicateUpdate($itemfirst,$stringfirst,$itemsecond,$stringsecond,$id);
              
 
             if ($TextDuple==0) {
