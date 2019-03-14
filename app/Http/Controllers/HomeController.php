@@ -120,6 +120,10 @@ class HomeController extends Controller
      {
          return view('config_web/configs/config');
      }
+     public function about()
+     {
+         return view('config_web/help/about');
+     }
 
     
 
