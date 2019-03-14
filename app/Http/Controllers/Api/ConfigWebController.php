@@ -2,30 +2,30 @@
     
     namespace App\Http\Controllers\Api;
     
-    use App\Http\Models\Repositories\ContactRepo;
+    use App\Http\Models\Repositories\ConfigWebRepo;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Support\Facades\Log;
-    class ContactController extends BaseController {
+    class ConfigWebController extends BaseController {
         
-        private $ContactRepo;
+        private $ConfigWebRepo;
         
-        public function __construct(ContactRepo $ContactRepo) {
+        public function __construct(ConfigWebRepo $ConfigWebRepo) {
             
-            $this->ContactRepo = $ContactRepo;
+            $this->ConfigWebRepo = $ConfigWebRepo;
         }
         
         public function index() {
             
             try {
-                $contact = $this->ContactRepo->all();
+                $configweb = $this->ConfigWebRepo->all();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $contact,
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
@@ -46,13 +46,13 @@
              public function filteractive() {
             
             try {
-                $contact = $this->ContactRepo->filteractive();
+                $configweb = $this->ConfigWebRepo->filteractive();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $contact,
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
@@ -73,13 +73,13 @@
           public function filterinactive() {
             
             try {
-                $contact = $this->ContactRepo->filterinactive();
+                $configweb = $this->ConfigWebRepo->filterinactive();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $contact,
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
@@ -99,13 +99,13 @@
           public function filterdeleted() {
             
             try {
-                $contact = $this->ContactRepo->filterdeleted();
+                $configweb = $this->ConfigWebRepo->filterdeleted();
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $contact,
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
@@ -125,13 +125,13 @@
         public function filterby($item,$id) {
             
             try {
-                $contact = $this->ContactRepo->filterby($item,$id);
+                $configweb = $this->ConfigWebRepo->filterby($item,$id);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $contact,
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
@@ -151,13 +151,13 @@
         public function findbyid($id) {
             
             try {
-                $contact = $this->ContactRepo->findbyid($id);
+                $configweb = $this->ConfigWebRepo->findbyid($id);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $contact,
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
@@ -177,13 +177,13 @@
         public function findbyunique($item, $string) {
             
             try {
-                $contact = $this->ContactRepo->findbyunique($item,$string);
+                $configweb = $this->ConfigWebRepo->findbyunique($item,$string);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('Datos Obtenidos Correctamente'),
-                    'data'    => $contact,
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
@@ -202,8 +202,8 @@
         
         public function save(Request $request) {
             $validator = Validator::make($request->all(), [
-                'name_client'    => 'required',
-                'email_client'    => 'required',
+                'name_config'    => 'required',
+                'value'    => 'required',
             ], $this->custom_message());
     
             if ($validator->fails()) {
@@ -219,26 +219,24 @@
             try {
         
                 $data = [
-                    'name_client'    => $request->get('name_client'),
-                    'phone_client'    => $request->get('phone_client'),
-                    'email_client'    => $request->get('email_client'),
-                    'message_client'    => $request->get('message_client'),                    
+                    'name_config'    => $request->get('name_config'),
+                    'value'    => $request->get('value'),
                     'active' => 1,
                 ];
 
-              $item = 'name_client';
-              $string = $data['name_client'];
-              $ContactDuplename = 0;
+              $item = 'name';
+              $string = $data['name'];
+              $ConfigWebDuplename = $this->ConfigWebRepo->checkduplicate($item,$string);
              
 
-            if ($ContactDuplename==0 ) { 
+            if ($ConfigWebDuplename==0 ) { 
         
-                $contact     = $this->ContactRepo->store($data);
+                $configweb     = $this->ConfigWebRepo->store($data);
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El atributo ha sido registrado  correctamente'),
-                    'data'    => $contact,
+                    'message' => __('El tipo de producto ha sido registrado  correctamente'),
+                    'data'    => $configweb,
                 ];
         
                 return response()->json($response, 200);
@@ -248,7 +246,7 @@
                 $response = [
                     'status'  => 'FAILED',
                     'code'    => 409,
-                    'message' => _('El attributo fue registrado anteriormente') . '.',
+                    'message' => _('El tipo de producto fue registrado anteriormente') . '.',
         
                 ];
         
@@ -270,48 +268,31 @@
         public function update(Request $request,$id) {
             
             Log::debug($request);
-            $contact = $this->ContactRepo->findbyid($id);
+            $configweb = $this->ConfigWebRepo->findbyid($id);
 
             
-            if($request->has('name')){
-                $data['name'] = $request->get('name');
-            }
-            if($request->has('description')){
-                $data['description'] = $request->get('description');
+           
+            if($request->has('value')){
+                $data['value'] = $request->get('value');
             }
     
             try {
 
-              $item = 'name';
-              $string = $data['name'];
-              $ContactDuplename = $this->ContactRepo->checkduplicate($item,$string);
-             
-
-            if ($ContactDuplename==0 ) { 
+           
                
-                $contact = $this->ContactRepo->update($contact, $data);
+                $configweb = $this->ConfigWebRepo->update($configweb, $data);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El attributo ha sido modificado correctamente '),
-                    'data'    => $contact,
+                    'message' => __('El tipo de producto  ha sido modificado correctamente '),
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
 
-                 }
-            else
-            {
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 409,
-                    'message' => _('El tipo de producto fue registrado anteriormente') . '.',
-        
-                ];
-        
-                return response()->json($response, 409); 
-            }
+                 
+          
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -329,15 +310,15 @@
             
             try {
                 
-                $contact = $this->ContactRepo->findbyid($id);
+                $product = $this->ConfigWebRepo->findbyid($id);
 
-                if($contact->active === 0)
+                if($product->active === 0)
                 {
-                    $contact = $this->ContactRepo->update($contact, ['active' => 1]);
+                    $product = $this->ConfigWebRepo->update($product, ['active' => 1]);
                 }
                 else
                 {
-                    $contact = $this->ContactRepo->update($contact, ['active' => 0]);
+                    $product = $this->ConfigWebRepo->update($product, ['active' => 0]);
                 }
                 
                 
@@ -345,7 +326,7 @@
                     'status'  => 'OK',
                     'code'    => 200,
                     'message' => __('El producto fue cambiado correctamente '),
-                    'data'    => $contact,
+                    'data'    => $product,
                 ];
                 
                 return response()->json($response, 200);
@@ -370,14 +351,14 @@
             
             try {
                 
-                $contact = $this->ContactRepo->findbyid($id);
-                $contact = $this->ContactRepo->delete($contact, ['active' => 2]);
+                $configweb = $this->ConfigWebRepo->findbyid($id);
+                $configweb = $this->ConfigWebRepo->delete($configweb, ['active' => 2]);
                 
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El attributo ha sido eliminado correctamente'),
-                    'data'    => $contact,
+                    'message' => __('El tipo de producto  ha sido eliminado correctamente'),
+                    'data'    => $configweb,
                 ];
                 
                 return response()->json($response, 200);
