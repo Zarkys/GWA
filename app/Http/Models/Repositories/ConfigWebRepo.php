@@ -3,6 +3,10 @@
 namespace App\Http\Models\Repositories;
 
 use App\Http\Models\Entities\ConfigWeb;
+use App\Http\Models\Entities\Post;
+use App\Http\Models\Entities\Contact;
+use App\Http\Models\Entities\Text;
+use App\Http\Models\Entities\Coment;
 
 class ConfigWebRepo
 {
@@ -11,6 +15,22 @@ class ConfigWebRepo
 
         $configweb = ConfigWeb::whereIn('active', [0, 1])->get();
         return $configweb;
+    }
+    public function counters()
+    {
+
+        $posts = Post::whereIn('active', [0, 1])->count();
+        $contacts = Contact::whereIn('active', [0, 1])->count();
+        $texts = Text::whereIn('active', [0, 1])->count();
+        $comments = Coment::whereIn('active', [0, 1])->count();
+
+        $counters = new \stdClass;
+        $counters->posts= $posts;
+        $counters->contacts= $contacts;
+        $counters->texts= $texts;
+        $counters->comments= $comments;
+
+        return $counters;
     }
     public function filteractive()
     {

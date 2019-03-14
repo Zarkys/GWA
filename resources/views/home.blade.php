@@ -2,7 +2,7 @@
 @include('layouts.sidebar')
 @include('layouts.navbar')
         <!-- End of Topbar -->
-
+<div id="app">
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -21,7 +21,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Cantidad de Entradas</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">@{{counters.posts}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -37,8 +37,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Cantidad de Paginas</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Cantidad de Contactos</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">@{{counters.contacts}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -57,7 +57,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Textos en Website</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">10</div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">@{{counters.texts}}</div>
                         </div>
                       
                       </div>
@@ -77,7 +77,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Comentarios</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">@{{counters.comments}}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -90,9 +90,48 @@
           <!-- Content Row -->
         </div>
         <!-- /.container-fluid -->
-
+</div>
       </div>
       <!-- End of Main Content -->
 @include('layouts.footer')   
 @include('layouts.footscript')
 
+<!-- Additional Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="{{ asset('/js/axios.js') }}"></script>
+<!-- Custom page Script -->
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                message: '',
+                texts: {},
+                counters:{}
+            }
+        },
+        mounted() {
+            loadElements('configweb/counters', '').then(
+                    response => {
+                        if (response.data.code !== 500) {
+
+                            
+                            this.counters = response.data.data;
+                         
+
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                })
+
+
+
+        },
+       
+    })
+</script>

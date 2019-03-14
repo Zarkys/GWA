@@ -13,6 +13,10 @@
             'as'   => 'api.config.web',
             'uses' => 'Api\ConfigWebController@index',
         ]);
+        Route::get('counters/', [
+            'as'   => 'api.config.web',
+            'uses' => 'Api\ConfigWebController@counters',
+        ]);
         Route::get('/active', [
             'as'   => 'api.config.web.filteractive',
             'uses' => 'Api\ConfigWebController@filteractive',
