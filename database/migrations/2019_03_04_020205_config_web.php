@@ -16,7 +16,7 @@ class ConfigWeb extends Migration
         Schema::create('config_web', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name_config')->unique();
-            $table->string('value')->unique()->nullable();           
+            $table->string('value')->nullable();           
             $table->integer('active')->unsigned();          
             $table->timestamps();         
         });

@@ -1,4 +1,4 @@
-var prefix = '/api/1.0/';
+var prefix = '/goadmin/api/1.0/';
 var domain = window.location.hostname;
 var getUrl = window.location;
 var baseUrl = getUrl .protocol + "//" + getUrl.host;

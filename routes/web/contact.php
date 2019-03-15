@@ -3,10 +3,8 @@
     use Illuminate\Http\Request;
     
     Route::group([
-        'middleware' => [
-            'api',
-        ],
-        'prefix'     => 'contact/',
+          'middleware' => ['auth'],
+        'prefix'     => '/api/1.0/contact/',
     ], function () {
         
         Route::get('/', [

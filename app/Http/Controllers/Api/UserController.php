@@ -47,6 +47,33 @@
 
         }
 
+        public function get_user() {
+
+            try {
+                $users = Auth::user();
+
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $users,
+                ];
+
+                return response()->json($response, 200);
+
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+
+                return response()->json($response, 500);
+            }
+
+        }
+
         public function find($id) {
 
             try {
@@ -197,7 +224,7 @@
                 return response()->json($response, 500);
             }
         }
-        public function updatePassword($id, Request $request) {
+        public function updatePassword(Request $request) {
 
             //CHECK REQUIRED PASSWORD
             $validator = Validator::make($request->all(), [
@@ -220,7 +247,7 @@
 
             //CHECK OLD PASSWORD
              $old_password = $request->get('old_password');
-             $id_user = $request->get('id');
+             $id_user = Auth::user()->id;
              $user = $this->UserRepo->find($id_user);
                     if (Hash::check($old_password, $user->password)) {
                         
@@ -248,7 +275,7 @@
             }
 
             try {
-                $user = $this->UserRepo->find($id);
+                $user = $this->UserRepo->find(Auth::user()->id);
                 if (isset($user->id)) {
                     
                     $data = [
@@ -286,7 +313,7 @@
             }
         }
 
-          public function updateName($id, Request $request) {
+          public function updateName(Request $request) {
 
             $validator = Validator::make($request->all(), [
                 'name'  => 'required',                
@@ -305,7 +332,8 @@
             }
 
             try {
-                $user = $this->UserRepo->find($id);
+                
+                $user = $this->UserRepo->find(Auth::user()->id);
                 if (isset($user->id)) {
 
                     $data = [

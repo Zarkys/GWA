@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
          $this->call(TypeProductAttributeSeeder::class);
          $this->call(SectionSeeder::class);
          $this->call(TextSeeder::class);
+         $this->call(ConfigWebSeeder::class);
 
     }
 }
