@@ -37,7 +37,7 @@
                                 <li class="list-group-item" v-for="config in config_web">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            @{{config.name_config}}
+                                            <h4>@{{config.name_config}}</h4>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
@@ -93,12 +93,13 @@
 @include('layouts.footscript')
 
 <!-- Additional Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+ <script src="{{ asset('/js/vue.js') }}"></script>
+<script src="{{ asset('/js/axios.min.js') }}"></script>
 
 <script src="{{ asset('/js/axios.js') }}"></script>
+
+<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <!-- Custom page Script -->
 <script>
     Vue.component('v-select', VueSelect.VueSelect)
