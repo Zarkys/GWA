@@ -46,6 +46,7 @@
         //ADMIN - CONFIG
         Route::get('/config', 'HomeController@config')->name('config');
         Route::get('/about', 'HomeController@about')->name('about');
+        Route::get('/profile', 'HomeController@profile')->name('profile');
         
 
         //CONTACTS

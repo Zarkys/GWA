@@ -124,6 +124,10 @@ class HomeController extends Controller
      {
          return view('config_web/help/about');
      }
+     public function profile()
+     {
+         return view('config_web/users/profile');
+     }
 
     
 
