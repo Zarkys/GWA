@@ -234,6 +234,7 @@
             if ($ContactDuplename==0 ) { 
         
                 $contact     = $this->ContactRepo->store($data);
+                $this->sendEmail($contact);
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
@@ -394,6 +395,25 @@
                 return response()->json($response, 500);
             }
             
+        }
+
+         public function sendEmail($contact)
+        {
+
+            
+                $data = [
+                    'subject' => $contact->subject,
+                    'comment' => $contact->message_client,
+                    'email' => 'kony1114@gmail.com',
+                    'title' => __('Solicitud de contacto'),
+                    'text' => __('Mensaje de solicitud de contacto'),
+                ];
+
+                Mail::send("auth.contact",$data, function ($message) use ($data) {
+                    $message->to($data['email'])->subject($data['title']);
+                });
+
+                return true;
         }
         
         
