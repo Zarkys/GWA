@@ -285,15 +285,14 @@ margin-right: 20%;
                     <tr>
                       <td style="text-align: center">  
                        <a href="#"><img class="align-center" src="#" style="width:200px;"></a>
-                        <h2>Hola,desean comunicarse contigo</h2> 
+                        <h2>Hola, <strong>{!!$from!!}</strong>desea comunicarse contigo</h2> 
 
-                        
-                        <p><strong>Asunto :</strong>{!!$subject!!}</p>
                         <p><strong>Mensaje :</strong>{!!$comment!!}</p>
+                       <p>Datos de comunicación</p>
+                        
+                        <p><strong>Telefono :</strong>{!!$cellphone!!}</p>
+                        <p><strong>Email :</strong>{!!$contactmail!!}</p>
 
-                      
-                                            
-                        <p>¡Gracias por usar nuestros servicios!, no respondas a este correo.</p>
                       </td>
                     </tr>
                   </table>

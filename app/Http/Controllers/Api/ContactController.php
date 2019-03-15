@@ -7,6 +7,7 @@
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Support\Facades\Log;
+     use Illuminate\Support\Facades\Mail;
     class ContactController extends BaseController {
         
         private $ContactRepo;
@@ -226,35 +227,18 @@
                     'active' => 1,
                 ];
 
-              $item = 'name_client';
-              $string = $data['name_client'];
-              $ContactDuplename = 0;
-             
-
-            if ($ContactDuplename==0 ) { 
-        
+              
                 $contact     = $this->ContactRepo->store($data);
                 $this->sendEmail($contact);
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El atributo ha sido registrado  correctamente'),
+                    'message' => __('El contacto se  ha realizado exitosamente'),
                     'data'    => $contact,
                 ];
         
                 return response()->json($response, 200);
-                }
-            else
-            {
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 409,
-                    'message' => _('El attributo fue registrado anteriormente') . '.',
-        
-                ];
-        
-                return response()->json($response, 409); 
-            }
+                
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
@@ -402,8 +386,10 @@
 
             
                 $data = [
-                    'subject' => $contact->subject,
+                    'from' => $contact->name_client,
                     'comment' => $contact->message_client,
+                    'cellphone' => $contact->phone_client,
+                    'contactmail' => $contact->email_client,
                     'email' => 'kony1114@gmail.com',
                     'title' => __('Solicitud de contacto'),
                     'text' => __('Mensaje de solicitud de contacto'),

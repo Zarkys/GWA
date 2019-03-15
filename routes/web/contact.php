@@ -31,10 +31,10 @@
             'as'   => 'api.contact.findbyunique',
             'uses' => 'Api\ContactController@findbyunique',
         ]);
-        Route::post('/', [
+       /* Route::post('/', [
             'as'   => 'api.contact.save',
             'uses' => 'Api\ContactController@save',
-        ]);
+        ]);*/
         Route::put('/{id}', [
             'as'   => 'api.contact.update',
             'uses' => 'Api\ContactController@update',
