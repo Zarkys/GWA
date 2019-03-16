@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Api;
     
     use App\Http\Models\Repositories\ContactRepo;
+    use App\Http\Models\Entities\ConfigWeb;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
@@ -384,19 +385,42 @@
          public function sendEmail($contact)
         {
 
-            
+                $email_receive = ConfigWeb::where('name_config','email_receive')->first();
+                $email_sender = ConfigWeb::where('name_config','email_sender')->first();
+                $url_logo_company = ConfigWeb::where('name_config','url_logo_company')->first();
+
+                Log::debug($url_logo_company);
                 $data = [
                     'from' => $contact->name_client,
                     'comment' => $contact->message_client,
                     'cellphone' => $contact->phone_client,
                     'contactmail' => $contact->email_client,
-                    'email' => 'kony1114@gmail.com',
+                    'email' => $email_sender->value,
+                    'url_logo_company' => $url_logo_company->value,
+                    'title' => __('Pronto te contactaremos'),
+                    'text' => __('Pronto nos comunicaremos'),
+                ];
+
+                Mail::send("auth.contact_client",$data, function ($message) use ($data) {
+                    $message->to($data['contactmail'])->subject($data['title']);
+                });
+
+               
+                
+                $data2 = [
+                    'from' => $contact->name_client,
+                    'comment' => $contact->message_client,
+                    'cellphone' => $contact->phone_client,
+                    'contactmail' => $email_receive->value,
+                    'email_sender' => $email_sender->value,
+                    'email_receive' => $email_receive->value,
+                    'url_logo_company' => $url_logo_company->value,
                     'title' => __('Solicitud de contacto'),
                     'text' => __('Mensaje de solicitud de contacto'),
                 ];
 
-                Mail::send("auth.contact",$data, function ($message) use ($data) {
-                    $message->to($data['email'])->subject($data['title']);
+                Mail::send("auth.contact",$data2, function ($message) use ($data2) {
+                    $message->to($data2['contactmail'])->subject($data2['title']);
                 });
 
                 return true;

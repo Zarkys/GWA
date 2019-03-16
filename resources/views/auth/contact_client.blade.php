@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Contacto</title>
+    <title>GWA - Contacto</title>
     <style>
       /* -------------------------------------
           GLOBAL RESETS
@@ -275,7 +275,7 @@ margin-right: 20%;
           <div class="content">
 
             <!-- START CENTERED WHITE CONTAINER -->
-            <span class="preheader">Nuevo contacto</span>
+            <span class="preheader">Hemos recibido tu contacto</span>
             <table class="main">
 
               <!-- START MAIN CONTENT AREA -->
@@ -284,19 +284,22 @@ margin-right: 20%;
                   <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td style="text-align: center">  
-                      
-                        <h2>Hola, <strong>{!!$from!!} </strong></h2> 
+                            <img class="d-block w-100" src="{{ asset($url_logo_company)}}" alt="Third slide">
+                            <br>
+                        <h2>Hola, <strong>{!!$from!!}</strong></h2>
                         <br>
-                        <h3>Este usuario desea comunicarse en su sitio web</h3>
+                        <h3>Hemos recibido tus datos, pronto nos vamos a comunicar</h3> 
 
-                        <p><strong>Mensaje :</strong>{!!$comment!!}</p>
-                       <p>Datos de comunicación</p>
+                        <p><strong>Mensaje Enviado :</strong>{!!$comment!!}</p>
+                        <p>Datos de Enviados</p>                        
+                       
                         @if($cellphone != null || $cellphone !='')
-                          <p><strong>Telefono :</strong>{!!$cellphone!!}</p>
+                            <p><strong>Telefono :</strong>{!!$cellphone!!}</p>
+                          @endif
+                          @if($contactmail != null || $contactmail !='')
+                          <p><strong>Email :</strong>{!!$contactmail!!}</p>
                         @endif
-                        @if($contactmail != null || $contactmail !='')
-                        <p><strong>Email :</strong>{!!$contactmail!!}</p>
-                      @endif
+
                       </td>
                     </tr>
                   </table>

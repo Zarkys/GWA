@@ -3,9 +3,7 @@
     use Illuminate\Http\Request;
     
     Route::group([
-        'middleware' => [
-            'api',
-        ],
+      
        'prefix'     => '/api/1.0/contact/',
     ], function () {
         
