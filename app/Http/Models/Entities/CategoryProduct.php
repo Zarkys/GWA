@@ -18,10 +18,10 @@
             'updated_at',
         ];
          public function Product(){
-            return $this->hasOne(Post::class, 'id', 'id_product');
+            return $this->hasOne(Product::class, 'id', 'id_product');
         } 
          public function CategoryForProduct(){
-            return $this->hasOne(Tag::class, 'id', 'id_category_for_product');
+            return $this->hasOne(CategoryForProduct::class, 'id', 'id_category_for_product');
         }        
                 
         
