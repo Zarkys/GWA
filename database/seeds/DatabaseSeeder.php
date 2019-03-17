@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
          $this->call(SectionSeeder::class);
          $this->call(TextSeeder::class);
          $this->call(ConfigWebSeeder::class);
+         $this->call(CategoryForProductSeeder::class);
+         $this->call(CategoryProductSeeder::class);
 
     }
 }
