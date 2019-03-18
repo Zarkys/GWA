@@ -37,6 +37,19 @@ class HomeController extends Controller
     {
         return view('blog/posts/posts');
     }
+    //CATEGORY
+    public function categories()
+    {
+        return view('blog/categories/categories');
+    }
+    public function categoriesnew()
+    {
+        return view('blog/categories/categories_new');
+    }
+    public function categoriesupdate()
+    {
+        return view('blog/categories/categories_update');
+    }
     public function pages()
     {
         return view('blog/pages/pages');

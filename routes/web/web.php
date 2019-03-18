@@ -22,6 +22,10 @@
         //ADMIN - BLOG
         Route::get('/posts', 'HomeController@posts')->name('posts');
         Route::get('/pages', 'HomeController@pages')->name('pages');
+        //ADMIN - PAGE-CATEGORY
+        Route::get('/categories', 'HomeController@categories')->name('categories');
+        Route::get('/categories/new', 'HomeController@categoriesnew')->name('categoriesnew');
+        Route::get('/categories/update/{idelement}', 'HomeController@categoriesupdate')->name('categoriesupdate');
         Route::get('/comments', 'HomeController@comments')->name('comments');
         //ADMIN - CATALOG
         Route::get('/products', 'HomeController@products')->name('products');
