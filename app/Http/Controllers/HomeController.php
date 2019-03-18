@@ -84,6 +84,19 @@ class HomeController extends Controller
     {
         return view('catalog/attributes/attributes_update');
     }
+    //CATEGORIES FOR PRODUCTS
+    public function categoriesforproducts()
+    {
+        return view('catalog/categoriesforproducts/categoriesforproducts');
+    }
+    public function categoriesforproductsnew()
+    {
+        return view('catalog/categoriesforproducts/categoriesforproducts_new');
+    }
+    public function categoriesforproductsupdate()
+    {
+        return view('catalog/categoriesforproducts/categoriesforproducts_update');
+    }
     //SECTION
     public function sections()
     {

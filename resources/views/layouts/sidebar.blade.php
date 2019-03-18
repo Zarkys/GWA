@@ -74,6 +74,7 @@
           @if(Auth::user()->rol===2)
             <a class="collapse-item" href="{{url('goadmin/typeproducts')}}">Tipos de Producto</a>
             <a class="collapse-item" href="{{url('goadmin/attributes')}}">Atributos</a>
+            <a class="collapse-item" href="{{url('goadmin/categoriesforproducts')}}">Categoría de Producto</a>
            @endif
           </div>
         </div>

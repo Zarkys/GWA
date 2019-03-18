@@ -35,6 +35,10 @@
         Route::get('/attributes', 'HomeController@attributes')->name('attributes');
         Route::get('/attributes/new', 'HomeController@attributesnew')->name('attributesnew');
         Route::get('/attributes/update/{idelement}', 'HomeController@attributesupdate')->name('attributesupdate');
+        //ADMIN - CATEGORIES FOR PRODUCTS
+        Route::get('/categoriesforproducts', 'HomeController@categoriesforproducts')->name('categoriesforproducts');
+        Route::get('/categoriesforproducts/new', 'HomeController@categoriesforproductsnew')->name('categoriesforproductsnew');
+        Route::get('/categoriesforproducts/update/{idelement}', 'HomeController@categoriesforproductsupdate')->name('categoriesforproductsupdate');
         //ADMIN - TEXTS
         Route::get('/texts', 'HomeController@texts')->name('texts');
         Route::get('/texts/new', 'HomeController@textsnew')->name('textsnew');
