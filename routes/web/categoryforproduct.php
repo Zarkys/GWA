@@ -3,7 +3,7 @@
     use Illuminate\Http\Request;
     
     Route::group([
-          //'middleware' => ['auth'],
+         'middleware' => ['auth'],
         'prefix'     => '/api/1.0/categoryforproduct/',
     ], function () {
         

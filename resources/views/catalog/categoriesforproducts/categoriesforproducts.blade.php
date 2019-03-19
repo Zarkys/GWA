@@ -57,7 +57,7 @@
                     <a v-if="categoryforproduct.active === 1" href="#" v-on:click="checkRow(categoryforproduct.id)" class="btn btn-success btn-circle">
                     <i class="fas fa-check"></i>
                     </a>
-                    <a v-if="categoryforproduct.active === 0" href="#" v-on:click="checkRow(categoryforproduct.id)" class="btn btn-warning btn-circle">
+                    <a v-if="categoryforproduct.active === 0" href="#" v-on:click="activeRow(categoryforproduct.id)" class="btn btn-warning btn-circle">
                     <i class="fas fa-times"></i>
                     </a>
                     <a href="#" v-on:click="trashRow(categoryforproduct.id)" class="btn btn-danger btn-circle">
@@ -140,7 +140,7 @@
                       
                        
 
-                            trashElement('categoryforproduct/'+idelement, '').then(
+                            axios.delete('api/1.0/categoryforproduct/change/delete/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -149,7 +149,7 @@
                                                 'Elemento eliminado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/categoriesforproducts';
+                                                    window.location.href = 'categoriesforproducts';
                                                 });
                                                
                                             
@@ -179,7 +179,46 @@
                       
                        
 
-                        changueElement('categoryforproduct/change/'+idelement, '').then(
+                        axios.delete('api/1.0/categoryforproduct/change/inactive/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typeattributes = response.data.data; 
+                                           Swal.fire(
+                                                'Estatus Cambiado',
+                                                'Estatus modificado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.href = 'categoriesforproducts';
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            activeRow(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de cambiar el estatus del elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cambiar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                        axios.delete('api/1.0/categoryforproduct/change/active/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 

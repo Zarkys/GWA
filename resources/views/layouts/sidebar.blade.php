@@ -54,6 +54,7 @@
           
           @if(Auth::user()->rol===2)
             <a class="collapse-item" href="{{url('goadmin/categories')}}">Categoría</a>
+            <a class="collapse-item" href="{{url('goadmin/tags')}}">Etiqueta</a>
            @endif
           </div>
         </div>

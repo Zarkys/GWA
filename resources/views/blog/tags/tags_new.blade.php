@@ -10,7 +10,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Actualizar Categoría de Entrada</h1>
+        <h1 class="h3 mb-0 text-gray-800">Agregar una Etiqueta de Entrada</h1>
     </div>      
 
         <!-- DataTales Example -->
@@ -18,7 +18,7 @@
             <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Nuevos datos de la Categoría de  Entrada</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Agregar Etiqueta de Entrada</h6>
                 </div>
                 <div class="col-md-4">
                 <a href="{{ url()->previous() }}" class="btn btn-warning btn-icon-split">
@@ -38,34 +38,28 @@
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre de la Categoría de la Entrada">
-                      </div>
+                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre de la Etiqueta de Entrada">
+                     </div>
                     </div>
                     <div class="col-md-6">
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Descripcion</label>
-                                    <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Nombre de la Categoría de la Entrada">
-                                      </div>
-                    </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Slug</label>
-                    <input type="text" class="form-control" id="inputSlug" v-model="slug_type" aria-describedby="nameHelp" placeholder="Slug">
-                      </div>
+                                    <input type="text" class="form-control" id="inputDescription" v-model="description_type" aria-describedby="nameHelp" placeholder="Descripcion de la Etiqueta de Entrada">
+                                    </div>
                     </div>
                     <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Categoría Padre</label>
-                                <v-select :options="parentscategories" label="parentcategory" v-model="parentcategory"></v-select>
-                            </div>
-                        </div>
+                                    <label for="exampleInputEmail1">Slug</label>
+                                    <input type="text" class="form-control" id="inputSlug" v-model="slug_type" aria-describedby="nameHelp" placeholder="Slug">
+                                    </div>
+                    </div>
                    
 
                 </div>
               
               
               
-                <button v-on:click="updateRow" type="button" class="btn btn-primary">Actualizar</button>
+                <button v-on:click="saveRow" type="button" class="btn btn-primary">Guardar</button>
                 </form>
             </div>
         </div>
@@ -99,34 +93,16 @@ Vue.component('v-select', VueSelect.VueSelect)
             return {
                 message: '',
                 name_type:'',
+                description_type:'',
                 slug_type:'',
-                parentcategory:'',
-                category:{},
-                category:'',
-                categories: []
+                posts: {},
+                tag:'',
+                tags: []
             }
         },
-        mounted() {
-           var pageURL = window.location.href;
-            var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
-            console.log(idurl);
-            loadOneElement('category/'+idurl, '').then(
-                    response => {
-                        if (response.data.code !== 500) {                          
-                            this.category = response.data.data; 
-                            this.name_type = this.categoryt.name;
-                            this.description_type = this.category.description;
-                            this.slug_type = this.category.slug;
-                            this.parentcategory = this.category.parentcategory;
-                        } else {
-                            console.log(response.data);
-                        }
-                    })
-                .catch(error => {
-                    console.log(error);
-                });
+        mounted() {            
 
-               
+             
 
 
         },
@@ -134,36 +110,33 @@ Vue.component('v-select', VueSelect.VueSelect)
             back() {
 
             },
-            updateRow() {
+            saveRow() {
                 Swal.fire({
-                    title: 'Estas seguro de actualizar el elemento?',
+                    title: 'Estas seguro de guardar el elemento?',
                     text: "Debes estar seguro antes de continuar",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Actualizar'
+                    confirmButtonText: 'Guardar'
                     }).then((result) => {
                     if (result.value) {
                         let form = {
                                 name: this.name_type,
                                 description: this.description_type,
-                                slug: this.slug_type,
-                                parentcategory: this.parentcategory
+                                slug: this.slug_type
                             }
-                            var pageURL = window.location.href;
-                            var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
-         
-                            updateElement('category/'+idurl, form).then(
+
+                            saveElement('tag', form).then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.attributes = response.data.data; 
                                            Swal.fire(
-                                                'Elemento Actualizado',
-                                                'La información se actualizo correctamente',
+                                                'Elemento Guardado',
+                                                'La información se almaceno correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.reload();
+                                                    window.location.href = '/goadmin/tags';
                                                 });
                                                
                                             

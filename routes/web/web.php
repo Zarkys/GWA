@@ -26,6 +26,11 @@
         Route::get('/categories', 'HomeController@categories')->name('categories');
         Route::get('/categories/new', 'HomeController@categoriesnew')->name('categoriesnew');
         Route::get('/categories/update/{idelement}', 'HomeController@categoriesupdate')->name('categoriesupdate');
+         //ADMIN - PAGE-TAG
+        Route::get('/tags', 'HomeController@tags')->name('tags');
+        Route::get('/tags/new', 'HomeController@tagsnew')->name('tagsnew');
+        Route::get('/tags/update/{idelement}', 'HomeController@tagsupdate')->name('tagsupdate');
+        //ADMIN - PAGE-COMMENT
         Route::get('/comments', 'HomeController@comments')->name('comments');
         //ADMIN - CATALOG
         Route::get('/products', 'HomeController@products')->name('products');

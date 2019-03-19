@@ -50,6 +50,19 @@ class HomeController extends Controller
     {
         return view('blog/categories/categories_update');
     }
+    //TAG
+    public function tags()
+    {
+        return view('blog/tags/tags');
+    }
+    public function tagsnew()
+    {
+        return view('blog/tags/tags_new');
+    }
+    public function tagsupdate()
+    {
+        return view('blog/tags/tags_update');
+    }
     public function pages()
     {
         return view('blog/pages/pages');

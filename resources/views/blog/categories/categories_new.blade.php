@@ -47,6 +47,18 @@
                                     <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Descripcion de la Categoría de Entrada">
                                     </div>
                     </div>
+                    <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Slug</label>
+                    <input type="text" class="form-control" id="inputName" v-model="slug_type" aria-describedby="nameHelp" placeholder="Slug">
+                     </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Categoría Padre</label>
+                        <v-select :options="parentscategories" label="parentcategory" v-model="parentcategory"></v-select>
+                    </div>
+                    </div>
                    
 
                 </div>
@@ -88,6 +100,8 @@ Vue.component('v-select', VueSelect.VueSelect)
                 message: '',
                 name_type:'',
                 description_type:'',
+                slug_type:'',
+                parentcategory:'',
                 posts: {},
                 category:'',
                 categories: []
@@ -116,7 +130,9 @@ Vue.component('v-select', VueSelect.VueSelect)
                     if (result.value) {
                         let form = {
                                 name: this.name_type,
-                                description: this.description_type
+                                description: this.description_type,
+                                slug: this.slug_type,
+                                parentcategory: this.parentcategory
                             }
 
                             saveElement('category', form).then(

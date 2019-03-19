@@ -10,7 +10,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Actualizar Categoría de Entrada</h1>
+        <h1 class="h3 mb-0 text-gray-800">Actualizar Etiqueta de Entrada</h1>
     </div>      
 
         <!-- DataTales Example -->
@@ -18,7 +18,7 @@
             <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Nuevos datos de la Categoría de  Entrada</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Nuevos datos de la Etiqueta de  Entrada</h6>
                 </div>
                 <div class="col-md-4">
                 <a href="{{ url()->previous() }}" class="btn btn-warning btn-icon-split">
@@ -38,27 +38,21 @@
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre de la Categoría de la Entrada">
+                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre de la Etiqueta de la Entrada">
                       </div>
                     </div>
                     <div class="col-md-6">
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Descripcion</label>
-                                    <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Nombre de la Categoría de la Entrada">
+                                    <input type="text" class="form-control" id="inputDescription" v-model="description_type" aria-describedby="nameHelp" placeholder="Descripcion de la Etiqueta de la Entrada">
                                       </div>
                     </div>
                     <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Slug</label>
-                    <input type="text" class="form-control" id="inputSlug" v-model="slug_type" aria-describedby="nameHelp" placeholder="Slug">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Categoría Padre</label>
-                                <v-select :options="parentscategories" label="parentcategory" v-model="parentcategory"></v-select>
-                            </div>
-                        </div>
+                                    <label for="exampleInputEmail1">Slug</label>
+                                    <input type="text" class="form-control" id="inputSlug" v-model="slug_type" aria-describedby="nameHelp" placeholder="Slug">
+                                      </div>
+                    </div>
                    
 
                 </div>
@@ -99,25 +93,24 @@ Vue.component('v-select', VueSelect.VueSelect)
             return {
                 message: '',
                 name_type:'',
+                description_type:'',
                 slug_type:'',
-                parentcategory:'',
-                category:{},
-                category:'',
-                categories: []
+                tag:{},
+                tag:'',
+                tags: []
             }
         },
         mounted() {
            var pageURL = window.location.href;
             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
             console.log(idurl);
-            loadOneElement('category/'+idurl, '').then(
+            loadOneElement('tag/'+idurl, '').then(
                     response => {
                         if (response.data.code !== 500) {                          
-                            this.category = response.data.data; 
-                            this.name_type = this.categoryt.name;
-                            this.description_type = this.category.description;
-                            this.slug_type = this.category.slug;
-                            this.parentcategory = this.category.parentcategory;
+                            this.tag = response.data.data; 
+                            this.name_type = this.tag.name;
+                            this.description_type = this.tag.description;
+                            this.slug_type = this.tag.slug;
                         } else {
                             console.log(response.data);
                         }
@@ -148,13 +141,12 @@ Vue.component('v-select', VueSelect.VueSelect)
                         let form = {
                                 name: this.name_type,
                                 description: this.description_type,
-                                slug: this.slug_type,
-                                parentcategory: this.parentcategory
+                                slug: this.slug_type
                             }
                             var pageURL = window.location.href;
                             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
          
-                            updateElement('category/'+idurl, form).then(
+                            updateElement('tag/'+idurl, form).then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.attributes = response.data.data; 
