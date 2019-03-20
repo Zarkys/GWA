@@ -64,6 +64,10 @@
 
         //CONTACTS
         Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+        //ADMIN - SECTIONS
+        Route::get('/users', 'HomeController@users')->name('users');
+        Route::get('/users/new', 'HomeController@usersnew')->name('usersnew');
+        Route::get('/users/update/{idelement}', 'HomeController@usersupdate')->name('usersupdate');
          //CONFIGS
         // Route::get('/profile', 'HomeController@config')->name('config');
 

@@ -153,7 +153,20 @@ class HomeController extends Controller
      public function contacts()
      {
          return view('config_web/contacts/contacts');
-     }     
+     } 
+     //CATEGORY
+    public function users()
+    {
+        return view('user/users/users');
+    }
+    public function usersnew()
+    {
+        return view('user/users/users_new');
+    }
+    public function usersupdate()
+    {
+        return view('user/users/users_update');
+    }    
      //TEXT
      public function config()
      {
