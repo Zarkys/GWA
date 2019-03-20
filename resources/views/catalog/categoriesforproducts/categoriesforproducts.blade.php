@@ -40,6 +40,22 @@
                 
             </div>
             <div class="card-body">
+            <ul class="list-group">
+                            <li class="list-group-item">
+                            <div class="row">
+                            <div class="col-md-6">
+                            <strong>Nombre</strong>
+                            </div>
+                            <div class="col-md-6">
+                                    <strong>Descripción</strong>
+                                    </div>
+                            <div class="col-md-2">
+                          
+                            </div>
+                            </div>
+                            </li>
+        
+                        </ul>
                 <ul class="list-group">
                     <li class="list-group-item" v-for="categoryforproduct in categoriesforproducts">
                     <div class="row">
@@ -140,7 +156,7 @@
                       
                        
 
-                            axios.delete('api/1.0/categoryforproduct/change/delete/'+idelement, '').then(
+                            trashElement('categoryforproduct/change/delete/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -179,7 +195,7 @@
                       
                        
 
-                        axios.delete('api/1.0/categoryforproduct/change/inactive/'+idelement, '').then(
+                        inactiveElement('categoryforproduct/change/inactive/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -218,7 +234,7 @@
                       
                        
 
-                        axios.delete('api/1.0/categoryforproduct/change/active/'+idelement, '').then(
+                        activeElement('categoryforproduct/change/active/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 

@@ -33,23 +33,14 @@
       <div class="sidebar-heading">
         Zona de Blog
       </div>
-      <li class="nav-item">
-        <a class="nav-link" href="posts">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Entradas</span></a>
-      </li>
-       <!-- Heading -->
-      <div class="sidebar-heading">
-        Entradas
-      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCatalog" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Entradas</span>
         </a>
-        <div id="collapseCatalog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseBlog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
           
           @if(Auth::user()->rol===2)

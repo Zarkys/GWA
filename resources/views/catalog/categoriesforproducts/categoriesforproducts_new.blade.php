@@ -77,6 +77,7 @@
 <script src="{{ asset('/js/axios.js') }}"></script>
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
 <!-- Custom page Script -->
 <script>
 Vue.component('v-select', VueSelect.VueSelect)

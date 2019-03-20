@@ -56,7 +56,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Categoría Padre</label>
-                        <v-select :options="parentscategories" label="parentcategory" v-model="parentcategory"></v-select>
+                        <v-select :options="parentscategories" label="name" v-model="parentcategory"></v-select>
                     </div>
                     </div>
                    
@@ -89,6 +89,8 @@
 <script src="{{ asset('/js/axios.js') }}"></script>
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
+
 <!-- Custom page Script -->
 <script>
 Vue.component('v-select', VueSelect.VueSelect)
@@ -101,13 +103,24 @@ Vue.component('v-select', VueSelect.VueSelect)
                 name_type:'',
                 description_type:'',
                 slug_type:'',
-                parentcategory:'',
                 posts: {},
-                category:'',
-                categories: []
+                parentcategory:'',
+                parentscategories: []
             }
         },
-        mounted() {            
+        mounted() {  
+
+         loadElements('category', '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.parentscategories = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                });          
 
              
 
@@ -132,7 +145,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                                 name: this.name_type,
                                 description: this.description_type,
                                 slug: this.slug_type,
-                                parentcategory: this.parentcategory
+                                parent_category: this.parentcategory.id
                             }
 
                             saveElement('category', form).then(

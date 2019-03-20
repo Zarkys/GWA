@@ -40,14 +40,42 @@
                 
             </div>
             <div class="card-body">
+             <ul class="list-group">
+                            <li class="list-group-item">
+                            <div class="row">
+                            <div class="col-md-3">
+                             <strong>Nombre</strong>
+                            </div>
+                            <div class="col-md-3">
+                             <strong>Descripción</strong>
+                            </div>
+                            <div class="col-md-2">
+                             <strong>Slug</strong>
+                            </div>
+                            <div class="col-md-2">
+                              <strong>Padre de categoría</strong>
+                            </div>
+                            <div class="col-md-2">
+                          
+                            </div>
+                            </div>
+                            </li>
+        
+                        </ul>
                 <ul class="list-group">
                     <li class="list-group-item" v-for="category in categories">
                     <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                     @{{category.name}}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                     @{{category.description}}
+                    </div>
+                    <div class="col-md-2">
+                    @{{category.slug}}
+                    </div>
+                    <div class="col-md-2">
+                    @{{category.parent_category}}
                     </div>
                     <div class="col-md-2">
                     <a href="#" v-on:click="updateRow(category.id)" class="btn btn-primary btn-circle">
@@ -140,7 +168,7 @@
                       
                        
 
-                            axios.delete('api/1.0/category/change/delete/'+idelement, '').then(
+                            trashElement('category/change/delete/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -179,7 +207,7 @@
                       
                        
 
-                        axios.delete('api/1.0/category/change/inactive/'+idelement, '').then(
+                        inactiveElement('category/change/inactive/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -218,7 +246,7 @@
                       
                        
 
-                        axios.delete('api/1.0/category/change/active/'+idelement, '').then(
+                        activeElement('category/change/active/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 

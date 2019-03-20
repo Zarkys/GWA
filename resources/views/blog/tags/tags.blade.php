@@ -40,15 +40,36 @@
                 
             </div>
             <div class="card-body">
+            <ul class="list-group">
+                            <li class="list-group-item">
+                            <div class="row">
+                            <div class="col-md-3">
+                             <strong>Nombre</strong>
+                            </div>
+                            <div class="col-md-4">
+                             <strong>Descripción</strong>
+                            </div>
+                            <div class="col-md-3">
+                              <strong>Slug</strong>
+                            </div>
+                            <div class="col-md-2">
+                          
+                            </div>
+                            </div>
+                            </li>
+        
+                        </ul>
                 <ul class="list-group">
                     <li class="list-group-item" v-for="tag in tags">
                     <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                     @{{tag.name}}
                     </div>
-                     
                     <div class="col-md-4">
                     @{{tag.description}}
+                    </div>
+                    <div class="col-md-3">
+                    @{{tag.slug}}
                     </div>
                     <div class="col-md-2">
                     <a href="#" v-on:click="updateRow(tag.id)" class="btn btn-primary btn-circle">
@@ -141,7 +162,7 @@
                       
                        
 
-                            axios.delete('api/1.0/tag/change/delete/'+idelement, '').then(
+                            trashElement('tag/change/delete/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -180,7 +201,7 @@
                       
                        
 
-                        axios.delete('api/1.0/tag/change/inactive/'+idelement, '').then(
+                        inactiveElement('tag/change/inactive/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -219,7 +240,7 @@
                       
                        
 
-                        axios.delete('api/1.0/tag/change/active/'+idelement, '').then(
+                        inactiveElement('tag/change/active/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
