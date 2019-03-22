@@ -37,6 +37,19 @@ class HomeController extends Controller
     {
         return view('blog/posts/posts');
     }
+    //ARCHIVE
+    public function archive()
+    {
+        return view('multimedia/multimedia/archives');
+    }
+    public function archivenew()
+    {
+        return view('multimedia/multimedia/archives_new');
+    }
+    public function archiveupdate()
+    {
+        return view('multimedia/multimedia/archives_update');
+    }
     //CATEGORY
     public function categories()
     {

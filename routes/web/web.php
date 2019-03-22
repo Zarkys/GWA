@@ -19,6 +19,10 @@
             'as'   => 'admin.home',
             'uses' => 'HomeController@home',
         ]);
+        //ADMIN - ARCHIVE
+        Route::get('/library', 'HomeController@archive')->name('archive');
+        Route::get('/archive/new', 'HomeController@archivenew')->name('archivenew');
+        Route::get('/archive/update/{idelement}', 'HomeController@archiveupdate')->name('archiveupdate');
         //ADMIN - BLOG
         Route::get('/posts', 'HomeController@posts')->name('posts');
         Route::get('/pages', 'HomeController@pages')->name('pages');

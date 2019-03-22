@@ -60,6 +60,21 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Comentarios</span></a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMedios" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-film"></i>
+          <span>Medios</span>
+        </a>
+        <div id="collapseMedios" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+          
+          @if(Auth::user()->rol===2)
+            <a class="collapse-item" href="{{url('goadmin/library')}}">Biblioteca</a>
+            <a class="collapse-item" href="{{url('goadmin/archive')}}">Agregar archivo</a>
+           @endif
+          </div>
+        </div>
+      </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
      
@@ -131,7 +146,7 @@
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
+          <i class="fas fa-fw fa-user"></i>
           <span>Usuario</span>
         </a>
         <div id="collapseUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
