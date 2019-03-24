@@ -33,27 +33,19 @@
       <div class="sidebar-heading">
         Zona de Blog
       </div>
-      <li class="nav-item">
-        <a class="nav-link" href="posts">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Entradas</span></a>
-      </li>
-       <!-- Heading -->
-      <div class="sidebar-heading">
-        Entradas
-      </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCatalog" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Entradas</span>
         </a>
-        <div id="collapseCatalog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseBlog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
           
           @if(Auth::user()->rol===2)
             <a class="collapse-item" href="{{url('goadmin/categories')}}">Categoría</a>
+            <a class="collapse-item" href="{{url('goadmin/tags')}}">Etiqueta</a>
            @endif
           </div>
         </div>
@@ -67,6 +59,21 @@
         <a class="nav-link" href="comments">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Comentarios</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMedios" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-film"></i>
+          <span>Medios</span>
+        </a>
+        <div id="collapseMedios" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+          
+          @if(Auth::user()->rol===2)
+            <a class="collapse-item" href="{{url('goadmin/library')}}">Biblioteca</a>
+            <a class="collapse-item" href="{{url('goadmin/archive')}}">Agregar archivo</a>
+           @endif
+          </div>
+        </div>
       </li>
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -127,6 +134,30 @@
               <span>Configuracion</span></a>
           </li>
           @endif
+
+           <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Sistema
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Usuario</span>
+        </a>
+        <div id="collapseUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+          
+          @if(Auth::user()->rol===2)
+            <a class="collapse-item" href="{{url('goadmin/users')}}">Usuario</a>
+           @endif
+          </div>
+        </div>
+      </li> 
     
 
       <!-- Divider -->

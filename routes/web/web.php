@@ -19,6 +19,10 @@
             'as'   => 'admin.home',
             'uses' => 'HomeController@home',
         ]);
+        //ADMIN - ARCHIVE
+        Route::get('/library', 'HomeController@archive')->name('archive');
+        Route::get('/archive/new', 'HomeController@archivenew')->name('archivenew');
+        Route::get('/archive/update/{idelement}', 'HomeController@archiveupdate')->name('archiveupdate');
         //ADMIN - BLOG
         Route::get('/posts', 'HomeController@posts')->name('posts');
         Route::get('/pages', 'HomeController@pages')->name('pages');
@@ -26,6 +30,11 @@
         Route::get('/categories', 'HomeController@categories')->name('categories');
         Route::get('/categories/new', 'HomeController@categoriesnew')->name('categoriesnew');
         Route::get('/categories/update/{idelement}', 'HomeController@categoriesupdate')->name('categoriesupdate');
+         //ADMIN - PAGE-TAG
+        Route::get('/tags', 'HomeController@tags')->name('tags');
+        Route::get('/tags/new', 'HomeController@tagsnew')->name('tagsnew');
+        Route::get('/tags/update/{idelement}', 'HomeController@tagsupdate')->name('tagsupdate');
+        //ADMIN - PAGE-COMMENT
         Route::get('/comments', 'HomeController@comments')->name('comments');
         //ADMIN - CATALOG
         Route::get('/products', 'HomeController@products')->name('products');
@@ -59,6 +68,10 @@
 
         //CONTACTS
         Route::get('/contacts', 'HomeController@contacts')->name('contacts');
+        //ADMIN - SECTIONS
+        Route::get('/users', 'HomeController@users')->name('users');
+        Route::get('/users/new', 'HomeController@usersnew')->name('usersnew');
+        Route::get('/users/update/{idelement}', 'HomeController@usersupdate')->name('usersupdate');
          //CONFIGS
         // Route::get('/profile', 'HomeController@config')->name('config');
 

@@ -37,6 +37,19 @@ class HomeController extends Controller
     {
         return view('blog/posts/posts');
     }
+    //ARCHIVE
+    public function archive()
+    {
+        return view('multimedia/multimedia/archives');
+    }
+    public function archivenew()
+    {
+        return view('multimedia/multimedia/archives_new');
+    }
+    public function archiveupdate()
+    {
+        return view('multimedia/multimedia/archives_update');
+    }
     //CATEGORY
     public function categories()
     {
@@ -49,6 +62,19 @@ class HomeController extends Controller
     public function categoriesupdate()
     {
         return view('blog/categories/categories_update');
+    }
+    //TAG
+    public function tags()
+    {
+        return view('blog/tags/tags');
+    }
+    public function tagsnew()
+    {
+        return view('blog/tags/tags_new');
+    }
+    public function tagsupdate()
+    {
+        return view('blog/tags/tags_update');
     }
     public function pages()
     {
@@ -140,7 +166,20 @@ class HomeController extends Controller
      public function contacts()
      {
          return view('config_web/contacts/contacts');
-     }     
+     } 
+     //CATEGORY
+    public function users()
+    {
+        return view('user/users/users');
+    }
+    public function usersnew()
+    {
+        return view('user/users/users_new');
+    }
+    public function usersupdate()
+    {
+        return view('user/users/users_update');
+    }    
      //TEXT
      public function config()
      {

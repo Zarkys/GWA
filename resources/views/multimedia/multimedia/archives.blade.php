@@ -11,12 +11,12 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Categorías de entradas</h1>
+        <h1 class="h3 mb-0 text-gray-800">Archivos</h1>
     </div>
 
 
 
-    <p class="mb-4">En esta lista puedes visualizar todas las categorías de las entradas que existen actualmente </p>
+    <p class="mb-4">En esta lista puedes visualizar todos los archivos que existen actualmente </p>
    
        
 
@@ -25,10 +25,10 @@
             <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Lista de Categorías de entradas</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Lista de Archivos</h6>
                 </div>
                 <div class="col-md-4">
-                <a href="categories/new" class="btn btn-primary btn-icon-split">
+                <a href="archive/new" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
@@ -47,13 +47,13 @@
                              <strong>Nombre</strong>
                             </div>
                             <div class="col-md-3">
-                             <strong>Descripción</strong>
+                             <strong>Tipo</strong>
                             </div>
                             <div class="col-md-2">
-                             <strong>Slug</strong>
+                             <strong>Fecha de creación</strong>
                             </div>
                             <div class="col-md-2">
-                              <strong>Padre de categoría</strong>
+                              <strong>Título</strong>
                             </div>
                             <div class="col-md-2">
                           
@@ -63,32 +63,32 @@
         
                         </ul>
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="category in categories">
+                    <li class="list-group-item" v-for="archive in archives">
                     <div class="row">
                     <div class="col-md-3">
-                    @{{category.name}}
+                    @{{archive.name}}
                     </div>
                     <div class="col-md-3">
-                    @{{category.description}}
+                    @{{archive.type}}
                     </div>
                     <div class="col-md-2">
-                    @{{category.slug}}
+                    @{{archive.creation_date}}
                     </div>
                     <div class="col-md-2">
-                    @{{category.superiorcategory.name}}
+                    @{{archive.title}}
                     </div>
                     <div class="col-md-2">
-                    <a href="#" v-on:click="updateRow(category.id)" class="btn btn-primary btn-circle">
+                    <a href="#" v-on:click="updateRow(archive.id)" class="btn btn-primary btn-circle">
                     <i class="fas fa-edit"></i>
                     </a>
 
-                    <a v-if="category.active === 1" href="#" v-on:click="checkRow(category.id)" class="btn btn-success btn-circle">
+                    <a v-if="archive.active === 1" href="#" v-on:click="checkRow(archive.id)" class="btn btn-success btn-circle">
                     <i class="fas fa-check"></i>
                     </a>
-                    <a v-if="category.active === 0" href="#" v-on:click="activeRow(category.id)" class="btn btn-warning btn-circle">
+                    <a v-if="archive.active === 0" href="#" v-on:click="activeRow(archive.id)" class="btn btn-warning btn-circle">
                     <i class="fas fa-times"></i>
                     </a>
-                    <a href="#" v-on:click="trashRow(category.id)" class="btn btn-danger btn-circle">
+                    <a href="#" v-on:click="trashRow(archive.id)" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                     </a>
                     </div>
@@ -123,17 +123,17 @@
         data() {
             return {
                 message: '',
-                categories: {},
+                archives: {},
             }
         },
         mounted() {
-            loadElements('category', '').then(
+            loadElements('archive', '').then(
                     response => {
                         if (response.data.code !== 500) {
 
                             console.log(response.data.data)
-                            this.categories = response.data.data;
-                            console.log(this.categories);
+                            this.archives = response.data.data;
+                            console.log(this.archives);
 
                         } else {
                             console.log(response.data);
@@ -168,7 +168,7 @@
                       
                        
 
-                            trashElement('category/change/delete/'+idelement, '').then(
+                            trashElement('archive/change/delete/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -177,7 +177,7 @@
                                                 'Elemento eliminado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = 'categories';
+                                                    window.location.href = 'library';
                                                 });
                                                
                                             
@@ -207,7 +207,7 @@
                       
                        
 
-                        inactiveElement('category/change/inactive/'+idelement, '').then(
+                        inactiveElement('archive/change/inactive/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -216,7 +216,7 @@
                                                 'Estatus modificado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = 'categories';
+                                                    window.location.href = 'library';
                                                 });
                                                
                                             
@@ -246,7 +246,7 @@
                       
                        
 
-                        activeElement('category/change/active/'+idelement, '').then(
+                        activeElement('archive/change/active/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -255,7 +255,7 @@
                                                 'Estatus modificado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = 'categories';
+                                                    window.location.href = 'library';
                                                 });
                                                
                                             
@@ -272,7 +272,7 @@
             },
             updateRow(idelement)
             {
-                window.location.href = 'categories/update/'+idelement;
+                window.location.href = 'archive/update/'+idelement;
             },
             cleanform() {
 

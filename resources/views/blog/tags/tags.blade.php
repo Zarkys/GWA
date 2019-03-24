@@ -11,12 +11,12 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Categorías de entradas</h1>
+        <h1 class="h3 mb-0 text-gray-800">Etiquetas de entradas</h1>
     </div>
 
 
 
-    <p class="mb-4">En esta lista puedes visualizar todas las categorías de las entradas que existen actualmente </p>
+    <p class="mb-4">En esta lista puedes visualizar todas las Etiquetas de las entradas que existen actualmente </p>
    
        
 
@@ -25,14 +25,14 @@
             <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Lista de Categorías de entradas</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Lista de Etiquetas de entradas</h6>
                 </div>
                 <div class="col-md-4">
-                <a href="categories/new" class="btn btn-primary btn-icon-split">
+                <a href="tags/new" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Nueva categoría</span>
+                    <span class="text">Nueva etiqueta</span>
                   </a>
                 </div>
             </div>
@@ -40,20 +40,17 @@
                 
             </div>
             <div class="card-body">
-             <ul class="list-group">
+            <ul class="list-group">
                             <li class="list-group-item">
                             <div class="row">
                             <div class="col-md-3">
                              <strong>Nombre</strong>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                              <strong>Descripción</strong>
                             </div>
-                            <div class="col-md-2">
-                             <strong>Slug</strong>
-                            </div>
-                            <div class="col-md-2">
-                              <strong>Padre de categoría</strong>
+                            <div class="col-md-3">
+                              <strong>Slug</strong>
                             </div>
                             <div class="col-md-2">
                           
@@ -63,32 +60,29 @@
         
                         </ul>
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="category in categories">
+                    <li class="list-group-item" v-for="tag in tags">
                     <div class="row">
                     <div class="col-md-3">
-                    @{{category.name}}
+                    @{{tag.name}}
+                    </div>
+                    <div class="col-md-4">
+                    @{{tag.description}}
                     </div>
                     <div class="col-md-3">
-                    @{{category.description}}
+                    @{{tag.slug}}
                     </div>
                     <div class="col-md-2">
-                    @{{category.slug}}
-                    </div>
-                    <div class="col-md-2">
-                    @{{category.superiorcategory.name}}
-                    </div>
-                    <div class="col-md-2">
-                    <a href="#" v-on:click="updateRow(category.id)" class="btn btn-primary btn-circle">
+                    <a href="#" v-on:click="updateRow(tag.id)" class="btn btn-primary btn-circle">
                     <i class="fas fa-edit"></i>
                     </a>
 
-                    <a v-if="category.active === 1" href="#" v-on:click="checkRow(category.id)" class="btn btn-success btn-circle">
+                    <a v-if="tag.active === 1" href="#" v-on:click="checkRow(tag.id)" class="btn btn-success btn-circle">
                     <i class="fas fa-check"></i>
                     </a>
-                    <a v-if="category.active === 0" href="#" v-on:click="activeRow(category.id)" class="btn btn-warning btn-circle">
+                    <a v-if="tag.active === 0" href="#" v-on:click="activeRow(tag.id)" class="btn btn-warning btn-circle">
                     <i class="fas fa-times"></i>
                     </a>
-                    <a href="#" v-on:click="trashRow(category.id)" class="btn btn-danger btn-circle">
+                    <a href="#" v-on:click="trashRow(tag.id)" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                     </a>
                     </div>
@@ -123,17 +117,17 @@
         data() {
             return {
                 message: '',
-                categories: {},
+                tags: {},
             }
         },
         mounted() {
-            loadElements('category', '').then(
+            loadElements('tag', '').then(
                     response => {
                         if (response.data.code !== 500) {
 
                             console.log(response.data.data)
-                            this.categories = response.data.data;
-                            console.log(this.categories);
+                            this.tags = response.data.data;
+                            console.log(this.tags);
 
                         } else {
                             console.log(response.data);
@@ -168,7 +162,7 @@
                       
                        
 
-                            trashElement('category/change/delete/'+idelement, '').then(
+                            trashElement('tag/change/delete/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -177,7 +171,7 @@
                                                 'Elemento eliminado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = 'categories';
+                                                    window.location.href = 'tags';
                                                 });
                                                
                                             
@@ -207,7 +201,7 @@
                       
                        
 
-                        inactiveElement('category/change/inactive/'+idelement, '').then(
+                        inactiveElement('tag/change/inactive/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -216,7 +210,7 @@
                                                 'Estatus modificado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = 'categories';
+                                                    window.location.href = 'tags';
                                                 });
                                                
                                             
@@ -246,7 +240,7 @@
                       
                        
 
-                        activeElement('category/change/active/'+idelement, '').then(
+                        inactiveElement('tag/change/active/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typeattributes = response.data.data; 
@@ -255,7 +249,7 @@
                                                 'Estatus modificado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = 'categories';
+                                                    window.location.href = 'tags';
                                                 });
                                                
                                             
@@ -272,7 +266,7 @@
             },
             updateRow(idelement)
             {
-                window.location.href = 'categories/update/'+idelement;
+                window.location.href = 'tags/update/'+idelement;
             },
             cleanform() {
 

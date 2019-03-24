@@ -28,6 +28,16 @@ function trashElement (url,params) {
     return axios.delete(baseUrl+prefix+url, params)
           
 }
+function inactiveElement (url,params) {
+   
+    return axios.delete(baseUrl+prefix+url, params)
+          
+}
+function activeElement (url,params) {
+   
+    return axios.delete(baseUrl+prefix+url, params)
+          
+}
 function changueElement (url,params) {
    
     return axios.put(baseUrl+prefix+url, params)

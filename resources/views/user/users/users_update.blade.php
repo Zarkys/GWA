@@ -10,7 +10,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Actualizar Seccion</h1>
+        <h1 class="h3 mb-0 text-gray-800">Actualizar Usuario</h1>
     </div>      
 
         <!-- DataTales Example -->
@@ -18,7 +18,7 @@
             <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Actualizar seccion</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Nuevos datos del usuario</h6>
                 </div>
                 <div class="col-md-4">
                 <a href="{{ url()->previous() }}" class="btn btn-warning btn-icon-split">
@@ -38,11 +38,26 @@
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre de la sección">
+                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre del usuario">
                       </div>
                     </div>
                     <div class="col-md-6">
-                          
+                            <div class="form-group">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="text" class="form-control" id="inputEmail" v-model="email_type" aria-describedby="nameHelp" placeholder="Email del usuario">
+                                      </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Rol</label>
+                        <v-select :options="roles" label="name" v-model="rol"></v-select>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="form-group">
+                                    <label for="exampleInputEmail1">Password</label>
+                                    <input type="text" class="form-control" id="inputPassword" v-model="password_type" aria-describedby="nameHelp" placeholder="Password">
+                                    </div>
                     </div>
                    
 
@@ -74,6 +89,7 @@
 <script src="{{ asset('/js/axios.js') }}"></script>
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
 <!-- Custom page Script -->
 <script>
 Vue.component('v-select', VueSelect.VueSelect)
@@ -85,21 +101,37 @@ Vue.component('v-select', VueSelect.VueSelect)
                 message: '',
                 name_type:'',
                 description_type:'',
-                section:{},
-                section:'',
-                sections: []
+                slug_type:'',
+                user:{},
+                user:'',
+                users: []
             }
         },
         mounted() {
+
+
+             loadElements('user', '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.users = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                }); 
+
            var pageURL = window.location.href;
             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
             console.log(idurl);
-            loadOneElement('section/'+idurl, '').then(
+            loadOneElement('user/'+idurl, '').then(
                     response => {
                         if (response.data.code !== 500) {                          
-                            this.section = response.data.data; 
-                            this.name_type = this.section.title;
-                           
+                            this.user = response.data.data; 
+                            this.name_type = this.user.name;
+                            this.email_type = this.user.description;
+                            this.rol = this.category.rol.id;
                         } else {
                             console.log(response.data);
                         }
@@ -128,22 +160,24 @@ Vue.component('v-select', VueSelect.VueSelect)
                     }).then((result) => {
                     if (result.value) {
                         let form = {
-                                title: this.name_type,
-                               
+                                name: this.name_type,
+                                email: this.email_type,
+                                password: this.password_type,
+                                rol: this.rol.id
                             }
                             var pageURL = window.location.href;
                             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
          
-                            updateElement('section/'+idurl, form).then(
+                            updateElement('user/'+idurl, form).then(
                                     response => {
                                         if (response.data.code !== 500) {                          
-                                           // this.sections = response.data.data; 
+                                           // this.attributes = response.data.data; 
                                            Swal.fire(
                                                 'Elemento Actualizado',
                                                 'La información se actualizo correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.history.back();
+                                                     window.history.back();
                                                 });
                                                
                                             
