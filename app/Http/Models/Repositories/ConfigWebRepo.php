@@ -16,6 +16,13 @@ class ConfigWebRepo
         $configweb = ConfigWeb::whereIn('active', [0, 1])->get();
         return $configweb;
     }
+    public function imagelogo()
+    {
+
+        $imagelogo = ConfigWeb::whereIn('active', [0, 1])->
+        where('name_config','url_logo_company')->first();
+        return $imagelogo;
+    }
     public function counters()
     {
 

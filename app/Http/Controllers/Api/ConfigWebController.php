@@ -42,7 +42,32 @@
             }
             
         }
-
+        public function imagelogo() {
+            
+            try {
+                $configweb = $this->ConfigWebRepo->imagelogo();
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $configweb,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         public function counters() {
             
             try {

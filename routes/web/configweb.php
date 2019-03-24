@@ -1,7 +1,11 @@
 <?php
     
     use Illuminate\Http\Request;
-    
+    Route::get('/api/1.0/configweb/imagelogo/', [
+        'as'   => 'api.config.imagelogo',
+        'uses' => 'Api\ConfigWebController@imagelogo',
+    ]);
+
     Route::group([
           'middleware' => ['auth'],
         'prefix'     => '/api/1.0/configweb/',

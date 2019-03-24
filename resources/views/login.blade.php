@@ -21,7 +21,7 @@
 </head>
 
 <body class="bg-gradient-primary">
-
+<div id="app">
   <div class="container">
 
     <!-- Outer Row -->
@@ -33,7 +33,9 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6 d-none d-lg-block ">
+              <img v-bind:src="imagelogo.value">
+              </div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
@@ -55,9 +57,20 @@
                     <button type="submit" class="btn btn-primary btn-user btn-block">
                       Acceder
                     </button>
-                 
+                    <br>
+                    <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+                    <a href='/' class="btn btn-primary btn-user btn-block">
+                      Volver al Sitio
+                    </a>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                    </div>
                   </form>
-              
+                
                 </div>
               </div>
             </div>
@@ -69,7 +82,7 @@
     </div>
 
   </div>
-
+</div>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -79,6 +92,46 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
+<!-- Additional Scripts -->
+<script src="{{ asset('/js/vue.js') }}"></script>
+<script src="{{ asset('/js/axios.min.js') }}"></script>
+<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
+<script src="{{ asset('/js/axios.js') }}"></script>
+<!-- Custom page Script -->
+<script>
+    var app = new Vue({
+        el: '#app',
+        data() {
+            return {
+                message: '',
+                texts: {},
+                counters:{},
+                imagelogo:'',
+            }
+        },
+        mounted() {
+            loadElements('configweb/imagelogo', '').then(
+                    response => {
+                        if (response.data.code !== 500) {
+
+                            
+                            this.imagelogo = response.data.data;
+                         
+
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                })
+
+
+
+        },
+       
+    })
+</script>
 
 </body>
 
