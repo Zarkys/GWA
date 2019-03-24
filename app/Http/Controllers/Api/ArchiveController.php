@@ -8,6 +8,7 @@
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Support\Facades\Log;
+    use Storage;
     class ArchiveController extends BaseController {
         
         private $ArchiveRepo;
@@ -18,7 +19,23 @@
             $this->ArchiveRepo = $ArchiveRepo;
             $this->UserRepo = $UserRepo;
         }
-        
+        public function getArchives(){
+          //  $response= Storage::disk('local')->allfiles('/website_assets/img');
+
+            //TODO: extract code below from controller :) 
+
+            $files = [];
+            $filesInFolder = \File::files('../public/website_assets/img');
+            Log::debug($filesInFolder);
+            foreach($filesInFolder as $path)
+            {
+                $files[] = pathinfo($path);
+            }
+
+
+
+            return response()->json($files, 200);
+        }
         public function index() {
             
             try {

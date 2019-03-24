@@ -11,6 +11,10 @@
             'as'   => 'api.archive',
             'uses' => 'Api\ArchiveController@index',
         ]);
+        Route::get('/getarchives', [
+            'as'   => 'api.archive.getarchives',
+            'uses' => 'Api\ArchiveController@getArchives',
+        ]);
         Route::get('/active', [
             'as'   => 'api.archive.filteractive',
             'uses' => 'Api\ArchiveController@filteractive',

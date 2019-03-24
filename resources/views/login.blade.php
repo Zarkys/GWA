@@ -34,7 +34,7 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block ">
-              <img v-bind:src="imagelogo.value">
+              <img v-bind:src="imagelogo.value" style='width:100%;padding:10%'>
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
@@ -106,7 +106,9 @@
                 message: '',
                 texts: {},
                 counters:{},
-                imagelogo:'',
+                imagelogo:{
+                  value:'img/loginimg.jpeg'
+                },
             }
         },
         mounted() {
@@ -114,8 +116,13 @@
                     response => {
                         if (response.data.code !== 500) {
 
-                            
-                            this.imagelogo = response.data.data;
+                            if(response.data.data.value != null)
+                            {
+                              console.log('SHOWING');
+                              console.log(response.data.data.value);
+                              this.imagelogo = response.data.data;
+                            }
+                           
                          
 
                         } else {

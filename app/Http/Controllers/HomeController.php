@@ -50,6 +50,10 @@ class HomeController extends Controller
     {
         return view('multimedia/multimedia/archives_update');
     }
+    public function archive_folder()
+    {
+        return view('multimedia/multimedia/archive_folder');
+    }
     //CATEGORY
     public function categories()
     {

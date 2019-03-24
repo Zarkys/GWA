@@ -71,6 +71,7 @@
           @if(Auth::user()->rol===2)
             <a class="collapse-item" href="{{url('goadmin/library')}}">Biblioteca</a>
             <a class="collapse-item" href="{{url('goadmin/archive')}}">Agregar archivo</a>
+            <a class="collapse-item" href="{{url('goadmin/archive_folder')}}">Archivos en Carpeta</a>
            @endif
           </div>
         </div>

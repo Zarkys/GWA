@@ -20,6 +20,7 @@
             'uses' => 'HomeController@home',
         ]);
         //ADMIN - ARCHIVE
+        Route::get('/archive_folder', 'HomeController@archive_folder')->name('archive_folder');
         Route::get('/library', 'HomeController@archive')->name('archive');
         Route::get('/archive/new', 'HomeController@archivenew')->name('archivenew');
         Route::get('/archive/update/{idelement}', 'HomeController@archiveupdate')->name('archiveupdate');
