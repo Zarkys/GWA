@@ -25,25 +25,17 @@ class LandingController extends Controller
     {
         return view('website_public/index');
     }
-    public function know()
+    public function aboutus()
     {
 
-        return view('website_public/know');
+        return view('website_public/aboutus');
     }
-    public function catalog()
+    public function faq()
     {
         
-        return view('website_public/catalog');
+        return view('website_public/faq');
     }
-    public function catalog_detail()
-    {
-        return view('website_public/catalog_detail');
-    }
-    
-    public function contact()
-    {
-        return view('website_public/contact');
-    }
+   
     public function changue_lang($lang)
     {
        

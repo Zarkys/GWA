@@ -389,17 +389,18 @@
                 $email_sender = ConfigWeb::where('name_config','email_sender')->first();
                 $url_logo_company = ConfigWeb::where('name_config','url_logo_company')->first();
 
-                Log::debug($url_logo_company);
+                Log::debug('CARGANDO IMAGEN'.$url_logo_company->value);
                 $data = [
                     'from' => $contact->name_client,
                     'comment' => $contact->message_client,
                     'cellphone' => $contact->phone_client,
                     'contactmail' => $contact->email_client,
                     'email' => $email_sender->value,
-                    'url_logo_company' => $url_logo_company->value,
+                    'url_logo_company' => env('APP_URL').'/'.$url_logo_company->value,
                     'title' => __('Pronto te contactaremos'),
                     'text' => __('Pronto nos comunicaremos'),
                 ];
+                Log::debug('EMAIL IMAGEN: '.env('APP_URL').'/'.$url_logo_company->value);
 
                 Mail::send("auth.contact_client",$data, function ($message) use ($data) {
                     $message->to($data['contactmail'])->subject($data['title']);
@@ -411,10 +412,10 @@
                     'from' => $contact->name_client,
                     'comment' => $contact->message_client,
                     'cellphone' => $contact->phone_client,
-                    'contactmail' => $email_receive->value,
+                    'contactmail' => $contact->email_client,
                     'email_sender' => $email_sender->value,
                     'email_receive' => $email_receive->value,
-                    'url_logo_company' => $url_logo_company->value,
+                    'url_logo_company' => env('APP_URL').'/'.$url_logo_company->value,
                     'title' => __('Solicitud de contacto'),
                     'text' => __('Mensaje de solicitud de contacto'),
                 ];

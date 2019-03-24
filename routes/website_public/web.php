@@ -15,11 +15,8 @@
 //LANDING PAGE ROUTES
 Route::get('/', 'LandingController@index')->name('index');
 
-Route::get('/conocenos', 'LandingController@know')->name('know');
-Route::get('/catalogo', 'LandingController@catalog')->name('catalog');
-Route::get('/catalogo/{idelement}', 'LandingController@catalog_detail')->name('catalog_detail');
-
-Route::get('/contacto', 'LandingController@contact')->name('contact');
+Route::get('/nosotros', 'LandingController@aboutus')->name('aboutus');
+Route::get('/faq', 'LandingController@faq')->name('faq');
 
 Route::get('/changue_lang/{lang}', [
     'as'   => 'api.changue.lang',

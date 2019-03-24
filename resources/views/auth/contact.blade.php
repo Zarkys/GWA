@@ -285,7 +285,7 @@ margin-right: 20%;
                     <tr>
                       <td style="text-align: center">  
                       
-                        <h2>Hola, <strong>{!!$from!!} </strong></h2> 
+                        <h2>Hola, <strong>Administrador</strong></h2> 
                         <br>
                         <h3>Este usuario desea comunicarse en su sitio web</h3>
 
