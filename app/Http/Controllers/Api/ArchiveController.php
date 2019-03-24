@@ -20,19 +20,34 @@
             $this->UserRepo = $UserRepo;
         }
         public function getArchives(){
-          //  $response= Storage::disk('local')->allfiles('/website_assets/img');
+           
 
             //TODO: extract code below from controller :) 
 
             $files = [];
             $filesInFolder = \File::files('../public/website_assets/img');
-            Log::debug($filesInFolder);
+          
             foreach($filesInFolder as $path)
             {
-                $files[] = pathinfo($path);
+                $path_parts = pathinfo($path);
+
+                $file['dirname'] = $path_parts['dirname'];
+                $file['basename'] = $path_parts['basename'];
+                $file['extension'] = $path_parts['extension'];
+                $file['filename'] = $path_parts['filename'];
+                $file['size'] = filesize($path);
+
+              
+
+                $file['imgsize'] =  getimagesize($path);
+                $file['size_pixel'] =  $file['imgsize'][0].'x'.$file['imgsize'][1];
+               
+
+                 array_push($files,$file)   ;
+               
             }
 
-
+      
 
             return response()->json($files, 200);
         }

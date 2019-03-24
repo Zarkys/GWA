@@ -24,15 +24,15 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                 <h6 class="m-0 font-weight-bold text-primary">Lista de Archivos</h6>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                 <a href="archive/new" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
-                      <i class="fas fa-plus"></i>
+                      <i class="fas fa-sync"></i>
                     </span>
-                    <span class="text">Nueva categoría</span>
+                    <span class="text">Sincronizar Archivos con Base de Datos</span>
                   </a>
                 </div>
             </div>
@@ -40,62 +40,32 @@
                 
             </div>
             <div class="card-body">
-             <ul class="list-group">
-                            <li class="list-group-item">
-                            <div class="row">
-                            <div class="col-md-3">
-                             <strong>Url de Archivo</strong>
-                            </div>
-                            <div class="col-md-2">
-                             <strong>Tipo</strong>
-                            </div>
-                            <div class="col-md-2">
-                             <strong>Nombre de Archivo</strong>
-                            </div>
-                            <div class="col-md-2">
-                              <strong>Imagen</strong>
-                            </div>
-                            <div class="col-md-3">
-                          
-                            </div>
-                            </div>
-                            </li>
-        
-                        </ul>
-                <ul class="list-group">
-                    <li class="list-group-item" v-for="archive in archives">
-                    <div class="row">
-                    <div class="col-md-3">
-                    @{{archive.basename}}
-                    </div>                   
-                    <div class="col-md-2">
-                    @{{archive.extension}}
-                    </div>
-                    <div class="col-md-2">
-                    @{{archive.filename}}
-                    </div>
-                    <div class="col-md-3">
-                            <img v-bind:src="'../website_assets/img/'+archive.basename" style='width:100%;padding:10%'> 
-                    </div>
-                  <!--  <div class="col-md-2">
-                    <a href="#" v-on:click="updateRow(archive.id)" class="btn btn-primary btn-circle">
-                    <i class="fas fa-edit"></i>
-                    </a>
+                    <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">URL Archivo</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Nombre Archivo</th>
+                                <th scope="col">Peso</th>
+                                <th scope="col">Tamano</th>
+                                <th scope="col">Imagen</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr v-for="archive in archives">
+                                <th scope="row">@{{archive.basename}}</th>
+                                <td>@{{archive.extension}}</td>
+                                <td>@{{archive.filename}}</td>
+                                <td>@{{archive.size / 1000}} K</td>
+                                <td>@{{archive.size_pixel}}</td>
+                                <td><img v-bind:src="'../website_assets/img/'+archive.basename" style='max-width:150px;'></td> 
+                              </tr>
+                            
+                            </tbody>
+                          </table>
 
-                    <a v-if="archive.active === 1" href="#" v-on:click="checkRow(archive.id)" class="btn btn-success btn-circle">
-                    <i class="fas fa-check"></i>
-                    </a>
-                    <a v-if="archive.active === 0" href="#" v-on:click="activeRow(archive.id)" class="btn btn-warning btn-circle">
-                    <i class="fas fa-times"></i>
-                    </a>
-                    <a href="#" v-on:click="trashRow(archive.id)" class="btn btn-danger btn-circle">
-                    <i class="fas fa-trash"></i>
-                    </a>
-                    </div>-->
-                    </div>
-                    </li>
-
-                </ul>
+            
+              
             </div>
         </div>
 

@@ -23,6 +23,11 @@
             'as'   => 'api.text.filterdeleted',
             'uses' => 'Api\TextController@filterdeleted',
         ]);
+        
+        Route::get('/filterbysection/{id}', [
+            'as'   => 'api.text.filterby',
+            'uses' => 'Api\TextController@filterbysection',
+        ]);
         Route::get('/filterby/{item}/{id}', [
             'as'   => 'api.text.filterby',
             'uses' => 'Api\TextController@filterby',

@@ -28,6 +28,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Lista de Textos</h6>
                 </div>
                 <div class="col-md-4">
+                      
                 <a href="texts/new" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
@@ -40,6 +41,20 @@
                 
             </div>
             <div class="card-body">
+                    <div class="row">
+                            <div class="col-md-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Filtrar por Seccion</h6>
+                           
+                            </div>
+                            <div class="col-md-3">
+                                    <v-select :options="sections" label="title" v-model="section" @@input="onChange"></v-select>
+                            </div>
+                            <div class="col-md-3">
+                                    
+                           
+                            </div>
+                        </div>
+                        <br>
                     <ul class="list-group">
                             <li class="list-group-item">
                             <div class="row">
@@ -118,17 +133,33 @@
 <script src="{{ asset('/js/axios.min.js') }}"></script>
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="{{ asset('/js/axios.js') }}"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
 <!-- Custom page Script -->
 <script>
+    Vue.component('v-select', VueSelect.VueSelect)
     var app = new Vue({
         el: '#app',
         data() {
             return {
                 message: '',
                 texts: {},
+                sections:[],
+                section:''
             }
         },
         mounted() {
+            loadElements('section', '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.sections = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
+
             loadElements('text', '').then(
                     response => {
                         if (response.data.code !== 500) {
@@ -149,6 +180,23 @@
 
         },
         methods: {
+            onChange () {                
+                loadElements('text/filterbysection/'+this.section.id, '').then(
+                    response => {
+                        if (response.data.code !== 500) {
+
+                            
+                            this.texts = response.data.data;
+                         
+
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                })
+                },
             back() {
 
             },

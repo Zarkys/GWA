@@ -125,6 +125,32 @@
             }
             
         }
+        public function filterbysection($id) {
+            
+            try {
+                $text = $this->TextRepo->filterbysection($id);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('Datos Obtenidos Correctamente'),
+                    'data'    => $text,
+                ];
+                
+                return response()->json($response, 200);
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
         
         public function filterby($item, $id) {
             

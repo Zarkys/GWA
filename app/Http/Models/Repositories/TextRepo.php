@@ -92,7 +92,29 @@ class TextRepo
 
         return $text;
     }
+    public function filterbysection($id) {
+        //Find By parameters (Item)
+        try {
+         
+                    $response = Text::with([
+                        'Section',
+                    ])->where('id_section', $id)->whereIn('active', [0, 1])->get();
+                  
+                  
+                    return $response;
+               
 
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status'  => 'FAILED',
+                'code'    => 500,
+                'message' => _('Ocurrio un error interno') . '.',
+            ];
+            
+            return response()->json($response, 500);
+        } 
+} 
     public function filterby($item,$id) {
             //Find By parameters (Item)
             try {
