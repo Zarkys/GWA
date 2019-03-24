@@ -421,7 +421,7 @@
                 ];
 
                 Mail::send("auth.contact",$data2, function ($message) use ($data2) {
-                    $message->to($data2['contactmail'])->subject($data2['title']);
+                    $message->to($data2['email_sender'])->subject($data2['title']);
                 });
 
                 return true;
