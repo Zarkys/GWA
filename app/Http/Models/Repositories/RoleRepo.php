@@ -5,6 +5,13 @@
     use App\Http\Models\Entities\Role;
     
     class RoleRepo {
+
+        public function all() {
+            
+            $roles = Role::all();
+            
+            return $roles;
+        }
      
         public function addRole($user, $role) {
             $role = Role::find($role);

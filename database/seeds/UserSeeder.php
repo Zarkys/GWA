@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'rol'=> 2, 
             'email_verified_at'=> null, 
             'password'=> '123456',
+            'active'=> 1,
             'remember_token'=> bcrypt('123456')
            
         ]);      

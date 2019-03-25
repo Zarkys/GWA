@@ -32,7 +32,7 @@
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Nueva etiqueta</span>
+                    <span class="text">Nuevo Usuario</span>
                   </a>
                 </div>
             </div>

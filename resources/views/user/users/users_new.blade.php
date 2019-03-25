@@ -103,23 +103,23 @@ Vue.component('v-select', VueSelect.VueSelect)
                 email_type:'',
                 password_type:'',
                 posts: {},
-                user:'',
-                users: []
+                rol:'',
+                roles: []
             }
         },
         mounted() {            
 
-             loadElements('user', '').then(
+             loadElements('rol', '').then(
                     response => {
                         if (response.data.code !== 500) {                          
-                            this.users = response.data.data; 
+                            this.roles = response.data.data; 
                         } else {
                             console.log(response.data);
                         }
                     })
                 .catch(error => {
                     console.log(error);
-                }); 
+                });    
 
 
         },

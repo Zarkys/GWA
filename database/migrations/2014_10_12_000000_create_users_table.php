@@ -18,6 +18,7 @@
                 $table->integer('rol')->unsigned();;
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
+                $table->integer('active');
                 $table->rememberToken();
                 $table->timestamps();
                 

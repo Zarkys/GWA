@@ -100,27 +100,28 @@ Vue.component('v-select', VueSelect.VueSelect)
             return {
                 message: '',
                 name_type:'',
-                description_type:'',
-                slug_type:'',
-                user:{},
-                user:'',
-                users: []
+                email_type:'',
+                password_type:'',
+                rol:{},
+                rol:'',
+                roles: []
             }
         },
         mounted() {
 
 
-             loadElements('user', '').then(
+             
+             loadElements('rol', '').then(
                     response => {
                         if (response.data.code !== 500) {                          
-                            this.users = response.data.data; 
+                            this.roles = response.data.data; 
                         } else {
                             console.log(response.data);
                         }
                     })
                 .catch(error => {
                     console.log(error);
-                }); 
+                });  
 
            var pageURL = window.location.href;
             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
@@ -130,8 +131,9 @@ Vue.component('v-select', VueSelect.VueSelect)
                         if (response.data.code !== 500) {                          
                             this.user = response.data.data; 
                             this.name_type = this.user.name;
-                            this.email_type = this.user.description;
-                            this.rol = this.category.rol.id;
+                            this.email_type = this.user.email;
+                            this.password_type = this.user.password;
+                            this.rol = this.user.rol.id;
                         } else {
                             console.log(response.data);
                         }

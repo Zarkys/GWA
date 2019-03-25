@@ -20,6 +20,7 @@
             'email_verified_at',
             'password',
             'rol',
+            'active',
             'remember_token',           
             'created_at',
             'updated_at',

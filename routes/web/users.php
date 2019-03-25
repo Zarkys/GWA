@@ -43,11 +43,15 @@
             'as'   => 'api.user.update',
             'uses' => 'Api\UserController@update',
         ]);
-      
-
-    
-
-        Route::delete('/{id}', [
+      Route::delete('/change/active/{id}', [
+            'as'   => 'api.user.activate',
+            'uses' => 'Api\UserController@activate',
+        ]);
+        Route::delete('/change/inactive/{id}', [
+            'as'   => 'api.user.inactivate',
+            'uses' => 'Api\UserController@inactivate',
+        ]);
+        Route::delete('/change/delete/{id}', [
             'as'   => 'api.user.delete',
             'uses' => 'Api\UserController@delete',
         ]);

@@ -9,7 +9,9 @@
     class UserRepo {
         public function all() {
             
-            $users = User::all();
+            $users = User::with([
+                    'Rol',
+                ])->whereIn('active', [0, 1])->get();
             
             return $users;
         }
@@ -22,6 +24,13 @@
             
             return $user;
         }
+        public function findbyid($id)
+    {
+
+        $user = User::find($id);
+
+        return $user;
+    }
         
         
         public function store($data) {
@@ -34,6 +43,21 @@
         }
         
         public function update($user, $data) {
+            
+            $user->fill($data);
+            $user->save();
+            
+            return $user;
+        }
+        
+        public function activate($user, $data) {
+            
+            $user->fill($data);
+            $user->save();
+            
+            return $user;
+        }
+        public function inactivate($user, $data) {
             
             $user->fill($data);
             $user->save();

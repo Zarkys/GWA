@@ -3,7 +3,7 @@
     namespace App\Http\Controllers\Api;
     use App\Components\UUID;
   
-    use App\Htpp\Models\Repositories\RolRepo;
+    use App\Http\Models\Repositories\RoleRepo;
 
    // use App\Security\Enums\Roles;
 
@@ -14,16 +14,16 @@
 
     class RolController extends BaseController {
 
-        private $RolRepo;
+        private $RoleRepo;
 
-        public function __construct(RolRepo $RolRepo) {
-            $this->RolRepo = $RolRepo;  
+        public function __construct(RoleRepo $RoleRepo) {
+            $this->RoleRepo = $RoleRepo;  
         }
 
         public function index() {
 
             try {
-                $rol = $this->RolRepo->all();
+                $rol = $this->RoleRepo->all();
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,

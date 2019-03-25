@@ -115,7 +115,7 @@
             $validator = Validator::make($request->all(), [
                 'name'     => 'required',
                 'email'    => 'required|string|email|unique:users',
-                'password' => 'required|confirmed',
+                'password' => 'required',
                 'rol'      => 'required',
             ], $this->custom_message());
 
@@ -136,6 +136,7 @@
                     'email'    => $request->get('email'),
                     'password' => $request->get('password'),
                     'rol'      => Roles::$company,
+                    'active'   => 1,
                     'status'   => 1,
                 ];
                 $user = $this->UserRepo->store($data);
@@ -169,6 +170,7 @@
                 'name'  => 'required',
                 'email' => 'required',
                 'rol'   => 'required',
+                'password'   => 'required',
             ], $this->custom_message());
 
             if ($validator->fails()) {
@@ -190,6 +192,8 @@
                     $data = [
                         'name'  => $request->get('name'),
                         'email' => $request->get('email'),
+                        'rol' => $request->get('rol'),
+                        'password' => $request->get('password'),
                     ];
                     $user = $this->UserRepo->update($user, $data);
 
@@ -371,6 +375,102 @@
             }
         }
 
+         public function activate($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $user = $this->UserRepo->findbyid($id);
+                $user = $this->UserRepo->activate($user, ['active' => 1]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El usuario ha sido activada correctamente'),
+                    'data'    => $user,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
+         public function inactivate($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $user = $this->UserRepo->findbyid($id);
+                $user = $this->UserRepo->inactivate($user, ['active' => 0]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El usuario ha sido inactivada correctamente'),
+                    'data'    => $user,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+        
+        public function delete($id, Request $request) {
+          
+         
+            
+            try {
+                
+                $user = $this->UserRepo->findbyid($id);
+                $user = $this->UserRepo->delete($user, ['active' => 2]);
+                
+                $response = [
+                    'status'  => 'OK',
+                    'code'    => 200,
+                    'message' => __('El usuario ha sido eliminado correctamente'),
+                    'data'    => $user,
+                ];
+                
+                return response()->json($response, 200);
+                
+                
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            }
+            
+        }
+
         public function custom_message() {
 
             return [
@@ -378,8 +478,6 @@
                 'email.required'     => __('El Correo Electrónico es requerido'),
                 'email.unique'       => __('El Correo Electrónico ya se encuentra registrado'),
                 'password.required'  => __('La Contraseña es requerida'),
-                'password.confirmed' => __('La Contraseña no coinciden'),
-                'phone.required'     => __('El telefono es requerido'),
             ];
         }
 
