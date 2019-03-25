@@ -284,7 +284,7 @@ margin-right: 20%;
                   <table border="0" cellpadding="0" cellspacing="0">
                     <tr>
                       <td style="text-align: center">  
-                            <img class="d-block w-100" src="{{$url_logo_company}}" alt="Medanio Logo">
+                            <img class="d-block w-100" src="{{$url_logo_company}}" alt="">
                             <br>
                         <h2>Hola, <strong>{!!$from!!}</strong></h2>
                         <br>

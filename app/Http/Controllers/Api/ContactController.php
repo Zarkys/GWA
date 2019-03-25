@@ -390,11 +390,15 @@
                 $url_logo_company = ConfigWeb::where('name_config','url_logo_company')->first();
 
                 Log::debug('CARGANDO IMAGEN'.$url_logo_company->value);
+
+                //EMAIL TO CLIENT
                 $data = [
+                    //Client Data
                     'from' => $contact->name_client,
                     'comment' => $contact->message_client,
                     'cellphone' => $contact->phone_client,
                     'contactmail' => $contact->email_client,
+                    //Email Configuration
                     'email' => $email_sender->value,
                     'url_logo_company' => env('APP_URL').'/'.$url_logo_company->value,
                     'title' => __('Pronto te contactaremos'),
@@ -409,10 +413,12 @@
                
                 
                 $data2 = [
+                    //Client Data
                     'from' => $contact->name_client,
                     'comment' => $contact->message_client,
                     'cellphone' => $contact->phone_client,
                     'contactmail' => $contact->email_client,
+                    //Email Configuration
                     'email_sender' => $email_sender->value,
                     'email_receive' => $email_receive->value,
                     'url_logo_company' => env('APP_URL').'/'.$url_logo_company->value,
@@ -421,7 +427,7 @@
                 ];
 
                 Mail::send("auth.contact",$data2, function ($message) use ($data2) {
-                    $message->to($data2['email_sender'])->subject($data2['title']);
+                    $message->to($data2['email_receive'])->subject($data2['title']);
                 });
 
                 return true;

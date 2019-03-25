@@ -1,7 +1,16 @@
 <?php
     
     use Illuminate\Http\Request;
-    
+    Route::get('/api/1.0/product/attributes/active', [
+        'as'   => 'api.product.filteractive',
+        'uses' => 'Api\ProductController@getProductsWithAttributes',
+    ]);
+    Route::get('/api/1.0/product/attributes/{idproduct}', [
+        'as'   => 'api.product.filteractive',
+        'uses' => 'Api\ProductController@getProductWithAttributes',
+    ]);
+
+
     Route::group([
           'middleware' => ['auth'],
         'prefix'     => '/api/1.0/product/',
@@ -15,14 +24,8 @@
             'as'   => 'api.product.filteractive',
             'uses' => 'Api\ProductController@filteractive',
         ]);
-        Route::get('/attributes/active', [
-            'as'   => 'api.product.filteractive',
-            'uses' => 'Api\ProductController@getProductsWithAttributes',
-        ]);
-        Route::get('/attributes/{idproduct}', [
-            'as'   => 'api.product.filteractive',
-            'uses' => 'Api\ProductController@getProductWithAttributes',
-        ]);
+      
+      
         Route::get('/inactive', [
             'as'   => 'api.product.filterinactive',
             'uses' => 'Api\ProductController@filterinactive',

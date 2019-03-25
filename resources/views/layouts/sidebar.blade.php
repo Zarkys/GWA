@@ -140,11 +140,13 @@
       <hr class="sidebar-divider">
 
       <!-- Heading -->
-      <div class="sidebar-heading">
-        Sistema
-      </div>
+     
 
       <!-- Nav Item - Pages Collapse Menu -->
+      @if(Auth::user()->rol===2)
+      <div class="sidebar-heading">
+          Sistema
+        </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-user"></i>
@@ -153,12 +155,13 @@
         <div id="collapseUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
           
-          @if(Auth::user()->rol===2)
+          
             <a class="collapse-item" href="{{url('goadmin/users')}}">Usuario</a>
-           @endif
+          
           </div>
         </div>
       </li> 
+      @endif
     
 
       <!-- Divider -->
