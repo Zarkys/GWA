@@ -1,7 +1,11 @@
 <?php
     
     use Illuminate\Http\Request;
-    
+    Route::get('/api/1.0/text/filterby/{item}/{id}', [
+        'as'   => 'api.text.filterby',
+        'uses' => 'Api\TextController@filterby',
+    ]);
+
     Route::group([
         'middleware' => ['auth'],
         'prefix'     => '/api/1.0/text/',
@@ -28,10 +32,7 @@
             'as'   => 'api.text.filterby',
             'uses' => 'Api\TextController@filterbysection',
         ]);
-        Route::get('/filterby/{item}/{id}', [
-            'as'   => 'api.text.filterby',
-            'uses' => 'Api\TextController@filterby',
-        ]);
+      
         Route::get('/{id}', [
             'as'   => 'api.text.findbyid',
             'uses' => 'Api\TextController@findbyid',
