@@ -12,7 +12,7 @@ resources/views/website_public
 routes/website_public/
 routes/website_public/web.php
 #routes/website_public
-#app/Http/Controllers/LandingController.php
+app/Http/Controllers/LandingController.php
 
 # Laravel 5 & Lumen specific
 public/storage
