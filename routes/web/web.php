@@ -25,8 +25,10 @@
         Route::get('/archive/new', 'HomeController@archivenew')->name('archivenew');
         Route::get('/archive/update/{idelement}', 'HomeController@archiveupdate')->name('archiveupdate');
         //ADMIN - BLOG
-        Route::get('/posts', 'HomeController@posts')->name('posts');
         Route::get('/pages', 'HomeController@pages')->name('pages');
+        Route::get('/posts', 'HomeController@posts')->name('posts');
+        Route::get('/posts/new', 'HomeController@postnew')->name('postnew');
+        Route::get('/posts/update/{idelement}', 'HomeController@postupdate')->name('postupdate');
         //ADMIN - PAGE-CATEGORY
         Route::get('/categories', 'HomeController@categories')->name('categories');
         Route::get('/categories/new', 'HomeController@categoriesnew')->name('categoriesnew');

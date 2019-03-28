@@ -133,7 +133,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                             this.name_type = this.user.name;
                             this.email_type = this.user.email;
                             this.password_type = this.user.password;
-                            this.rol = this.user.rol.id;
+                            this.rol.id = this.user.rol.id;
                         } else {
                             console.log(response.data);
                         }

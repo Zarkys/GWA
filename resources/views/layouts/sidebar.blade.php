@@ -42,7 +42,7 @@
         </a>
         <div id="collapseBlog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-          
+          <a class="collapse-item" href="{{url('goadmin/posts')}}">Entradas</a>
           @if(Auth::user()->rol===2)
             <a class="collapse-item" href="{{url('goadmin/categories')}}">Categoría</a>
             <a class="collapse-item" href="{{url('goadmin/tags')}}">Etiqueta</a>
