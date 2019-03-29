@@ -133,7 +133,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                             this.name_type = this.category.name;
                             this.description_type = this.category.description;
                             this.slug_type = this.category.slug;
-                            this.parentcategory = this.category.superiorcategory.id;
+                            this.parentcategory = this.category.superiorcategory;
                         } else {
                             console.log(response.data);
                         }
