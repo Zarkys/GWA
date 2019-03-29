@@ -107,7 +107,28 @@ Vue.component('v-select', VueSelect.VueSelect)
                 roles: []
             }
         },
-        mounted() {
+        mounted() { 
+
+           var pageURL = window.location.href;
+            var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+            console.log(idurl);
+            loadOneElement('user/'+idurl, '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.user = response.data.data; 
+                            this.name_type = this.user.name;
+                            this.email_type = this.user.email;
+                            this.password_type = this.user.password;
+                            this.rol = this.user.rol;
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
+
+               
 
 
              
@@ -121,28 +142,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                     })
                 .catch(error => {
                     console.log(error);
-                });  
-
-           var pageURL = window.location.href;
-            var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
-            console.log(idurl);
-            loadOneElement('user/'+idurl, '').then(
-                    response => {
-                        if (response.data.code !== 500) {                          
-                            this.user = response.data.data; 
-                            this.name_type = this.user.name;
-                            this.email_type = this.user.email;
-                            this.password_type = this.user.password;
-                            this.rol.id = this.user.rol.id;
-                        } else {
-                            console.log(response.data);
-                        }
-                    })
-                .catch(error => {
-                    console.log(error);
-                });
-
-               
+                }); 
 
 
         },

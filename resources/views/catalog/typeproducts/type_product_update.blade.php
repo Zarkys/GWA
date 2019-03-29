@@ -10,7 +10,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Actualizar Producto</h1>
+        <h1 class="h3 mb-0 text-gray-800">Actualizar Tipo de Producto</h1>
     </div>      
 
        
@@ -18,7 +18,7 @@
             <div class="card-header py-3">
             <div class="row">
                 <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Nuevos datos del Producto</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Nuevos datos del Tipo de Producto</h6>
                 </div>
                 <div class="col-md-4">
                 <a href="{{ url()->previous() }}" class="btn btn-warning btn-icon-split">
@@ -44,7 +44,7 @@
                     <div class="col-md-6">
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Descripcion</label>
-                                    <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Nombre del Producto">
+                                    <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Nombre del Tipo de Producto">
                                       </div>
                     </div>
                    
@@ -137,6 +137,7 @@
 <script src="{{ asset('/js/axios.js') }}"></script>
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
 <!-- Custom page Script -->
 <script>
 Vue.component('v-select', VueSelect.VueSelect)
@@ -234,7 +235,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                                                 'La información se actualizo correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.reload();
+                                                    window.history.back();
                                                 });
                                                
                                             

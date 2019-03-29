@@ -10,7 +10,8 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Agregar un Nuevo producto</h1>
+        <h1 class="h3 mb-0 text-gray-800">Agregar un Nuevo Tipo de Producto</h1>
+
     </div>      
 
         <!-- DataTales Example -->
@@ -38,13 +39,13 @@
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre del Producto">
+                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre del Tipo de Producto">
                      </div>
                     </div>
                     <div class="col-md-6">
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Descripcion</label>
-                                    <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Nombre del Producto">
+                                    <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Descripción del  Tipo Producto">
                                     </div>
                     </div>
                    
@@ -77,6 +78,8 @@
 <script src="{{ asset('/js/axios.js') }}"></script>
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
+
 <!-- Custom page Script -->
 <script>
 Vue.component('v-select', VueSelect.VueSelect)
@@ -128,7 +131,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                                                 'La información se almaceno correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/typeproducts';
+                                                    window.location.href = '/goadmin/typeproducts';
                                                 });
                                                
                                             

@@ -141,7 +141,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                                                 'La información se almaceno correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/products';
+                                                    window.location.href = '/goadmin/products';
                                                 });
                                                
                                             

@@ -297,7 +297,7 @@
                                             'La información se actualizo correctamente',
                                             'success'
                                         ).then((result) => {
-                                            window.location.reload();
+                                            window.history.back();
                                         });
 
 

@@ -150,7 +150,7 @@
                                                 'Elemento eliminado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/typeproducts';
+                                                    window.location.href = 'typeproducts';
                                                 });
                                                
                                             
@@ -189,7 +189,7 @@
                                                 'Estatus modificado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/typeproducts';
+                                                    window.location.href = 'typeproducts';
                                                 });
                                                
                                             
