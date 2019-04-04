@@ -39,11 +39,11 @@ class HomeController extends Controller
     }
     public function postnew()
     {
-        return view('blog/posts/posts/post_new');
+        return view('blog/posts/post_new');
     }
     public function postupdate()
     {
-        return view('blog/posts/posts/post_update');
+        return view('blog/posts/post_update');
     }
     //ARCHIVE
     public function archive()

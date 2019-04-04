@@ -35,75 +35,34 @@
             <div class="card-body">
             <form>
                 <div class="row">
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Introduce el titulo aqui">
-                     </div>
-                    </div>
-                    <div class="col-md-6">
-                            <div class="form-group">
-                                    <label for="exampleInputEmail1">Tipo de archivo</label>
-                                    <input type="text" class="form-control" id="inputTypeArchive" v-model="typearchive_type" aria-describedby="nameHelp" placeholder="Tipo de archivo">
-                                    </div>
-                    </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Fecha de creación</label>
-                    <input type="text" class="form-control" id="inputCreationDate" v-model="creationdate_type" aria-describedby="nameHelp" placeholder="Fecha de creación">
-                     </div>
-                    </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Tamaño del archivo</label>
-                    <input type="text" class="form-control" id="inputCreationDate" v-model="creationdate_type" aria-describedby="nameHelp" placeholder="Tamaño del archivo">
-                     </div>
-                    </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Dimensiones</label>
-                    <input type="text" class="form-control" id="inputCreationDate" v-model="dimension_type" aria-describedby="nameHelp" placeholder="Dimension del archivo">
-                     </div>
-                    </div>
-                     <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">URL</label>
-                    <input type="text" class="form-control" id="inputUrl" v-model="url_type" aria-describedby="nameHelp" placeholder="Url">
-                     </div>
-                    </div>
-                     <div class="col-md-6">
+                    <div class="col-md-8">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Título</label>
-                    <input type="text" class="form-control" id="inputTitle" v-model="title_type" aria-describedby="nameHelp" placeholder="Título del archivo">
+                    <input type="text" class="form-control" id="inputName" v-model="title_type" aria-describedby="nameHelp" placeholder="Introduce el titulo aqui">
                      </div>
-                    </div>
-                    
-                    <div class="col-md-6">
+                     <div class="form-group">
+                    <label for="exampleInputEmail1">Enlace Permanente</label>
+                    <input type="text" class="form-control" id="inputName" v-model="permanent_link_type" aria-describedby="nameHelp" placeholder="Introduce el link permanente">
+                     </div>
                     <div class="form-group">
-                    <label for="exampleInputEmail1">Texto alternativo</label>
-                    <input type="text" class="form-control" id="inputAlternativeText" v-model="alternativetext_type" aria-describedby="nameHelp" placeholder="Texto alternativo">
+                    <label for="exampleInputEmail1">Contenido</label>
+                    <textarea  rows="4" cols="50" type="text" class="form-control" id="inputLegend" v-model="content_type" aria-describedby="nameHelp" placeholder="Agregar el contenido"></textarea>
                      </div>
                     </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Leyenda</label>
-                    <textarea  rows="4" cols="50" type="text" class="form-control" id="inputLegend" v-model="legend_type" aria-describedby="nameHelp" placeholder="Leyenda del archivo"></textarea>
-                     </div>
+                    <div class="col-md-1">
                     </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Descripción</label>
-                    <textarea  rows="4" cols="50" type="text" class="form-control" id="inputDescription" v-model="description_type" aria-describedby="nameHelp" placeholder="Descripción del archivo"></textarea>
-                     </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Estado</label>
+                            <v-select :items="optionsstatus" v-model="status">
+                            </v-select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Visibilidad</label>
+                            <v-select :items="optionsvisibility" v-model="visibility">
+                            </v-select>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Subido por : </label>
-                    <input type="text" class="form-control" id="inputUser" v-model="user_type" aria-describedby="nameHelp" placeholder="Usuario">
-                     </div>
-                    </div>
-                   
-
                 </div>
               
               
@@ -113,7 +72,104 @@
             </div>
         </div>
 
-    </div>
+           <!-- <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="m-0 font-weight-bold text-primary">Etiquetas</h6>
+                            <p>Agrega las etiquetas relacionadas a esta entrada</p>
+                        </div>
+                    </div>
+                </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Etiquetas</label>
+                                <v-select :options="tags" label="name" v-model="tag"></v-select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group">
+                            <li class="list-group-item" v-for="posttag in poststags">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    @{{posttag.tag.name}}
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-3" >    
+                                <a v-if="posttag.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRow(posttag.id)" class="btn btn-success btn-circle">
+                                <i class="fas fa-check"></i>
+                                </a>
+                                <a v-if="posttag.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRow(posttag.id)" class="btn btn-warning btn-circle">
+                                <i class="fas fa-times"></i>
+                                </a>
+                                <a href="#" v-on:click="trashRow(post.id)" data-placement="top" title="Eliminar" class="btn btn-danger btn-circle">
+                                <i class="fas fa-trash"></i>
+                                </a>
+                                </div>
+                            </div>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button v-on:click="addRow" type="button" class="btn btn-primary">Agregar Etiqueta</button>
+                </form>
+            </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="m-0 font-weight-bold text-primary">Categoría</h6>
+                            <p>Agrega las categorias relacionadas a esta entrada</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Categoría</label>
+                                    <v-select :options="categories" label="name" v-model="category"></v-select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-group">
+                                <li class="list-group-item" v-for="postcategory in postscategories">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                    @{{postcategory.category.name}}
+                                    </div>
+                                    <div class="col-md-2">
+                                    </div>
+                                    <div class="col-md-3" >
+                                    <a v-if="postcategory.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRow(postcategory.id)" class="btn btn-success btn-circle">
+                                    <i class="fas fa-check"></i>
+                                    </a>
+                                    <a v-if="postcategory.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRow(postcategory.id)" class="btn btn-warning btn-circle">
+                                    <i class="fas fa-times"></i>
+                                    </a>
+                                    <a href="#" v-on:click="trashRow(post.id)" data-placement="top" title="Eliminar" class="btn btn-danger btn-circle">
+                                    <i class="fas fa-trash"></i>
+                                    </a>
+                                    </div>
+                                </div>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button v-on:click="addRow" type="button" class="btn btn-primary">Agregar Categoría</button>
+                    </form>
+                </div>
+            </div>-->
+        
+
+    
    
     <!-- /.container-fluid -->
 
@@ -124,7 +180,13 @@
 <!-- End of Main Content -->
 @include('layouts.footer')
 @include('layouts.footscript')
-
+<script>
+  export default{
+    data: () => ({
+      optionsvisibility: ['Foo', 'Bar', 'Fizz', 'Buzz']
+    });
+  }
+</script>
 <!-- Additional Scripts -->
  <script src="{{ asset('/js/vue.js') }}"></script>
 <script src="{{ asset('/js/axios.min.js') }}"></script>
@@ -143,20 +205,85 @@ Vue.component('v-select', VueSelect.VueSelect)
         data() {
             return {
                 message: '',
-                name_type:'',
-                typearchive_type:'',
-                creationdate_type:'',
-                size_type:'',
-                dimension_type:'',
-                url_type:'',
                 title_type:'',
-                legend_type:'',
-                alternativetext_type:'',
-                description_type:'',
-                user_type:''
+                permanent_link_type:'',
+                content_type:'',
+                visibility:'',
+                status:'',
+                tag:null,
+                tags:[],
+                poststags:[],
+                category:null,
+                categories:[],
+                postscategories:[],
+                post:{},
+                post:'',
+                posts: []
             }
         },
-        mounted() {  
+        mounted() { 
+           /* var pageURL = window.location.href;
+            var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+            console.log(idurl);
+            loadOneElement('post/'+idurl, '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.post = response.data.data; 
+                            this.title_type = this.post.title;
+                            this.permanent_link_type = this.post.permanent_link;
+                            this.content_type = this.post.content;
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                });*/
+        /*loadElements('tag', '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.tags = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
+                loadElements('category', '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.categories = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
+
+                loadElements('posttag/filterby/id_post/'+idurl, '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.tagsposts = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
+                loadElements('postcategory/filterby/id_post/'+idurl, '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.postscategories = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                }); */
 
                   
 
@@ -180,21 +307,12 @@ Vue.component('v-select', VueSelect.VueSelect)
                     }).then((result) => {
                     if (result.value) {
                         let form = {
-                                name: this.name_type,
-                                type: this.typearchive_type,
-                                creation_date: this.creationdate_type,
-                                size: this.size_type,
-                                dimension: this.dimension_type,
-                                url: this.url_type,
                                 title: this.title_type,
-                                legend: this.legend_type,
-                                alternative_text: this.alternativetext_type,
-                                description: this.description_type,
-                                id_user: this.user_type,
-
+                                permanent_link: this.permanent_link_type,
+                                content: this.content_type
                             }
 
-                            saveElement('archive', form).then(
+                            saveElement('post', form).then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.attributes = response.data.data; 
@@ -203,7 +321,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                                                 'La información se almaceno correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/goadmin/archives';
+                                                    window.location.href = '/goadmin/posts';
                                                 });
                                                
                                             
@@ -218,6 +336,128 @@ Vue.component('v-select', VueSelect.VueSelect)
                     }
                     })
             },
+           /* addRow() {
+               // var pageURL = window.location.href;
+            //var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+            var idurl = 3;
+           
+                Swal.fire({
+                    title: 'Estas seguro de agregar este elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Agregar'
+                    }).then((result) => {
+                    if (result.value) {
+                        let form = {
+                                id_tag: this.tag.id,
+                                id_post: idurl
+                            }
+
+                            saveElement('posttag', form).then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Elemento Agregado',
+                                                'La información se almaceno correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.reload();
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            checkRow(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de cambiar el estatus del elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cambiar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                        changueElement('posttag/change/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typetypeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Estatus Cambiado',
+                                                'Estatus modificado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.reload();
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            trashRow(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de eliminar el elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                            trashElement('posttag/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typetypeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Elemento Eliminado',
+                                                'Elemento eliminado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.reload();
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },*/
             cleanform() {
 
             }
