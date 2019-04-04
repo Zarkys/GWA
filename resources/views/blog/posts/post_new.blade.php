@@ -54,14 +54,23 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Estado</label>
-                            <v-select :items="optionsstatus" v-model="status">
-                            </v-select>
+                            <select v-model="status">
+                                <option value=1>Borrador</option>
+                                <option value=2>Pendiente de revisión</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Visibilidad</label>
-                            <v-select :items="optionsvisibility" v-model="visibility">
-                            </v-select>
+                            <select v-model="visibility">
+                                <option value=1>Público</option>
+                                <option value=2>Privado</option>
+                            </select>
                         </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Publicación</label>
+                            <vuejs-datepicker v-model="datepublication" name="fecha"></vuejs-datepicker>
+                        </div>
+                        
                     </div>
                 </div>
               
@@ -180,13 +189,7 @@
 <!-- End of Main Content -->
 @include('layouts.footer')
 @include('layouts.footscript')
-<script>
-  export default{
-    data: () => ({
-      optionsvisibility: ['Foo', 'Bar', 'Fizz', 'Buzz']
-    });
-  }
-</script>
+
 <!-- Additional Scripts -->
  <script src="{{ asset('/js/vue.js') }}"></script>
 <script src="{{ asset('/js/axios.min.js') }}"></script>
@@ -195,6 +198,9 @@
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
+<script src="https://unpkg.com/vuejs-datepicker"></script>
+
+
 
 <!-- Custom page Script -->
 <script>
@@ -202,6 +208,9 @@ Vue.component('v-select', VueSelect.VueSelect)
 
     var app = new Vue({
         el: '#app',
+        components: {
+        vuejsDatepicker
+    },
         data() {
             return {
                 message: '',
@@ -210,6 +219,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                 content_type:'',
                 visibility:'',
                 status:'',
+                datepublication:'',
                 tag:null,
                 tags:[],
                 poststags:[],
@@ -310,6 +320,9 @@ Vue.component('v-select', VueSelect.VueSelect)
                                 title: this.title_type,
                                 permanent_link: this.permanent_link_type,
                                 content: this.content_type
+                              //  visibility: 2,
+                               // status_post: 2
+                               // publication_date: this.datepublication
                             }
 
                             saveElement('post', form).then(

@@ -35,7 +35,7 @@
             <div class="card-body">
             <form>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Título</label>
                     <input type="text" class="form-control" id="inputName" v-model="title_type" aria-describedby="nameHelp" placeholder="Introduce el titulo aqui">
@@ -44,12 +44,33 @@
                     <label for="exampleInputEmail1">Enlace Permanente</label>
                     <input type="text" class="form-control" id="inputName" v-model="permanent_link_type" aria-describedby="nameHelp" placeholder="Introduce el link permanente">
                      </div>
-                    </div>
-                    <div class="col-md-12">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Contenido</label>
                     <textarea  rows="4" cols="50" type="text" class="form-control" id="inputLegend" v-model="content_type" aria-describedby="nameHelp" placeholder="Agregar el contenido"></textarea>
                      </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Estado</label>
+                            <select v-model="status">
+                                <option value=1>Borrador</option>
+                                <option value=2>Pendiente de revisión</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Visibilidad</label>
+                            <select v-model="visibility">
+                                <option value=1>Público</option>
+                                <option value=2>Privado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Publicación</label>
+                            <vuejs-datepicker v-model="datepublication" name="fecha"></vuejs-datepicker>
+                        </div>
+                        
                     </div>
                     </div>
               
@@ -176,6 +197,7 @@
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
+<script src="https://unpkg.com/vuejs-datepicker"></script>
 
 <!-- Custom page Script -->
 <script>
@@ -183,12 +205,18 @@ Vue.component('v-select', VueSelect.VueSelect)
 
     var app = new Vue({
         el: '#app',
+        components: {
+        vuejsDatepicker
+    },
         data() {
             return {
                 message: '',
                 title_type:'',
                 permanent_link_type:'',
                 content_type:'',
+                visibility:'',
+                status:'',
+                datepublication:'',
                 tag:null,
                 tags:[],
                 poststags:[],
