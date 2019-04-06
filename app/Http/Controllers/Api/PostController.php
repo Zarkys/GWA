@@ -255,12 +255,16 @@
 
               $item = 'title';
               $string = $data['title'];
+              Log::debug($string);
               $PostDupletitle = $this->PostRepo->checkduplicate($item,$string);
+               Log::debug($PostDupletitle);
               $item = 'permanent_link';
               $string = $data['permanent_link'];
+               Log::debug($string);
               $PostDuplelink = $this->PostRepo->checkduplicate($item,$string);
+               Log::debug($PostDuplelink);
              
-
+             
             if ($PostDupletitle==0 && $PostDuplelink==0) { 
                 
                 $post = $this->PostRepo->store($data);
@@ -484,11 +488,11 @@
                 'title.required' => __('El titulo es requerido'),
                // 'content.required' => __('El contenido es requerido'),
                // 'id_featured_image.required' => __('La imagen destacada es requerida'),
-                'visibility.required' => __('La visibilidad es requerida'),
-                'status_post.required' => __('El estatus del post es requerido'),
-                'id_user.required' => __('El usuario es requerido'),
-                'permanent_link.required' => __('El link permanente es requerido'),
-                'creation_date.required' => __('La fecha de creacion es requerida'),
+              //  'visibility.required' => __('La visibilidad es requerida'),
+               // 'status_post.required' => __('El estatus del post es requerido'),
+               // 'id_user.required' => __('El usuario es requerido'),
+               // 'permanent_link.required' => __('El link permanente es requerido'),
+               // 'creation_date.required' => __('La fecha de creacion es requerida'),
              //   'publication_date.required' => __('La fecha de publicacion es requerida'),
                // 'modification_date.required' => __('La fecha de modificacion es requerida'),
             ];

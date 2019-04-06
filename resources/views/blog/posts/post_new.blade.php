@@ -69,8 +69,8 @@
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Publicación</label>
                             <vuejs-datepicker v-model="datepublication" name="fecha"></vuejs-datepicker>
+                            <flat-picker v-model="datepublication" ></flat-picker>
                         </div>
-                        
                     </div>
                 </div>
               
@@ -319,10 +319,10 @@ Vue.component('v-select', VueSelect.VueSelect)
                         let form = {
                                 title: this.title_type,
                                 permanent_link: this.permanent_link_type,
-                                content: this.content_type
-                              //  visibility: 2,
-                               // status_post: 2
-                               // publication_date: this.datepublication
+                                content: this.content_type,
+                                visibility: this.visibility,
+                                status_post: this.status,
+                                publication_date: this.datepublication
                             }
 
                             saveElement('post', form).then(

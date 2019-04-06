@@ -18,11 +18,11 @@ class CreatePostTable extends Migration
             $table->string('title')->unique();
             $table->longText('content')->nullable();
             $table->integer('id_featured_image')->unsigned()->nullable();
-            $table->string('visibility');
-            $table->integer('status_post');
-            $table->integer('id_user')->unsigned();
+            $table->integer('visibility')->nullable();
+            $table->integer('status_post')->nullable();
+            $table->integer('id_user')->unsigned()->nullable();
             $table->string('permanent_link')->unique();
-            $table->datetime('creation_date');
+            $table->datetime('creation_date')->nullable();
             $table->datetime('publication_date')->nullable();
             $table->datetime('modification_date')->nullable();
             $table->integer('active');

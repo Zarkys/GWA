@@ -108,13 +108,13 @@
                                 <div class="col-md-2">
                                 </div>
                                 <div class="col-md-3" >    
-                                <a v-if="posttag.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRow(posttag.id)" class="btn btn-success btn-circle">
+                                <a v-if="posttag.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRowinactive(posttag.id)" class="btn btn-success btn-circle">
                                 <i class="fas fa-check"></i>
                                 </a>
-                                <a v-if="posttag.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRow(posttag.id)" class="btn btn-warning btn-circle">
+                                <a v-if="posttag.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRowactive(posttag.id)" class="btn btn-warning btn-circle">
                                 <i class="fas fa-times"></i>
                                 </a>
-                                <a href="#" v-on:click="trashRow(post.id)" data-placement="top" title="Eliminar" class="btn btn-danger btn-circle">
+                                <a href="#" v-on:click="trashRow(posttag.id)" data-placement="top" title="Eliminar" class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                                 </a>
                                 </div>
@@ -156,13 +156,13 @@
                                     <div class="col-md-2">
                                     </div>
                                     <div class="col-md-3" >
-                                    <a v-if="postcategory.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRow(postcategory.id)" class="btn btn-success btn-circle">
+                                    <a v-if="postcategory.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRowcategory(postcategory.id)" class="btn btn-success btn-circle">
                                     <i class="fas fa-check"></i>
                                     </a>
-                                    <a v-if="postcategory.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRow(postcategory.id)" class="btn btn-warning btn-circle">
+                                    <a v-if="postcategory.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRowcategory(postcategory.id)" class="btn btn-warning btn-circle">
                                     <i class="fas fa-times"></i>
                                     </a>
-                                    <a href="#" v-on:click="trashRow(post.id)" data-placement="top" title="Eliminar" class="btn btn-danger btn-circle">
+                                    <a href="#" v-on:click="trashRowcategory(postcategory.id)" data-placement="top" title="Eliminar" class="btn btn-danger btn-circle">
                                     <i class="fas fa-trash"></i>
                                     </a>
                                     </div>
@@ -171,7 +171,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <button v-on:click="addRow" type="button" class="btn btn-primary">Agregar Categoría</button>
+                        <button v-on:click="addRowCategory" type="button" class="btn btn-primary">Agregar Categoría</button>
                     </form>
                 </div>
             </div>
@@ -239,6 +239,8 @@ Vue.component('v-select', VueSelect.VueSelect)
                             this.title_type = this.post.title;
                             this.permanent_link_type = this.post.permanent_link;
                             this.content_type = this.post.content;
+                            this.visibility = this.post.visibility;
+                            this.status = this.post.status_post;
                         } else {
                             console.log(response.data);
                         }
@@ -272,7 +274,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                 loadElements('posttag/filterby/id_post/'+idurl, '').then(
                     response => {
                         if (response.data.code !== 500) {                          
-                            this.tagsposts = response.data.data; 
+                            this.poststags = response.data.data; 
                         } else {
                             console.log(response.data);
                         }
@@ -317,6 +319,9 @@ Vue.component('v-select', VueSelect.VueSelect)
                                 title: this.title_type,
                                 permanent_link: this.permanent_link_type,
                                 content: this.content_type,
+                                visibility: this.visibility,
+                                status_post: this.status,
+                                publication_date: this.datepublication
                             }
                             var pageURL = window.location.href;
                             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
@@ -346,9 +351,8 @@ Vue.component('v-select', VueSelect.VueSelect)
                     })
             },
             addRow() {
-               // var pageURL = window.location.href;
-            //var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
-            var idurl = 3;
+             var pageURL = window.location.href;
+            var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
            
                 Swal.fire({
                     title: 'Estas seguro de agregar este elemento?',
@@ -389,7 +393,50 @@ Vue.component('v-select', VueSelect.VueSelect)
                     }
                     })
             },
-            checkRow(idelement){
+            addRowCategory() {
+             var pageURL = window.location.href;
+            var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+           
+                Swal.fire({
+                    title: 'Estas seguro de agregar este elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Agregar'
+                    }).then((result) => {
+                    if (result.value) {
+                        let form = {
+                                id_category: this.category.id,
+                                id_post: idurl
+                            }
+
+                            saveElement('postcategory', form).then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Elemento Agregado',
+                                                'La información se almaceno correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.reload();
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            checkRowactive(idelement){
                 console.log(idelement);
                 Swal.fire({
                     title: 'Estas seguro de cambiar el estatus del elemento?',
@@ -404,7 +451,46 @@ Vue.component('v-select', VueSelect.VueSelect)
                       
                        
 
-                        changueElement('posttag/change/'+idelement, '').then(
+                        activeElement('posttag/change/active/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typetypeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Estatus Cambiado',
+                                                'Estatus modificado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.reload();
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            checkRowinactive(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de cambiar el estatus del elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cambiar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                        inactiveElement('posttag/change/inactive/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typetypeproducts = response.data.data; 
@@ -443,7 +529,124 @@ Vue.component('v-select', VueSelect.VueSelect)
                       
                        
 
-                            trashElement('posttag/'+idelement, '').then(
+                            trashElement('posttag/change/delete/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typetypeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Elemento Eliminado',
+                                                'Elemento eliminado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.reload();
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            checkRowactivecategory(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de cambiar el estatus del elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cambiar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                        activeElement('postcategory/change/active/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typetypeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Estatus Cambiado',
+                                                'Estatus modificado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.reload();
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            checkRowinactivecategory(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de cambiar el estatus del elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cambiar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                        inactiveElement('postcategory/change/inactive/'+idelement, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {                          
+                                           // this.typetypeproducts = response.data.data; 
+                                           Swal.fire(
+                                                'Estatus Cambiado',
+                                                'Estatus modificado correctamente',
+                                                'success'
+                                                ).then((result) => {
+                                                    window.location.reload();
+                                                });
+                                               
+                                            
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                    }
+                    })
+            },
+            trashRowcategory(idelement){
+                console.log(idelement);
+                Swal.fire({
+                    title: 'Estas seguro de eliminar el elemento?',
+                    text: "Debes estar seguro antes de continuar",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar'
+                    }).then((result) => {
+                    if (result.value) {
+                      
+                       
+
+                            trashElement('postcategory/change/delete/'+idelement, '').then(
                                     response => {
                                         if (response.data.code !== 500) {                          
                                            // this.typetypeproducts = response.data.data; 
