@@ -39,8 +39,6 @@
         Route::get('/tags/update/{idelement}', 'HomeController@tagsupdate')->name('tagsupdate');
         //ADMIN - PAGE-COMMENT
         Route::get('/comments', 'HomeController@comments')->name('comments');
-        Route::get('/comments/new', 'HomeController@commentsnew')->name('commentsnew');
-        Route::get('/comments/update/{idelement}', 'HomeController@commentsupdate')->name('commentsupdate');
         //ADMIN - CATALOG
         Route::get('/products', 'HomeController@products')->name('products');
         Route::get('/products/new', 'HomeController@productsnew')->name('productsnew');
