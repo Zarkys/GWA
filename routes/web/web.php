@@ -29,16 +29,18 @@
         Route::get('/posts', 'HomeController@posts')->name('posts');
         Route::get('/posts/new', 'HomeController@postnew')->name('postnew');
         Route::get('/posts/update/{idelement}', 'HomeController@postupdate')->name('postupdate');
-        //ADMIN - PAGE-CATEGORY
+        //ADMIN - POST-CATEGORY
         Route::get('/categories', 'HomeController@categories')->name('categories');
         Route::get('/categories/new', 'HomeController@categoriesnew')->name('categoriesnew');
         Route::get('/categories/update/{idelement}', 'HomeController@categoriesupdate')->name('categoriesupdate');
-         //ADMIN - PAGE-TAG
+         //ADMIN - POST-TAG
         Route::get('/tags', 'HomeController@tags')->name('tags');
         Route::get('/tags/new', 'HomeController@tagsnew')->name('tagsnew');
         Route::get('/tags/update/{idelement}', 'HomeController@tagsupdate')->name('tagsupdate');
         //ADMIN - PAGE-COMMENT
         Route::get('/comments', 'HomeController@comments')->name('comments');
+        Route::get('/comments/new', 'HomeController@commentsnew')->name('commentsnew');
+        Route::get('/comments/update/{idelement}', 'HomeController@commentsupdate')->name('commentsupdate');
         //ADMIN - CATALOG
         Route::get('/products', 'HomeController@products')->name('products');
         Route::get('/products/new', 'HomeController@productsnew')->name('productsnew');

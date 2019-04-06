@@ -92,9 +92,18 @@ class HomeController extends Controller
     {
         return view('blog/pages/pages');
     }
+    //COMENTS
     public function comments()
     {
         return view('blog/comments/comments');
+    }
+    public function commentsnew()
+    {
+        return view('blog/comments/comments_new');
+    }
+    public function commentsupdate()
+    {
+        return view('blog/comments/comments_update');
     }
     //PRODUCTS
     public function products()
