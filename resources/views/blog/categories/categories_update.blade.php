@@ -101,6 +101,7 @@ Vue.component('v-select', VueSelect.VueSelect)
             return {
                 message: '',
                 name_type:'',
+                description_type:'',
                 slug_type:'',
                 posts:{},
                 parentcategory:'',

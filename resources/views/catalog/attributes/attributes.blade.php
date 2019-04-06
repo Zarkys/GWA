@@ -40,13 +40,29 @@
                 
             </div>
             <div class="card-body">
+            <ul class="list-group">
+                            <li class="list-group-item">
+                            <div class="row">
+                            <div class="col-md-5">
+                             <strong>Nombre</strong>
+                            </div>
+                            <div class="col-md-5">
+                             <strong>Descripción</strong>
+                            </div>
+                            <div class="col-md-2">
+                          
+                            </div>
+                            </div>
+                            </li>
+        
+                        </ul>
                 <ul class="list-group">
                     <li class="list-group-item" v-for="attribute in attributes">
                     <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                     @{{attribute.name}}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                     @{{attribute.description}}
                     </div>
                     <div class="col-md-2">
@@ -149,7 +165,7 @@
                                                 'Elemento eliminado correctamente',
                                                 'success'
                                                 ).then((result) => {
-                                                    window.location.href = '/attributes';
+                                                    window.location.href = 'attributes';
                                                 });
                                                
                                             

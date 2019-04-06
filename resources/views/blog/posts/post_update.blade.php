@@ -156,10 +156,10 @@
                                     <div class="col-md-2">
                                     </div>
                                     <div class="col-md-3" >
-                                    <a v-if="postcategory.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRowcategory(postcategory.id)" class="btn btn-success btn-circle">
+                                    <a v-if="postcategory.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo" href="#" v-on:click="checkRowinactivecategory(postcategory.id)" class="btn btn-success btn-circle">
                                     <i class="fas fa-check"></i>
                                     </a>
-                                    <a v-if="postcategory.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRowcategory(postcategory.id)" class="btn btn-warning btn-circle">
+                                    <a v-if="postcategory.active === 0" data-placement="top" title="Cambiar Estatus a Activo" href="#" v-on:click="checkRowactivecategory(postcategory.id)" class="btn btn-warning btn-circle">
                                     <i class="fas fa-times"></i>
                                     </a>
                                     <a href="#" v-on:click="trashRowcategory(postcategory.id)" data-placement="top" title="Eliminar" class="btn btn-danger btn-circle">

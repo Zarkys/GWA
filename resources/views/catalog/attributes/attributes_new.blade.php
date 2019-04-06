@@ -38,13 +38,13 @@
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre del Producto">
+                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre del atributo">
                      </div>
                     </div>
                     <div class="col-md-6">
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Descripcion</label>
-                                    <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Nombre del Producto">
+                                    <input type="text" class="form-control" id="inputName" v-model="description_type" aria-describedby="nameHelp" placeholder="Descripción del atributo">
                                     </div>
                     </div>
                    
@@ -77,6 +77,8 @@
 <script src="{{ asset('/js/axios.js') }}"></script>
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
+
 <!-- Custom page Script -->
 <script>
 Vue.component('v-select', VueSelect.VueSelect)
