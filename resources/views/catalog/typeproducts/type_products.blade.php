@@ -41,6 +41,22 @@
                 
             </div>
             <div class="card-body">
+             <ul class="list-group">
+                            <li class="list-group-item">
+                            <div class="row">
+                            <div class="col-md-6">
+                             <strong>Nombre</strong>
+                            </div>
+                            <div class="col-md-4">
+                             <strong>Descripción</strong>
+                            </div>
+                            <div class="col-md-2">
+                          
+                            </div>
+                            </div>
+                            </li>
+        
+                        </ul>
                 <ul class="list-group">
                     <li class="list-group-item" v-for="typeproduct in typeproducts">
                     <div class="row">
