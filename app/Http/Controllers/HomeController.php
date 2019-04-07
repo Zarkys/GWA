@@ -37,6 +37,13 @@ class HomeController extends Controller
     {
         return view('blog/posts/posts');
     }
+    public function postnew()
+    {
+        return view('blog/posts/post_new');
+    }public function postupdate()
+    {
+        return view('blog/posts/post_update');
+    }
     //ARCHIVE
     public function archive()
     {
@@ -88,10 +95,6 @@ class HomeController extends Controller
     public function comments()
     {
         return view('blog/comments/comments');
-    }
-    public function commentsnew()
-    {
-        return view('blog/comments/comments_new');
     }
     public function commentsupdate()
     {

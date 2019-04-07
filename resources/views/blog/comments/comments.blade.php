@@ -28,12 +28,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Lista de Comentarios</h6>
                 </div>
                 <div class="col-md-4">
-                <a href="comments/new" class="btn btn-primary btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Nuevo Comentario</span>
-                  </a>
+                
                 </div>
             </div>
                 
@@ -44,16 +39,16 @@
                             <li class="list-group-item">
                             <div class="row">
                             <div class="col-md-3">
-                             <strong>Comentario</strong>
+                             <strong>Usuario</strong>
                             </div>
                             <div class="col-md-3">
-                             <strong>Usuario</strong>
+                             <strong>Comentario</strong>
                             </div>
                             <div class="col-md-2">
                              <strong>Fecha de publicación</strong>
                             </div>
                             <div class="col-md-2">
-                              <strong>Estatus del comentaro</strong>
+                              <strong>En respuesta a</strong>
                             </div>
                             <div class="col-md-2">
                           
@@ -66,29 +61,28 @@
                     <li class="list-group-item" v-for="coment in coments">
                     <div class="row">
                     <div class="col-md-3">
-                    @{{coment.coment}}
+                    @{{coment.user.name}}
                     </div>
                     <div class="col-md-3">
-                    @{{coment.user.name}}
+                    @{{coment.coment}}
                     </div>
                     <div class="col-md-2">
                     @{{coment.publication_date}}
                     </div>
                     <div class="col-md-2">
-                    @{{coment.status_coment}}
+                    @{{coment.post.title}}
                     </div>
                     <div class="col-md-2">
-                    <a href="#" v-on:click="updateRow(coment.id)" class="btn btn-primary btn-circle">
-                    <i class="fas fa-edit"></i>
+                    <a v-if="coment.status_coment === 0" href="#" v-on:click="updateRow(coment.id)" class="btn btn-link btn-circle">
+                    <i class="far fa-eye"></i>
                     </a>
-
-                    <a v-if="coment.active === 1" href="#" v-on:click="checkRow(coment.id)" class="btn btn-success btn-circle">
+                    <a v-if="coment.status_coment === 1" href="#" v-on:click="updateRow(coment.id)" class="btn btn-success btn-circle">
                     <i class="fas fa-check"></i>
                     </a>
-                    <a v-if="coment.active === 0" href="#" v-on:click="activeRow(coment.id)" class="btn btn-warning btn-circle">
+                    <a v-if="coment.status_coment === 2" href="#" v-on:click="updateRow(coment.id)" class="btn btn-warning btn-circle">
                     <i class="fas fa-times"></i>
                     </a>
-                    <a href="#" v-on:click="trashRow(coment.id)" class="btn btn-danger btn-circle">
+                    <a v-if="coment.status_coment === 3" href="#" v-on:click="updateRow(coment.id)" class="btn btn-danger btn-circle">
                     <i class="fas fa-trash"></i>
                     </a>
                     </div>

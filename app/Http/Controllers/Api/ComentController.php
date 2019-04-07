@@ -205,7 +205,7 @@
                     'coment'    => $request->get('coment'),
                     'id_answer_to' => $request->get('id_answer_to'),
                     'id_post'    => $request->get('id_post'),
-                    'status_coment'    => $request->get('status_coment'),
+                    'status_coment'    => 0,
                     'publication_date'    => $request->get('publication_date'),
                     'id_user' => $request->get('id_user'),
                     'active' => 1,
@@ -239,7 +239,7 @@
             $coment = $this->ComentRepo->findbyid($id);
 
 
-            if($request->has('coment')){
+           /* if($request->has('coment')){
                 $data['coment'] = $request->get('coment');
             }
             if($request->has('id_answer_to')){
@@ -247,16 +247,16 @@
             }
             if($request->has('id_post')){
                 $data['id_post'] = $request->get('id_post');
-            }
+            }*/
             if($request->has('status_coment')){
                 $data['status_coment'] = $request->get('status_coment');
             }
-            if($request->has('publication_date')){
+            /*if($request->has('publication_date')){
                 $data['publication_date'] = $request->get('publication_date');
             }
             if($request->has('id_user')){
                 $data['id_user'] = $request->get('id_user');
-            }
+            }*/
 
     
             try {

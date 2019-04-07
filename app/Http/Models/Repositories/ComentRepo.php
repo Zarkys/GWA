@@ -112,7 +112,9 @@ class ComentRepo
     public function findbyid($id)
     {
 
-        $coment = Coment::find($id);
+        $coment = Coment::with([
+                            'Post','User',
+                        ])->find($id);
 
         return $coment;
     }
