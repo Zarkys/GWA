@@ -50,7 +50,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Rol</label>
-                        <v-select :options="roles" label="name" v-model="rol"></v-select>
+                        <v-select :options="roles" label="name" v-model="role"></v-select>
                     </div>
                     </div>
                     <div class="col-md-6">
@@ -102,8 +102,8 @@ Vue.component('v-select', VueSelect.VueSelect)
                 name_type:'',
                 email_type:'',
                 password_type:'',
-                rol:{},
-                rol:'',
+                user:{},
+                role:'',
                 roles: []
             }
         },
@@ -115,11 +115,12 @@ Vue.component('v-select', VueSelect.VueSelect)
             loadOneElement('user/'+idurl, '').then(
                     response => {
                         if (response.data.code !== 500) {                          
-                            this.user = response.data.data; 
-                            this.name_type = this.user.name;
-                            this.email_type = this.user.email;
-                            this.password_type = this.user.password;
-                            this.rol = this.user.rol;
+                            this.users = response.data.data; 
+                            this.name_type = this.users.name;
+                            this.email_type = this.users.email;
+                            this.role = this.users.rol;
+                            //this.password_type = this.users.password;
+                            
                         } else {
                             console.log(response.data);
                         }
@@ -165,7 +166,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                                 name: this.name_type,
                                 email: this.email_type,
                                 password: this.password_type,
-                                rol: this.rol.id
+                                rol: this.role.id
                             }
                             var pageURL = window.location.href;
                             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);

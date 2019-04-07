@@ -103,12 +103,9 @@ Vue.component('v-select', VueSelect.VueSelect)
                 name_type:'',
                 description_type:'',
                 slug_type:'',
-                posts:{},
                 parentcategory:'',
                 parentscategories: [],
-                category:{},
-                category:'',
-                categories: []
+                category:{}
             }
         },
         mounted() {
@@ -130,11 +127,11 @@ Vue.component('v-select', VueSelect.VueSelect)
             loadOneElement('category/'+idurl, '').then(
                     response => {
                         if (response.data.code !== 500) {                          
-                            this.category = response.data.data; 
-                            this.name_type = this.category.name;
-                            this.description_type = this.category.description;
-                            this.slug_type = this.category.slug;
-                            this.parentcategory = this.category.superiorcategory;
+                            this.categories = response.data.data; 
+                            this.name_type = this.categories.name;
+                            this.description_type = this.categories.description;
+                            this.slug_type = this.categories.slug;
+                            this.parentcategory = this.categories.superiorcategory;
                         } else {
                             console.log(response.data);
                         }
