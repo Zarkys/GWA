@@ -22,6 +22,9 @@
         public function CategoryProduct() {
             return $this->hasOne(CategoryProduct::class, 'id_category_for_product');
         }
+        public function Product() {
+            return $this->hasOne(Product::class, 'id_category_for_product');
+        }
        
         
     }

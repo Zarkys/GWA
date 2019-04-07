@@ -11,15 +11,24 @@
         protected $primaryKey = 'id';
         protected $fillable = [
             'id',
-            'name',           
+            'name', 
+            'description',          
             'id_type_product', 
+            'image',
+            'price',
+            'price_discount',
+            'show_price',
+            'id_category_for_product',
             'active',
             'created_at',
             'updated_at',
         ]; 
         public function TypeProduct() {
             return $this->hasOne(TypeProduct::class, 'id', 'id_type_product');
-        }        
+        }  
+        public function CategoryForProduct(){
+            return $this->hasOne(CategoryForProduct::class, 'id', 'id_category_for_product');
+        }          
                
                 
         

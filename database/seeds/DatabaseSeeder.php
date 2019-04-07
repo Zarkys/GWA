@@ -27,13 +27,13 @@ class DatabaseSeeder extends Seeder
          $this->call(PostTagSeeder::class);
          $this->call(AttributeSeeder::class);
          $this->call(TypeProductSeeder::class);
+         $this->call(CategoryForProductSeeder::class);
          $this->call(ProductSeeder::class);
          $this->call(ProductAttributeSeeder::class);
          $this->call(TypeProductAttributeSeeder::class);
          $this->call(SectionSeeder::class);
          $this->call(TextSeeder::class);
          $this->call(ConfigWebSeeder::class);
-         $this->call(CategoryForProductSeeder::class);
          $this->call(CategoryProductSeeder::class);
 
     }
