@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
             'image' => 'image1.png',
             'price'=> 1.40,
             'price_discount'=> 1.30,
-            'show_price'=> 1.29,
+            'show_price'=> 1,
             'id_category_for_product'=> 1,
             'active'=> 1                
            
@@ -32,7 +32,7 @@ class ProductSeeder extends Seeder
             'image' => 'image2.png',
             'price'=> 1.65, 
             'price_discount'=> 1.60,
-            'show_price'=> 1.59,  
+            'show_price'=> 2,  
             'id_category_for_product'=> 2,     
             'active'=> 1                
            

@@ -18,10 +18,10 @@ class CreateProductTable extends Migration
             $table->string('name')->unique();
             $table->string('description')->nullable();
             $table->integer('id_type_product')->unsigned();
-            $table->string('image')->unique();
+            $table->string('image')->unique()->nullable();
             $table->float('price', 15, 2)->nullable();
             $table->float('price_discount', 15, 2)->nullable();
-            $table->float('show_price', 15, 2)->nullable();
+            $table->integer('show_price');
             $table->integer('id_category_for_product')->unsigned();
             
             $table->integer('active');

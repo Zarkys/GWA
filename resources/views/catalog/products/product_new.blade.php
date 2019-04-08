@@ -42,22 +42,47 @@
                     <small id="emailHelp" class="form-text text-muted">Sera el nombre mostrado en el titulo del producto</small>
                 </div>
                     </div>
+                    <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Descripción</label>
-                    <textarea  rows="4" cols="50" type="text" class="form-control" id="inputLegend" v-model="description" aria-describedby="nameHelp" placeholder="Agregar descripcion"></textarea>
+                    <textarea  rows="4" cols="50" type="text" class="form-control" id="inputDescription" v-model="description_product" aria-describedby="nameHelp" placeholder="Agregar descripcion del producto"></textarea>
+                     </div>
                      </div>
                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Tipo de Producto</label>
                         <v-select :options="typeproducts" label="name" v-model="typeproduct"></v-select>
                     </div>
+                    </div>
+                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Categoría de Producto</label>
                         <v-select :options="categoriesforproducts" label="name" v-model="categoryforproduct"></v-select>
                     </div>
                     </div>
-                   
-
+                     <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Precio</label>
+                    <input type="text" class="form-control" id="inputPrice" v-model="price_product" aria-describedby="nameHelp" placeholder="Precio del Producto">
+                    <small id="emailHelp" class="form-text text-muted">Sera el precio principal del producto</small>
+                </div>
+                    </div>
+                     <div class="col-md-6">
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Precio de Descuento</label>
+                    <input type="text" class="form-control" id="inputPriceDiscount" v-model="price_discount_product" aria-describedby="nameHelp" placeholder="Precio  de descuento del Producto">
+                    <small id="emailHelp" class="form-text text-muted">Sera el precio con descuento del producto</small>
+                </div>
+                    </div>
+                    <div class="col-md-6">
+                     <div class="form-group">
+                            <label for="exampleFormControlSelect1">Mostrar precio :</label>
+                            <select v-model="show_price_product">
+                                <option value=1>Si</option>
+                                <option value=2>No</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
               
               
@@ -97,9 +122,15 @@ Vue.component('v-select', VueSelect.VueSelect)
             return {
                 message: '',
                 name_product:'',
+                description_product:'',
                 products: {},
                 typeproduct:'',
-                typeproducts: []
+                typeproducts: [],
+                categoryforproduct:'',
+                categoriesforproducts: [],
+                price_product:'',
+                price_discount_product:'',
+                show_price_product:''
             }
         },
         mounted() {
@@ -109,6 +140,18 @@ Vue.component('v-select', VueSelect.VueSelect)
                     response => {
                         if (response.data.code !== 500) {                          
                             this.typeproducts = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
+
+                loadElements('categoryforproduct', '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.categoriesforproducts = response.data.data; 
                         } else {
                             console.log(response.data);
                         }
@@ -137,7 +180,13 @@ Vue.component('v-select', VueSelect.VueSelect)
                     if (result.value) {
                         let form = {
                                 name: this.name_product,
-                                id_type_product: this.typeproduct.id
+                                description: this.description_product,
+                                id_type_product: this.typeproduct.id,
+                                id_category_for_product: this.categoryforproduct.id,
+                                price: this.price_product,
+                                price_discount: this.price_discount_product,
+                                show_price: this.show_price_product
+
                             }
 
                             saveElement('product', form).then(
