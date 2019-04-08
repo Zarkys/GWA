@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Api;
     
     use App\Http\Models\Repositories\ProductRepo;
+    use App\Http\Models\Repositories\CategoryForProductRepo;
     use App\Http\Models\Repositories\TypeProductRepo;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
@@ -13,11 +14,13 @@
         
         private $ProductRepo;
         private $TypeProductRepo;
+        private $CategoryForProductRepo;
         
-        public function __construct(ProductRepo $ProductRepo,  TypeProductRepo $TypeProductRepo) {
+        public function __construct(ProductRepo $ProductRepo,  TypeProductRepo $TypeProductRepo, CategoryForProductRepo $CategoryForProductRepo) {
             
             $this->ProductRepo = $ProductRepo;
             $this->TypeProductRepo        = $TypeProductRepo;
+            $this->CategoryForProductRepo = $CategoryForProductRepo;
         }
         
         public function index() {
@@ -279,7 +282,13 @@
                 
                 $data = [
                     'name' => $request->get('name'),
+                    'description' => $request->get('description'),
                     'id_type_product' => $request->get('id_type_product'),
+                    'image' => $request->get('image'),
+                    'price' => $request->get('price'),
+                    'price_discount' => $request->get('price_discount'),
+                    'show_price' => $request->get('show_price'),
+                    'id_category_for_product' => $request->get('id_category_for_product'),
                     'active'     => 1,
                 ];
               $itemfirst = 'name';
@@ -336,8 +345,26 @@
             if ($request->has('name')) {
                 $data['name'] = $request->get('name');
             }
+            if ($request->has('description')) {
+                $data['description'] = $request->get('description');
+            }
             if ($request->has('id_type_product')) {
                 $data['id_type_product'] = $request->get('id_type_product');
+            }
+            if ($request->has('image')) {
+                $data['image'] = $request->get('image');
+            }
+            if ($request->has('price')) {
+                $data['price'] = $request->get('price');
+            }
+            if ($request->has('price_discount')) {
+                $data['price_discount'] = $request->get('price_discount');
+            }
+            if ($request->has('show_price')) {
+                $data['show_price'] = $request->get('show_price');
+            }
+            if ($request->has('id_category_for_product')) {
+                $data['id_category_for_product'] = $request->get('id_category_for_product');
             }
             
             if ($request->has('active')) {

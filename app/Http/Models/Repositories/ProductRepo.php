@@ -6,13 +6,14 @@ use Mockery\Matcher\Type;
 
 use App\Http\Models\Entities\TypeProduct;  
 use App\Http\Models\Entities\Product;
+use App\Http\Models\Entities\CategoryForProduct;
 use App\Http\Models\Entities\ProductAttribute;
 class ProductRepo
 {
     public function all()
     {
         $product = Product::with([
-                'TypeProduct',
+                'TypeProduct','CategoryForProduct',
             ])->whereIn('active', [0, 1])->get();           
         return $product;
     }
@@ -22,7 +23,7 @@ class ProductRepo
         try {
            
             $product = Product::with([
-                    'TypeProduct',
+                    'TypeProduct','CategoryForProduct',
                 ])->whereIn('active', [1])->get();
 
             return $product;
@@ -44,7 +45,7 @@ class ProductRepo
         try {
            
             $product = Product::with([
-                    'TypeProduct',
+                    'TypeProduct','CategoryForProduct',
                 ])->whereIn('active', [0])->get();
 
             return $product;
@@ -132,7 +133,7 @@ class ProductRepo
         try {
            
             $product = Product::with([
-                    'TypeProduct',
+                    'TypeProduct','CategoryForProduct',
                 ])->whereIn('active', [2])->get();
 
             return $product;
@@ -152,7 +153,7 @@ class ProductRepo
     {
 
         $product = Product::with([
-            'TypeProduct',
+            'TypeProduct','CategoryForProduct',
         ])->find($id);
 
         return $product;
@@ -165,9 +166,16 @@ class ProductRepo
                         //$productstation = ProductStation::where('id_product', $id)->get();
 
                         $product = Product::with([
-                            'TypeProduct',
+                            'TypeProduct','CategoryForProduct',
                         ])->where('id_type_product', $id)->whereIn('active', [0, 1])->get();
-                    }                 
+                    } 
+                    if($item==='id_category_for_product'){
+                        //$productstation = ProductStation::where('id_product', $id)->get();
+
+                        $product = Product::with([
+                            'TypeProduct','CategoryForProduct',
+                        ])->where('id_category_for_product', $id)->whereIn('active', [0, 1])->get();
+                    }                
                       
                
                     return $product;
@@ -189,7 +197,9 @@ class ProductRepo
             try {
                     if($item==='name'){
 
-                        $product = Product::where('name', $string)->whereIn('active', [0, 1])->get();
+                        $product = Product::with([
+                            'TypeProduct','CategoryForProduct',
+                        ])->where('name', $string)->whereIn('active', [0, 1])->get();
                     } 
                     return $product;
 

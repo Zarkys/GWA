@@ -42,10 +42,18 @@
                     <small id="emailHelp" class="form-text text-muted">Sera el nombre mostrado en el titulo del producto</small>
                 </div>
                     </div>
+                    <div class="form-group">
+                    <label for="exampleInputEmail1">Descripción</label>
+                    <textarea  rows="4" cols="50" type="text" class="form-control" id="inputLegend" v-model="description" aria-describedby="nameHelp" placeholder="Agregar descripcion"></textarea>
+                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Tipo de Producto</label>
                         <v-select :options="typeproducts" label="name" v-model="typeproduct"></v-select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Categoría de Producto</label>
+                        <v-select :options="categoriesforproducts" label="name" v-model="categoryforproduct"></v-select>
                     </div>
                     </div>
                    

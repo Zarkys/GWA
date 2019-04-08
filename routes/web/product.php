@@ -12,7 +12,7 @@
 
 
     Route::group([
-          'middleware' => ['auth'],
+         // 'middleware' => ['auth'],
         'prefix'     => '/api/1.0/product/',
     ], function () {
         
