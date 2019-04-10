@@ -13,7 +13,7 @@
             'id',
             'title',
             'content',           
-            'id_featured_image',
+            'image',
             'visibility', 
             'status_page',
             'id_user', 
@@ -26,10 +26,7 @@
             'updated_at',
         ];   
 
-         
-         public function Archive() {
-            return $this->hasOne(Archive::class, 'id', 'id_featured_image');
-        } 
+          
         public function User() {
             return $this->hasOne(User::class, 'id', 'id_user');
         }   

@@ -15,7 +15,7 @@ class PageSeeder extends Seeder
 
             'title' => 'title1',
             'content'=> 'content1', 
-            'id_featured_image' => 1,
+            'image' => 'image1.png',
             'visibility'=> 'no visible', 
             'status_page'=> 1,   
             'id_user' => 1,
@@ -30,7 +30,7 @@ class PageSeeder extends Seeder
 
             'title' => 'title2',
             'content'=> 'content2', 
-            'id_featured_image' => 2,
+            'image' => 'image2.png',
             'visibility'=> 'visible', 
             'status_page'=> 2,   
             'id_user' => 1,

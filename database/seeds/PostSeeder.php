@@ -17,7 +17,7 @@ class PostSeeder extends Seeder
 
             'title' => 'title1',
             'content'=> 'content1', 
-            'id_featured_image' => 1,
+            'image' => 'image1.png',
             'visibility'=> 2, 
             'status_post'=> 1,   
             'id_user' => 1,
@@ -33,7 +33,7 @@ class PostSeeder extends Seeder
 
             'title' => 'title2',
             'content'=> 'content2', 
-            'id_featured_image' => 2,
+            'image' => 'image2.png',
             'visibility'=> 1, 
             'status_post'=> 2,   
             'id_user' => 1,

@@ -17,7 +17,7 @@ class CreatePostTable extends Migration
             $table->increments('id');
             $table->string('title')->unique();
             $table->longText('content')->nullable();
-            $table->integer('id_featured_image')->unsigned()->nullable();
+            $table->string('image')->nullable();
             $table->integer('visibility')->nullable();
             $table->integer('status_post')->nullable();
             $table->integer('id_user')->unsigned()->nullable();
@@ -28,7 +28,7 @@ class CreatePostTable extends Migration
             $table->integer('active');
             $table->timestamps();
 
-             $table->foreign('id_featured_image')->references('id')->on('archives')->onDelete('cascade');
+            // $table->foreign('id_featured_image')->references('id')->on('archives')->onDelete('cascade');
              $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
          

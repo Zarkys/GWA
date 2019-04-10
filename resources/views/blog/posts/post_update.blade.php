@@ -75,6 +75,24 @@
                           placeholder="Fecha de publicación">
                          </flat-pickr>
                         </div>
+                         <div class="form-group">
+                           <label>Fecha de creación (no modificable)</label>
+                         <flat-pickr :config="configs.dateTimePicker"
+                          id="datetime-input"
+                          class="form-control"
+                          v-model="datecreation"
+                          placeholder="Fecha de creación" disabled>
+                         </flat-pickr>
+                        </div>
+                        <div class="form-group">
+                           <label>última Fecha de modificación (no modificable)</label>
+                         <flat-pickr :config="configs.dateTimePicker"
+                          id="datetime-input"
+                          class="form-control"
+                          v-model="datemodification"
+                          placeholder="Fecha de modificación" disabled>
+                         </flat-pickr>
+                        </div>
                         
                     </div>
                     </div>
@@ -236,6 +254,8 @@ Vue.component('v-select', VueSelect.VueSelect)
                 visibility:'',
                 status:'',
                 datepublication:'',
+                datecreation:'',
+                datemodification:'',
                 tag:null,
                 tags:[],
                 poststags:[],
@@ -267,6 +287,8 @@ Vue.component('v-select', VueSelect.VueSelect)
                             this.visibility = this.post.visibility;
                             this.status = this.post.status_post;
                             this.datepublication = this.post.publication_date;
+                            this.datecreation = this.post.creation_date;
+                            this.datemodification = this.post.modification_date;
                         } else {
                             console.log(response.data);
                         }

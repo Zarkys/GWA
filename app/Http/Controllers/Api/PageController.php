@@ -4,7 +4,6 @@
     
     
     use App\Http\Models\Repositories\PageRepo;
-    use App\Http\Models\Repositories\ArchiveRepo;
     use App\Http\Models\Repositories\UserRepo;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
@@ -14,13 +13,11 @@
     class PageController extends BaseController {
         
         private $PageRepo;
-        private $ArchiveRepo;
         private $UserRepo;
         
-        public function __construct(PageRepo $PageRepo, ArchiveRepo $ArchiveRepo, UserRepo $UserRepo) {
+        public function __construct(PageRepo $PageRepo, UserRepo $UserRepo) {
             
             $this->PageRepo = $PageRepo;
-            $this->ArchiveRepo        = $ArchiveRepo;
             $this->UserRepo = $UserRepo;
         }
         
@@ -240,7 +237,7 @@
                 $data = [
                    'title' => $request->get('title'),
                     'content' => $request->get('content'),
-                    'id_featured_image' => $request->get('id_featured_image'),
+                    'image' => $request->get('image'),
                     'visibility' => $request->get('visibility'),
                     'status_page' => $request->get('status_page'),
                     'id_user' => $request->get('id_user'),
@@ -308,8 +305,8 @@
             if ($request->has('content')) {
                 $data['content'] = $request->get('content');
             }
-            if ($request->has('id_featured_image')) {
-                $data['id_featured_image'] = $request->get('id_featured_image');
+            if ($request->has('image')) {
+                $data['image'] = $request->get('image');
             }
             if ($request->has('visibility')) {
                 $data['visibility'] = $request->get('visibility');

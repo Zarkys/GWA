@@ -5,14 +5,12 @@ namespace App\Http\Models\Repositories;
 use Mockery\Matcher\Type;
 
 use App\Http\Models\Entities\Post;  
-use App\Http\Models\Entities\Archive;
 
 class PostRepo
 {
     public function all()
     {
-         $post = Post::with([
-                'Archive','User',
+         $post = Post::with(['User',
             ])->whereIn('active', [0, 1])->get();           
          return $post;
     }
@@ -21,8 +19,7 @@ class PostRepo
         //Find By parameters (Item)
         try {
         
-            $post = Post::with([
-                    'Archive','User',
+            $post = Post::with(['User',
                 ])->whereIn('active', [1])->get();
                     
                     
@@ -45,8 +42,7 @@ class PostRepo
         //Find By parameters (Item)
         try {
         
-            $post = Post::with([
-                    'Archive','User',
+            $post = Post::with(['User',
                 ])->whereIn('active', [0])->get();
                     
                     
@@ -69,8 +65,7 @@ class PostRepo
         //Find By parameters (Item)
         try {
         
-            $post = Post::with([
-                    'Archive','User',
+            $post = Post::with(['User',
                 ])->whereIn('active', [2])->get();
                     
                     
@@ -101,14 +96,12 @@ class PostRepo
             try {
                     if($item==='status_post'){
 
-                        $post = Post::with([
-                    'Archive','User',
+                        $post = Post::with(['User',
                 ])->where('status_post', $id)->whereIn('active', [0, 1])->get();
                     } 
                      if($item==='id_user'){
 
-                        $post = Post::with([
-                    'Archive','User',
+                        $post = Post::with(['User',
                 ])->where('id_user', $id)->whereIn('active', [0, 1])->get();
                     } 
                     return $post;
@@ -130,14 +123,12 @@ class PostRepo
             try {
                     if($item==='title'){
 
-                        $post = Post::with([
-                    'Archive','User',
+                        $post = Post::with(['User',
                 ])->where('title', $string)->whereIn('active', [0, 1])->get();
                     } 
                      if($item==='permanent_link'){
 
-                        $post = Post::with([
-                    'Archive','User',
+                        $post = Post::with(['User',
                 ])->where('permanent_link', $string)->whereIn('active', [0, 1])->get();
                     } 
                     return $post;

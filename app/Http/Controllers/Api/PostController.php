@@ -4,7 +4,6 @@
     
     
     use App\Http\Models\Repositories\PostRepo;
-    use App\Http\Models\Repositories\ArchiveRepo;
     use App\Http\Models\Repositories\UserRepo;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Controller as BaseController;
@@ -14,13 +13,11 @@
     class PostController extends BaseController {
         
         private $PostRepo;
-        private $ArchiveRepo;
         private $UserRepo;
         
-        public function __construct(PostRepo $PostRepo, ArchiveRepo $ArchiveRepo, UserRepo $UserRepo) {
+        public function __construct(PostRepo $PostRepo, UserRepo $UserRepo) {
             
             $this->PostRepo = $PostRepo;
-            $this->ArchiveRepo        = $ArchiveRepo;
             $this->UserRepo = $UserRepo;
         }
         
@@ -242,7 +239,7 @@
                 $data = [
                    'title' => $request->get('title'),
                     'content' => $request->get('content'),
-                    'id_featured_image' => $request->get('id_featured_image'),
+                    'image' => $request->get('image'),
                     'visibility' => $request->get('visibility'),
                     'status_post' => $request->get('status_post'),
                     'id_user' => $request->get('id_user'),
@@ -314,8 +311,8 @@
             if ($request->has('content')) {
                 $data['content'] = $request->get('content');
             }
-            if ($request->has('id_featured_image')) {
-                $data['id_featured_image'] = $request->get('id_featured_image');
+            if ($request->has('image')) {
+                $data['image'] = $request->get('image');
             }
             if ($request->has('visibility')) {
                 $data['visibility'] = $request->get('visibility');

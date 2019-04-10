@@ -5,14 +5,12 @@ namespace App\Http\Models\Repositories;
 use Mockery\Matcher\Type;
 
 use App\Http\Models\Entities\Page;  
-use App\Http\Models\Entities\Archive;
 
 class PageRepo
 {
     public function all()
     {
-         $page = Page::with([
-                'Archive','User',
+         $page = Page::with(['User',
             ])->whereIn('active', [0, 1])->get();           
          return $page;
     }
@@ -21,8 +19,7 @@ class PageRepo
         //Find By parameters (Item)
         try {
         
-            $page = Page::with([
-                    'Archive','User',
+            $page = Page::with(['User',
                 ])->whereIn('active', [1])->get();
                     
                     
@@ -45,8 +42,7 @@ class PageRepo
         //Find By parameters (Item)
         try {
         
-            $page = Page::with([
-                    'Archive','User',
+            $page = Page::with(['User',
                 ])->whereIn('active', [0])->get();
                     
                     
@@ -69,8 +65,7 @@ class PageRepo
         //Find By parameters (Item)
         try {
         
-            $page = Page::with([
-                    'Archive','User',
+            $page = Page::with(['User',
                 ])->whereIn('active', [2])->get();
                     
                     
@@ -101,14 +96,12 @@ class PageRepo
             try {
                     if($item==='status_page'){
 
-                        $page = Page::with([
-                    'Archive','User',
+                        $page = Page::with(['User',
                 ])->where('status_page', $id)->whereIn('active', [0, 1])->get();
                     }  
                     if($item==='id_user'){
 
-                        $page = Page::with([
-                    'Archive','User',
+                        $page = Page::with(['User',
                 ])->where('id_user', $id)->whereIn('active', [0, 1])->get();
                     }
                     return $page;
@@ -132,14 +125,12 @@ class PageRepo
             try {
                     if($item==='title'){
 
-                        $page = Page::with([
-                    'Archive','User',
+                        $page = Page::with(['User',
                 ])->where('title', $string)->whereIn('active', [0, 1])->get();
                     }  
                     if($item==='permanent_link'){
 
-                        $page = Page::with([
-                    'Archive','User',
+                        $page = Page::with(['User',
                 ])->where('permanent_link', $string)->whereIn('active', [0, 1])->get();
                     }
                     return $page;
