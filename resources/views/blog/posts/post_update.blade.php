@@ -67,8 +67,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Publicación</label>
-                            <vuejs-datepicker v-model="datepublication" name="fecha"></vuejs-datepicker>
+                           <label>Fecha de publicación</label>
+                         <flat-pickr :config="configs.dateTimePicker"
+                          id="datetime-input"
+                          class="form-control"
+                          v-model="datepublication"
+                          placeholder="Fecha de publicación">
+                         </flat-pickr>
                         </div>
                         
                     </div>
@@ -199,8 +204,22 @@
 <script src="https://unpkg.com/vue-select@latest"></script>
 <script src="https://unpkg.com/vuejs-datepicker"></script>
 
+
+<!-- START DATEPICKER -->
+<link href="https://cdn.jsdelivr.net/npm/flatpickr@4/dist/flatpickr.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr@4/dist/flatpickr.min.js"></script>
+<!-- Vue js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+<!-- Lastly add this package -->
+<script src="https://cdn.jsdelivr.net/npm/vue-flatpickr-component@8"></script>
+<!-- END DATEPICKER -->
+<script>
+// Initialize as global component
+Vue.component('flat-pickr', VueFlatpickr);
+</script>
 <!-- Custom page Script -->
 <script>
+Vue.component('flat-pickr', VueFlatpickr);
 Vue.component('v-select', VueSelect.VueSelect)
 
     var app = new Vue({
@@ -225,7 +244,13 @@ Vue.component('v-select', VueSelect.VueSelect)
                 postscategories:[],
                 post:{},
                 post:'',
-                posts: []
+                posts: [],
+                configs: {
+          dateTimePicker: {
+            enableTime: true,
+            dateFormat: 'Y-m-d H:i:s'
+          }
+            }
             }
         },
         mounted() { 
@@ -241,6 +266,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                             this.content_type = this.post.content;
                             this.visibility = this.post.visibility;
                             this.status = this.post.status_post;
+                            this.datepublication = this.post.publication_date;
                         } else {
                             console.log(response.data);
                         }
