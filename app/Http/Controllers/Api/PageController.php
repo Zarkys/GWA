@@ -6,8 +6,10 @@
     use App\Http\Models\Repositories\PageRepo;
     use App\Http\Models\Repositories\UserRepo;
     use Illuminate\Http\Request;
+    use Carbon\Carbon;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     
     class PageController extends BaseController {
@@ -240,11 +242,11 @@
                     'image' => $request->get('image'),
                     'visibility' => $request->get('visibility'),
                     'status_page' => $request->get('status_page'),
-                   // 'id_user' => $request->get('id_user'),
+                    'id_user' => Auth::id(),
                     'permanent_link' => $request->get('permanent_link'),
-                   // 'creation_date' => $request->get('creation_date'),
+                    'creation_date' => Carbon::now(),
                     'publication_date' => $request->get('publication_date'),
-                    'modification_date' => $request->get('modification_date'),
+                    'modification_date' => Carbon::now(),
                     'active'     => 1,
                 ];
 

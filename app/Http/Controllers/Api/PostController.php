@@ -6,8 +6,10 @@
     use App\Http\Models\Repositories\PostRepo;
     use App\Http\Models\Repositories\UserRepo;
     use Illuminate\Http\Request;
+    use Carbon\Carbon;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     
     class PostController extends BaseController {
@@ -242,11 +244,11 @@
                     'image' => $request->get('image'),
                     'visibility' => $request->get('visibility'),
                     'status_post' => $request->get('status_post'),
-                    'id_user' => $request->get('id_user'),
+                    'id_user' => Auth::id(),
                     'permanent_link' => $request->get('permanent_link'),
-                    'creation_date' => $request->get('creation_date'),
+                    'creation_date' => Carbon::now(),
                     'publication_date' => $request->get('publication_date'),
-                    'modification_date' => $request->get('modification_date'),
+                    'modification_date' => Carbon::now(),
                     'active'     => 1,
                 ];
 
@@ -333,7 +335,7 @@
                 $data['publication_date'] = $request->get('publication_date');
             }
             if ($request->has('modification_date')) {
-                $data['modification_date'] = $request->get('modification_date');
+                $data['modification_date'] = Carbon::now();
             }
             if ($request->has('active')) {
                 $data['active'] = $request->get('active');
