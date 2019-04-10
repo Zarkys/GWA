@@ -175,14 +175,14 @@ Vue.component('v-select', VueSelect.VueSelect)
                     response => {
                         if (response.data.code !== 500) {                          
                             this.page = response.data.data; 
-                            this.title_type = this.post.title;
-                            this.permanent_link_type = this.post.permanent_link;
-                            this.content_type = this.post.content;
-                            this.visibility = this.post.visibility;
-                            this.status = this.post.status_page;
-                            this.datepublication = this.post.publication_date;
-                            this.datecreation = this.post.creation_date;
-                            this.datemodification = this.post.modification_date;
+                            this.title_type = this.page.title;
+                            this.permanent_link_type = this.page.permanent_link;
+                            this.content_type = this.page.content;
+                            this.visibility = this.page.visibility;
+                            this.status = this.page.status_page;
+                            this.datepublication = this.page.publication_date;
+                            this.datecreation = this.page.creation_date;
+                            this.datemodification = this.page.modification_date;
                         } else {
                             console.log(response.data);
                         }
