@@ -213,9 +213,9 @@
               //  'id_featured_image' => 'required',
                 'visibility' => 'required',
                 'status_page' => 'required',
-                'id_user' => 'required',
+                //'id_user' => 'required',
                 'permanent_link' => 'required',
-                'creation_date' => 'required',
+               // 'creation_date' => 'required',
                // 'publication_date' => 'required',
                // 'modification_date' => 'required',
             ], $this->custom_message());
@@ -240,9 +240,9 @@
                     'image' => $request->get('image'),
                     'visibility' => $request->get('visibility'),
                     'status_page' => $request->get('status_page'),
-                    'id_user' => $request->get('id_user'),
+                   // 'id_user' => $request->get('id_user'),
                     'permanent_link' => $request->get('permanent_link'),
-                    'creation_date' => $request->get('creation_date'),
+                   // 'creation_date' => $request->get('creation_date'),
                     'publication_date' => $request->get('publication_date'),
                     'modification_date' => $request->get('modification_date'),
                     'active'     => 1,
@@ -314,15 +314,15 @@
             if ($request->has('status_page')) {
                 $data['status_page'] = $request->get('status_page');
             }
-            if ($request->has('id_user')) {
+            /*if ($request->has('id_user')) {
                 $data['id_user'] = $request->get('id_user');
-            }
+            }*/
             if ($request->has('permanent_link')) {
                 $data['permanent_link'] = $request->get('permanent_link');
             }
-            if ($request->has('creation_date')) {
+           /* if ($request->has('creation_date')) {
                 $data['creation_date'] = $request->get('creation_date');
-            }
+            }*/
             if ($request->has('publication_date')) {
                 $data['publication_date'] = $request->get('publication_date');
             }
@@ -481,9 +481,9 @@
                // 'id_featured_image.required' => __('La imagen destacada es requerida'),
                 'visibility.required' => __('La visibilidad es requerida'),
                 'status_page.required' => __('El estatus de la pagina es requerido'),
-                'id_user.required' => __('El usuario es requerido'),
+               // 'id_user.required' => __('El usuario es requerido'),
                 'permanent_link.required' => __('El link permanente es requerido'),
-                'creation_date.required' => __('La fecha de creacion es requerida'),
+                //'creation_date.required' => __('La fecha de creacion es requerida'),
                // 'publication_date.required' => __('La fecha de publicacion es requerida'),
                // 'modification_date.required' => __('La fecha de modificacion es requerida'),
             ];

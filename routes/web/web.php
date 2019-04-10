@@ -26,6 +26,8 @@
         Route::get('/archive/update/{idelement}', 'HomeController@archiveupdate')->name('archiveupdate');
         //ADMIN - BLOG
         Route::get('/pages', 'HomeController@pages')->name('pages');
+         Route::get('/pages/new', 'HomeController@pagenew')->name('pagenew');
+        Route::get('/pages/update/{idelement}', 'HomeController@pageupdate')->name('pageupdate');
         Route::get('/posts', 'HomeController@posts')->name('posts');
         Route::get('/posts/new', 'HomeController@postnew')->name('postnew');
         Route::get('/posts/update/{idelement}', 'HomeController@postupdate')->name('postupdate');

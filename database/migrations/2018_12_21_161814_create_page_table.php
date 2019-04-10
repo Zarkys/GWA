@@ -20,9 +20,9 @@ class CreatePageTable extends Migration
             $table->string('image')->nullable();
             $table->string('visibility');
             $table->integer('status_page');
-            $table->integer('id_user')->unsigned();
+            $table->integer('id_user')->unsigned()->nullable();
             $table->string('permanent_link')->unique();
-            $table->datetime('creation_date');
+            $table->datetime('creation_date')->nullable();
             $table->datetime('publication_date')->nullable();
             $table->datetime('modification_date')->nullable();
             $table->integer('active');

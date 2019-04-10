@@ -91,6 +91,13 @@ class HomeController extends Controller
     {
         return view('blog/pages/pages');
     }
+    public function pagenew()
+    {
+        return view('blog/pages/page_new');
+    }public function pageupdate()
+    {
+        return view('blog/pages/page_update');
+    }
     //COMENTS
     public function comments()
     {
