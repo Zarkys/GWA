@@ -46,7 +46,17 @@
                      </div>
                     <div class="form-group">
                     <label for="exampleInputEmail1">Contenido</label>
-                    <textarea  rows="4" cols="50" type="text" class="form-control" id="inputLegend" v-model="content_type" aria-describedby="nameHelp" placeholder="Agregar el contenido"></textarea>
+                   <!-- <textarea  rows="4" cols="50" type="text" class="form-control" id="inputLegend" v-model="content_type" aria-describedby="nameHelp" placeholder="Agregar el contenido"></textarea>-->
+
+                               <div id="app">
+    <quill-editor v-model="content_type"
+                  ref="quillEditorA"
+                  :options="editorOption"
+                  @blur="onEditorBlur($event)"
+                  @focus="onEditorFocus($event)"
+                  @ready="onEditorReady($event)">
+        </quill-editor>
+</div>
                      </div>
                     </div>
                     <div class="col-md-1">
@@ -231,19 +241,30 @@
 <!-- Lastly add this package -->
 <script src="https://cdn.jsdelivr.net/npm/vue-flatpickr-component@8"></script>
 <!-- END DATEPICKER -->
+
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.4/quill.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!-- Quill JS Vue -->
+<script src="https://cdn.jsdelivr.net/npm/vue-quill-editor@3.0.4/dist/vue-quill-editor.js"></script>
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.3.4/quill.core.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.4/quill.bubble.css" rel="stylesheet">
 <script>
 // Initialize as global component
 Vue.component('flat-pickr', VueFlatpickr);
 </script>
 <!-- Custom page Script -->
 <script>
+Vue.use(VueQuillEditor)
 Vue.component('flat-pickr', VueFlatpickr);
 Vue.component('v-select', VueSelect.VueSelect)
 
     var app = new Vue({
         el: '#app',
         components: {
-        vuejsDatepicker
+         LocalQuillEditor: VueQuillEditor.quillEditor
     },
         data() {
             return {
@@ -265,6 +286,9 @@ Vue.component('v-select', VueSelect.VueSelect)
                 post:{},
                 post:'',
                 posts: [],
+     editorOption: {
+        theme: 'snow'
+      },
                 configs: {
           dateTimePicker: {
             enableTime: true,
@@ -349,6 +373,16 @@ Vue.component('v-select', VueSelect.VueSelect)
 
         },
         methods: {
+            
+            onEditorBlur(quill) {
+        console.log('editor blur!', quill)
+      },
+      onEditorFocus(quill) {
+        console.log('editor focus!', quill)
+      },
+      onEditorReady(quill) {
+        console.log('editor ready!', quill)
+      },
             back() {
 
             },

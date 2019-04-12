@@ -334,12 +334,10 @@
             if ($request->has('publication_date')) {
                 $data['publication_date'] = $request->get('publication_date');
             }
-            if ($request->has('modification_date')) {
-                $data['modification_date'] = Carbon::now();
-            }
             if ($request->has('active')) {
                 $data['active'] = $request->get('active');
             }
+            $data['modification_date'] = Carbon::now();
             
             try {
 
