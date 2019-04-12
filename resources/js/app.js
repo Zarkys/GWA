@@ -21,6 +21,8 @@ Vue.component(
     require('./components/passport/Clients.vue')
 );
 
+Vue.component('file-upload', require('./components/FileUpload.vue'));
+
 Vue.component(
     'passport-authorized-clients',
     require('./components/passport/AuthorizedClients.vue')

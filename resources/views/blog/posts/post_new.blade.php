@@ -84,6 +84,7 @@
                           placeholder="Fecha de publicación">
                          </flat-pickr>
                         </div>
+                        <file-upload> </file-upload>
                     </div>
                 </div>
               
@@ -347,7 +348,7 @@ Vue.component('v-select', VueSelect.VueSelect)
 
         },
         methods: {
-            
+
             onEditorBlur(quill) {
         console.log('editor blur!', quill)
       },
