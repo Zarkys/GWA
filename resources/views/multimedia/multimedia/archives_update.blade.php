@@ -38,31 +38,31 @@
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Nombre de archivo</label>
-                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre del archivo">
+                    <input type="text" class="form-control" id="inputName" v-model="name_type" aria-describedby="nameHelp" placeholder="Nombre del archivo" disabled>
                      </div>
                     </div>
                     <div class="col-md-6">
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Tipo de archivo</label>
-                                    <input type="text" class="form-control" id="inputTypeArchive" v-model="typearchive_type" aria-describedby="nameHelp" placeholder="Tipo de archivo">
+                                    <input type="text" class="form-control" id="inputTypeArchive" v-model="typearchive_type" aria-describedby="nameHelp" placeholder="Tipo de archivo" disabled>
                                     </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Fecha de creación</label>
-                    <input type="text" class="form-control" id="inputCreationDate" v-model="creationdate_type" aria-describedby="nameHelp" placeholder="Fecha de creación">
+                    <input type="text" class="form-control" id="inputCreationDate" v-model="creationdate_type" aria-describedby="nameHelp" placeholder="Fecha de creación" disabled>
                      </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Tamaño del archivo</label>
-                    <input type="text" class="form-control" id="inputCreationDate" v-model="creationdate_type" aria-describedby="nameHelp" placeholder="Tamaño del archivo">
+                    <input type="text" class="form-control" id="inputCreationDate" v-model="creationdate_type" aria-describedby="nameHelp" placeholder="Tamaño del archivo" disabled>
                      </div>
                     </div>
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Dimensiones</label>
-                    <input type="text" class="form-control" id="inputCreationDate" v-model="dimension_type" aria-describedby="nameHelp" placeholder="Dimension del archivo">
+                    <input type="text" class="form-control" id="inputCreationDate" v-model="dimension_type" aria-describedby="nameHelp" placeholder="Dimension del archivo" disabled>
                      </div>
                     </div>
                      <div class="col-md-6">
@@ -99,7 +99,7 @@
                     <div class="col-md-6">
                     <div class="form-group">
                     <label for="exampleInputEmail1">Subido por : </label>
-                    <input type="text" class="form-control" id="inputUser" v-model="user_type" aria-describedby="nameHelp" placeholder="Usuario">
+                    <input type="text" class="form-control" id="inputUser" v-model="user_type" aria-describedby="nameHelp" placeholder="Usuario" disabled>
                      </div>
                     </div>
                    
@@ -169,7 +169,7 @@ Vue.component('v-select', VueSelect.VueSelect)
                         if (response.data.code !== 500) {                          
                             this.archive = response.data.data; 
                             this.name_type = this.archive.name;
-                            this.tipearchive_type = this.archive.type_archive;
+                            this.typearchive_type = this.archive.type;
                             this.creationdate_type = this.archive.creation_date;
                             this.size_type = this.archive.size;
                             this.dimension_type = this.archive.dimension;
@@ -208,17 +208,17 @@ Vue.component('v-select', VueSelect.VueSelect)
                     }).then((result) => {
                     if (result.value) {
                         let form = {
-                                name: this.name_type,
+                               /* name: this.name_type,
                                 type_archive: this.typearchive_type,
                                 creation_date: this.creationdate_type,
                                 size: this.size_type,
-                                dimension: this.dimension_type,
+                                dimension: this.dimension_type,*/
                                 url: this.url_type,
                                 title: this.title_type,
                                 legend: this.legend_type,
                                 alternative_text: this.alternativetext_type,
                                 description: this.description_type,
-                                user: this.user_type,
+                               // user: this.user_type,
                             }
                             var pageURL = window.location.href;
                             var idurl = pageURL.substr(pageURL.lastIndexOf('/') + 1);

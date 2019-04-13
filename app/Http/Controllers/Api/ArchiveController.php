@@ -5,8 +5,10 @@
     use App\Http\Models\Repositories\ArchiveRepo;
     use App\Http\Models\Repositories\UserRepo;
     use Illuminate\Http\Request;
+    use Carbon\Carbon;
     use Illuminate\Routing\Controller as BaseController;
     use Illuminate\Support\Facades\Validator;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     use Storage;
     class ArchiveController extends BaseController {
@@ -239,7 +241,7 @@
             $validator = Validator::make($request->all(), [
                 'name'    => 'required',
                 'type'    => 'required',
-                'creation_date'    => 'required',
+              //  'creation_date'    => 'required',
                 'size'    => 'required',
                 'dimension'    => 'required',
                 'url'    => 'required',
@@ -247,7 +249,7 @@
                 'legend'    => 'required',
                // 'alternative_text'    => 'required',
                // 'description'    => 'required',
-                'id_user'    => 'required',
+               // 'id_user'    => 'required',
             ], $this->custom_message());
     
             if ($validator->fails()) {
@@ -265,15 +267,15 @@
                 $data = [
                     'name'    => $request->get('name'),
                     'type' => $request->get('type'),
-                    'creation_date'    => $request->get('creation_date'),
+                    'creation_date'    => Carbon::now(),
                     'size'    => $request->get('size'),
-                    'dimension'    => $request->get('dimension'),
+                   'dimension'    => $request->get('dimension'),
                     'url' => $request->get('url'),
                     'title'    => $request->get('title'),
                     'legend'    => $request->get('legend'),
                     'alternative_text'    => $request->get('alternative_text'),
                     'description' => $request->get('description'),
-                    'id_user'    => $request->get('id_user'),
+                    'id_user'    => Auth::id(),
                     'active' => 1,
                 ];
 
@@ -323,7 +325,7 @@
             Log::debug($request);
             $archive = $this->ArchiveRepo->findbyid($id);
 
-            
+           /* 
             if($request->has('name')){
                 $data['name'] = $request->get('name');
             }
@@ -338,7 +340,7 @@
             }
             if($request->has('dimension')){
                 $data['dimension'] = $request->get('dimension');
-            }
+            }*/
             if($request->has('url')){
                 $data['url'] = $request->get('url');
             }
@@ -354,19 +356,19 @@
             if($request->has('description')){
                 $data['description'] = $request->get('description');
             }
-            if($request->has('id_user')){
+            /*if($request->has('id_user')){
                 $data['id_user'] = $request->get('id_user');
             }
-
+*/
     
             try {
 
-                $item = 'name';
+                /*$item = 'name';
                 $string = $data['name'];
                 $ArchiveDuple = $this->ArchiveRepo->checkduplicate($item,$string);
              
 
-            if ($ArchiveDuple==0) {
+            if ($ArchiveDuple==0) {*/
                
                 $archive = $this->ArchiveRepo->update($archive, $data);
                 
@@ -378,8 +380,8 @@
                 ];
                 
                 return response()->json($response, 200);
-                   }
-            else
+                  // }
+          /*  else
             {
                 $response = [
                     'status'  => 'FAILED',
@@ -389,7 +391,7 @@
                 ];
         
                 return response()->json($response, 409); 
-            }
+            }*/
             } catch (\Exception $ex) {
                 Log::error($ex);
                 $response = [
