@@ -161,10 +161,11 @@ class PostTagRepo
     {
 
         $posttag->fill($data);
-        $posttag->save();
+        $posttag->delete();
 
         return $posttag;
     }
+    
 
            public function checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond) {
             //Find By parameters (Item)

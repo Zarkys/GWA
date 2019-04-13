@@ -166,11 +166,19 @@ class PostCategoryRepo
         return $postcategory;
     }
 
-    public function delete($postcategory, $data)
+   /* public function delete($postcategory, $data)
     {
 
         $postcategory->fill($data);
         $postcategory->save();
+
+        return $postcategory;
+    }*/
+     public function delete($postcategory, $data)
+    {
+
+        $postcategory->fill($data);
+        $postcategory->delete();
 
         return $postcategory;
     }
