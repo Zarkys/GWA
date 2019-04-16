@@ -25,6 +25,7 @@
         "vue-easy-tinymce": "^1.0.2",
         "vue-flatpickr-component": "^8.1.2",
         "vue-quill-editor": "^3.0.6",
+        "vue-upload-component": "^2.8.20",
         "vue2-editor": "^2.6.6",
         "yimo-vue-editor": "^1.1.2"
     }
