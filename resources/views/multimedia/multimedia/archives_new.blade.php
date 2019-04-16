@@ -30,7 +30,7 @@
             <th>Miniatura</th>
             <th>Nombre</th>
             <th>Tamaño</th>
-            <th>Velocidad</th>
+            <th>Tipo</th>
             <th>Estatus</th>
             <th>Acción</th>
           </tr>
@@ -59,12 +59,13 @@
               </div>
             </td>
             <td>@{{file.size | formatSize}}</td>
-            <td>@{{file.speed | formatSpeed}}</td>
+            <td>@{{file.type | formatType}}</td>
 
-            <td v-if="file.error">@{{file.error}}</td>
+           <!-- <td v-if="file.error">@{{file.error}}</td>
             <td v-else-if="file.success">success</td>
             <td v-else-if="file.active">active</td>
-            <td v-else></td>
+            <td v-else></td>-->
+             <td>@{{file.dimention}} x @{{file.high}}</td>
             <td>
               <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button">
