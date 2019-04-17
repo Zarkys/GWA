@@ -101,11 +101,13 @@
       <label>Imagen destacada</label>
     </div>
     <div class="avatar-upload"  v-show="!edit">
+     <div class="form-group">
       <div class="text-center p-2">
         <label for="avatar">
-          <img :src="files.length ? files[0].url : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL4EkjMng3t1rm5KJ0qbdER-28C1-iC3I52Q1qVK0sSlNAkVhC'" />
+          <img :src="files.length ? files[0].url : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSL4EkjMng3t1rm5KJ0qbdER-28C1-iC3I52Q1qVK0sSlNAkVhC'"  width="200" height="150"/>
           <h4 class="pt-2"><br/>Agregue una imagen</h4>
         </label>
+      </div>
       </div>
       <div class="text-center p-2">
         <file-upload
@@ -372,6 +374,8 @@ Vue.component('file-upload', VueUploadComponent)
                                 visibility: this.visibility,
                                 status_page: this.status,
                                 publication_date: this.datepublication,
+                                image: this.files,
+
                                // id_user: this.iduser
 
                             }

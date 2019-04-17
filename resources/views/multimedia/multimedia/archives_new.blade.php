@@ -30,8 +30,6 @@
             <th>Miniatura</th>
             <th>Nombre</th>
             <th>Tamaño</th>
-            <th>Tipo</th>
-            <th>Estatus</th>
             <th>Acción</th>
           </tr>
         </thead>
@@ -58,21 +56,20 @@
                 <div :class="{'progress-bar': true, 'progress-bar-striped': true, 'bg-danger': file.error, 'progress-bar-animated': file.active}" role="progressbar" :style="{width: file.progress + '%'}">@{{file.progress}}%</div>
               </div>
             </td>
-            <td>@{{file.size | formatSize}}</td>
-            <td>@{{file.type | formatType}}</td>
+            <td>@{{file.size }}bytes</td>
+            <td>@{{file.type }}</td>
 
            <!-- <td v-if="file.error">@{{file.error}}</td>
             <td v-else-if="file.success">success</td>
             <td v-else-if="file.active">active</td>
             <td v-else></td>-->
-             <td>@{{file.dimention}} x @{{file.high}}</td>
             <td>
               <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button">
                   Action
                 </button>
                 <div class="dropdown-menu">
-                  <a :class="{'dropdown-item': true, disabled: file.active || file.success || file.error === 'compressing'}" href="#" @click.prevent="file.active || file.success || file.error === 'compressing' ? false :  onEditFileShow(file)">Edit</a>
+                  <a :class="{'dropdown-item': true, disabled: file.active || file.success || file.error === 'compressing'}" href="#" @click.prevent="onEditFileShow(file)">Editar</a>
                   <a :class="{'dropdown-item': true, disabled: !file.active}" href="#" @click.prevent="file.active ? $refs.upload.update(file, {error: 'cancel'}) : false">Cancel</a>
 
                   <a class="dropdown-item" href="#" v-if="file.active" @click.prevent="$refs.upload.update(file, {active: false})">Abort</a>
@@ -237,6 +234,50 @@
 
 </div>
 </div>
+
+ <div :class="{'modal-backdrop': true, 'fade': true, show: editFile.show}"></div>
+  <div :class="{modal: true, fade: true, show: editFile.show}" id="modal-edit-file" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit file</h5>
+          <button type="button" class="close"  @click.prevent="editFile.show = false">
+            <span>&times;</span>
+          </button>
+        </div>
+        <form @submit.prevent="onEditorFile">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" required id="name"  placeholder="Please enter a file name" v-model="editFile.name">
+            </div>
+            <div class="form-group" v-if="editFile.show && editFile.blob && editFile.type && editFile.type.substr(0, 6) === 'image/'">
+              <label>Image: </label>
+              <div class="edit-image">
+                <img :src="editFile.blob" ref="editImage" />
+              </div>
+
+              <div class="edit-image-tool">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-primary" @click="editFile.cropper.rotate(-90)" title="cropper.rotate(-90)"><i class="fa fa-undo" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-primary" @click="editFile.cropper.rotate(90)"  title="cropper.rotate(90)"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+                </div>
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-primary" @click="editFile.cropper.crop()" title="cropper.crop()"><i class="fa fa-check" aria-hidden="true"></i></button>
+                  <button type="button" class="btn btn-primary" @click="editFile.cropper.clear()" title="cropper.clear()"><i class="fa fa-remove" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" @click.prevent="editFile.show = false">Close</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    bytes
+  </div>
 <!-- End of Main Content -->
 @include('layouts.footer')
 @include('layouts.footscript')
