@@ -199,7 +199,7 @@ class ProductAttributeRepo
                 $datas['id_attribute'] = $product['id_attribute'];
                 $datas['value'] = $product['value'];  
                 Log::debug('valor de product: '.$product['value']);
-                $datas['active'] = 2;
+                $datas['active'] = 1;
                 $productatt_new->fill($datas);
                 $productatt_new->save();
                 $datas = [];

@@ -94,7 +94,9 @@ class PostCategoryRepo
     public function findbyid($id)
     {
 
-        $postcategory = PostCategory::find($id);
+        $postcategory = PostCategory::with([
+                            'Post', 'Category',
+                        ])->find($id);
 
         return $postcategory;
     }

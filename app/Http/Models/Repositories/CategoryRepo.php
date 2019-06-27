@@ -97,6 +97,8 @@ class CategoryRepo
     {
 
         $category = Category::find($id);
+        $categorysuperior = Category::find($category->parent_category);
+                $category->superiorcategory = $categorysuperior;
         
 
         return $category;
