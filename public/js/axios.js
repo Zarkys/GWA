@@ -2,6 +2,15 @@ var prefix = '/goadmin/api/1.0/';
 var domain = window.location.hostname;
 var getUrl = window.location;
 var baseUrl = getUrl .protocol + "//" + getUrl.host;
+
+function RouteGet_BACK (url,params) {
+    return axios.get(url,params)
+}
+
+function RoutePost_BACK (url,params) {
+    return axios.post(url,params)
+}
+
 function loadElements (url,params) {
    
     return axios.get(baseUrl+prefix+url)
