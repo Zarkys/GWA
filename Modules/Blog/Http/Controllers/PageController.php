@@ -35,11 +35,12 @@ class PageController extends Controller
 
         return view('blog::landing.posts', compact('posts'));
     }
-//
+
     public function post($slug){
     	$post = Post::where('slug', $slug)->first();
 
     	return view('blog::landing.post', compact('post'));
     }
 
+    
 }
