@@ -19,7 +19,9 @@
         public function find($id) {
 
             
-            $user = User::find($id);
+            $user = User::with([
+                    'Rol',
+                ])->find($id);
 
             
             return $user;

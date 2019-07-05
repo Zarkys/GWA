@@ -50,5 +50,4 @@ class ComponentController extends BaseController
 
     }
 
-
 }

@@ -13,6 +13,7 @@
 
   <link href="{{ asset('/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('/css/sb-admin-2.min.css') }}" rel="stylesheet">
+   <link rel="stylesheet" href="{{ asset('/css/vue-select.css') }}">
 
   <link href="{{ asset('assets/toastr/toastr.scss')}}" rel="stylesheet">
 

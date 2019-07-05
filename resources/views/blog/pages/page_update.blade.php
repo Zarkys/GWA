@@ -130,7 +130,8 @@
 <script src="{{ asset('/js/axios.js') }}"></script>
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
-<script src="https://unpkg.com/vue-select@latest"></script>
+<!--<script src="https://unpkg.com/vue-select@latest"></script>-->
+<script src="{{ asset('/js/vue-select.js') }}"></script>
 
 
 <!-- START DATEPICKER -->

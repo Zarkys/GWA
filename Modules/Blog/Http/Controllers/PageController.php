@@ -2,7 +2,6 @@
 
 namespace Modules\Blog\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Modules\Blog\Models\Entities\CategoryBlog;
 use Modules\Blog\Models\Entities\Post;
@@ -42,5 +41,5 @@ class PageController extends Controller
     	return view('blog::landing.post', compact('post'));
     }
 
-    
+
 }

@@ -376,8 +376,6 @@ class PostController extends BaseController
         }
     }
 
-
-
 //
 ////    TODO OLD
 //    public function index()

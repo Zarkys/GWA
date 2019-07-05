@@ -2,7 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="724f85cc-c6b6-4e09-9282-4f8e5cf13d58" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Models/Repositories/CategoryRepo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/vue-select.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/vue-select.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Models/Repositories/PostCategoryRepo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/Repositories/PostCategoryRepo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Models/Repositories/ProductAttributeRepo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/Repositories/ProductAttributeRepo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Models/Repositories/UserRepo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Models/Repositories/UserRepo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog/pages/page_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/pages/page_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog/pages/page_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/pages/page_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog/posts/post_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/posts/post_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog/posts/post_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/posts/post_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog/tags/tags_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/tags/tags_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/blog/tags/tags_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/blog/tags/tags_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/catalog/attributes/attributes_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/catalog/attributes/attributes_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/catalog/attributes/attributes_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/catalog/attributes/attributes_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/catalog/categoriesforproducts/categoriesforproducts_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/catalog/categoriesforproducts/categoriesforproducts_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/catalog/categoriesforproducts/categoriesforproducts_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/catalog/categoriesforproducts/categoriesforproducts_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/catalog/products/product_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/catalog/products/product_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/catalog/products/product_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/catalog/products/product_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/catalog/typeproducts/type_product_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/catalog/typeproducts/type_product_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/catalog/typeproducts/type_product_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/catalog/typeproducts/type_product_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/config_web/configs/config.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/config_web/configs/config.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/config_web/sections/sectionnew.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/config_web/sections/sectionnew.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/config_web/sections/sectionupdate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/config_web/sections/sectionupdate.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/config_web/texts/textnew.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/config_web/texts/textnew.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/config_web/texts/texts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/config_web/texts/texts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/config_web/texts/textupdate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/config_web/texts/textupdate.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/config_web/users/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/config_web/users/profile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/multimedia/multimedia/archives_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/multimedia/multimedia/archives_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/multimedia/multimedia/archives_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/multimedia/multimedia/archives_update.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/users/users_new.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/users/users_new.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/users/users_update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/users/users_update.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,77 +45,7 @@
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/website_public/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
-              <folding>
-                <element signature="e#49#77#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/landing/app.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="807">
-              <caret line="63" selection-start-line="63" selection-end-line="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Entities/Post.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="39" column="24" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="24" />
-              <folding>
-                <element signature="e#48#82#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/landing/posts.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -137,8 +98,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Seeders/BlogDatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Entities/CategoryBlog.php" />
         <option value="$PROJECT_DIR$/Modules/Blog/Models/Entities/PostTagBlog.php" />
         <option value="$PROJECT_DIR$/Modules/Blog/Routes/tag.php" />
         <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/CategoryController.php" />
@@ -188,6 +147,8 @@
         <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/posts.blade.php" />
         <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php" />
         <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php" />
+        <option value="$PROJECT_DIR$/resources/views/blog/categories/categories_new.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/blog/comments/comments_update.blade.php" />
       </list>
     </option>
   </component>
@@ -320,24 +281,6 @@
             <path>
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
               <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -345,52 +288,6 @@
               <item name="GWA" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
               <item name="Blog" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="landing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
@@ -465,16 +362,15 @@
       <workItem from="1562241370869" duration="33484000" />
       <workItem from="1562284608291" duration="3366000" />
       <workItem from="1562322643372" duration="1010000" />
-      <workItem from="1562328092608" duration="9579000" />
+      <workItem from="1562328092608" duration="9965000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112901000" />
+    <option name="totallyTimeSpent" value="113287000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2078125" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -554,27 +450,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="33" column="69" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Enums/ActivePost.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Routes/component.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/blog/posts/posts.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="608">
@@ -679,13 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/categories/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="110" column="16" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -969,19 +837,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Entities/Post.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
           <caret line="39" column="24" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="24" />
           <folding>
             <element signature="e#48#82#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/website_public/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
+          <folding>
+            <element signature="e#49#77#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1000,27 +885,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php">
+    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+        <state relative-caret-position="19">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/website_public/web.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/blog/categories/categories_new.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/blog/categories/categories_update.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/blog/comments/comments_update.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="16" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="35" />
+        <state relative-caret-position="717">
+          <caret line="196" column="9" lean-forward="true" selection-start-line="196" selection-start-column="9" selection-end-line="196" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php">
+    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/categories/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="44" column="4" selection-start-line="44" selection-start-column="4" selection-end-line="44" selection-end-column="4" />
-          <folding>
-            <element signature="e#49#77#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="738">
+          <caret line="116" column="16" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="16" />
         </state>
       </provider>
     </entry>

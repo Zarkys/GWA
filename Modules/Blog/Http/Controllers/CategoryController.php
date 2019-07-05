@@ -485,7 +485,6 @@ class CategoryController extends BaseController
 
     }
 
-
     public function custom_message()
     {
         return [
