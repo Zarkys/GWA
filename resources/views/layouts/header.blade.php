@@ -11,7 +11,7 @@
 
   <title>GWA - Administrador Web</title>
 
-  <link href="{{ asset('/vendor/fontawesome-free/css/all.min.css?v='.time()) }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('/vendors/fontawesome-free/css/all.min.css?v='.time()) }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('/css/sb-admin-2.min.css?v='.time()) }}" rel="stylesheet">
 
    <link rel="stylesheet" href="{{ asset('/css/vue-select.css?v='.time()) }}">
