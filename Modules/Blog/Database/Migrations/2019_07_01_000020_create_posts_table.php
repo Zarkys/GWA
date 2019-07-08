@@ -13,7 +13,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title', 128);
             $table->string('slug', 128)->unique();
-            $table->text('content')->nullable();
+            $table->longText('content')->nullable();
             $table->string('image')->nullable();
             $table->integer('active')->default(\Modules\Blog\Models\Enums\ActivePost::$activated);
             $table->integer('status_post')->default(\Modules\Blog\Models\Enums\StatusPostBlog::$draft);
