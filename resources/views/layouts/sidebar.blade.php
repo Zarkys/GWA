@@ -35,6 +35,7 @@
                     @if(Auth::user()->rol===2)
                         <a class="collapse-item" href="{{route('blog.category.list')}}">Categoría</a>
                         <a class="collapse-item" href="{{route('blog.tag.list')}}">Etiqueta</a>
+                        <a class="collapse-item" href="{{route('blog.comment.list')}}">Comentarios</a>
                     @endif
                 </div>
             </div>

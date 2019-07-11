@@ -28,6 +28,11 @@ Route::group([
         'as' => 'web.blog.tag',
         'uses' => 'PageController@tag'
     ]);
+
+    Route::post('save/comment', [
+        'as' => 'web.save.comment',
+        'uses' => 'PageController@saveComment'
+    ]);
 });
 
 
