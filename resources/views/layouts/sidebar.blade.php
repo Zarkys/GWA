@@ -104,17 +104,17 @@
     </li>
 
     <div class="sidebar-heading">
-        Zona de Websiite
+        Zona de Website
     </div>
     @if(Auth::user()->rol===2)
         <li class="nav-item">
-            <a class="nav-link" href="{{url('goadmin/sections')}}">
+            <a class="nav-link" href="{{route('website.section.list')}}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Secciones</span></a>
         </li>
     @endif
     <li class="nav-item">
-        <a class="nav-link" href="{{url('goadmin/texts')}}">
+        <a class="nav-link" href="{{route('website.text.list')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Textos</span></a>
     </li>

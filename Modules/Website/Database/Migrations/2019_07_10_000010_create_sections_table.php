@@ -4,30 +4,21 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSectionTable extends Migration
+class CreateSectionsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
-        Schema::create('sections', function (Blueprint $table) {
+         Schema::create('sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
-            $table->integer('active');
+            $table->integer('active')->default(\Modules\Website\Models\Enums\ActiveSection::$activated);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
-        Schema::dropIfExists('sections');
+       Schema::dropIfExists('sections');
     }
 }
