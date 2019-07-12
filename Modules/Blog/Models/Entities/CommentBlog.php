@@ -13,6 +13,8 @@ class CommentBlog extends Authenticatable
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
+        'name',
+        'email',
         'comment',
         'publication_date',
         'id_post',

@@ -11,10 +11,12 @@ Route::group([
         'as' => 'blog.category.list',
         'uses' => 'CategoryController@list',
     ]);
+
     Route::get('/create', [
         'as' => 'blog.category.create',
         'uses' => 'CategoryController@create',
     ]);
+
     Route::get('/edit/{id}', [
         'as' => 'blog.category.edit',
         'uses' => 'CategoryController@edit',
