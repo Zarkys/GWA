@@ -10,10 +10,10 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-10">
-                        <h6 class="m-0 font-weight-bold text-primary">Lista de Entradas</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Lista de Textos</h6>
                     </div>
                     <div class="col-md-2">
-                        <a href="{{route( 'blog.post.create')}}" class="btn btn-primary btn-icon-split">
+                        <a href="{{route( 'website.text.create')}}" class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
@@ -26,39 +26,32 @@
                 <table class="table table-hover">
                     <thead>
                     <tr class="text-left">
-                        <th>Titulo</th>
-                        <th>Autor</th>
-                        <th>Categoria</th>
-                        <th>Etiquetas</th>
-                        <th>Comentarios</th>
-                        <th>Publicado</th>
+                        <th>Nombre</th>
+                        <th>Español</th>
+                        <th>Ingles</th>
+                        <th>Sección</th>
                         <th>Editar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="post in posts" class="text-left">
-                        <td width="20%">@{{post.title}}</td>
-                        <td width="15%">@{{post.user.name}}</td>
-                        <td width="10%">@{{post.category.name}}</td>
-                        <td width="15%"><span v-for="val in post.tags"><strong>@{{ val.name }}</strong>@{{ post.tags.length > 1?',':'' }}</span>
-                        <td width="5%">@{{post.comments.length }}</span>
-                        </td>
-                        <td width="20%">@{{post.publication_date}}</td>
+                    <tr v-for="text in texts" class="text-left">
+                        <td width="30%">@{{text.name}}</td>
+                        <td width="20%">@{{text.value_es}}</td>
+                        <td width="20%">@{{text.value_en}}</td>
+                        <td width="20%">@{{text.section.title}}</td>
                         <td width="15%" style="text-align: -webkit-center!important;margin-top: -1%">
-                            <a v-if="post.status_post === 1" href="#" v-on:click="changeStatus(post)"
-                               class="btn btn-success btn-block btn-sm">
-                                Publicado <i class="fas fa-check"></i>
+                            <a v-if="text.active === 1" href="#" v-on:click="changeStatus(text)"
+                               class="btn btn-success btn-block btn-sm"><i class="fas fa-check"></i>
                             </a>
-                            <a v-if="post.status_post === 0" href="#" v-on:click="changeStatus(post)"
-                               class="btn btn-warning btn-block btn-sm">
-                                Borrador <i class="fas fa-times"></i>
+                            <a v-if="text.active === 0" href="#" v-on:click="changeStatus(text)"
+                               class="btn btn-warning btn-block btn-sm"><i class="fas fa-times"></i>
                             </a>
                             <br>
-                            <a href="#" v-on:click="consultPost(post)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="consultText(text)" style="margin-top: -20%!important;"
                                class="btn btn-primary btn-circle">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="#" v-on:click="deletePost(post)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="deleteText(text)" style="margin-top: -20%!important;"
                                class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -87,18 +80,18 @@
         data() {
             return {
                 message: '',
-                posts: [],
+                texts: [],
             }
         },
         mounted() {
-            this.listPost()
+            this.listText()
         },
         methods: {
-            listPost() {
-                RouteGet_BACK('{{route('blog.post.list.all')}}', {}).then(
+            listText() {
+                RouteGet_BACK('{{route('website.text.list.all')}}', {}).then(
                     response => {
                         if (response.data.code !== 500) {
-                            this.posts = response.data.data;
+                            this.texts = response.data.data;
 
                         } else {
                             console.log(response.data);
@@ -108,7 +101,7 @@
                         console.log(error);
                     })
             },
-            changeStatus(post) {
+            changeStatus(text) {
                 Swal.fire({
                     title: 'Estas seguro?',
                     text: 'Se cambiara el estatus de la entrada.',
@@ -120,12 +113,12 @@
                 }).then((result) => {
                     if (result.value) {
                         let form = {
-                            id: post.id
+                            id: text.id
                         }
-                        RoutePost_BACK('{{route('blog.post.change.status')}}', form).then(
+                        RoutePost_BACK('{{route('website.text.change.status')}}', form).then(
                             response => {
                                 if (response.data.code === 200) {
-                                    post.status_post = response.data.status_post;
+                                    text.active = response.data.active;
                                     Swal.fire(
                                         'Listo',
                                         response.data.message,
@@ -150,7 +143,7 @@
                 })
 
             },
-            deletePost(post) {
+            deleteText(text) {
                 Swal.fire({
                     title: 'Estas seguro de eliminarlo?',
                     text: "",
@@ -162,12 +155,12 @@
                 }).then((result) => {
                     if (result.value) {
                         let form = {
-                            id: post.id
+                            id: text.id
                         }
-                        RoutePost_BACK('{{route('blog.post.delete')}}', form).then(
+                        RoutePost_BACK('{{route('website.text.delete')}}', form).then(
                             response => {
                                 if (response.data.code === 200) {
-                                    this.listPost()
+                                    this.listText()
                                     Swal.fire(
                                         'Listo',
                                         response.data.message,
@@ -191,8 +184,8 @@
                     }
                 })
             },
-            consultPost(post) {
-                window.location.href = 'edit/' + post.id;
+            consultText(text) {
+                window.location.href = 'edit/' + text.id;
             },
         },
         computed: {},
