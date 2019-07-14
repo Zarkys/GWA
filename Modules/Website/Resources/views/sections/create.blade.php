@@ -9,10 +9,10 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-10">
-                        <h6 class="m-0 font-weight-bold text-primary">Crear Etiqueta</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Crear Sección</h6>
                     </div>
                     <div class="col-md-2">
-                        <a href="{{route('blog.tag.list')}}" class="btn btn-warning btn-icon-split">
+                        <a href="{{route('website.section.list')}}" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
                             <span class="text">Volver</span>
                         </a>

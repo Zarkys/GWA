@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use \App\Http\Models\Enums\Gender;
 
 class ConfigWebSeeder extends Seeder
 {

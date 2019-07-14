@@ -30,7 +30,7 @@
                     <tbody>
                     <tr v-for="section in sections">
                         <td width="80%">@{{section.title}}</td>
-                        <td width="15%" style="text-align: -webkit-center!important;margin-top: -1%">
+                        <td width="20%" style="text-align: -webkit-center!important;margin-top: -1%">
                             <a v-if="section.active === 1" href="#" v-on:click="changeActive(section)"
                                class="btn btn-success btn-block btn-sm">
                                 <i class="fas fa-check"></i>
@@ -93,7 +93,7 @@
             changeActive(section) {
                 Swal.fire({
                     title: 'Estas seguro?',
-                    text: 'Se cambiara el estatus de la Seccion.',
+                    text: 'Se cambiara el estatus de la Sección.',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

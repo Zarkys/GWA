@@ -12,7 +12,7 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-10">
-                        <h6 class="m-0 font-weight-bold text-primary">Agregar Texto</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Agregar Entrada</h6>
                     </div>
                     <div class="col-md-2">
                         <a href="{{route( 'blog.post.list')}}" class="btn btn-warning btn-icon-split">
@@ -27,43 +27,50 @@
             <div class="card-body">
                 <form @submit.prevent="saveRow" autocomplete="off">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class="form-group">
-                                <label>Nombre</label>
-                                <input type="text" v-model="name" id="name" name="name"
+                                <label>Título</label>
+                                <input type="text" v-model="title" id="title" name="title"
                                        v-validate="'required'" class="form-control"
-                                       :class="{'input': true, 'is-danger': errors.has('name') }"
-                                       placeholder="Nombre de la variable">
-                                <i v-show="errors.has('name')" class="fa fa-exclamation-triangle"></i>
-                                <span v-show="errors.has('name')"
-                                      class="help is-danger">@{{ errors.first('name') }}</span>
-                            </div>
-                            <div class="form-group">
-                                <label>Español</label>
-                                <input type="text" v-model="value_es" id="value_es" name="value_es"
-                                       v-validate="'required'" class="form-control"
-                                       :class="{'input': true, 'is-danger': errors.has('value_es') }"
-                                       placeholder="Valor en español">
-                                <i v-show="errors.has('value_es')" class="fa fa-exclamation-triangle"></i>
-                                <span v-show="errors.has('value_es')"
-                                      class="help is-danger">@{{ errors.first('value_es') }}</span>
+                                       :class="{'input': true, 'is-danger': errors.has('title') }"
+                                       placeholder="Titulo de la entrada">
+                                <i v-show="errors.has('title')" class="fa fa-exclamation-triangle"></i>
+                                <span v-show="errors.has('title')"
+                                      class="help is-danger">@{{ errors.first('title') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label>Sección</label>
-                                <v-select :options="sectionArray" label="title" v-model="section"
+                                <label>Categoria</label>
+                                <v-select :options="categoryArray" label="name" v-model="category"
                                           @input="defaultSelect"></v-select>
                             </div>
-<div class="form-group">
-                                <label>Ingles</label>
-                                <input type="text" v-model="value_en" id="value_en" name="value_en"
-                                       v-validate="'required'" class="form-control"
-                                       :class="{'input': true, 'is-danger': errors.has('value_en') }"
-                                       placeholder="Valor en ingles">
-                                <i v-show="errors.has('value_en')" class="fa fa-exclamation-triangle"></i>
-                                <span v-show="errors.has('value_en')"
-                                      class="help is-danger">@{{ errors.first('value_en') }}</span>
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <v-select :options="statusArray" label="name" v-model="status"
+                                          @input="defaultSelect"></v-select>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha de publicación</label>
+                                <flat-pickr :config="configs.dateTimePicker"
+                                            id="datetime-input"
+                                            class="form-control"
+                                            v-model="datepublication"
+                                            placeholder="Fecha de publicación">
+                                </flat-pickr>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Selecccione sus etiquetas</label><br>
+                                <i v-show="validaTag" class="fa fa-exclamation-triangle"></i>
+                                <span v-show="validaTag" class="help is-content"
+                                      style="color: red;">Marque una Etiqueta</span><br v-show="validaTag">
+
+                                <div class="form-check form-check-inline" v-for="v in tagArray">
+                                    <input class="form-check-input" type="checkbox" v-model="tagSelect" :id="v.id"
+                                           :value="v.id" @change="defaultSelect">
+                                    <label class="form-check-label" :for="v.id">@{{ v.name }}</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -100,45 +107,89 @@
 
 {{--TODO NEW SCRIPT--}}
 <script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
-
+<script src="{{ asset('assets/stringToSlug/jquery.stringToSlug.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $("#title, #slug").stringToSlug({
+            callback: function (text) {
+                $('#slug').val(text);
+            }
+        });
+    });
+</script>
 
 <script>
     Vue.use(VeeValidate)
+    Vue.use(VueQuillEditor)
+    Vue.component('flat-pickr', VueFlatpickr);
     Vue.component('v-select', VueSelect.VueSelect)
 
     var app = new Vue({
         el: '#app',
         components: {
-           
+            LocalQuillEditor: VueQuillEditor.quillEditor
         },
         data() {
             return {
                 validaTag: false,
-                name: '',
-                value_es: '',
-                value_en: '',
-                section: null,
-                sectionArray: [],
-                message: '',
+                title: '',
+                slug: '',
+                content: '',
+                status: {'id': 0, 'name': 'Borrador'},
+                category: null,
+                categoryArray: [],
+                statusArray: [],
+                tagArray: [],
+                tagSelect: [],
+                datepublication: new Date(),
 
+                message: '',
+                title_type: '',
+                permanent_link_type: '',
+                content_type: '',
+                visibility: '',
+
+                editorOption: {
+                    theme: 'snow'
+                },
+                configs: {
+                    dateTimePicker: {
+                        enableTime: true,
+                        dateFormat: 'Y-m-d H:i:s',
+                        defaultDate: new Date(),
+                        altInput: true,
+                        altFormat: "F j, Y - H:i"
+                    }
+                }
             }
         },
         mounted() {
-            RouteGet_BACK('{{route('website.component.list')}}', {}).then(
+            RouteGet_BACK('{{route('blog.component.list')}}', {}).then(
                 response => {
                     if (response.data.code !== 500) {
-                        this.sectionArray = response.data.arraySection;
-                        if (this.sectionArray.length === 0) {
+                        this.statusArray = response.data.arrayStatus;
+                        this.categoryArray = response.data.arrayCategory;
+                        this.tagArray = response.data.arrayTag;
+                        if (this.categoryArray.length === 0) {
                             Swal.fire(
                                 'Alerta',
-                                'Necesita registrar al menos una Seccion',
+                                'Necesita registrar al menos una Categoria',
                                 'warning'
                             ).then((result) => {
-                                window.location.href = '{{route('website.section.create')}}';
+                                window.location.href = '{{route('blog.category.create')}}';
+                            });
+                        }
+                        if (this.tagArray.length === 0) {
+                            Swal.fire(
+                                'Alerta',
+                                'Necesita registrar al menos una Etiqueta',
+                                'warning'
+                            ).then((result) => {
+                                window.location.href = '{{route('blog.tag.create')}}';
                             });
                         }
 
-                        this.section = this.sectionArray[0]
+                        this.category = this.categoryArray[0]
                     }
                 })
                 .catch(error => {
@@ -147,9 +198,13 @@
         },
         methods: {
             saveRow() {
-               
+                if (this.tagSelect.length === 0) {
+                    this.validaTag = true
+                }
+                this.slug = $('#slug').val()
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+                        if (this.tagSelect.length > 0) {
                             Swal.fire({
                                 title: 'Estas seguro de guardar el elemento?',
                                 text: "Debes estar seguro antes de continuar",
@@ -161,13 +216,16 @@
                             }).then((result) => {
                                 if (result.value) {
                                     let form = {
-                                        name: this.name,
-                                        value_es: this.value_es,
-                                        value_en: this.value_en,
-                                        id_section: this.section.id,
+                                        title: this.title,
+                                        slug: this.slug,
+                                        content: this.content,
+                                        id_category: this.category.id,
+                                        status_post: this.status.id,
+                                        publication_date: this.datepublication,
+                                        tags: this.tagSelect
                                     }
 
-                                    RoutePost_BACK('{{route('website.text.store')}}', form).then(
+                                    RoutePost_BACK('{{route('blog.post.store')}}', form).then(
                                         response => {
                                             if (response.data.code !== 500) {
                                                 Swal.fire(
@@ -175,7 +233,7 @@
                                                     response.data.message,
                                                     'success'
                                                 ).then((result) => {
-                                                    window.location.href = '{{route( 'website.text.list')}}';
+                                                    window.location.href = '{{route( 'blog.post.list')}}';
                                                 });
 
                                             } else {
@@ -188,13 +246,25 @@
 
                                 }
                             })
+                        } else {
+                            this.validaTag = true
+                        }
+
                     }
                 })
 
             },
             defaultSelect() {
-                if (this.section === null) {
-                    this.section = this.sectionArray[0]
+                if (this.status === null) {
+                    this.status = {'id': 0, 'name': 'Borrador'}
+                }
+                if (this.category === null) {
+                    this.category = this.categoryArray[0]
+                }
+                if (this.tagSelect.length === 0) {
+                    this.validaTag = true
+                } else {
+                    this.validaTag = false
                 }
             }
         },

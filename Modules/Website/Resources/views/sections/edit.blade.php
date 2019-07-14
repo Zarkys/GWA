@@ -9,10 +9,10 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-10">
-                        <h6 class="m-0 font-weight-bold text-primary">Actualizando la Etiqueta</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Actualizando la Sección</h6>
                     </div>
                     <div class="col-md-2">
-                        <a href="{{route('blog.tag.list')}}" class="btn btn-warning btn-icon-split">
+                        <a href="{{route('website.section.list')}}" class="btn btn-warning btn-icon-split">
                             <span class="icon text-white-50"><i class="fas fa-arrow-left"></i></span>
                             <span class="text">Volver</span>
                         </a>
@@ -25,38 +25,15 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Nombre</label>
-                                <input v-model="name" v-validate="'required'" class="form-control"
-                                       :class="{'input': true, 'is-danger': errors.has('name') }" type="text"
-                                       name="name" id="name" placeholder="Nombre de la etiqueta">
-                                <i v-show="errors.has('name')" class="fa fa-exclamation-triangle"></i>
-                                <span v-show="errors.has('name')"
-                                      class="help is-danger">@{{ errors.first('name') }}</span>
+                                <label>Título</label>
+                                <input v-model="title" v-validate="'required'" class="form-control"
+                                       :class="{'input': true, 'is-danger': errors.has('title') }" type="text"
+                                       name="title" id="title" placeholder="Título de Sección">
+                                <i v-show="errors.has('title')" class="fa fa-exclamation-triangle"></i>
+                                <span v-show="errors.has('title')"
+                                      class="help is-danger">@{{ errors.first('title') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Slug</label>
-                                <input {{--v-model="slug"--}} v-validate="'required'" class="form-control"
-                                       :class="{'input': true, 'is-danger': errors.has('slug') }" type="text"
-                                       name="slug" id="slug" placeholder="Slug">
-                                <i v-show="errors.has('slug')" class="fa fa-exclamation-triangle"></i>
-                                <span v-show="errors.has('slug')"
-                                      class="help is-danger">@{{ errors.first('slug') }}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label>Descripcion</label>
-                                <input v-model="description" v-validate="'required'" class="form-control"
-                                       :class="{'input': true, 'is-danger': errors.has('description') }" type="text"
-                                       name="description" id="description" placeholder="Descripcion de la etiqueta">
-                                <i v-show="errors.has('description')" class="fa fa-exclamation-triangle"></i>
-                                <span v-show="errors.has('description')"
-                                      class="help is-danger">@{{ errors.first('description') }}</span>
-                            </div>
-                        </div>
-
                     </div>
 
                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -77,17 +54,6 @@
 
 <script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
 
-<script src="{{ asset('assets/stringToSlug/jquery.stringToSlug.min.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        $("#name, #slug").stringToSlug({
-            callback: function (text) {
-                $('#slug').val(text);
-            }
-        });
-    });
-</script>
-
 <script>
     Vue.use(VeeValidate);
 
@@ -96,12 +62,7 @@
         data() {
             return {
                 message: '',
-                name: '',
-                description: '',
-                slug: '',
-                posts: {},
-                parentcategory: '',
-                parentscategories: []
+                title: '',
             }
         },
         mounted() {
@@ -111,14 +72,10 @@
             var form = {
                 'id': this.id
             }
-            RoutePost_BACK('{{route('blog.tag.consult')}}', form).then(
+            RoutePost_BACK('{{route('website.section.consult')}}', form).then(
                 response => {
                     if (response.data.code !== 500) {
-                        this.name = response.data.data.name;
-                        this.slug = response.data.data.slug;
-                        this.description = response.data.data.description;
-                        let valSlug = this.slug
-                        $('#slug').val(valSlug)
+                        this.title = response.data.data.title;
                     } else {
                         console.log(response.data);
                     }
@@ -129,7 +86,6 @@
         },
         methods: {
             updateRow() {
-                this.slug = $('#slug').val()
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         Swal.fire({
@@ -144,11 +100,9 @@
                             if (result.value) {
                                 let form = {
                                     id: this.id,
-                                    name: this.name,
-                                    slug: this.slug,
-                                    description: this.description,
+                                    title: this.title,
                                 }
-                                RoutePost_BACK('{{route('blog.tag.update')}}', form).then(
+                                RoutePost_BACK('{{route('website.section.update')}}', form).then(
                                     response => {
                                         if (response.data.code === 200) {
                                             toastrPersonalized.toastr('', response.data.message, 'success');
@@ -157,7 +111,7 @@
                                                 response.data.message,
                                                 'success'
                                             ).then((result) => {
-                                                window.location.href = '{{route('blog.tag.list')}}';
+                                                window.location.href = '{{route('website.section.list')}}';
                                             });
 
                                         } else {

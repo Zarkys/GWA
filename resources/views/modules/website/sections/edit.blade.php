@@ -25,10 +25,10 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Title</label>
+                                <label>Título</label>
                                 <input v-model="title" v-validate="'required'" class="form-control"
                                        :class="{'input': true, 'is-danger': errors.has('title') }" type="text"
-                                       name="title" id="title" placeholder="Titulo de la Sección">
+                                       name="title" id="title" placeholder="Título de Sección">
                                 <i v-show="errors.has('title')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('title')"
                                       class="help is-danger">@{{ errors.first('title') }}</span>
@@ -54,7 +54,6 @@
 
 <script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
 
-
 <script>
     Vue.use(VeeValidate);
 
@@ -64,7 +63,6 @@
             return {
                 message: '',
                 title: '',
-                texts: {},
             }
         },
         mounted() {

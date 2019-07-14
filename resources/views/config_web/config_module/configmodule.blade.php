@@ -10,7 +10,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Actualizar Configuraciones de la Web</h1>
+            <h1 class="h3 mb-0 text-gray-800">Actualizar Configuraciones de modulos para la Web</h1>
         </div>
 
 
@@ -19,7 +19,7 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h6 class="m-0 font-weight-bold text-primary">Configuraciones Generales de GWA</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Configuraciones de Modulos de GWA</h6>
                         <p>Indica los valores que deseas modificar</p>
                     </div>
 
@@ -34,20 +34,19 @@
 
 
                             <ul class="list-group">
-                                <li class="list-group-item" v-for="config in config_web">
+                                <li class="list-group-item" v-for="config in config_module">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <h4>@{{config.name_config}}</h4>
+                                            <h4>@{{config.name_module}}</h4>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="inputName" v-model="config.value"
-                                                    aria-describedby="nameHelp" placeholder="Nombre del Producto">
-
-                                            </div>
+                                <v-select :options="statusArray" label="name" v-model="status"
+                                          @input="defaultSelect"></v-select>
+                            </div>
                                         </div>
                                         <div class="col-md-3">
-                                            <button v-on:click="updateConfigWeb(config)" type="button" class="btn btn-primary">Actualizar</button>
+                                            <button v-on:click="updateConfigModule(config)" type="button" class="btn btn-primary">Actualizar</button>
                                            <!--   <a v-if="attributetype.active === 1" data-placement="top" title="Cambiar Estatus a Inactivo"
                                                 href="#" v-on:click="checkRow(attributetype.id)" class="btn btn-success btn-circle">
                                                 <i class="fas fa-check"></i>
@@ -110,21 +109,17 @@
         data() {
             return {
                 message: '',
-                name_product: '',
-                product: {},
-                attributetypes: [],
-                attributetype: {},
-                config_web:{},
-                typeproduct: '',
-                typeproducts: []
+                config_module:{},
+                status: {'id': 0, 'name': 'Desactivado'},
+                statusArray: [],
             }
         },
         mounted() {
           
-            loadOneElement('configweb', '').then(
+            loadOneElement('configmodule', '').then(
                     response => {
                         if (response.data.code !== 500) {
-                            this.config_web = response.data.data;
+                            this.config_module = response.data.data;
                         }
                      else {
                             console.log(response.data);
@@ -134,9 +129,6 @@
                 .catch(error => {
                     console.log(error);
                 });
-
-         
-
 
 
 
