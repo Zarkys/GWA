@@ -130,6 +130,19 @@
                     console.log(error);
                 });
 
+              /* RouteGet_BACK('{{route('blog.component.list')}}', {}).then(
+                response => {
+                    if (response.data.code !== 500) {
+                        this.statusArray = response.data.arrayStatus;
+                        this.categoryArray = response.data.arrayCategory;
+                        this.tagArray = response.data.arrayTag;
+
+                        this.category = this.categoryArray[0]
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });*/
 
 
         },
