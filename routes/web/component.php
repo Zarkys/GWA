@@ -3,12 +3,12 @@
 //TODO ROUTE ADMIN
 Route::group([
     'middleware' => ['auth'],
-    'prefix' => '/component',
+    'prefix' => '/componentmodule',
 ], function () {
 
     Route::get('/list', [
         'as' => 'component.list',
-        'uses' => 'ComponentController@list',
+        'uses' => 'Api\ComponentController@list',
     ]);
 
 });

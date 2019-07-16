@@ -130,19 +130,15 @@
                     console.log(error);
                 });
 
-              /* RouteGet_BACK('{{route('blog.component.list')}}', {}).then(
+              RouteGet_BACK('componentmodule/list', {}).then(
                 response => {
                     if (response.data.code !== 500) {
                         this.statusArray = response.data.arrayStatus;
-                        this.categoryArray = response.data.arrayCategory;
-                        this.tagArray = response.data.arrayTag;
-
-                        this.category = this.categoryArray[0]
                     }
                 })
                 .catch(error => {
                     console.log(error);
-                });*/
+                });
 
 
         },
@@ -150,7 +146,7 @@
             back() {
 
             },
-            updateConfigWeb(config) {
+            updateConfigModule(config) {
                 Swal.fire({
                     title: 'Estas seguro de actualizar las configuraciones de la Web?',
                     text: "Este cambio puede afectar el buen funcionamiento del website, sea cuidadoso",
@@ -164,10 +160,10 @@
                        
                
 
-                        updateElement('configweb/'+config.id, config).then(
+                        updateElement('configmodule/'+config.id, config).then(
                                 response => {
                                     if (response.data.code !== 500) {
-                                        // this.typeproducts = response.data.data; 
+                                         status: this.status.id,
                                         Swal.fire(
                                             'Elemento Actualizado',
                                             'La información se actualizo correctamente',
@@ -232,6 +228,11 @@
             },
             cleanform() {
 
+            },
+            defaultSelect() {
+                if (this.status === null) {
+                    this.status = {'id': 0, 'name': 'Desactivado'}
+                }
             }
 
         },

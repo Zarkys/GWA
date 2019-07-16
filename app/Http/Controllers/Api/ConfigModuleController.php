@@ -270,11 +270,15 @@
             Log::debug($request);
             $configmodule = $this->ConfigModuleRepo->findbyid($id);
 
-            
+//$ola = $request->get('status')
+            // Log::debug('estatus del request'.$ola);
            
             if($request->has('status')){
+                $nueva = $request->get('status');
+                 Log::debug('estatus re3quest'.$nueva);
                 $data['status'] = $request->get('status');
             }
+            Log::debug('estatus modificado'.$data['status']);
     
             try {
 
@@ -285,7 +289,7 @@
                 $response = [
                     'status'  => 'OK',
                     'code'    => 200,
-                    'message' => __('El tipo de producto  ha sido modificado correctamente '),
+                    'message' => __('La Configuracionde modulo ha sido modificado correctamente '),
                     'data'    => $configmodule,
                 ];
                 

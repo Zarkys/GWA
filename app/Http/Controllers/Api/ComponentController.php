@@ -1,10 +1,11 @@
 <?php
 
-namespace Modules\Blog\Http\Controllers;
+//namespace Modules\Blog\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Log;
-use Modules\Blog\Models\Repositories\ComponentsRepo;
+use App\Http\Models\Repositories\ComponentsRepo;
 
 class ComponentController extends BaseController
 {
