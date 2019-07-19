@@ -2,20 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="724f85cc-c6b6-4e09-9282-4f8e5cf13d58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Modules/Blog/Http/Controllers/CommentController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Blog/Models/Repositories/CommentRepo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Blog/Resources/views/comments/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Blog/Routes/comment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Http/Controllers/ComponentController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Http/Controllers/LibraryController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Models/Entities/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Models/Entities/Records.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Models/Enums/ActiveArchive.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Models/Repositories/RecordsRepo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Routes/library.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Modules/Records/Routes/records.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Components/Helper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Components/sidebar/Items.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Components/sidebar/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Components/sidebar/client.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/basic.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/dropzone-amd-module.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/dropzone.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/dropzone.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/min/basic.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/min/dropzone-amd-module.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/min/dropzone.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/min/dropzone.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dist/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dropzone.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dropzone.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/dropzone/dropzone_original.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fancybox/jquery.fancybox.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/fancybox/jquery.fancybox.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/website_public/blogModule.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/GWA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GWA.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Blog/Models/Entities/CommentBlog.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Models/Entities/CommentBlog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Blog/Routes/category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Routes/category.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/filesystems.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2018_12_20_154412_create_archive_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Records/Database/Migrations/2019_07_16_000010_create_records_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_16_183656_producs_archives.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_03_16_183656_producs_archives.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/axios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footscript.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footscript.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/modules/blog/landing/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/blog/landing/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/modules/blog/landing/post.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/modules/blog/landing/post.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/multimedia/multimedia/archives.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/multimedia/multimedia/archives.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/website_public/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/website_public/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,63 +63,110 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php">
+        <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2959">
-              <caret line="188" column="29" selection-start-line="188" selection-start-column="20" selection-end-line="188" selection-end-column="29" />
+            <state relative-caret-position="1273">
+              <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/CommentController.php">
+        <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="437">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding>
-                <element signature="e#49#77#0#PHP" expanded="true" />
-                <element signature="e#491#600#0#PHP" />
-                <element signature="e#632#712#0#PHP" />
-                <element signature="e#718#802#0#PHP" />
-                <element signature="e#808#888#0#PHP" />
-                <element signature="e#919#1640#0#PHP" />
-                <element signature="e#960#1633#0#PHP" />
-                <element signature="e#1089#1272#0#PHP" />
-                <element signature="e#1339#1633#0#PHP" />
-                <element signature="e#1417#1568#0#PHP" />
-                <element signature="e#1646#3267#0#PHP" />
-                <element signature="e#1720#1833#0#PHP" />
-                <element signature="e#1753#1832#0#PHP" />
-                <element signature="e#1844#2161#0#PHP" />
-                <element signature="e#1895#2101#0#PHP" />
-                <element signature="e#2170#3261#0#PHP" />
-                <element signature="e#2260#2752#0#PHP" />
-                <element signature="e#2508#2678#0#PHP" />
-                <element signature="e#2778#2928#0#PHP" />
-                <element signature="e#2995#3261#0#PHP" />
-                <element signature="e#3044#3196#0#PHP" />
+                <element signature="n#div#0;n#!!top" />
+                <element signature="n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
+                <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
+                <element signature="e#8885#9073#0#HTML" />
+                <element signature="e#9192#9862#0#HTML" />
+                <element signature="e#9895#10596#0#HTML" />
+                <element signature="e#10637#12162#0#HTML" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/website_public/web.php">
+        <entry file="file://D:/Descargas/Copiar-Cortar-Portapapeles/Copiar-Cortar-Portapapeles/portapapeles-test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="34" />
+            <state relative-caret-position="456">
+              <caret line="24" selection-start-line="24" selection-end-line="32" selection-end-column="6" />
+              <folding>
+                <element signature="e#1718#2669#0" />
+                <element signature="e#2932#3019#0" />
+                <element signature="e#3172#3297#0" />
+                <element signature="e#3322#3454#0" />
+                <element signature="e#3481#3620#0" />
+                <element signature="e#3651#3792#0" />
+                <element signature="e#3823#4007#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/LibraryController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1064">
+              <caret line="128" column="111" selection-start-line="128" selection-start-column="111" selection-end-line="128" selection-end-column="111" />
+              <folding>
+                <element signature="e#52#80#0#PHP" expanded="true" />
+                <element signature="e#304#413#0#PHP" />
+                <element signature="e#444#526#0#PHP" />
+                <element signature="e#556#2361#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="551">
+              <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+              <folding>
+                <element signature="e#52#80#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ComponentController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="41" selection-end-column="10" />
+              <folding>
+                <element signature="e#52#78#0#PHP" expanded="true" />
+                <element signature="e#415#579#0#PHP" />
+                <element signature="e#603#758#0#PHP" />
+                <element signature="e#782#1089#0#PHP" />
+                <element signature="e#1470#1852#0#PHP" />
+                <element signature="e#1558#1852#0#PHP" />
+                <element signature="e#1644#1852#0#PHP" />
+                <element signature="e#1730#1852#0#PHP" />
+                <element signature="e#1811#1852#0#PHP" />
+                <element signature="e#1874#1943#0#PHP" />
+                <element signature="e#1985#2935#0#PHP" />
+                <element signature="e#2059#2180#0#PHP" />
+                <element signature="e#2231#2904#0#PHP" />
+                <element signature="e#2941#3863#0#PHP" />
+                <element signature="e#3049#3170#0#PHP" />
+                <element signature="e#3221#3832#0#PHP" />
+                <element signature="e#3869#3984#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/footscript.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="25" selection-end-column="6" />
-              <folding>
-                <element signature="e#49#85#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="19">
+              <caret line="1" column="96" selection-start-line="1" selection-start-column="96" selection-end-line="1" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -102,32 +182,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$PROJECT_DIR$/var/www/GWA</find>
-      <find>DeviceRepo</find>
-      <find>ArchiveAssignmentController</find>
-      <find>admin.home</find>
-      <find>checkRow</find>
-      <find>is-&gt;mergeConfigFrom</find>
-      <find>_('</find>
-      <find>= Category::</find>
-      <find>CategoryRepo</find>
-      <find>CategoryController</find>
-      <find>ActiveCategory</find>
-      <find>$category</find>
-      <find>listCategories</find>
-      <find>Visibilidad</find>
-      <find>editorOption</find>
-      <find>quillEditor</find>
-      <find>quillEditorA</find>
-      <find>app</find>
-      <find>onEditorReady</find>
-      <find>onEditorBlur</find>
-      <find>datepublication</find>
       <find>Post::</find>
       <find>PostBlog::</find>
       <find>l</find>
       <find>deletePost</find>
       <find>blog</find>
+      <find>archi</find>
+      <find>href</find>
+      <find>ropzone.options.myDropzon</find>
+      <find>addRemoveLin</find>
+      <find>options</find>
+      <find>removedfile</find>
+      <find>dz-error-mark</find>
+      <find>svg</find>
+      <find>#FFFFFF</find>
+      <find>7cfc00</find>
+      <find>wit</find>
+      <find>get</find>
+      <find>size</find>
+      <find>dz-remove</find>
+      <find>addRemoveLinks</find>
+      <find>calculatePercentage</find>
+      <find>loadRecords</find>
+      <find>getUploadingFiles</find>
+      <find>processQueue</find>
+      <find>dropzone .dz-preview .dz-progress .dz-upload</find>
+      <find>main</find>
+      <find>typeExtension</find>
+      <find>shortText</find>
+      <find>textoACopiar</find>
+      <find>btnCopiar</find>
     </findStrings>
     <replaceStrings>
       <replace>= CategoryBlog::</replace>
@@ -139,12 +223,14 @@
       <replace>tag.</replace>
       <replace>PostBlog::</replace>
       <replace>Post::</replace>
+      <replace />
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
       <dir>C:\laragon\www\GWA</dir>
       <dir>D:\laragon\www\GWA\database\migrations</dir>
       <dir>D:\laragon\www\GWA\Modules\Blog\Resources</dir>
+      <dir>D:\laragon\www\GWA\routes\web</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -153,57 +239,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Entities/Tag.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Repositories/TagRepo.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Repositories/ComponentsRepo.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_06_01_000020_create_tags_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_06_01_000050_create_comment_blog_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/TagController.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_06_01_000040_create_post_tag_table.php" />
-        <option value="$PROJECT_DIR$/app/Http/Models/Entities/User.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Routes/post.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/posts/create.blade.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/posts/edit.blade.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Repositories/PostRepo.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Entities/Post.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/posts/list.blade.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Routes/web.php" />
-        <option value="$PROJECT_DIR$/resources/views/blog/categories/categories_new.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/blog/comments/comments_update.blade.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/CategoryController.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/ComponentController.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/PostController.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/posts.blade.php" />
-        <option value="C:/Windows/System32/drivers/etc/hosts" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_06_01_000020_create_posts_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_06_01_000030_create_tags_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_06_01_000050_create_comments_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_06_01_000010_create_categories_blog_table.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000020_create_posts_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000010_create_categories_blog_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000030_create_tags_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000040_create_post_tag_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Resources/assets/viewBlog/style.css" />
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/footscript.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Models/Repositories/CategoryProductRepo.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/app.blade.php" />
-        <option value="$PROJECT_DIR$/routes/website_public/web.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Entities/CommentBlog.php" />
         <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Routes/category.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Routes/comment.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/CommentsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Enums/StatusCommentBlog.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/resources/views/multimedia/multimedia/archives.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" />
+        <option value="$USER_HOME$/Desktop/hola.html" />
+        <option value="D:/Descargas/Responsive-Photo-Gallery-with-jQuery-and-Bootstrap-3/Responsive-Photo-Gallery-with-jQuery-and-Bootstrap-3/demo.html" />
+        <option value="$USER_HOME$/Desktop/Nueva carpeta/hola.html" />
         <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/comments/list.blade.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Models/Repositories/CommentRepo.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/CommentController.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php" />
+        <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
+        <option value="$PROJECT_DIR$/app/Components/sidebar/admin.php" />
+        <option value="$PROJECT_DIR$/app/Components/sidebar/operator.php" />
+        <option value="$PROJECT_DIR$/app/Components/sidebar/Items.php" />
+        <option value="$PROJECT_DIR$/routes/website_public/blogModule.php" />
+        <option value="$PROJECT_DIR$/routes/website_public/web.php" />
+        <option value="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Providers/RouteServiceProvider.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Routes/web.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Resources/views/archive/create.blade.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Routes/records.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Models/Enums/Active.php" />
+        <option value="$PROJECT_DIR$/config/filesystems.php" />
+        <option value="$PROJECT_DIR$/app/Components/Helper.php" />
+        <option value="$PROJECT_DIR$/public/assets/dropzone/dist/dropzone.css" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/Modules/Records/Database/Seeders/RecordsDatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Models/Enums/ActiveArchive.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Database/Migrations/2019_07_16_000010_create_records_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_03_16_183656_producs_archives.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ArchiveController.php" />
+        <option value="$PROJECT_DIR$/public/assets/dropzone/dist/dropzone.js" />
+        <option value="$PROJECT_DIR$/Modules/Records/Resources/views/library/upload.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Models/Entities/Archive.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Models/Repositories/ArchiveRepo.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Models/Repositories/RecordsRepo.php" />
+        <option value="$PROJECT_DIR$/Modules/Blog/Resources/views/categories/list.blade.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Routes/library.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Http/Controllers/ComponentController.php" />
+        <option value="$PROJECT_DIR$/public/js/axios.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/assets/nprogress/nprogress.css" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/dropzone/dropzone.css" />
+        <option value="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Http/Controllers/LibraryController.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php" />
+        <option value="D:/Descargas/Copiar-Cortar-Portapapeles/Copiar-Cortar-Portapapeles/portapapeles-test.html" />
+        <option value="$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/footscript.blade.php" />
       </list>
     </option>
   </component>
@@ -310,12 +396,14 @@
       <path value="$PROJECT_DIR$/vendor/symfony/process" />
       <path value="$PROJECT_DIR$/vendor/symfony/debug" />
       <path value="$PROJECT_DIR$/vendor/nwidart/laravel-modules" />
+      <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/hashids/hashids" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="640" />
-    <option name="width" value="640" />
-    <option name="height" value="920" />
+    <option name="x" value="-8" />
+    <option name="width" value="1004" />
+    <option name="height" value="688" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -325,7 +413,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -336,32 +423,6 @@
             <path>
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
               <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -369,44 +430,6 @@
               <item name="GWA" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
               <item name="Blog" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-              <item name="Enums" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Models" type="462c0819:PsiDirectoryNode" />
-              <item name="Repositories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
@@ -422,15 +445,6 @@
               <item name="Blog" type="462c0819:PsiDirectoryNode" />
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="categories" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
@@ -445,17 +459,107 @@
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
               <item name="GWA" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="landing" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
               <item name="GWA" type="462c0819:PsiDirectoryNode" />
               <item name="Modules" type="462c0819:PsiDirectoryNode" />
-              <item name="Blog" type="462c0819:PsiDirectoryNode" />
-              <item name="Routes" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
+              <item name="Database" type="462c0819:PsiDirectoryNode" />
+              <item name="Migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="Modules" type="462c0819:PsiDirectoryNode" />
+              <item name="Records" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="library" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="dropzone" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="upload" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="upload" type="462c0819:PsiDirectoryNode" />
+              <item name="records" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GWA" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="upload" type="462c0819:PsiDirectoryNode" />
+              <item name="records" type="462c0819:PsiDirectoryNode" />
+              <item name="office" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
@@ -471,24 +575,21 @@
             <path>
               <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
               <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GWA" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GWA" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-              <item name="website_public" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="4.2.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../back" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GWA_TEMP" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -496,19 +597,19 @@
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\laragon\www\GWA\Modules\Blog\Resources\views" />
-      <recent name="D:\laragon\www\GWA\Modules\Blog\Routes" />
-      <recent name="D:\laragon\www\GWA\Modules\Blog\Models\Repositories" />
-      <recent name="D:\laragon\www\GWA\Modules\Blog\Http\Controllers" />
-      <recent name="D:\laragon\www\GWA\Modules" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\GWA\Modules\Records\Database\Migrations" />
+      <recent name="D:\laragon\www\GWA\public\assets\dropzone" />
       <recent name="C:\laragon\www\GWA\Modules\Blog\Models\Entities" />
       <recent name="C:\laragon\www\GWA\Modules\Blog\Database\Migrations" />
       <recent name="C:\laragon\www\GWA\Modules\Blog\Models\Repositories" />
-      <recent name="C:\laragon\www\GWA\Modules\Blog\Http\Controllers" />
-      <recent name="C:\laragon\www\GWA\Modules\Blog\Routes" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\laragon\www\GWA\public\assets\dropzone" />
+      <recent name="D:\laragon\www\GWA\public\assets" />
+      <recent name="D:\laragon\www\GWA\Modules\Records\Http\Controllers" />
+      <recent name="D:\laragon\www\GWA\Modules\Records\Resources\views" />
+      <recent name="D:\laragon\www\GWA\Modules\Records\Routes" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -558,34 +659,41 @@
       <workItem from="1562764028100" duration="31000" />
       <workItem from="1562764727660" duration="3275000" />
       <workItem from="1562799154371" duration="1469000" />
-      <workItem from="1562870276889" duration="3342000" />
+      <workItem from="1562870276889" duration="10414000" />
+      <workItem from="1562927467336" duration="1253000" />
+      <workItem from="1563195087045" duration="31390000" />
+      <workItem from="1563273797455" duration="42750000" />
+      <workItem from="1563364461308" duration="16625000" />
+      <workItem from="1563474133129" duration="12460000" />
+      <workItem from="1563527179410" duration="2853000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153367000" />
+    <option name="totallyTimeSpent" value="267770000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33125" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09296875" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3293718" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49924242" weight="0.6943973" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007576" side_tool="true" weight="0.4327354" />
-      <window_info anchor="bottom" id="Messages" order="12" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="0" weight="0.3295964" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3293718" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49924242" weight="0.6943973" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5007576" side_tool="true" weight="0.4327354" />
+      <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -607,6 +715,16 @@
           <url>file://$PROJECT_DIR$/public/js/axios.js</url>
           <line>9</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/assets/dropzone/dist/dropzone.js</url>
+          <line>138</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/assets/dropzone/dist/dropzone.js</url>
+          <line>791</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/Modules/Blog/Models/Repositories/CategoryBlogRepo.php</url>
@@ -643,426 +761,556 @@
           <line>59</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/routes/web/web.php</url>
+          <line>22</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/routes/web/web.php</url>
+          <line>23</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/routes/web/web.php</url>
+          <line>25</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/routes/web/web.php</url>
+          <line>24</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/seeds/UserSeeder.php">
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Routes/web.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Concerns/InteractsWithInput.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        <state relative-caret-position="905">
+          <caret line="374" column="20" selection-start-line="374" selection-start-column="20" selection-end-line="374" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/gd/gd.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="82" column="9" selection-start-line="82" selection-start-column="9" selection-end-line="82" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="266" column="24" selection-start-line="266" selection-start-column="19" selection-end-line="266" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_0.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="907" column="12" selection-start-line="907" selection-start-column="9" selection-end-line="907" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Models/Repositories/ArchiveRepo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="172" column="20" selection-start-line="172" selection-start-column="20" selection-end-line="172" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ArchiveController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="29" column="73" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/fileinfo/fileinfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-566">
+          <caret line="128" column="27" selection-start-line="128" selection-start-column="21" selection-end-line="128" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="145" column="13" selection-start-line="145" selection-start-column="13" selection-end-line="145" selection-end-column="13" />
+        <state relative-caret-position="289">
+          <caret line="675" column="13" selection-start-line="675" selection-start-column="13" selection-end-line="675" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Config/config.php">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_7.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="523" column="9" selection-start-line="523" selection-start-column="9" selection-end-line="523" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/upload/records/image/j8nAws1dW3.png" />
+    <entry file="file://$PROJECT_DIR$/public/upload/records/image/rm2Yjiolnl.png" />
+    <entry file="file://$PROJECT_DIR$/public/assets/dropzone/dist/dropzone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="379" column="37" selection-start-line="379" selection-start-column="37" selection-end-line="379" selection-end-column="37" />
+          <folding>
+            <element signature="e#93#448#0" />
+            <element signature="e#142#442#0" />
+            <element signature="e#509#690#0" />
+            <element signature="e#763#865#0" />
+            <element signature="e#1068#1184#0" />
+            <element signature="e#1260#1419#0" />
+            <element signature="e#1283#1413#0" />
+            <element signature="e#1642#1715#0" />
+            <element signature="e#2955#2996#0" />
+            <element signature="e#3022#5089#0" />
+            <element signature="e#3023#3359#0" />
+            <element signature="e#3120#3355#0" />
+            <element signature="e#3245#3291#0" />
+            <element signature="e#3361#4407#0" />
+            <element signature="e#3412#4205#0" />
+            <element signature="e#3529#4179#0" />
+            <element signature="e#3643#3698#0" />
+            <element signature="e#3832#4171#0" />
+            <element signature="e#3879#3975#0" />
+            <element signature="e#3981#4090#0" />
+            <element signature="e#4211#4285#0" />
+            <element signature="e#4409#5088#0" />
+            <element signature="e#4462#5084#0" />
+            <element signature="e#4518#4578#0" />
+            <element signature="e#4672#4702#0" />
+            <element signature="e#4767#4836#0" />
+            <element signature="e#4920#5058#0" />
+            <element signature="e#4988#5050#0" />
+            <element signature="e#37121#37448#0" />
+            <element signature="e#43397#44331#0" />
+            <element signature="e#102895#102947#0" />
+            <element signature="e#103012#103248#0" />
+            <element signature="e#103571#103632#0" />
+            <element signature="e#103638#104579#0" />
+            <element signature="e#103730#104459#0" />
+            <element signature="e#103757#104450#0" />
+            <element signature="e#103929#104419#0" />
+            <element signature="e#103980#104086#0" />
+            <element signature="e#104092#104211#0" />
+            <element signature="e#104296#104354#0" />
+            <element signature="e#104360#104409#0" />
+            <element signature="e#104602#105320#0" />
+            <element signature="e#104767#105297#0" />
+            <element signature="e#104810#104904#0" />
+            <element signature="e#104910#105013#0" />
+            <element signature="e#105190#105244#0" />
+            <element signature="e#105250#105291#0" />
+            <element signature="e#106196#106947#0" />
+            <element signature="e#106253#106290#0" />
+            <element signature="e#106296#106943#0" />
+            <element signature="e#106524#106937#0" />
+            <element signature="e#106571#106671#0" />
+            <element signature="e#106677#106788#0" />
+            <element signature="e#106864#106929#0" />
+            <element signature="e#106953#106986#0" />
+            <element signature="e#107065#107118#0" />
+            <element signature="e#107599#107642#0" />
+            <element signature="e#108463#108485#0" />
+            <element signature="e#108572#108635#0" />
+            <element signature="e#108605#108631#0" />
+            <element signature="e#108754#108801#0" />
+            <element signature="e#108832#108855#0" />
+            <element signature="e#108879#109003#0" />
+            <element signature="e#109144#109658#0" />
+            <element signature="e#109173#109613#0" />
+            <element signature="e#109313#109607#0" />
+            <element signature="e#109339#109435#0" />
+            <element signature="e#109441#109548#0" />
+            <element signature="e#109624#109654#0" />
+            <element signature="e#109693#110132#0" />
+            <element signature="e#109877#110128#0" />
+            <element signature="e#109901#109991#0" />
+            <element signature="e#109997#110096#0" />
+            <element signature="e#110164#110191#0" />
+            <element signature="e#110237#110378#0" />
+            <element signature="e#110673#110701#0" />
+            <element signature="e#110729#110757#0" />
+            <element signature="e#110956#110978#0" />
+            <element signature="e#111297#112043#0" />
+            <element signature="e#111336#111424#0" />
+            <element signature="e#111430#111525#0" />
+            <element signature="e#111627#111777#0" />
+            <element signature="e#111741#111771#0" />
+            <element signature="e#111812#111961#0" />
+            <element signature="e#111925#111955#0" />
+            <element signature="e#111967#112039#0" />
+            <element signature="e#112003#112033#0" />
+            <element signature="e#112181#112271#0" />
+            <element signature="e#112216#112265#0" />
+            <element signature="e#113744#113886#0" />
+            <element signature="e#113808#113830#0" />
+            <element signature="e#113836#113858#0" />
+            <element signature="e#113930#113949#0" />
+            <element signature="e#113955#113978#0" />
+            <element signature="e#114475#114520#0" />
+            <element signature="e#114556#119361#0" />
+            <element signature="e#114557#114714#0" />
+            <element signature="e#114613#114710#0" />
+            <element signature="e#114716#115672#0" />
+            <element signature="e#114775#115668#0" />
+            <element signature="e#115018#115641#0" />
+            <element signature="e#115267#115306#0" />
+            <element signature="e#115329#115361#0" />
+            <element signature="e#115605#115633#0" />
+            <element signature="e#115674#116150#0" />
+            <element signature="e#115759#116146#0" />
+            <element signature="e#115821#115864#0" />
+            <element signature="e#116152#116457#0" />
+            <element signature="e#116249#116453#0" />
+            <element signature="e#116459#116764#0" />
+            <element signature="e#116529#116760#0" />
+            <element signature="e#116609#116737#0" />
+            <element signature="e#116683#116716#0" />
+            <element signature="e#116766#117234#0" />
+            <element signature="e#116852#117230#0" />
+            <element signature="e#117236#117976#0" />
+            <element signature="e#117315#117972#0" />
+            <element signature="e#117381#117943#0" />
+            <element signature="e#117478#117506#0" />
+            <element signature="e#117582#117614#0" />
+            <element signature="e#117620#117865#0" />
+            <element signature="e#117907#117935#0" />
+            <element signature="e#117978#119360#0" />
+            <element signature="e#118037#119356#0" />
+            <element signature="e#118431#118616#0" />
+            <element signature="e#118692#119332#0" />
+            <element signature="e#119089#119126#0" />
+            <element signature="e#119152#119189#0" />
+            <element signature="e#119296#119324#0" />
+            <element signature="e#120148#120396#0" />
+            <element signature="e#120222#120243#0" />
+            <element signature="e#120345#120392#0" />
+            <element signature="e#120428#120563#0" />
+            <element signature="e#120438#120474#0" />
+            <element signature="e#120485#120534#0" />
+            <element signature="e#120603#120929#0" />
+            <element signature="e#120653#120771#0" />
+            <element signature="e#120665#120707#0" />
+            <element signature="e#141905#141920#0" />
+            <element signature="e#120740#120765#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Routes/records.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/layouts/master.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="28" selection-start-column="28" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/assets/js/app.js">
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Providers/RouteServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/assets/viewBlog/style.css">
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Providers/RecordsServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="6515" column="24" selection-start-line="6515" selection-start-column="24" selection-end-line="6515" selection-end-column="24" />
+        <state relative-caret-position="-922" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Database/Migrations/2019_07_16_000010_create_records_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Models/Enums/ActiveArchive.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+        <state relative-caret-position="38">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" lean-forward="true" selection-start-column="21" selection-end-column="21" />
+        <state relative-caret-position="114">
+          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="11" selection-end-column="14" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/blog/js/app.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/footer.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbar.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/modules/blog/comments/list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-912" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000010_create_categories_blog_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000020_create_posts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+        <state relative-caret-position="228">
+          <caret line="69" column="13" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/BlogController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-333" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Repositories/CategoryBlogRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Repositories/ComponentsRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Models/Repositories/CategoryProductRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="45" column="16" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="45" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CategoryProductController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="81" column="69" lean-forward="true" selection-start-line="81" selection-start-column="69" selection-end-line="81" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/footscript.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" selection-start-line="5" selection-end-line="6" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="18" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/categories/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="70" selection-start-line="70" selection-end-line="70" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/ComponentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="37" selection-end-column="52" />
-          <folding>
-            <element signature="e#49#101#0#PHP" expanded="true" />
-            <element signature="e#278#399#0#PHP" />
-            <element signature="e#1014#1308#0#PHP" />
-            <element signature="e#1092#1243#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/vue-validate/vee-validate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="8998" column="32" lean-forward="true" selection-start-line="8998" selection-start-column="32" selection-end-line="8998" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/egulias/email-validator/EmailValidator/Warning/Comment.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000040_create_post_tag_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="17" column="89" selection-start-line="17" selection-start-column="89" selection-end-line="17" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000030_create_tags_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/landing/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Routes/category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/comments/edit.blade.php" />
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/categories/list.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="190" column="10" lean-forward="true" selection-start-line="185" selection-start-column="8" selection-end-line="190" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Enums/ActiveCategory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Enums/StatusCommentBlog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" selection-start-line="7" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
+          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Routes/comment.php">
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Models/Entities/Records.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Entities/CommentBlog.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/PostController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="617">
-          <caret line="377" lean-forward="true" selection-start-line="377" selection-end-line="377" />
+        <state relative-caret-position="171">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
           <folding>
-            <element signature="e#49#91#0#PHP" expanded="true" />
-            <element signature="e#628#863#0#PHP" />
-            <element signature="e#891#968#0#PHP" />
-            <element signature="e#974#1055#0#PHP" />
-            <element signature="e#1061#1138#0#PHP" />
-            <element signature="e#1165#3250#0#PHP" />
-            <element signature="e#1232#1619#0#PHP" />
-            <element signature="e#1265#1593#0#PHP" />
-            <element signature="e#1630#1948#0#PHP" />
-            <element signature="e#1681#1887#0#PHP" />
-            <element signature="e#1958#3244#0#PHP" />
-            <element signature="e#1985#2537#0#PHP" />
-            <element signature="e#2734#2881#0#PHP" />
-            <element signature="e#2949#3244#0#PHP" />
-            <element signature="e#3027#3179#0#PHP" />
-            <element signature="e#3256#4059#0#PHP" />
-            <element signature="e#3366#3391#0#PHP" />
-            <element signature="e#3492#3671#0#PHP" />
-            <element signature="e#3728#3764#0#PHP" />
-            <element signature="e#4065#5702#0#PHP" />
-            <element signature="e#4139#4216#0#PHP" />
-            <element signature="e#4172#4215#0#PHP" />
-            <element signature="e#4227#4544#0#PHP" />
-            <element signature="e#4278#4484#0#PHP" />
-            <element signature="e#4554#5696#0#PHP" />
-            <element signature="e#4638#5184#0#PHP" />
-            <element signature="e#4896#5111#0#PHP" />
-            <element signature="e#5210#5362#0#PHP" />
-            <element signature="e#5430#5696#0#PHP" />
-            <element signature="e#5479#5631#0#PHP" />
-            <element signature="e#5708#7073#0#PHP" />
-            <element signature="e#5842#6533#0#PHP" />
-            <element signature="e#5891#6045#0#PHP" />
-            <element signature="e#6060#6468#0#PHP" />
-            <element signature="e#6181#6468#0#PHP" />
-            <element signature="e#6216#6395#0#PHP" />
-            <element signature="e#6555#6689#0#PHP" />
-            <element signature="e#6742#6778#0#PHP" />
-            <element signature="e#7079#8165#0#PHP" />
-            <element signature="e#7136#8158#0#PHP" />
-            <element signature="e#7280#7453#0#PHP" />
-            <element signature="e#7335#7439#0#PHP" />
-            <element signature="e#7490#7584#0#PHP" />
-            <element signature="e#7647#7826#0#PHP" />
-            <element signature="e#7893#8158#0#PHP" />
-            <element signature="e#7942#8093#0#PHP" />
-            <element signature="e#8171#10428#0#PHP" />
-            <element signature="e#8239#8645#0#PHP" />
-            <element signature="e#8272#8619#0#PHP" />
-            <element signature="e#8656#8974#0#PHP" />
-            <element signature="e#8707#8913#0#PHP" />
-            <element signature="e#8984#10422#0#PHP" />
-            <element signature="e#9066#9885#0#PHP" />
-            <element signature="e#9115#9492#0#PHP" />
-            <element signature="e#9524#9623#0#PHP" />
-            <element signature="e#9557#9622#0#PHP" />
-            <element signature="e#9641#9745#0#PHP" />
-            <element signature="e#9912#10059#0#PHP" />
-            <element signature="e#10127#10422#0#PHP" />
-            <element signature="e#10205#10357#0#PHP" />
+            <element signature="e#51#85#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_3.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3487" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Repositories/CommentRepo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" selection-start-line="19" selection-end-line="24" selection-end-column="5" />
+        <state relative-caret-position="289">
+          <caret line="132" column="9" selection-start-line="132" selection-start-column="9" selection-end-line="132" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/CategoryController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="419">
+          <caret line="48" selection-start-line="48" selection-end-line="70" selection-end-column="9" />
+          <folding>
+            <element signature="e#913#1565#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Descargas/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="565" column="9" selection-start-line="565" selection-start-column="9" selection-end-line="565" selection-end-column="9" />
+          <folding>
+            <element signature="n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#nav#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#3;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="66" column="7" lean-forward="true" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Routes/library.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="833" column="27" selection-start-line="833" selection-start-column="27" selection-end-line="833" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Models/Repositories/RecordsRepo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="59" column="32" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/axios.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/axios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/nprogress/nprogress.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="33" selection-start-line="33" selection-end-line="39" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="4" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index_fake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/nprogress/nprogress.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/dropzone/dist/dropzone-amd-module.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1197" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/dropzone/dropzone.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/categories/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="131" column="44" selection-start-line="131" selection-start-column="44" selection-end-line="131" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/dropzone/dropzone.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="340" column="27" selection-start-line="340" selection-start-column="27" selection-end-line="340" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/categories/list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="140" column="15" selection-start-line="140" selection-start-column="15" selection-end-line="178" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/comments/list.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1171">
-          <caret line="127" column="42" selection-start-line="127" selection-start-column="42" selection-end-line="127" selection-end-column="42" />
+        <state relative-caret-position="645">
+          <caret line="129" column="10" lean-forward="true" selection-start-line="124" selection-start-column="8" selection-end-line="129" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/website_public/web.php">
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="34" />
+        <state relative-caret-position="1273">
+          <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Resources/views/landing/post.blade.php">
+    <entry file="file://D:/Descargas/Copiar-Cortar-Portapapeles/Copiar-Cortar-Portapapeles/portapapeles-test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2959">
-          <caret line="188" column="29" selection-start-line="188" selection-start-column="20" selection-end-line="188" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/CommentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="456">
+          <caret line="24" selection-start-line="24" selection-end-line="32" selection-end-column="6" />
           <folding>
-            <element signature="e#49#77#0#PHP" expanded="true" />
-            <element signature="e#491#600#0#PHP" />
-            <element signature="e#632#712#0#PHP" />
-            <element signature="e#718#802#0#PHP" />
-            <element signature="e#808#888#0#PHP" />
-            <element signature="e#919#1640#0#PHP" />
-            <element signature="e#960#1633#0#PHP" />
-            <element signature="e#1089#1272#0#PHP" />
-            <element signature="e#1339#1633#0#PHP" />
-            <element signature="e#1417#1568#0#PHP" />
-            <element signature="e#1646#3267#0#PHP" />
-            <element signature="e#1720#1833#0#PHP" />
-            <element signature="e#1753#1832#0#PHP" />
-            <element signature="e#1844#2161#0#PHP" />
-            <element signature="e#1895#2101#0#PHP" />
-            <element signature="e#2170#3261#0#PHP" />
-            <element signature="e#2260#2752#0#PHP" />
-            <element signature="e#2508#2678#0#PHP" />
-            <element signature="e#2778#2928#0#PHP" />
-            <element signature="e#2995#3261#0#PHP" />
-            <element signature="e#3044#3196#0#PHP" />
+            <element signature="e#1718#2669#0" />
+            <element signature="e#2932#3019#0" />
+            <element signature="e#3172#3297#0" />
+            <element signature="e#3322#3454#0" />
+            <element signature="e#3481#3620#0" />
+            <element signature="e#3651#3792#0" />
+            <element signature="e#3823#4007#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Models/Entities/Post.php">
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/LibraryController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-67">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        <state relative-caret-position="1064">
+          <caret line="128" column="111" selection-start-line="128" selection-start-column="111" selection-end-line="128" selection-end-column="111" />
+          <folding>
+            <element signature="e#52#80#0#PHP" expanded="true" />
+            <element signature="e#304#413#0#PHP" />
+            <element signature="e#444#526#0#PHP" />
+            <element signature="e#556#2361#0#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Blog/Http/Controllers/PageController.php">
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="18" column="38" lean-forward="true" selection-start-line="18" selection-start-column="38" selection-end-line="25" selection-end-column="6" />
+        <state relative-caret-position="551">
+          <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
           <folding>
-            <element signature="e#49#85#0#PHP" expanded="true" />
+            <element signature="e#52#80#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ComponentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="41" selection-end-column="10" />
+          <folding>
+            <element signature="e#52#78#0#PHP" expanded="true" />
+            <element signature="e#415#579#0#PHP" />
+            <element signature="e#603#758#0#PHP" />
+            <element signature="e#782#1089#0#PHP" />
+            <element signature="e#1470#1852#0#PHP" />
+            <element signature="e#1558#1852#0#PHP" />
+            <element signature="e#1644#1852#0#PHP" />
+            <element signature="e#1730#1852#0#PHP" />
+            <element signature="e#1811#1852#0#PHP" />
+            <element signature="e#1874#1943#0#PHP" />
+            <element signature="e#1985#2935#0#PHP" />
+            <element signature="e#2059#2180#0#PHP" />
+            <element signature="e#2231#2904#0#PHP" />
+            <element signature="e#2941#3863#0#PHP" />
+            <element signature="e#3049#3170#0#PHP" />
+            <element signature="e#3221#3832#0#PHP" />
+            <element signature="e#3869#3984#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="4358" column="12" lean-forward="true" selection-start-line="4358" selection-start-column="4" selection-end-line="4358" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="n#div#0;n#!!top" />
+            <element signature="n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
+            <element signature="e#8885#9073#0#HTML" />
+            <element signature="e#9192#9862#0#HTML" />
+            <element signature="e#9895#10596#0#HTML" />
+            <element signature="e#10637#12162#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/footscript.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="96" selection-start-line="1" selection-start-column="96" selection-end-line="1" selection-end-column="96" />
         </state>
       </provider>
     </entry>

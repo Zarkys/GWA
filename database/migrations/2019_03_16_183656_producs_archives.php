@@ -16,12 +16,12 @@ class ProducsArchives extends Migration
         Schema::create('products_archives', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_product')->unsigned();
-            $table->integer('id_archive')->unsigned();          
+//            $table->integer('id_archive')->unsigned();
             $table->integer('active');
             $table->timestamps();
 
            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
-           $table->foreign('id_archive')->references('id')->on('archives')->onDelete('cascade');
+//           $table->foreign('id_archive')->references('id')->on('archives')->onDelete('cascade');
         });
     }
 

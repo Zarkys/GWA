@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>axios - file upload example</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="container">
+<h1>file upload</h1>
+
+<form role="form" class="form" onsubmit="return false;">
+    <div class="form-group">
+        <label for="file">File</label>
+        <input id="file" type="file" class="form-control"/>
+    </div>
+    <button id="upload" type="button" class="btn btn-primary">Upload</button>
+</form>
+
+<div id="output" class="container"></div>
+
+<script src="js/vue.js"></script>
+<script src="js/axios.min.js"></script>
+<script src="js/axios.js"></script>
+
+<script>
+    (function () {
+        var output = document.getElementById('output');
+        document.getElementById('upload').onclick = function () {
+            var data = new FormData();
+            data.append('foo', 'bar');
+            data.append('file', document.getElementById('file').files[0]);
+
+            var config = {
+                onUploadProgress: function (progressEvent) {
+                    var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                },
+                progress: (progressEvent) => {
+                    if (progressEvent.lengthComputable) {
+                        console.log(progressEvent.loaded + ' ' + progressEvent.total);
+                        // this.updateProgressBarValue(progressEvent);
+                    }
+                }
+            };
+            axios.post('http://gwa.co/goadmin/library/list/all', data, config)
+                .then(function (res) {
+                    console.log(res.data)
+                    output.className = 'container';
+                    output.innerHTML = res.data.message;
+                })
+                .catch(function (err) {
+                    output.className = 'container text-danger';
+                    output.innerHTML = err.message;
+                });
+
+        };
+    })();
+</script>
+</body>
+</html>
+
+

@@ -11,6 +11,15 @@ function RoutePost_BACK (url,params) {
     return axios.post(url,params)
 }
 
+function RoutePost_test (url,params) {
+    var config = {
+        onUploadProgress: function(progressEvent) {
+            var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+        }
+    };
+    return axios.post(url,params,config)
+}
+
 function loadElements (url,params) {
    
     return axios.get(baseUrl+prefix+url)

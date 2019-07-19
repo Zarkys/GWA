@@ -60,7 +60,14 @@
         }
         
         protected function mapWebPublicRoutes() {
-            Route::middleware('web')->namespace($this->namespace)->group(base_path('routes/website_public/web.php'));
+            Route::group([
+                'middleware' => 'web',
+                'namespace' => $this->namespace,
+            ], function ($router) {
+                self::get_routes(base_path('routes/website_public/'));
+            });
+
+//            Route::middleware('web')->namespace($this->namespace)->group(base_path('routes/website_public/web.php'));
         }
         
         /**
