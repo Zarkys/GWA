@@ -2,185 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="724f85cc-c6b6-4e09-9282-4f8e5cf13d58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Config/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Config/config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Console/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Database/Migrations/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Database/Migrations/2019_07_10_000010_create_sections_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Database/Seeders/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Database/Seeders/WebsiteDatabaseSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Database/factories/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Http/Controllers/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Http/Controllers/ComponentController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Http/Controllers/SectionController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Http/Controllers/TextController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Http/Controllers/WebsiteController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Http/Middleware/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Http/Requests/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Models/Entities/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Models/Entities/Section.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Models/Entities/Text.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Models/Enums/ActiveSection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Models/Enums/ActiveText.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Models/Repositories/ComponentsRepo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Models/Repositories/SectionRepo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Models/Repositories/TextRepo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Providers/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Providers/WebsiteServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/assets/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/assets/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/assets/sass/app.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/lang/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/layouts/master.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/sections/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/sections/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/sections/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/texts/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/texts/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Resources/views/texts/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Routes/component.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Routes/section.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Routes/text.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Routes/web.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Tests/Feature/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/Tests/Unit/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/module.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Modules/Website/webpack.mix.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ComponentController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ConfigModuleController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/LandingController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Models/Entities/ConfigModule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Models/Enums/ActiveModule.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Models/Repositories/ComponentRepo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Models/Repositories/ConfigModuleRepo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/website.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/ConfigModuleSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/css/landing-page.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/css/landing-page.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/.comments/expert04.jpg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/ASADAS2Recurso-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/Banner01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/Banner02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/Banner03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/BannerRMT01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/BannerRMT01English.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/BannerRMT02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/BannerRMT02English.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/BannerRMT03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/BannerRMT03English.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/BannerRMT04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/BannerRMT04English.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris01.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris10.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris12.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/fwdfj40gris9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris01.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris02.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris03.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris04.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris05.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris06.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris07.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris08.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris09.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris10.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris11.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris12.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris13.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris14.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris15.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris16.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/gris17.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde01.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde02.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde03.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde04.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde05.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde06.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde07.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde08.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde09.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde10.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde11.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde12.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde13.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde14.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde15.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde16.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde17.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde18.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/catalog/verde19.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/cj01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/cj02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/cj03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/cj04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/cj05.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/example.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/expert01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/expert02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/expert03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/expert04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/fwdfj40gris13.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/gris01.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/img/verde04.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_call-to-action.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_footer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_global.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_icons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_masthead.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_showcase.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_testimonials.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/website_assets/scss/landing-page.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/config_web/config_module/configmodule.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/.gitkeep" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/layouts/master.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/sections/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/sections/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/sections/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/texts/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/texts/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/modules/website/texts/list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/catalog.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/catalog_detail.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/contact.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/know.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/web_layouts/footer.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/web_layouts/footscripts.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/web_layouts/header.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/website_public/web_layouts/navbar.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/web/component.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/web/configmodule.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_25_183636_create_section_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_13_151556_config_module.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_25_183652_create_text_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Website/Database/Migrations/2019_07_10_000020_create_texts_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/ConfigWebSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ConfigWebSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/SectionSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/TextSeeder.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/config_web/configs/config.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/config_web/configs/config.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -235,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+            <state relative-caret-position="294">
+              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="e#52#80#0#PHP" expanded="true" />
               </folding>
@@ -252,7 +74,7 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="266">
@@ -410,13 +232,13 @@
         <option value="$PROJECT_DIR$/public/assets/nprogress/nprogress.css" />
         <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/dropzone/dropzone.css" />
-        <option value="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" />
         <option value="$PROJECT_DIR$/Modules/Records/Http/Controllers/LibraryController.php" />
         <option value="$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php" />
         <option value="D:/Descargas/Copiar-Cortar-Portapapeles/Copiar-Cortar-Portapapeles/portapapeles-test.html" />
         <option value="$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/footscript.blade.php" />
         <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" />
       </list>
     </option>
   </component>
@@ -727,12 +549,12 @@
       <workItem from="1563273797455" duration="42750000" />
       <workItem from="1563364461308" duration="16625000" />
       <workItem from="1563474133129" duration="12460000" />
-      <workItem from="1563527179410" duration="3422000" />
+      <workItem from="1563527179410" duration="4031000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268339000" />
+    <option name="totallyTimeSpent" value="268948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
@@ -1356,16 +1178,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="34" column="39" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-          <folding>
-            <element signature="e#52#80#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_13_151556_config_module.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1373,6 +1185,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="e#52#80#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
