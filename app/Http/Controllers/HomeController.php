@@ -208,6 +208,10 @@ class HomeController extends Controller
      {
          return view('config_web/configs/config');
      }
+     public function configmodule()
+     {
+         return view('config_web/config_module/configmodule');
+     }
      public function about()
      {
          return view('config_web/help/about');

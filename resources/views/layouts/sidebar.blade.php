@@ -110,17 +110,17 @@
     </li>
 
     <div class="sidebar-heading">
-        Zona de Websiite
+        Zona de Website
     </div>
     @if(Auth::user()->rol===2)
         <li class="nav-item">
-            <a class="nav-link" href="{{url('goadmin/sections')}}">
+            <a class="nav-link" href="{{route('website.section.list')}}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Secciones</span></a>
         </li>
     @endif
     <li class="nav-item">
-        <a class="nav-link" href="{{url('goadmin/texts')}}">
+        <a class="nav-link" href="{{route('website.text.list')}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Textos</span></a>
     </li>
@@ -129,14 +129,37 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Contactos</span></a>
     </li>
-    @if(Auth::user()->rol===2)
+   <!-- @if(Auth::user()->rol===2)
         <li class="nav-item">
             <a class="nav-link" href="{{url('goadmin/config')}}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Configuracion</span></a>
         </li>
-    @endif
+    @endif-->
 
+
+<!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    @if(Auth::user()->rol===2)
+        <div class="sidebar-heading">
+            Configuraciones
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('goadmin/config')}}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Configuracion</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('goadmin/config_module')}}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Modulos</span></a>
+        </li>
+@endif
 <!-- Divider -->
     <hr class="sidebar-divider">
 

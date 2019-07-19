@@ -68,6 +68,7 @@
         Route::get('/sections/update/{idelement}', 'HomeController@sectionsupdate')->name('sectionsupdate');
         //ADMIN - CONFIG
         Route::get('/config', 'HomeController@config')->name('config');
+        Route::get('/config_module', 'HomeController@configmodule')->name('config');
         Route::get('/about', 'HomeController@about')->name('about');
         Route::get('/profile', 'HomeController@profile')->name('profile');
         

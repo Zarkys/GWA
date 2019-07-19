@@ -19,8 +19,8 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-12">
-                        <h6 class="m-0 font-weight-bold text-primary">Caracteristicas del Producto</h6>
-                        <p>Indica los valores que deseas mostrar del producto</p>
+                        <h6 class="m-0 font-weight-bold text-primary">Configuraciones Generales de GWA</h6>
+                        <p>Indica los valores que deseas modificar</p>
                     </div>
 
                 </div>
