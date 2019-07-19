@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="724f85cc-c6b6-4e09-9282-4f8e5cf13d58" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,107 +16,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1273">
-              <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            <state relative-caret-position="342">
+              <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
               <folding>
-                <element signature="n#div#0;n#!!top" />
-                <element signature="n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
-                <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
-                <element signature="e#8885#9073#0#HTML" />
-                <element signature="e#9192#9862#0#HTML" />
-                <element signature="e#9895#10596#0#HTML" />
-                <element signature="e#10637#12162#0#HTML" />
+                <element signature="e#1363#2604#0#HTML" />
+                <element signature="e#1495#2594#0#HTML" />
+                <element signature="e#1668#1734#0#HTML" />
+                <element signature="e#1819#2422#0#HTML" />
+                <element signature="e#1872#2033#0#HTML" />
+                <element signature="e#1921#2004#0#HTML" />
+                <element signature="e#2083#2190#0#HTML" />
+                <element signature="e#2278#2396#0#HTML" />
+                <element signature="e#2473#2561#0#HTML" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/LibraryController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="128" column="111" selection-start-line="128" selection-start-column="111" selection-end-line="128" selection-end-column="111" />
-              <folding>
-                <element signature="e#52#80#0#PHP" expanded="true" />
-                <element signature="e#304#413#0#PHP" />
-                <element signature="e#444#526#0#PHP" />
-                <element signature="e#556#2361#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-              <folding>
-                <element signature="e#52#80#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_07_13_151556_config_module.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ComponentController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="41" selection-end-column="10" />
-              <folding>
-                <element signature="e#52#78#0#PHP" expanded="true" />
-                <element signature="e#415#579#0#PHP" />
-                <element signature="e#603#758#0#PHP" />
-                <element signature="e#782#1089#0#PHP" />
-                <element signature="e#1470#1852#0#PHP" />
-                <element signature="e#1558#1852#0#PHP" />
-                <element signature="e#1644#1852#0#PHP" />
-                <element signature="e#1730#1852#0#PHP" />
-                <element signature="e#1811#1852#0#PHP" />
-                <element signature="e#1874#1943#0#PHP" />
-                <element signature="e#1985#2935#0#PHP" />
-                <element signature="e#2059#2180#0#PHP" />
-                <element signature="e#2231#2904#0#PHP" />
-                <element signature="e#2941#3863#0#PHP" />
-                <element signature="e#3049#3170#0#PHP" />
-                <element signature="e#3221#3832#0#PHP" />
-                <element signature="e#3869#3984#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/footscript.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="96" selection-start-line="1" selection-start-column="96" selection-end-line="1" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -233,12 +149,12 @@
         <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
         <option value="$PROJECT_DIR$/public/assets/dropzone/dropzone.css" />
         <option value="$PROJECT_DIR$/Modules/Records/Http/Controllers/LibraryController.php" />
-        <option value="$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php" />
         <option value="D:/Descargas/Copiar-Cortar-Portapapeles/Copiar-Cortar-Portapapeles/portapapeles-test.html" />
         <option value="$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/footscript.blade.php" />
-        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" />
         <option value="$PROJECT_DIR$/Modules/Records/Http/Controllers/ArchiveController.php" />
+        <option value="$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php" />
+        <option value="$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php" />
       </list>
     </option>
   </component>
@@ -549,12 +465,12 @@
       <workItem from="1563273797455" duration="42750000" />
       <workItem from="1563364461308" duration="16625000" />
       <workItem from="1563474133129" duration="12460000" />
-      <workItem from="1563527179410" duration="4031000" />
+      <workItem from="1563527179410" duration="4667000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268948000" />
+    <option name="totallyTimeSpent" value="269584000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
@@ -1086,13 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1273">
-          <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/ComponentController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1149,22 +1058,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <element signature="n#div#0;n#!!top" />
-            <element signature="n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
-            <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
-            <element signature="e#8885#9073#0#HTML" />
-            <element signature="e#9192#9862#0#HTML" />
-            <element signature="e#9895#10596#0#HTML" />
-            <element signature="e#10637#12162#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Records/Http/Controllers/LibraryController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1054">
@@ -1183,8 +1076,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Blog/Database/Migrations/2019_07_01_000050_create_comments_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="16" column="61" selection-start-line="16" selection-start-column="61" selection-end-line="16" selection-end-column="61" />
+        <state relative-caret-position="171">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1194,6 +1087,40 @@
           <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
             <element signature="e#52#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/library/list.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="n#div#0;n#!!top" />
+            <element signature="n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
+            <element signature="n#div#5;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#!!top" />
+            <element signature="e#8885#9073#0#HTML" />
+            <element signature="e#9192#9862#0#HTML" />
+            <element signature="e#9895#10596#0#HTML" />
+            <element signature="e#10637#12162#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Modules/Records/Resources/views/archive/upload.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+          <folding>
+            <element signature="e#1363#2604#0#HTML" />
+            <element signature="e#1495#2594#0#HTML" />
+            <element signature="e#1668#1734#0#HTML" />
+            <element signature="e#1819#2422#0#HTML" />
+            <element signature="e#1872#2033#0#HTML" />
+            <element signature="e#1921#2004#0#HTML" />
+            <element signature="e#2083#2190#0#HTML" />
+            <element signature="e#2278#2396#0#HTML" />
+            <element signature="e#2473#2561#0#HTML" />
           </folding>
         </state>
       </provider>

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Records extends Authenticatable
 {
+    
     use Notifiable;
     protected $table = 'records';
     protected $primaryKey = 'id';

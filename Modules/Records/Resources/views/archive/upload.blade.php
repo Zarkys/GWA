@@ -35,7 +35,6 @@
 
         </div>
     </div>
-
 </div>
 
 @include('layouts.footer')
@@ -46,7 +45,6 @@
 
 <script>
     $(function () {
-
         Dropzone.options.dropzoneFrom = {
             autoProcessQueue: false,
             uploadMultiple: false,
