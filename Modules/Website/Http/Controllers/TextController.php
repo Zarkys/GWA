@@ -61,7 +61,7 @@ class TextController extends BaseController
             'name' => 'required',
             'value_es' => 'required',
 //            'image' => 'required',
-            'value_en' => 'required',
+           // 'value_en' => 'required',
             'id_section' => 'required'
         ], $this->custom_message());
 
@@ -349,7 +349,7 @@ class TextController extends BaseController
             'id' => 'required',
             'name' => 'required',
             'value_es' => 'required',
-            'value_en' => 'required',
+           // 'value_en' => 'required',
             'id_section' => 'required',
         ], $this->custom_message());
 

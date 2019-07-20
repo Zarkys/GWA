@@ -55,7 +55,9 @@
                                 <v-select :options="sectionArray" label="title" v-model="section"
                                           @input="defaultSelect"></v-select>
                             </div>
-                            <div class="form-group">
+                             <div v-for="config in config_module">
+                             <div v-if="config.name_module === 'Traductor'" class="form-group">
+                            <div v-if="config.status === 1" class="form-group">
                                 <label>Valor Ingles</label>
                                 <input type="text" v-model="value_en" id="value_en" name="value_en"
                                        v-validate="'required'" class="form-control"
@@ -64,6 +66,8 @@
                                 <i v-show="errors.has('value_en')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('value_en')"
                                       class="help is-danger">@{{ errors.first('value_en') }}</span>
+                            </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -119,6 +123,19 @@
             }
         },
         mounted() {
+             loadOneElement('configmodule', '').then(
+                    response => {
+                        if (response.data.code !== 500) {
+                            this.config_module = response.data.data;
+                        }
+                     else {
+                            console.log(response.data);
+                        }  
+                         
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
             RouteGet_BACK('{{route('website.component.list')}}', {}).then(
                 response => {
                     if (response.data.code !== 500) {

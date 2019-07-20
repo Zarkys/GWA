@@ -39,10 +39,10 @@
                                         <div class="col-md-4">
                                             <h4>@{{config.name_module}}</h4>
                                         </div>
+                                        
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                <v-select :options="statusArray" label="name" v-model="status"
-                                          @input="defaultSelect"></v-select>
+                                <v-select :options="statusArray" label="name" v-model="status"></v-select>
                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -139,6 +139,25 @@
                 .catch(error => {
                     console.log(error);
                 });
+               var form = {
+                'id': 1
+            }
+               
+
+            loadOneElement('configmodule/2', '').then(
+                    response => {
+                        if (response.data.code !== 500) {
+                            this.status = response.data.data.status;
+                            console.log(this.status);
+                        }
+                     else {
+                            console.log(response.data);
+                        }  
+                         
+                    })
+                .catch(error => {
+                    console.log(error);
+                });
 
 
         },
@@ -157,13 +176,15 @@
                     confirmButtonText: 'Actualizar'
                 }).then((result) => {
                     if (result.value) {
-                       
+                       let form = {
+                                status: this.status.id
+                            }
                
 
-                        updateElement('configmodule/'+config.id, config).then(
+                        updateElement('configmodule/'+config.id, form).then(
                                 response => {
                                     if (response.data.code !== 500) {
-                                         status: this.status.id,
+                                         
                                         Swal.fire(
                                             'Elemento Actualizado',
                                             'La información se actualizo correctamente',
