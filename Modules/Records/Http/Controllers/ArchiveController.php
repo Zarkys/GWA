@@ -32,7 +32,7 @@ class ArchiveController extends BaseController
     public function store(Request $request)
     {
 
-//        return $request->all();
+        return $request->all();
         $mime = ComponentController::Mime($request->file('file')->getMimeType());
 
         $validator = Validator::make($request->all(), [

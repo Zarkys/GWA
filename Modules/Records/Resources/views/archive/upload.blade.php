@@ -18,7 +18,7 @@
                 <br/>
                 <h3 align="center">Puedes subir todos tus archivos y encontrarlos en biblioteca de manera ordenada.</h3>
                 <br/>
-                <form action="{{route('records.archive.store')}}" class="dropzone" id="dropzoneFrom">
+                <form action="{{route('records.archive.store')}}" class="dropzone" id="dropzone">
 
                 </form>
                 <br/>
@@ -39,15 +39,15 @@
 @include('layouts.footscript')
 
 <link href="{{ asset('assets/dropzone/dropzone.css?v='.time()) }}" rel="stylesheet">
-<script src="{{asset('assets/dropzone/dropzone.js?v='.time())}}"></script>
-{{--<script src="{{asset('assets/dropzone/dropzone.js?v='.time())}}"></script>--}}
+<script src="{{asset('assets/dropzone/dropzone.js')}}"></script>
 
-<script>
-    $(function () {
-        Dropzone.options.dropzoneFrom = {
+<script type="text/javascript">
+    $(document).ready(function () {
+        Dropzone.options.dropzone = {
             autoProcessQueue: false,
             uploadMultiple: false,
-            maxFilezise: 5,
+            parallelUploads: 1,
+            maxFilesize: 5,
             init: function () {
                 var submitBtn = document.querySelector('#submit-all');
                 myDropzone = this;
@@ -68,7 +68,6 @@
                     clearTimeout(tmp)
                     tmp = setTimeout(function () {
                         myDropzone.processQueue();
-                        console.log('hola')
                     }, 1000)
 
                 });
@@ -77,7 +76,14 @@
                         myDropzone.processQueue.bind(myDropzone)
                     }
                 );
-            }
+
+                //this.on( 'removedfile', removedFileCallback );
+
+            },
+            addRemoveLinks:true,
+            removefile:function(x){
+                console.log(x);
+            },
         };
     })
 </script>
