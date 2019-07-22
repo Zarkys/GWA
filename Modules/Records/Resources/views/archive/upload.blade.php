@@ -39,7 +39,7 @@
 @include('layouts.footscript')
 
 <link href="{{ asset('assets/dropzone/dropzone.css?v='.time()) }}" rel="stylesheet">
-<script src="{{asset('assets/dropzone/dropzone.js')}}"></script>
+<script src="{{asset('assets/dropzone/dropzone.js?v='.time())}}"></script>
 {{--<script src="{{asset('assets/dropzone/dropzone.js?v='.time())}}"></script>--}}
 
 <script>
