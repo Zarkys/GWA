@@ -39,11 +39,17 @@
                                         <div class="col-md-4">
                                             <h4>@{{config.name_module}}</h4>
                                         </div>
-                                        <div class="col-md-5">
+                                          <div class="col-md-5">
+                                          <h6 v-if="config.status === 1" >Activo</h6>
+                                          <h6 v-if="config.status === 0" >Desactivado</h6>
                                             <div class="form-group">
-                                <v-select :options="statusArray" label="name" v-model="status"
-                                          @input="defaultSelect"></v-select>
+                                <v-select :options="statusArray" label="name" v-model="status"  @change="defaultSelect"></v-select>
                             </div>
+                                        
+                                       <!-- <div class="col-md-5">
+                                            <div class="form-group">
+                                <v-select :options="statusArray" label="name" v-model="status"  @change="defaultSelect"></v-select>
+                            </div>-->
                                         </div>
                                         <div class="col-md-3">
                                             <button v-on:click="updateConfigModule(config)" type="button" class="btn btn-primary">Actualizar</button>
@@ -110,7 +116,7 @@
             return {
                 message: '',
                 config_module:{},
-                status: {'id': 0, 'name': 'Desactivado'},
+                status: '',
                 statusArray: [],
             }
         },
@@ -120,6 +126,8 @@
                     response => {
                         if (response.data.code !== 500) {
                             this.config_module = response.data.data;
+
+                                
                         }
                      else {
                             console.log(response.data);
@@ -140,6 +148,21 @@
                     console.log(error);
                 });
 
+           /* loadOneElement('configmodule/2', '').then(
+                    response => {
+                        if (response.data.code !== 500) {
+                            this.status = response.data.data.status;
+                            console.log(this.status);
+                        }
+                     else {
+                            console.log(response.data);
+                        }  
+                         
+                    })
+                .catch(error => {
+                    console.log(error);
+                });*/
+
 
         },
         methods: {
@@ -157,13 +180,15 @@
                     confirmButtonText: 'Actualizar'
                 }).then((result) => {
                     if (result.value) {
-                       
+                       let form = {
+                                status: this.status.id
+                            }
                
 
-                        updateElement('configmodule/'+config.id, config).then(
+                        updateElement('configmodule/'+config.id, form).then(
                                 response => {
                                     if (response.data.code !== 500) {
-                                         status: this.status.id,
+                                         
                                         Swal.fire(
                                             'Elemento Actualizado',
                                             'La información se actualizo correctamente',
@@ -230,9 +255,24 @@
 
             },
             defaultSelect() {
-                if (this.status === null) {
+                /*if (this.status === null) {
                     this.status = {'id': 0, 'name': 'Desactivado'}
-                }
+                }*/
+                console.log('entrando a default select');
+                loadOneElement('configmodule'+ config.id, '').then(
+                                    response => {
+                                        if (response.data.code !== 500) {
+                                            this.status = response.data.data.status;
+                        console.log(this.status);
+                                        }
+                                     else {
+                                            console.log(response.data);
+                                        }  
+                                         
+                                    })
+                                .catch(error => {
+                                    console.log(error);
+                                });
             }
 
         },

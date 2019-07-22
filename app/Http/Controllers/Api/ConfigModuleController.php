@@ -266,8 +266,8 @@
         }
         
         public function update(Request $request,$id) {
-            
-            Log::debug($request);
+            Log::debug('config-module-update');
+            Log::debug('config-module-update (request)'.$request);
             $configmodule = $this->ConfigModuleRepo->findbyid($id);
 
 //$ola = $request->get('status')
