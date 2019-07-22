@@ -31,7 +31,8 @@ class ArchiveController extends BaseController
 //    TODO CRUD ARCHIVE
     public function store(Request $request)
     {
-        return $request->all();
+        
+//        return $request->all();
         $mime = ComponentController::Mime($request->file('file')->getMimeType());
 
         $validator = Validator::make($request->all(), [
