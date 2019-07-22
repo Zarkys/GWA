@@ -59,7 +59,7 @@
                     myDropzone.processQueue();
                 });
 
-                let tmp = '';
+                // let tmp = '';
                 this.on("complete", function (file) {
                     if (file.status === 'success') {
                         setTimeout(function () {
