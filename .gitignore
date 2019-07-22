@@ -10,7 +10,6 @@ app/storage/
 
 # Laravel 5 & Lumen specific
 public/storage
-public/records/*
 public/records
 public/hot
 storage/*.key
