@@ -120,10 +120,11 @@ class LibraryController extends BaseController
                     $value->typeExtension = explode('.', $value->name)[1];
 
                     if ($value->typeExtension === 'pdf' || $value->typeExtension === 'docx') {
-                        $value->urlTemp = 'http://docs.google.com/gview?url=http://www.posgrado.unam.mx/filosofiadelaciencia/media/uploaded_files/2012/04/guia_digit_conacyt.pdf&embedded=true';
+                        $value->urlTemp = 'http://docs.google.com/gview?url='.$value->url.'&embedded=true';
+//                        $value->urlTemp = 'http://docs.google.com/gview?url=http://www.picssel.com/demos/downloads/Fancybox.doc&embedded=true';
                     } else {
                         $value->typeView = false;
-                        $value->urlTemp = 'http://docs.google.com/gview?url=http://www.picssel.com/demos/downloads/Fancybox.doc&embedded=true';
+                        $value->urlTemp = '';
                     }
                 }
                 $value->typeExtension = is_null($value->typeExtension) ? '' : '(' . $value->typeExtension . ')';

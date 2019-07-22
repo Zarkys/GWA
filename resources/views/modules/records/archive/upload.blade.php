@@ -68,7 +68,6 @@
                     clearTimeout(tmp)
                     tmp = setTimeout(function () {
                         myDropzone.processQueue();
-                        console.log('hola')
                     }, 1000)
 
                 });
@@ -77,6 +76,9 @@
                         myDropzone.processQueue.bind(myDropzone)
                     }
                 );
+
+                //this.on( 'removedfile', removedFileCallback );
+
             },
             addRemoveLinks:true,
             removefile:function(x){
