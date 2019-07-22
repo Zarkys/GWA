@@ -142,7 +142,8 @@
 
                                 <div class="text-left">
                                     <strong>Url: </strong>@{{ val.url | shortText }}&quot;
-                                    <button type="button" class="btn btn-success" @click="copyText(val.url)" ><i class="fas fa-copy"></i></button>
+                                    <button type="button" class="btn btn-success" @click="copyText(val.url)"><i
+                                                class="fas fa-copy"></i></button>
                                 </div>
                                 <br>
                                 <div class="justify-content-right text-right">
@@ -170,7 +171,6 @@
 <script type="text/javascript">
     $(function () {
         loadProgressBar()
-
     })
 </script>
 
@@ -262,13 +262,13 @@
                     }
                 })
             },
-            copyText(v){
-                    var $temp = $("<input>")
-                    $("body").append($temp);
-                    $temp.val(v).select();
-                    document.execCommand("copy",true);
-                    $temp.remove();
-                toastrPersonalized.toastr('Enlace copiado', v, 'info');
+            copyText(v) {
+                var $temp = $("<input>")
+                $("body").append($temp);
+                $temp.val(v).select();
+                document.execCommand("copy", true);
+                $temp.remove();
+                toastrPersonalized.toastr('Enlace copiado', v, 'success');
             }
         },
         filters: {

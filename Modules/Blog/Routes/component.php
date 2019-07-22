@@ -3,7 +3,7 @@
 //TODO ROUTE ADMIN
 Route::group([
     'middleware' => ['auth'],
-    'prefix' => '/component',
+    'prefix' => '/blog/component',
 ], function () {
 
     Route::get('/list', [

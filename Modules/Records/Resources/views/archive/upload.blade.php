@@ -3,7 +3,6 @@
 @include('layouts.navbar')
 
 <div id="app">
-
     <div class="container-fluid">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -17,12 +16,11 @@
 
             <div class="container">
                 <br/>
-                <h3 align="center">How to Upload a File using Dropzone.js with PHP</h3>
+                <h3 align="center">Puedes subir todos tus archivos y encontrarlos en biblioteca de manera ordenada.</h3>
                 <br/>
                 <form action="{{route('records.archive.store')}}" class="dropzone" id="dropzoneFrom">
 
                 </form>
-
                 <br/>
                 <br/>
                 <div align="center">
@@ -41,7 +39,7 @@
 @include('layouts.footscript')
 
 <link href="{{ asset('assets/dropzone/dropzone.css?v='.time()) }}" rel="stylesheet">
-<script src="{{asset('assets/dropzone/dropzone.js?v='.time())}}"></script>
+<script src="{{asset('assets/dropzone/dropzone_original.js')}}"></script>
 
 <script>
     $(function () {
