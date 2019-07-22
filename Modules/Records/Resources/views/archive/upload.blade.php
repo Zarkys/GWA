@@ -47,7 +47,7 @@
             autoProcessQueue: false,
             uploadMultiple: false,
             parallelUploads: 1,
-            maxFilesize: 5,
+            maxFilesize: 10,
             init: function () {
                 var submitBtn = document.querySelector('#submit-all');
                 myDropzone = this;
