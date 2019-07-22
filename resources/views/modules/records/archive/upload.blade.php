@@ -48,6 +48,9 @@
             uploadMultiple: false,
             parallelUploads: 1,
             maxFilesize: 10,
+            dictDefaultMessage: 'Selecciona o Arrastra tus archivos aqui.',
+            dictRemoveFile: 'Eliminar',
+            dictCancelUpload: '',
             init: function () {
                 var submitBtn = document.querySelector('#submit-all');
                 myDropzone = this;
@@ -55,35 +58,39 @@
                 submitBtn.addEventListener("click", function () {
                     myDropzone.processQueue();
                 });
+
                 let tmp = '';
                 this.on("complete", function (file) {
                     if (file.status === 'success') {
                         setTimeout(function () {
                             myDropzone.removeFile(file)
-                        }, 3000)
+                        }, 2000)
+                        setTimeout(function () {
+                            myDropzone.processQueue();
+                        }, 1000)
                     }
                     if (file.status === 'error') {
                         toastrPersonalized.toastr('', 'Intente de nuevo', 'error');
                     }
-                    clearTimeout(tmp)
-                    tmp = setTimeout(function () {
-                        myDropzone.processQueue();
-                    }, 1000)
+                    // clearTimeout(tmp)
+                    // tmp = setTimeout(function () {
+                    //     myDropzone.processQueue();
+                    // }, 1000)
 
                 });
 
-                this.on("success", function () {
-                        myDropzone.processQueue.bind(myDropzone)
-                    }
-                );
+                // this.on("success", function () {
+                //         myDropzone.processQueue.bind(myDropzone)
+                //     }
+                // );
 
-                //this.on( 'removedfile', removedFileCallback );
+                // this.on('removedfile', function (e) {
+                //         console.log(e)
+                //     return false
+                // });
 
             },
-            addRemoveLinks:true,
-            removefile:function(x){
-                console.log(x);
-            },
+            // addRemoveLinks:true,
         };
     })
 </script>
