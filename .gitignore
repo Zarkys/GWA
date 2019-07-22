@@ -6,11 +6,10 @@ npm-debug.log
 bootstrap/compiled.php
 app/storage/
 
-#WEBSITE IGNORE CORE
+.idea/
 
 # Laravel 5 & Lumen specific
 public/storage
-upload/records
 public/hot
 storage/*.key
 .env.*.php
@@ -22,3 +21,6 @@ Homestead.json
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
 
+# UPLOAD RECORDS
+
+public/upload/records/
