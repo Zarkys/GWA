@@ -60,10 +60,5 @@ Route::group([
         'uses' => 'ProductsController@resourcesActive',
     ]);
 
-    Route::get('/consult/gallery', [
-        'as' => 'product.consult.gallery',
-        'uses' => 'ProductsController@consultGallery',
-    ]);
-
 
 });

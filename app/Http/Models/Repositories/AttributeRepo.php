@@ -6,12 +6,14 @@ use App\Http\Models\Entities\Attribute;
 
 class AttributeRepo
 {
+
     public function all()
     {
 
         $attribute = Attribute::whereIn('active', [0, 1])->get();
         return $attribute;
     }
+
     public function filteractive()
     {
         //Find By parameters (Item)
@@ -23,14 +25,15 @@ class AttributeRepo
         } catch (\Exception $ex) {
             Log::error($ex);
             $response = [
-                'status'  => 'FAILED',
-                'code'    => 500,
+                'status' => 'FAILED',
+                'code' => 500,
                 'message' => _('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
         }
     }
+
     public function filterinactive()
     {
         //Find By parameters (Item)
@@ -42,14 +45,15 @@ class AttributeRepo
         } catch (\Exception $ex) {
             Log::error($ex);
             $response = [
-                'status'  => 'FAILED',
-                'code'    => 500,
+                'status' => 'FAILED',
+                'code' => 500,
                 'message' => _('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
         }
     }
+
     public function filterdeleted()
     {
         //Find By parameters (Item)
@@ -61,14 +65,15 @@ class AttributeRepo
         } catch (\Exception $ex) {
             Log::error($ex);
             $response = [
-                'status'  => 'FAILED',
-                'code'    => 500,
+                'status' => 'FAILED',
+                'code' => 500,
                 'message' => _('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
         }
     }
+
     public function findbyid($id)
     {
 
@@ -77,26 +82,27 @@ class AttributeRepo
         return $attribute;
     }
 
-    public function findbyunique($item,$string) {
-            //Find By parameters (Item)
-            try {
-                    if($item==='name'){
+    public function findbyunique($item, $string)
+    {
+        //Find By parameters (Item)
+        try {
+            if ($item === 'name') {
 
-                        $attribute = Attribute::where('name', $string)->whereIn('active', [0, 1])->get();
-                    } 
-                    return $attribute;
+                $attribute = Attribute::where('name', $string)->whereIn('active', [0, 1])->get();
+            }
+            return $attribute;
 
-            } catch (\Exception $ex) {
-                
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error internor') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            } 
-        } 
+        } catch (\Exception $ex) {
+
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => _('Ocurrio un error internor') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
 
     public function store($data)
     {
@@ -144,28 +150,28 @@ class AttributeRepo
         return $attribute;
     }
 
-     public function checkduplicate($item,$string) {
-            //Find By parameters (Item)
-            try {
-                    if($item==='name')
-                    {
+    public function checkduplicate($item, $string)
+    {
+        //Find By parameters (Item)
+        try {
+            if ($item === 'name') {
 
-                        $attribute = Attribute::where('name', $string)
-                        ->whereIn('active', [0, 1])
-                        -> exists();
+                $attribute = Attribute::where('name', $string)
+                    ->whereIn('active', [0, 1])
+                    ->exists();
 
-                    } 
-                    return $attribute;
+            }
+            return $attribute;
 
-            } catch (\Exception $ex) {
-                
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error internor') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            } 
+        } catch (\Exception $ex) {
+
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => _('Ocurrio un error internor') . '.',
+            ];
+
+            return response()->json($response, 500);
         }
+    }
 }

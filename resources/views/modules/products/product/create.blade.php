@@ -20,15 +20,6 @@
         margin-top: 80px;
     }
 
-    .modal-header {
-        padding: 15px;
-        border-bottom: none;
-    }
-
-    .modal-title {
-        font-weight: bold;
-    }
-
     .modal-body.choice-modal {
         position: relative;
         padding: 0px;
@@ -232,11 +223,11 @@
                                       class="help is-danger">@{{ errors.first('description') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
+                        <div class="col-md-2">
+                            <div class="form-group" v-if="this.images.length > 0">
                                 <label>Seleccionar Imagen</label>
                                 <br>
-                                <a class="btn btn-success btn-icon-split" v-on:click="consultImg"
+                                <a class="btn btn-success btn-icon-split"
                                    data-toggle="modal" data-target="#myModal">
                                     <span class="icon text-white-50">
                                       <i class="fas fa-file-image"></i>
@@ -244,12 +235,27 @@
                                 </a>
                                 <br>
                                 <div v-if="this.imageSelect.length === 1">
-                                    Has seleccionado @{{this.imageSelect.length}} imagen.
+                                    Imagen @{{this.imageSelect.length}}
                                 </div>
                                 <div v-if="this.imageSelect.length > 1">
-                                    Has seleccionado @{{this.imageSelect.length}} imagenes en total.
+                                    Imagenes @{{this.imageSelect.length}}
                                 </div>
 
+                            </div>
+                            <div class="form-group" v-if="this.images.length === 0">
+                                <label>No hay imagenes para seleccionar</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group" v-if="this.images.length > 0">
+                                <label>Agrege los atributos del producto</label>
+                                <br>
+                                <a class="btn btn-success btn-icon-split"
+                                   data-toggle="modal" data-target="#myModalAttr">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-check"></i>
+                                    </span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -260,17 +266,15 @@
 
     </div>
 
-    <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-lg">
 
-            <!-- Modal content-->
             <div class="modal-content modal-lg">
                 <div class="modal-header">
                     <h4 class="modal-title">Selecciona tus imagenes</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
-                <div class="modal-body choice-modal">
+                <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row inner-scroll">
                             <div class="col-md-2" v-for="(val,item) in images">
@@ -279,7 +283,7 @@
                                         <label class="block-check">
                                             <img :src="val.url"
                                                  class="img-responsive"/>
-                                            <input type="checkbox" v-model="imageSelect" :value="val.id">
+                                            <input type="checkbox" v-model="imageSelect" :value="val.url">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -297,6 +301,84 @@
 
         </div>
     </div>
+
+    <div class="modal fade" id="myModalAttr">
+        <div class="modal-dialog modal-lg">
+
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <h4 class="modal-title">Crear o Selecciona atributes publicos</h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    <form @submit.prevent="saveAttr" name="saveAttr" ref="saveAttr" id="saveAttr">
+                        <div class="row">
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Nombre</label>
+                                    <input v-model="name_attr" v-validate="'required'" class="form-control"
+                                           :class="{'input': true, 'is-danger': errors.has('name_attr') }" type="text"
+                                           name="name_attr" id="name_attr" ref="name_attr"
+                                           placeholder="Nombre del atributo">
+                                    <i v-show="errors.has('name_attr')" class="fa fa-exclamation-triangle"></i>
+                                    <span v-show="errors.has('name_attr')"
+                                          class="help is-danger">@{{ errors.first('name_attr') }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Valor</label>
+                                    <input class="form-control" v-model="value_attr" placeholder="Valor del atributo"/>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Publico</label>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
+                                               v-model="checked_attr" name="check-button">
+                                        <label class="custom-control-label" for="defaultUnchecked"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Añadir</label>
+                                    <br>
+                                    <button type="submit" class="btn btn-success btn-circle">
+                                        <span class="fa fa-plus-circle"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4" v-for="val in attrs">
+                            <div class="form-group">
+                                <label>@{{ val.name }}: @{{ val.value }}</label><br>
+                                <label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>
+                                <br>
+                                <input type="checkbox" v-model="attrSelect" :value="val.id">
+                                Selecionar
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
 </div>
 <!-- End of Main Content -->
 @include('layouts.footer')
@@ -305,21 +387,14 @@
 <!-- Additional Scripts -->
 <script src="{{ asset('/js/vue.js') }}"></script>
 <script src="{{ asset('/js/axios.min.js') }}"></script>
-
 <script src="{{ asset('/js/axios.js') }}"></script>
-
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
-<!--<script src="https://unpkg.com/vue-select@latest"></script>-->
 <script src="{{ asset('/js/vue-select.js') }}"></script>
-<!-- Custom page Script -->
-
 <script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
-
 <script src="{{ asset('assets/money/v-money.min.js') }}"></script>
 
 <script>
     Vue.component('v-select', VueSelect.VueSelect)
-
     Vue.use(VeeValidate);
 
     var app = new Vue({
@@ -331,6 +406,7 @@
                 categories: [],
                 images: [],
                 imageSelect: [],
+                attrSelect: [],
                 showArray: [
                     {
                         name: 'Si',
@@ -376,6 +452,14 @@
                 price: 0,
                 percentageTemp: '0.0',
                 percentage: 0,
+                attrs: [],
+                // attr:{
+                id_attr: null,
+                checked_attr: true,
+                name_attr: '',
+                value_attr: '',
+                // }
+
             }
         },
         mounted() {
@@ -386,6 +470,8 @@
                 RouteGet_BACK('{{route('product.resources.active')}}', {}).then(
                     response => {
                         if (response.data.code === 200) {
+                            this.attrs = response.data.attributeProduct;
+                            this.images = response.data.images;
                             this.categories = response.data.categories;
                             this.category = this.categories[0]
 
@@ -411,6 +497,16 @@
                                     'warning'
                                 ).then((result) => {
                                     window.location.href = '{{route('product.type.create')}}';
+                                });
+                            }
+                            if (this.images.length === 0) {
+
+                                Swal.fire(
+                                    'Atencion',
+                                    'No posees ninguna imagen en tu galeria',
+                                    'warning'
+                                ).then((result) => {
+
                                 });
                             }
 
@@ -461,10 +557,12 @@
 
                                     id_type: this.type.id,
                                     id_category: this.category.id,
+                                    id_currency: this.currency.iso,
 
                                     price: this.price,
                                     percentage: this.percentage,
-                                    show_price: this.showPrice.value
+                                    show_price: this.showPrice.value,
+                                    images: this.imageSelect,
 
                                 }
 
@@ -490,6 +588,24 @@
 
                             }
                         })
+                    }
+                });
+            },
+            saveAttr() {
+
+                this.$validator.validateAll('saveAttr').then((result) => {
+                    if (result) {
+
+                        let formAttr = {
+                            id: null,
+                            show_attr: this.checked_attr,
+                            name: this.name_attr,
+                            value: this.value_attr,
+
+                        }
+                        this.attrs.push(formAttr)
+                        console.log(formAttr)
+
                     }
                 });
             },
@@ -526,17 +642,6 @@
                 }
 
             },
-            consultImg() {
-                RouteGet_BACK('{{route('product.consult.gallery')}}', {}).then(
-                    response => {
-                        if (response.data.code === 200) {
-                            this.images = response.data.images;
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
-            }
 
         },
         computed: {},

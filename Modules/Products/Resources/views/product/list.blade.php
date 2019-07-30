@@ -24,29 +24,33 @@
                     <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Descripción</th>
+                        <th>Tipo</th>
+                        <th>Categoria</th>
+                        <th>Detalles</th>
                         <th>Editar</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="category in categories">
-                        <td width="20%">@{{category.name}}</td>
-                        <td width="35%">@{{ category.description | shortText }}</td>
-                        <td width="10%" style="text-align: -webkit-center!important;margin-top: -1%">
-                            <a v-if="category.active === 1" href="#" v-on:click="changeActive(category)"
+                    <tr v-for="product in products">
+                        <td width="20%">@{{ product.name}}</td>
+                        <td width="15%">@{{ product.type_product.name }}</td>
+                        <td width="15%">@{{ product.category_product.name }}</td>
+                        <td width="30%" v-html="product.detail"></td>
+                        <td width="15%" style="text-align: -webkit-center!important;margin-top: -1%">
+                            <a v-if="product.active === 1" href="#" v-on:click="changeActive(product)"
                                class="btn btn-success btn-block btn-sm">
                                 <i class="fas fa-check"></i>
                             </a>
-                            <a v-if="category.active === 0" href="#" v-on:click="changeActive(category)"
+                            <a v-if="product.active === 0" href="#" v-on:click="changeActive(product)"
                                class="btn btn-warning btn-block btn-sm">
                                 <i class="fas fa-times"></i>
                             </a>
                             <br>
-                            <a href="#" v-on:click="consultCategory(category.id)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="consultData(product.id)" style="margin-top: -20%!important;"
                                class="btn btn-primary btn-circle">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="#" v-on:click="deleteCategory(category)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="deleteData(product)" style="margin-top: -20%!important;"
                                class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -74,18 +78,18 @@
         data() {
             return {
                 message: '',
-                categories: {},
+                products: {},
             }
         },
         mounted() {
-            this.listCategories()
+            this.listProducts()
         },
         methods: {
-            listCategories(){
+            listProducts() {
                 RouteGet_BACK('{{route('product.list.all')}}', {}).then(
                     response => {
-                        if (response.data.code !== 500) {
-                            this.categories = response.data.data;
+                        if (response.data.code === 200) {
+                            this.products = response.data.data;
 
                         }
                     })
@@ -93,10 +97,10 @@
                         console.log(error);
                     })
             },
-            changeActive(category) {
+            changeActive(product) {
                 Swal.fire({
                     title: 'Estas seguro?',
-                    text: 'Se cambiara el estatus de la categoria.',
+                    text: 'Se cambiara el estatus?.',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -105,12 +109,12 @@
                 }).then((result) => {
                     if (result.value) {
                         let form = {
-                            id: category.id
+                            id: product.id
                         }
-                        RoutePost_BACK('{{route('product.category.change.status')}}', form).then(
+                        RoutePost_BACK('{{route('product.change.status')}}', form).then(
                             response => {
                                 if (response.data.code === 200) {
-                                    category.active = response.data.active;
+                                    product.active = response.data.active;
                                     Swal.fire(
                                         'Listo',
                                         response.data.message,
@@ -135,7 +139,7 @@
                 })
 
             },
-            deleteCategory(category) {
+            deleteData(product) {
                 Swal.fire({
                     title: 'Estas seguro de eliminarlo?',
                     text: "",
@@ -147,12 +151,12 @@
                 }).then((result) => {
                     if (result.value) {
                         let form = {
-                            id: category.id
+                            id: product.id
                         }
-                        RoutePost_BACK('{{route('product.category.delete')}}', form).then(
+                        RoutePost_BACK('{{route('product.delete')}}', form).then(
                             response => {
                                 if (response.data.code === 200) {
-                                    this.listCategories()
+                                    this.listProducts()
                                     Swal.fire(
                                         'Listo',
                                         response.data.message,
@@ -176,15 +180,8 @@
                     }
                 })
             },
-            consultCategory(id) {
+            consultData(id) {
                 window.location.href = 'edit/' + id;
-            }
-
-        },
-        filters: {
-            shortText: function (value) {
-                if (!value) return ''
-                return value.substr(0, 75)+" . . ."
             }
         },
         computed: {},

@@ -2,34 +2,39 @@
 
 namespace Modules\Products\Http\Controllers;
 
+use App\Components\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
-use Modules\Products\Models\Enums\ActiveCategory;
+use Modules\Products\Models\Enums\ActiveProduct;
+use Modules\Products\Models\Repositories\AttributeProductRepo;
 use Modules\Products\Models\Repositories\CategoryProductRepo;
+use Modules\Products\Models\Repositories\ProductRepo;
 use Modules\Products\Models\Repositories\CurrencyProductRepo;
 use Modules\Products\Models\Repositories\TypeProductRepo;
-use Modules\Products\Models\Repositories\ProductRepo;
+use Modules\Records\Models\Enums\ActiveArchive;
 use Modules\Records\Models\Repositories\RecordsRepo;
 
 class ProductsController extends BaseController
 {
 
-    private $CategoryProductRepo;
-    private $TypeProductRepo;
     private $ProductRepo;
+    private $TypeProductRepo;
     private $CurrencyProductRepo;
     private $RecordsRepo;
+    private $CategoryProductRepo;
+    private $AttributeProductRepo;
 
-    public function __construct(CurrencyProductRepo $CurrencyProductRepo,RecordsRepo $RecordsRepo,ProductRepo $ProductRepo, TypeProductRepo $TypeProductRepo, CategoryProductRepo $CategoryProductRepo)
+    public function __construct(AttributeProductRepo $AttributeProductRepo, CategoryProductRepo $CategoryProductRepo, CurrencyProductRepo $CurrencyProductRepo, RecordsRepo $RecordsRepo, ProductRepo $ProductRepo, TypeProductRepo $TypeProductRepo)
     {
 
-        $this->CategoryProductRepo = $CategoryProductRepo;
-        $this->TypeProductRepo = $TypeProductRepo;
         $this->ProductRepo = $ProductRepo;
+        $this->TypeProductRepo = $TypeProductRepo;
         $this->CurrencyProductRepo = $CurrencyProductRepo;
         $this->RecordsRepo = $RecordsRepo;
+        $this->CategoryProductRepo = $CategoryProductRepo;
+        $this->AttributeProductRepo = $AttributeProductRepo;
     }
 
 //    TODO VIEWS
@@ -55,12 +60,26 @@ class ProductsController extends BaseController
     }
 
 //    TODO CRUD
-    public function listAll(Request $request)
+    public function listAll()
     {
 
         try {
 
             $products = $this->ProductRepo->all();
+
+            foreach ($products as $item => $value) {
+                $price = '';
+                $percentage = '';
+                if ($value->show_price) {
+                    $price = '<strong>Precio: </strong>' . Helper::number($value->price) . ' ' . $value->CurrencyProduct->symbol . '<br>';
+                    $percentage = '<strong>Porcentaje: </strong>' . Helper::number($value->price_discount, 1) . ' %<br>';
+                }
+                $attr = '';
+                foreach ($value->AttributeProduct as $index => $val) {
+                    $attr .= '<strong>' . $val->name . ': </strong>' . $val->value . '<br>';
+                }
+                $value->detail = '<div>' . $price . $percentage . $attr . '</div>';
+            }
 
             $response = [
                 'status' => 'OK',
@@ -72,7 +91,7 @@ class ProductsController extends BaseController
             return response()->json($response, 200);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -102,11 +121,11 @@ class ProductsController extends BaseController
         }
         try {
 
-            $category = $this->CategoryProductRepo->find($request->get('id'));
+            $product = $this->ProductRepo->find($request->get('id'));
 
-            if (isset($category->id)) {
-                $categories = $this->CategoryProductRepo->allActive();
-                $active = $category->active === ActiveCategory::$activated ? ActiveCategory::$disabled : ActiveCategory::$activated;
+            if (isset($product->id)) {
+                $products = $this->ProductRepo->allActive();
+                $active = $product->active === ActiveProduct::$activated ? ActiveProduct::$disabled : ActiveProduct::$activated;
 
                 $response = [
                     'status' => 'OK',
@@ -115,16 +134,16 @@ class ProductsController extends BaseController
                     'active' => $active
                 ];
 
-                if ($active === ActiveCategory::$activated) {
-                    $category = $this->CategoryProductRepo->update($category, ['active' => $active]);
-                } elseif (count($categories) > 1) {
-                    $category = $this->CategoryProductRepo->update($category, ['active' => $active]);
+                if ($active === ActiveProduct::$activated) {
+                    $this->ProductRepo->update($product, ['active' => $active]);
+                } elseif (count($products) > 1) {
+                    $this->ProductRepo->update($product, ['active' => $active]);
                 } else {
                     $response = [
                         'status' => 'OK',
                         'code' => 201,
                         'message' => __('Debes mantener un item activo') . '.',
-                        'active' => $category->active
+                        'active' => $product->active
                     ];
 
                     return response()->json($response, 201);
@@ -159,11 +178,11 @@ class ProductsController extends BaseController
 
         try {
 
-            $category = $this->CategoryProductRepo->find($request->get('id'));
+            $product = $this->ProductRepo->find($request->get('id'));
 
-            if (isset($category->id)) {
-                $categories = $this->CategoryProductRepo->allActive();
-                $active = $category->active;
+            if (isset($product->id)) {
+                $products = $this->ProductRepo->allActive();
+                $active = $product->active;
 
                 $response = [
                     'status' => 'OK',
@@ -171,19 +190,19 @@ class ProductsController extends BaseController
                     'message' => __('Datos Modificados Correctamente') . '.',
                 ];
 
-                if ($active === ActiveCategory::$disabled) {
+                if ($active === ActiveProduct::$disabled) {
 
-                    $category = $this->CategoryProductRepo->delete($category->id);
+                    $this->ProductRepo->delete($product->id);
 
-                } elseif ($active === ActiveCategory::$activated && count($categories) > 1) {
-                    $category = $this->CategoryProductRepo->delete($category->id);
+                } elseif ($active === ActiveProduct::$activated && count($products) > 1) {
+                    $this->ProductRepo->delete($product->id);
 
                 } else {
                     $response = [
                         'status' => 'OK',
                         'code' => 201,
                         'message' => __('Debes mantener un item activo') . '.',
-                        'active' => $category->active
+                        'active' => $product->active
                     ];
 
                     return response()->json($response, 201);
@@ -216,19 +235,26 @@ class ProductsController extends BaseController
 
     public function store(Request $request)
     {
-        return $request->all();
+//        return $request->all();
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'slug' => 'required|unique:categories_blog',
             'description' => 'required',
-        ], $this->custom_message());
+            'id_category' => 'required',
+            'id_currency' => 'required',
+            'id_type' => 'required',
+            'percentage' => 'required',
+            'price' => 'required',
+            'show_price' => 'required',
+        ]);
+
+//images: ["http://gwa.co/upload/records/image/9K3D4to6vB.png"]
+
 
         if ($validator->fails()) {
             $response = [
                 'status' => 'FAILED',
                 'code' => 400,
                 'message' => __('Parametros incorrectos'),
-                'data' => $validator->errors()->getMessages(),
             ];
 
             return response()->json($response);
@@ -236,15 +262,29 @@ class ProductsController extends BaseController
 
         try {
 
+            $img = null;
+//            $imgArray = [];
+            if (count($request->get('images')) > 0) {
+                $img = $request->get('images')[0];
+//                $imgArray = $request->get('images');
+            }
+
             $data = [
                 'name' => $request->get('name'),
-                'slug' => $request->get('slug'),
                 'description' => $request->get('description'),
+                'id_category' => $request->get('id_category'),
+                'currency' => $request->get('id_currency'),
+                'id_type' => $request->get('id_type'),
+                'price_discount' => $request->get('percentage'),
+                'price' => $request->get('price'),
+                'show_price' => $request->get('show_price'),
+                'image' => $img,
+                'images' => $request->get('images'),
                 'id_user' => $request->user()->id,
-                'active' => ActiveCategory::$activated,
+                'active' => ActiveProduct::$activated,
             ];
 
-            $this->CategoryProductRepo->store($data);
+            $this->ProductRepo->store($data);
 
             $response = [
                 'status' => 'OK',
@@ -268,48 +308,26 @@ class ProductsController extends BaseController
         }
     }
 
-    public function consult(Request $request)
-    {
-
-        try {
-            $category = $this->CategoryProductRepo->findbyid($request->get('id'));
-
-            $response = [
-                'status' => 'OK',
-                'code' => 200,
-                'message' => __('Datos Obtenidos Correctamente'),
-                'data' => $category,
-            ];
-
-            return response()->json($response, 200);
-
-        } catch (\Exception $ex) {
-            $response = [
-                'status' => 'FAILED',
-                'code' => 500,
-                'message' => __('Ocurrio un error interno') . '.',
-            ];
-
-            return response()->json($response, 500);
-        }
-
-    }
-
     public function update(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'id' => 'required',
             'name' => 'required',
             'description' => 'required',
-        ], $this->custom_message());
+            'id_category' => 'required',
+            'id_currency' => 'required',
+            'id_type' => 'required',
+            'percentage' => 'required',
+            'price' => 'required',
+            'show_price' => 'required',
+        ]);
 
         if ($validator->fails()) {
-
             $response = [
                 'status' => 'FAILED',
                 'code' => 400,
                 'message' => __('Parametros incorrectos'),
-                'data' => $validator->errors()->getMessages(),
             ];
 
             return response()->json($response);
@@ -317,36 +335,49 @@ class ProductsController extends BaseController
 
         try {
 
-            $category = $this->CategoryProductRepo->find($request->get('id'));
+            $product = $this->ProductRepo->find($request->get('id'));
 
-            if (isset($category->id)) {
+            if (isset($product->id)) {
+
+                $img = null;
+                if (count($request->get('images')) > 0) {
+                    $img = $request->get('images')[0];
+                }
+
                 $data = [
                     'name' => $request->get('name'),
                     'description' => $request->get('description'),
+                    'id_category' => $request->get('id_category'),
+                    'currency' => $request->get('id_currency'),
+                    'id_type' => $request->get('id_type'),
+                    'price_discount' => $request->get('percentage'),
+                    'price' => $request->get('price'),
+                    'show_price' => $request->get('show_price'),
+                    'image' => $img,
+                    'images' => $request->get('images'),
                 ];
-                $validator = Validator::make($request->all(), [
-                    'slug' => 'required|unique:categories_blog',
-                ]);
-                if (!$validator->fails()) {
 
-                    $data['slug'] = $request->get('slug');
+                $this->ProductRepo->update($product, $data);
 
-                }
+                $response = [
+                    'status' => 'OK',
+                    'code' => 200,
+                    'message' => __('Modificado Correctamente'),
+                ];
 
-                $this->CategoryProductRepo->update($category, $data);
-
+                return response()->json($response, 200);
             }
 
             $response = [
-                'status' => 'OK',
-                'code' => 200,
-                'message' => __('Actualizado Correctamente'),
+                'status' => 'FAILED',
+                'code' => 400,
+                'message' => __('Parametros incorrectos'),
             ];
 
-            return response()->json($response, 200);
+            return response()->json($response, 400);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -358,6 +389,36 @@ class ProductsController extends BaseController
         }
     }
 
+    public function consult(Request $request)
+    {
+
+        try {
+
+            $product = $this->ProductRepo->find($request->get('id'));
+
+            $product->iso_name = $product->CurrencyProduct->iso . ' (' . $product->CurrencyProduct->symbol . ')';
+            $product->price = Helper::number($product->price);
+
+            $response = [
+                'status' => 'OK',
+                'code' => 200,
+                'message' => __('Datos Obtenidos Correctamente'),
+                'data' => $product,
+            ];
+
+            return response()->json($response, 200);
+
+        } catch (\Exception $ex) {
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+
+    }
 
     //TODO CONSULT
     public function resourcesActive()
@@ -365,43 +426,15 @@ class ProductsController extends BaseController
 
         try {
 
+            $attributeProduct = $this->AttributeProductRepo->allPublic();
+
+            $images = $this->RecordsRepo->allWhere(['type' => 'image', 'active' => ActiveArchive::$activated]);
             $categories = $this->CategoryProductRepo->allActive();
             $types = $this->TypeProductRepo->allActive();
             $currencies = $this->CurrencyProductRepo->allActive();
-            foreach ($currencies as $item => $value){
-                $value->iso_name = $value->iso.' ('.$value->symbol.')';
+            foreach ($currencies as $item => $value) {
+                $value->iso_name = $value->iso . ' (' . $value->symbol . ')';
             }
-
-            $response = [
-                'status' => 'OK',
-                'code' => 200,
-                'message' => __('Datos Obtenidos Correctamente'),
-                'categories' => $categories,
-                'types' => $types,
-                'currencies' => $currencies,
-            ];
-
-            return response()->json($response, 200);
-
-        } catch (\Exception $ex) {
-            Log::error($ex);
-            $response = [
-                'status' => 'FAILED',
-                'code' => 500,
-                'message' => __('Ocurrio un error interno') . '.',
-            ];
-
-            return response()->json($response, 500);
-        }
-
-    }
-
-    public function consultGallery()
-    {
-
-        try {
-
-            $images = $this->RecordsRepo->allWhere(['type' => 'image']);
 
             foreach ($images as $item => $value) {
                 $size = $value->size;
@@ -425,13 +458,15 @@ class ProductsController extends BaseController
 
 
             }
-
-
             $response = [
                 'status' => 'OK',
                 'code' => 200,
                 'message' => __('Datos Obtenidos Correctamente'),
-                'images' => $images
+                'categories' => $categories,
+                'types' => $types,
+                'currencies' => $currencies,
+                'images' => $images,
+                'attributeProduct' => $attributeProduct,
             ];
 
             return response()->json($response, 200);
@@ -448,6 +483,5 @@ class ProductsController extends BaseController
         }
 
     }
-
 
 }

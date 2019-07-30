@@ -1,5 +1,4 @@
 @include('layouts.header')
-<!-- Custom styles for this page -->
 
 @include('layouts.sidebar')
 @include('layouts.navbar')
@@ -18,6 +17,15 @@
 
     .openbtn {
         margin-top: 80px;
+    }
+
+    .modal-header {
+        padding: 15px;
+        border-bottom: none;
+    }
+
+    .modal-title {
+        font-weight: bold;
     }
 
     .modal-body.choice-modal {
@@ -143,13 +151,13 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-10">
-                        <h6 class="m-0 font-weight-bold text-primary">Agregar Producto</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Editar Producto</h6>
                     </div>
                     <div class="col-md-2">
                         <a href="{{ route('product.list') }}" class="btn btn-warning btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-arrow-left"></i>
-                    </span>
+                            <span class="icon text-white-50">
+                              <i class="fas fa-arrow-left"></i>
+                            </span>
                             <span class="text">Volver</span>
                         </a>
                     </div>
@@ -223,7 +231,7 @@
                                       class="help is-danger">@{{ errors.first('description') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-6">
                             <div class="form-group" v-if="this.images.length > 0">
                                 <label>Seleccionar Imagen</label>
                                 <br>
@@ -235,10 +243,10 @@
                                 </a>
                                 <br>
                                 <div v-if="this.imageSelect.length === 1">
-                                    Imagen @{{this.imageSelect.length}}
+                                    Has seleccionado @{{this.imageSelect.length}} imagen.
                                 </div>
                                 <div v-if="this.imageSelect.length > 1">
-                                    Imagenes @{{this.imageSelect.length}}
+                                    Has seleccionado @{{this.imageSelect.length}} imagenes en total.
                                 </div>
 
                             </div>
@@ -246,35 +254,25 @@
                                 <label>No hay imagenes para seleccionar</label>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group" v-if="this.images.length > 0">
-                                <label>Agrege los atributos del producto</label>
-                                <br>
-                                <a class="btn btn-success btn-icon-split"
-                                   data-toggle="modal" data-target="#myModalAttr">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-check"></i>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
                     </div>
-                    <button v-on:click="saveRow" type="button" class="btn btn-primary">Guardar</button>
+                    <button v-on:click="updateRow" type="button" class="btn btn-primary">Modificar</button>
                 </form>
             </div>
         </div>
 
     </div>
 
+    <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-lg">
 
+            <!-- Modal content-->
             <div class="modal-content modal-lg">
                 <div class="modal-header">
                     <h4 class="modal-title">Selecciona tus imagenes</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body choice-modal">
                     <div class="container-fluid">
                         <div class="row inner-scroll">
                             <div class="col-md-2" v-for="(val,item) in images">
@@ -301,86 +299,8 @@
 
         </div>
     </div>
-
-    <div class="modal fade" id="myModalAttr">
-        <div class="modal-dialog modal-lg">
-
-            <div class="modal-content modal-lg">
-                <div class="modal-header">
-                    <h4 class="modal-title">Crear o Selecciona atributes publicos</h4>
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                </div>
-                <div class="modal-body">
-                    <form @submit.prevent="saveAttr" name="saveAttr" ref="saveAttr" id="saveAttr">
-                        <div class="row">
-                            <div class="col-md-1">
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input v-model="name_attr" v-validate="'required'" class="form-control"
-                                           :class="{'input': true, 'is-danger': errors.has('name_attr') }" type="text"
-                                           name="name_attr" id="name_attr" ref="name_attr"
-                                           placeholder="Nombre del atributo">
-                                    <i v-show="errors.has('name_attr')" class="fa fa-exclamation-triangle"></i>
-                                    <span v-show="errors.has('name_attr')"
-                                          class="help is-danger">@{{ errors.first('name_attr') }}</span>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Valor</label>
-                                    <input class="form-control" v-model="value_attr" placeholder="Valor del atributo"/>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Publico</label>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
-                                               v-model="checked_attr" name="check-button">
-                                        <label class="custom-control-label" for="defaultUnchecked"></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Añadir</label>
-                                    <br>
-                                    <button type="submit" class="btn btn-success btn-circle">
-                                        <span class="fa fa-plus-circle"></span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-1">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4" v-for="val in attrs">
-                            <div class="form-group">
-                                <label>@{{ val.name }}: @{{ val.value }}</label><br>
-                                <label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>
-                                <br>
-                                <input type="checkbox" v-model="attrSelect" :value="val.id">
-                                Selecionar
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-
 </div>
-<!-- End of Main Content -->
+
 @include('layouts.footer')
 @include('layouts.footscript')
 
@@ -401,12 +321,12 @@
         el: '#app',
         data() {
             return {
+                id: '',
                 types: [],
                 type: null,
                 categories: [],
                 images: [],
                 imageSelect: [],
-                attrSelect: [],
                 showArray: [
                     {
                         name: 'Si',
@@ -419,6 +339,7 @@
                 ],
                 category: null,
                 currencies: [],
+                productdb: [],
                 currency: null,
                 message: '',
                 name: '',
@@ -452,53 +373,62 @@
                 price: 0,
                 percentageTemp: '0.0',
                 percentage: 0,
-                attrs: [],
-                // attr:{
-                id_attr: null,
-                checked_attr: true,
-                name_attr: '',
-                value_attr: '',
-                // }
-
             }
         },
         mounted() {
             this.listResource()
+
+            var pageURL = window.location.href;
+            this.id = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+
+            var form = {
+                'id': this.id
+            }
+
+            RoutePost_BACK('{{route('product.consult')}}', form).then(
+                response => {
+                    if (response.data.code === 200) {
+                        this.productdb = response.data.data;
+
+                        let showTemp = [];
+                        if (this.productdb.show_price) {
+                            showTemp = this.showArray[0]
+                        } else {
+                            showTemp = this.showArray[1]
+                        }
+
+                        this.name = this.productdb.name
+                        this.description = this.productdb.description
+                        this.imageSelect = this.productdb.images
+
+                        this.category = this.productdb.category_product
+                        this.currency = this.productdb.iso_name
+                        this.type = this.productdb.type_product
+
+                        this.price = this.productdb.price
+                        this.priceTemp = this.price
+                        this.percentage = this.productdb.price_discount
+                        this.percentageTemp = this.percentage + " %"
+                        this.showPrice = showTemp;
+                    }
+                }
+            )
+                .catch(error => {
+                    console.log(error);
+                })
+
         },
         methods: {
             listResource() {
                 RouteGet_BACK('{{route('product.resources.active')}}', {}).then(
                     response => {
                         if (response.data.code === 200) {
-                            this.attrs = response.data.attributeProduct;
                             this.images = response.data.images;
+
                             this.categories = response.data.categories;
-                            this.category = this.categories[0]
-
                             this.types = response.data.types;
-                            this.type = this.types[0]
-
                             this.currencies = response.data.currencies;
-                            this.currency = this.currencies[0]
 
-                            if (this.categories.length === 0) {
-                                Swal.fire(
-                                    'Alerta',
-                                    'Necesita registrar al menos una Categoria',
-                                    'warning'
-                                ).then((result) => {
-                                    window.location.href = '{{route('product.category.create')}}';
-                                });
-                            }
-                            if (this.types.length === 0) {
-                                Swal.fire(
-                                    'Alerta',
-                                    'Necesita registrar al menos un tipo de producto',
-                                    'warning'
-                                ).then((result) => {
-                                    window.location.href = '{{route('product.type.create')}}';
-                                });
-                            }
                             if (this.images.length === 0) {
 
                                 Swal.fire(
@@ -510,18 +440,13 @@
                                 });
                             }
 
-                            if (this.showPrice === null) {
-                                this.showPrice = this.showArray[0]
-                            }
-
-
                         }
                     })
                     .catch(error => {
                         console.log(error);
                     })
             },
-            saveRow() {
+            updateRow() {
 
                 this.price = parseFloat(this.priceTemp)
                 this.percentage = 0.0
@@ -552,6 +477,7 @@
                         }).then((result) => {
                             if (result.value) {
                                 let form = {
+                                    id: this.id,
                                     name: this.name,
                                     description: this.description,
 
@@ -566,7 +492,7 @@
 
                                 }
 
-                                RoutePost_BACK('{{route('product.store')}}', form).then(
+                                RoutePost_BACK('{{route('product.update')}}', form).then(
                                     response => {
                                         if (response.data.code === 200) {
 
@@ -575,7 +501,7 @@
                                                 response.data.message,
                                                 'success'
                                             ).then((result) => {
-                                                window.location.href = '{{route('product.list')}}';
+{{--                                                window.location.href = '{{route('product.list')}}';--}}
                                             });
 
                                         } else {
@@ -588,24 +514,6 @@
 
                             }
                         })
-                    }
-                });
-            },
-            saveAttr() {
-
-                this.$validator.validateAll('saveAttr').then((result) => {
-                    if (result) {
-
-                        let formAttr = {
-                            id: null,
-                            show_attr: this.checked_attr,
-                            name: this.name_attr,
-                            value: this.value_attr,
-
-                        }
-                        this.attrs.push(formAttr)
-                        console.log(formAttr)
-
                     }
                 });
             },

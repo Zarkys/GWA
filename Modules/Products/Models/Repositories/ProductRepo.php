@@ -3,6 +3,7 @@
 namespace Modules\Products\Models\Repositories;
 
 use Modules\Products\Models\Entities\Product;
+use Modules\Products\Models\Enums\ActiveProduct;
 
 class ProductRepo
 {
@@ -14,11 +15,54 @@ class ProductRepo
             'TypeProduct',
             'CategoryProduct',
             'CurrencyProduct',
-            'AttributeProduct',
-            'AttributeProduct',
+            'AttributeProduct'
         ])->get();
 
         return $products;
+    }
+
+    public function find($id)
+    {
+
+        $products = Product::with([
+            'TypeProduct',
+            'CategoryProduct',
+            'CurrencyProduct',
+            'AttributeProduct',
+        ])->where('id', $id)->first();
+
+        return $products;
+    }
+
+    public function allActive()
+    {
+
+        $products = Product::with([
+            'TypeProduct',
+            'CategoryProduct',
+            'CurrencyProduct',
+            'AttributeProduct',
+        ])->where('active', ActiveProduct::$activated)->get();
+
+        return $products;
+    }
+
+    public function delete($id)
+    {
+
+        $data = Product::destroy($id);
+
+        return $data;
+    }
+
+    public function store($data)
+    {
+
+        $product = new Product();
+        $product->fill($data);
+        $product->save();
+
+        return $product;
     }
 
     public function filteractive()
@@ -220,16 +264,6 @@ class ProductRepo
         }
     }
 
-    public function store($data)
-    {
-
-        $product = new Product();
-        $product->fill($data);
-        $product->save();
-
-        return $product;
-    }
-
     public function update($product, $data)
     {
 
@@ -249,15 +283,6 @@ class ProductRepo
     }
 
     public function inactivate($product, $data)
-    {
-
-        $product->fill($data);
-        $product->save();
-
-        return $product;
-    }
-
-    public function delete($product, $data)
     {
 
         $product->fill($data);
