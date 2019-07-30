@@ -19,15 +19,15 @@ class DatabaseSeeder extends Seeder
          $this->call(UserSeeder::class);
 //         $this->call(ArchiveSeeder::class);
          $this->call(PageSeeder::class);
-         $this->call(AttributeSeeder::class);
-         $this->call(TypeProductSeeder::class);
-         $this->call(CategoryForProductSeeder::class);
-         $this->call(ProductSeeder::class);
-         $this->call(ProductAttributeSeeder::class);
-         $this->call(TypeProductAttributeSeeder::class);
+//         $this->call(AttributeSeeder::class);
+//         $this->call(TypeProductSeeder::class);
+//         $this->call(CategoryForProductSeeder::class);
+//         $this->call(ProductSeeder::class);
+//         $this->call(ProductAttributeSeeder::class);
+//         $this->call(TypeProductAttributeSeeder::class);
          $this->call(ConfigWebSeeder::class);
           $this->call(ConfigModuleSeeder::class);
-         $this->call(CategoryProductSeeder::class);
+//         $this->call(CategoryProductSeeder::class);
 
     }
 }
