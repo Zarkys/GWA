@@ -376,11 +376,11 @@
                                 <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
                                 {{--<label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>--}}
                                 {{--<br>--}}
-                                <input type="checkbox" v-model="attrSelect" :value="item" @click="selectAttr(val,item)">
+                                <input type="checkbox" v-model="attrSelect" :value="val">
                                 Agregar
                                 <br>
-                                <span class="fa fa-times-circle btn-danger text-center btn-block"
-                                      @click="removeItem(item)"></span>
+                                {{--<span class="fa fa-times-circle btn-danger text-center btn-block"--}}
+                                      {{--@click="removeItem(item)"></span>--}}
                             </div>
                         </div>
                     </div>
@@ -713,29 +713,32 @@
 
             },
             removeItemSelect(item) {
-                let arrayTemp = this.saveAttrs
 
-                for (i in arrayTemp) {
-                    let tmp = arrayTemp[i]
-                    if (tmp.id === this.attrSelect[item].id) {
-
-                        let tmpp = this.attrSelect
-                        for (e in tmpp) {
-                            let team = tmpp[e]
-                            if (tmp.id === team.id) {
-
-                                toastrPersonalized.toastr('', 'Has quitado, ' + this.attrSelect[e].name, 'warning');
-                                this.attrSelect.splice(e, 1);
-
-
-                            }
-
-                        }
-
-
-                    }
-
-                }
+                toastrPersonalized.toastr('', 'Has quitado, ' + this.attrSelect[item].name, 'warning');
+                this.attrSelect.splice(item, 1);
+                //
+                // let arrayTemp = this.saveAttrs
+                //
+                // for (i in arrayTemp) {
+                //     let tmp = arrayTemp[i]
+                //     if (tmp.id === this.attrSelect[item].id) {
+                //
+                //         let tmpp = this.attrSelect
+                //         for (e in tmpp) {
+                //             let team = tmpp[e]
+                //             if (tmp.id === team.id) {
+                //
+                //
+                //
+                //
+                //             }
+                //
+                //         }
+                //
+                //
+                //     }
+                //
+                // }
 
             },
             selectAttr(val, item) {

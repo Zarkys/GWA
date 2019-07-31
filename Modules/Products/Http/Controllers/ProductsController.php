@@ -235,7 +235,7 @@ class ProductsController extends BaseController
 
     public function store(Request $request)
     {
-//        return [$request->get('attrs'),$request->get('images')];
+//        return $request->get('attrs');
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
