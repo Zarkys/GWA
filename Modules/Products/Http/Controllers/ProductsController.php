@@ -426,7 +426,9 @@ class ProductsController extends BaseController
 
         try {
 
-            $attributeProduct = $this->AttributeProductRepo->allPublic();
+            $attributeProduct = $this->AttributeProductRepo->all();
+//            $attributeProduct = $this->AttributeProductRepo->allPublic();
+
 
             $images = $this->RecordsRepo->allWhere(['type' => 'image', 'active' => ActiveArchive::$activated]);
             $categories = $this->CategoryProductRepo->allActive();

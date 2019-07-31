@@ -14,7 +14,7 @@ class CreateAttributeProductsTable extends Migration
             $table->string('name')->nullable();
             $table->string('value')->nullable();
             $table->integer('show_attr')->default(0);
-            $table->integer('id_product')->unsigned();
+            $table->integer('id_product')->nullable();
             $table->integer('id_user')->unsigned();
 
             $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');

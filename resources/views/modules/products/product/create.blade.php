@@ -223,16 +223,28 @@
                                       class="help is-danger">@{{ errors.first('description') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#myModalAttr">
+                                <span class="uicon btn-label"><i class="fas fa-check"></i></span>
+                                Agrege atributos
+                            </button>
+                            <div class="row">
+                                <div class="col-md-5" v-for="(val,item) in attrSelect"
+                                     style="margin-right: 1%;margin-top: 1%;background-color: #f5f5f5;border: 1px solid #ccc;border-radius: 4px;">
+                                    <strong>@{{ attrs[val].name }}: </strong> @{{ attrs[val].value }}<br>
+                                    <span class="fa fa-times-circle btn-warning text-center btn-block"
+                                          @click="removeItemSelect(item)" style="margin-bottom: 3%!important;"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group" v-if="this.images.length > 0">
-                                <label>Seleccionar Imagen</label>
-                                <br>
-                                <a class="btn btn-success btn-icon-split"
-                                   data-toggle="modal" data-target="#myModal">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-file-image"></i>
-                                    </span>
-                                </a>
+                                <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#myModal">
+                                    <span class="uicon btn-label"><i class="fas fa-file-image"></i></span>
+                                    Seleccionar Imagen
+                                </button>
                                 <br>
                                 <div v-if="this.imageSelect.length === 1">
                                     Imagen @{{this.imageSelect.length}}
@@ -240,22 +252,15 @@
                                 <div v-if="this.imageSelect.length > 1">
                                     Imagenes @{{this.imageSelect.length}}
                                 </div>
-
+                                <div class="row">
+                                    <div class="col-md-4" v-for="(val,item) in imageSelect"
+                                         style="background-color: rgb(245, 245, 245);border: 1px solid rgb(204, 204, 204);border-radius: 4px;margin-bottom: 1%;margin-top: 1%;">
+                                        <img :src="val" class="img-responsive" style="height: 100px;width: 100%;">
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group" v-if="this.images.length === 0">
                                 <label>No hay imagenes para seleccionar</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group" v-if="this.images.length > 0">
-                                <label>Agrege los atributos del producto</label>
-                                <br>
-                                <a class="btn btn-success btn-icon-split"
-                                   data-toggle="modal" data-target="#myModalAttr">
-                                    <span class="icon text-white-50">
-                                      <i class="fas fa-check"></i>
-                                    </span>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -311,61 +316,69 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="saveAttr" name="saveAttr" ref="saveAttr" id="saveAttr">
+                    <form>
                         <div class="row">
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Nombre</label>
-                                    <input v-model="name_attr" v-validate="'required'" class="form-control"
-                                           :class="{'input': true, 'is-danger': errors.has('name_attr') }" type="text"
+                                    <input v-model="name_attr" class="form-control"
+                                           type="text"
                                            name="name_attr" id="name_attr" ref="name_attr"
                                            placeholder="Nombre del atributo">
-                                    <i v-show="errors.has('name_attr')" class="fa fa-exclamation-triangle"></i>
-                                    <span v-show="errors.has('name_attr')"
-                                          class="help is-danger">@{{ errors.first('name_attr') }}</span>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>Valor</label>
-                                    <input class="form-control" v-model="value_attr" placeholder="Valor del atributo"/>
+                                    <input v-model="value_attr" class="form-control"
+                                           type="text"
+                                           name="value_attr" id="value_attr" ref="value_attr"
+                                           placeholder="Valor del atributo">
                                 </div>
                             </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Publico</label>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
-                                               v-model="checked_attr" name="check-button">
-                                        <label class="custom-control-label" for="defaultUnchecked"></label>
-                                    </div>
-                                </div>
-                            </div>
+                            {{--<div class="col-md-2">--}}
+                            {{--<div class="form-group">--}}
+                            {{--<label>Publico</label>--}}
+                            {{--<div class="custom-control custom-checkbox">--}}
+                            {{--<input type="checkbox" class="custom-control-input" id="defaultUnchecked"--}}
+                            {{--v-model="checked_attr" name="check-button">--}}
+                            {{--<label class="custom-control-label" for="defaultUnchecked"></label>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Añadir</label>
                                     <br>
-                                    <button type="submit" class="btn btn-success btn-circle">
+                                    <button type="button" v-on:click="saveAttr" class="btn btn-success btn-circle">
                                         <span class="fa fa-plus-circle"></span>
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                             </div>
+
+                        </div>
+                        <div class="row text-center justify-center" v-if="showErrors">
+                            <div class="col md-6"><i class="fa fa-exclamation-triangle"></i>
+                                <span class="help is-danger" style="">Existen campos requeridos.</span></div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-4" v-for="val in attrs">
+                        <div class="col-md-3" v-for="(val,item) in attrs">
                             <div class="form-group">
-                                <label>@{{ val.name }}: @{{ val.value }}</label><br>
-                                <label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>
+                                <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
+                                {{--<label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>--}}
+                                {{--<br>--}}
+                                <input type="checkbox" v-model="attrSelect" :value="item">
+                                Agregar
                                 <br>
-                                <input type="checkbox" v-model="attrSelect" :value="val.id">
-                                Selecionar
+                                <span class="fa fa-times-circle btn-danger text-center btn-block"
+                                      @click="removeItem(item)"></span>
                             </div>
                         </div>
                     </div>
@@ -403,6 +416,7 @@
             return {
                 types: [],
                 type: null,
+                showErrors: false,
                 categories: [],
                 images: [],
                 imageSelect: [],
@@ -592,22 +606,37 @@
                 });
             },
             saveAttr() {
+                if (this.name_attr === '' && this.value_attr === '') {
+                    this.showErrors = true;
+                } else {
 
-                this.$validator.validateAll('saveAttr').then((result) => {
-                    if (result) {
-
-                        let formAttr = {
-                            id: null,
-                            show_attr: this.checked_attr,
-                            name: this.name_attr,
-                            value: this.value_attr,
-
-                        }
-                        this.attrs.push(formAttr)
-                        console.log(formAttr)
-
+                    let form = {
+                        show_attr: true,
+                        name: this.name_attr,
+                        value: this.value_attr,
                     }
-                });
+
+                    this.name_attr = ''
+                    this.value_attr = ''
+                    this.showErrors = false;
+
+                    RoutePost_BACK('{{route('attribute.store')}}', form).then(
+                        response => {
+                            if (response.data.code === 200) {
+                                toastrPersonalized.toastr('', response.data.message, 'success');
+                                this.attrs.push(response.data.data)
+
+
+                            } else {
+                                toastrPersonalized.toastr('', 'Existen campos requeridos.', 'warning');
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }
+
+
             },
             defaultSelection() {
                 if (this.currency === null) {
@@ -642,6 +671,44 @@
                 }
 
             },
+            removeItem(item) {
+                if (this.attrs[item].id) {
+                    Swal.fire({
+                        title: 'Eliminar de dase de datos.',
+                        text: 'Esta seguro?',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Eliminar'
+                    }).then((result) => {
+                        if (result.value) {
+
+                            let form = {
+                                id: this.attrs[item].id,
+                            }
+                            RoutePost_BACK('{{route('attribute.delete')}}', form).then(
+                                response => {
+                                    if (response.data.code === 200) {
+                                        toastrPersonalized.toastr('', response.data.message, 'info');
+                                        this.attrs.splice(item, 1);
+                                    } else {
+                                        console.log(response.data);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.log(error);
+                                });
+
+                        }
+                    })
+                }
+
+            },
+            removeItemSelect(item) {
+                toastrPersonalized.toastr('', 'Has quitado, ' + this.attrs[item].name, 'warning');
+                this.attrSelect.splice(item, 1);
+            }
 
         },
         computed: {},
