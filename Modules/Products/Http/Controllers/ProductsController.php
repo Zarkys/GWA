@@ -235,7 +235,7 @@ class ProductsController extends BaseController
 
     public function store(Request $request)
     {
-//        return $request->all();
+//        return [$request->get('attrs'),$request->get('images')];
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
@@ -246,9 +246,6 @@ class ProductsController extends BaseController
             'price' => 'required',
             'show_price' => 'required',
         ]);
-
-//images: ["http://gwa.co/upload/records/image/9K3D4to6vB.png"]
-
 
         if ($validator->fails()) {
             $response = [

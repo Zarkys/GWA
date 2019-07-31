@@ -225,7 +225,8 @@
                         </div>
                         <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#myModalAttr">
+                            <button type="button" class="btn btn-labeled btn-success" data-toggle="modal"
+                                    data-target="#myModalAttr">
                                 <span class="uicon btn-label"><i class="fas fa-check"></i></span>
                                 Agrege atributos
                             </button>
@@ -241,7 +242,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" v-if="this.images.length > 0">
-                                <button type="button" class="btn btn-labeled btn-success" data-toggle="modal" data-target="#myModal">
+                                <button type="button" class="btn btn-labeled btn-success" data-toggle="modal"
+                                        data-target="#myModal">
                                     <span class="uicon btn-label"><i class="fas fa-file-image"></i></span>
                                     Seleccionar Imagen
                                 </button>
@@ -363,7 +365,7 @@
                         </div>
                         <div class="row text-center justify-center" v-if="showErrors">
                             <div class="col md-6"><i class="fa fa-exclamation-triangle"></i>
-                                <span class="help is-danger" style="">Existen campos requeridos.</span></div>
+                                <span class="help is-danger">Existen campos requeridos.</span></div>
                         </div>
                     </form>
                 </div>
@@ -374,7 +376,7 @@
                                 <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
                                 {{--<label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>--}}
                                 {{--<br>--}}
-                                <input type="checkbox" v-model="attrSelect" :value="item">
+                                <input type="checkbox" v-model="attrSelect" :value="item" @click="selectAttr(val,item)">
                                 Agregar
                                 <br>
                                 <span class="fa fa-times-circle btn-danger text-center btn-block"
@@ -390,7 +392,6 @@
 
         </div>
     </div>
-
 
 </div>
 <!-- End of Main Content -->
@@ -467,6 +468,7 @@
                 percentageTemp: '0.0',
                 percentage: 0,
                 attrs: [],
+                saveAttrs: [],
                 // attr:{
                 id_attr: null,
                 checked_attr: true,
@@ -578,6 +580,8 @@
                                     show_price: this.showPrice.value,
                                     images: this.imageSelect,
 
+                                    // attrs: this.saveAttrs,
+
                                 }
 
                                 RoutePost_BACK('{{route('product.store')}}', form).then(
@@ -684,21 +688,24 @@
                     }).then((result) => {
                         if (result.value) {
 
-                            let form = {
-                                id: this.attrs[item].id,
-                            }
-                            RoutePost_BACK('{{route('attribute.delete')}}', form).then(
-                                response => {
-                                    if (response.data.code === 200) {
-                                        toastrPersonalized.toastr('', response.data.message, 'info');
-                                        this.attrs.splice(item, 1);
-                                    } else {
-                                        console.log(response.data);
-                                    }
-                                })
-                                .catch(error => {
-                                    console.log(error);
-                                });
+                            toastrPersonalized.toastr('', 'Borrado' + this.attrs[item].name, 'info');
+                            this.attrs.splice(item, 1);
+
+                            {{--let form = {--}}
+                            {{--id: this.attrs[item].id,--}}
+                            {{--}--}}
+                            {{--RoutePost_BACK('{{route('attribute.delete')}}', form).then(--}}
+                            {{--response => {--}}
+                            {{--if (response.data.code === 200) {--}}
+                            {{--toastrPersonalized.toastr('', response.data.message, 'info');--}}
+                            {{--this.attrs.splice(item, 1);--}}
+                            {{--} else {--}}
+                            {{--console.log(response.data);--}}
+                            {{--}--}}
+                            {{--})--}}
+                            {{--.catch(error => {--}}
+                            {{--console.log(error);--}}
+                            {{--});--}}
 
                         }
                     })
@@ -706,9 +713,79 @@
 
             },
             removeItemSelect(item) {
-                toastrPersonalized.toastr('', 'Has quitado, ' + this.attrs[item].name, 'warning');
-                this.attrSelect.splice(item, 1);
+                let arrayTemp = this.saveAttrs
+
+                for (i in arrayTemp) {
+                    let tmp = arrayTemp[i]
+                    if (tmp.id === this.attrSelect[item].id) {
+
+                        let tmpp = this.attrSelect
+                        for (e in tmpp) {
+                            let team = tmpp[e]
+                            if (tmp.id === team.id) {
+
+                                toastrPersonalized.toastr('', 'Has quitado, ' + this.attrSelect[e].name, 'warning');
+                                this.attrSelect.splice(e, 1);
+
+
+                            }
+
+                        }
+
+
+                    }
+
+                }
+
+            },
+            selectAttr(val, item) {
+
+                this.saveAttrs.push(val)
+
+                // let idTemp = this.attrs[item].id;
+                //
+                // let arrayTemp = this.saveAttrs;
+                // this.saveAttrs = [];
+                //
+                // let status = true
+                // for (i in arrayTemp) {
+                //     let tmp = arrayTemp[i]
+                //     if (tmp.id === idTemp) {
+                //         status = false
+                //         this.deselectAttr(item)
+                //     }
+                //
+                // }
+                // if (status) {
+                //     this.saveAttrs.push(val)
+                // }
+
+            },
+            deselectAttr(item) {
+
+                let idTemp = this.attrs[item].id;
+                arraytmp = []
+                let status = true
+
+                for (i in this.saveAttrs) {
+                    let tmp = this.saveAttrs[i]
+                    if (tmp.id === idTemp) {
+                        status = false
+                    } else {
+                        arraytmp.push(tmp)
+                    }
+
+                }
+                this.saveAttrs = arraytmp
+
+                if (status) {
+                    this.attrSelect.splice(item, 1);
+                    this.attrs.splice(item, 1)
+                }
+
+
             }
+
 
         },
         computed: {},
