@@ -176,7 +176,7 @@ class ProductsController extends BaseController
 
     public function delete(Request $request)
     {
-        
+
         try {
 
             $product = $this->ProductRepo->find($request->get('id'));
