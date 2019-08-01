@@ -231,11 +231,11 @@
                                 Agrege atributos
                             </button>
                             <div class="row">
-                                <div class="col-md-5" v-for="(val,item) in attrSelect"
+                                <div class="col-md-5" v-for="val in attrSelect"
                                      style="margin-right: 1%;margin-top: 1%;background-color: #f5f5f5;border: 1px solid #ccc;border-radius: 4px;">
-                                    <strong>@{{ attrs[val].name }}: </strong> @{{ attrs[val].value }}<br>
-                                    <span class="fa fa-times-circle btn-warning text-center btn-block"
-                                          @click="removeItemSelect(item)" style="margin-bottom: 3%!important;"></span>
+                                    <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
+                                    {{--<span class="fa fa-times-circle btn-warning text-center btn-block"--}}
+                                    {{-- style="margin-bottom: 3%!important;"></span>--}}
 
                                 </div>
                             </div>
@@ -376,7 +376,7 @@
                                 <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
                                 {{--<label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>--}}
                                 {{--<br>--}}
-                                <input type="checkbox" v-model="attrSelect" :value="item" @click="selectAttr(val,item)">
+                                <input type="checkbox" v-model="attrSelect" :value="val">
                                 Agregar
                                 <br>
                                 <span class="fa fa-times-circle btn-danger text-center btn-block"
@@ -580,7 +580,7 @@
                                     show_price: this.showPrice.value,
                                     images: this.imageSelect,
 
-                                    // attrs: this.saveAttrs,
+                                    attrs: this.attrSelect,
 
                                 }
 
@@ -676,116 +676,51 @@
 
             },
             removeItem(item) {
-                if (this.attrs[item].id) {
-                    Swal.fire({
-                        title: 'Eliminar de dase de datos.',
-                        text: 'Esta seguro?',
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Eliminar'
-                    }).then((result) => {
-                        if (result.value) {
+                Swal.fire({
+                    title: 'Eliminar de dase de datos.',
+                    text: 'Esta seguro?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar'
+                }).then((result) => {
+                    if (result.value) {
 
-                            toastrPersonalized.toastr('', 'Borrado' + this.attrs[item].name, 'info');
-                            this.attrs.splice(item, 1);
-
-                            {{--let form = {--}}
-                            {{--id: this.attrs[item].id,--}}
-                            {{--}--}}
-                            {{--RoutePost_BACK('{{route('attribute.delete')}}', form).then(--}}
-                            {{--response => {--}}
-                            {{--if (response.data.code === 200) {--}}
-                            {{--toastrPersonalized.toastr('', response.data.message, 'info');--}}
-                            {{--this.attrs.splice(item, 1);--}}
-                            {{--} else {--}}
-                            {{--console.log(response.data);--}}
-                            {{--}--}}
-                            {{--})--}}
-                            {{--.catch(error => {--}}
-                            {{--console.log(error);--}}
-                            {{--});--}}
-
+                        let form = {
+                            id: this.attrs[item].id,
                         }
-                    })
-                }
+                        RoutePost_BACK('{{route('attribute.delete')}}', form).then(
+                            response => {
+                                if (response.data.code === 200) {
 
-            },
-            removeItemSelect(item) {
-                let arrayTemp = this.saveAttrs
+                                    let id = this.attrs[item].id
+                                    let name = this.attrs[item].name
+                                    toastrPersonalized.toastr('', 'Has borrado el atributo "' + name + '"', 'info');
+                                    this.attrs.splice(item, 1)
 
-                for (i in arrayTemp) {
-                    let tmp = arrayTemp[i]
-                    if (tmp.id === this.attrSelect[item].id) {
+                                    let arrayTemp = this.attrSelect
 
-                        let tmpp = this.attrSelect
-                        for (e in tmpp) {
-                            let team = tmpp[e]
-                            if (tmp.id === team.id) {
+                                    for (i in arrayTemp) {
+                                        let tmp = arrayTemp[i]
+                                        if (tmp.id === id) {
+                                            this.attrSelect.splice(i, 1)
+                                        }
 
-                                toastrPersonalized.toastr('', 'Has quitado, ' + this.attrSelect[e].name, 'warning');
-                                this.attrSelect.splice(e, 1);
+                                    }
 
-
-                            }
-
-                        }
-
+                                } else {
+                                    console.log(response.data);
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
 
                     }
-
-                }
-
-            },
-            selectAttr(val, item) {
-
-                this.saveAttrs.push(val)
-
-                // let idTemp = this.attrs[item].id;
-                //
-                // let arrayTemp = this.saveAttrs;
-                // this.saveAttrs = [];
-                //
-                // let status = true
-                // for (i in arrayTemp) {
-                //     let tmp = arrayTemp[i]
-                //     if (tmp.id === idTemp) {
-                //         status = false
-                //         this.deselectAttr(item)
-                //     }
-                //
-                // }
-                // if (status) {
-                //     this.saveAttrs.push(val)
-                // }
-
-            },
-            deselectAttr(item) {
-
-                let idTemp = this.attrs[item].id;
-                arraytmp = []
-                let status = true
-
-                for (i in this.saveAttrs) {
-                    let tmp = this.saveAttrs[i]
-                    if (tmp.id === idTemp) {
-                        status = false
-                    } else {
-                        arraytmp.push(tmp)
-                    }
-
-                }
-                this.saveAttrs = arraytmp
-
-                if (status) {
-                    this.attrSelect.splice(item, 1);
-                    this.attrs.splice(item, 1)
-                }
-
+                })
 
             }
-
 
         },
         computed: {},

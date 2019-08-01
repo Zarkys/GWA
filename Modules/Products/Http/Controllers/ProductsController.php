@@ -5,6 +5,7 @@ namespace Modules\Products\Http\Controllers;
 use App\Components\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Modules\Products\Models\Enums\ActiveProduct;
@@ -68,17 +69,17 @@ class ProductsController extends BaseController
             $products = $this->ProductRepo->all();
 
             foreach ($products as $item => $value) {
-                $price = '';
-                $percentage = '';
-                if ($value->show_price) {
-                    $price = '<strong>Precio: </strong>' . Helper::number($value->price) . ' ' . $value->CurrencyProduct->symbol . '<br>';
-                    $percentage = '<strong>Porcentaje: </strong>' . Helper::number($value->price_discount, 1) . ' %<br>';
-                }
+
+                $showPrice = '<strong>Mostar Precio: </strong>' . ($value->show_price ? 'Si' : 'No') . '<br>';
+
+                $price = '<strong>Precio: </strong>' . Helper::number($value->price) . ' ' . $value->CurrencyProduct->symbol . '<br>';
+                $percentage = '<strong>Porcentaje: </strong>' . Helper::number($value->price_discount, 1) . ' %<br>';
+
                 $attr = '';
                 foreach ($value->AttributeProduct as $index => $val) {
                     $attr .= '<strong>' . $val->name . ': </strong>' . $val->value . '<br>';
                 }
-                $value->detail = '<div>' . $price . $percentage . $attr . '</div>';
+                $value->detail = '<div>' . $showPrice . $price . $percentage . $attr . '</div>';
             }
 
             $response = [
@@ -175,7 +176,7 @@ class ProductsController extends BaseController
 
     public function delete(Request $request)
     {
-
+        
         try {
 
             $product = $this->ProductRepo->find($request->get('id'));
@@ -235,7 +236,7 @@ class ProductsController extends BaseController
 
     public function store(Request $request)
     {
-//        return $request->get('attrs');
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'description' => 'required',
@@ -260,10 +261,8 @@ class ProductsController extends BaseController
         try {
 
             $img = null;
-//            $imgArray = [];
             if (count($request->get('images')) > 0) {
                 $img = $request->get('images')[0];
-//                $imgArray = $request->get('images');
             }
 
             $data = [
@@ -281,7 +280,22 @@ class ProductsController extends BaseController
                 'active' => ActiveProduct::$activated,
             ];
 
-            $this->ProductRepo->store($data);
+            $product = $this->ProductRepo->store($data);
+
+            if (isset($product->id)) {
+
+                foreach ($request->get('attrs') as $item => $value) {
+                    $data = [
+                        'name' => $value['name'],
+                        'value' => $value['value'],
+                        'show_attr' => true,
+                        'id_product' => $product->id,
+                        'id_user' => $request->user()->id,
+                    ];
+
+                    $this->AttributeProductRepo->store($data);
+                }
+            }
 
             $response = [
                 'status' => 'OK',
@@ -356,6 +370,21 @@ class ProductsController extends BaseController
 
                 $this->ProductRepo->update($product, $data);
 
+                $this->AttributeProductRepo->deleteAll($product->id);
+
+                foreach ($request->get('attrs') as $item => $value) {
+
+                    $data = [
+                        'name' => $value['name'],
+                        'value' => $value['value'],
+                        'show_attr' => true,
+                        'id_product' => $product->id,
+                        'id_user' => $request->user()->id,
+                    ];
+
+                    $this->AttributeProductRepo->store($data);
+                }
+
                 $response = [
                     'status' => 'OK',
                     'code' => 200,
@@ -393,14 +422,64 @@ class ProductsController extends BaseController
 
             $product = $this->ProductRepo->find($request->get('id'));
 
+            $product->isoCurrency = $product->CurrencyProduct;
+            $product->isoCurrency->iso_name = $product->CurrencyProduct->iso . ' (' . $product->CurrencyProduct->symbol . ')';
             $product->iso_name = $product->CurrencyProduct->iso . ' (' . $product->CurrencyProduct->symbol . ')';
             $product->price = Helper::number($product->price);
+
+
+            $newAttrs = [];
+
+            $attributes = $this->AttributeProductRepo->allProductNull();
+            foreach ($attributes as $item => $value) {
+
+                $name1 = str_replace(' ', '', $value->name);
+                $value1 = str_replace(' ', '', $value->value);
+
+                $attTmp = $product->AttributeProduct;
+                foreach ($attTmp as $index => $val) {
+
+                    $name2 = str_replace(' ', '', $val->name);
+                    $value2 = str_replace(' ', '', $val->value);
+
+                    if ($name1 === $name2 && $value1 === $value2) {
+                        $it = $name2 . '_' . $value2;
+                        if (!isset($newAttrs[$it])) {
+                            $newAttrs[$it] = $val;
+                            $newAttrs[$it]['check'] = true;
+//                            $newAttrs[$it]['concat'] = [$name2,$value2];
+                        }
+                    }
+                }
+
+                $it = $name1 . '_' . $value1;
+                if (!isset($newAttrs[$it])) {
+                    $newAttrs[$it] = $value;
+                    $newAttrs[$it]['check'] = false;
+//                            $newAttrs[$it]['concat'] = [$name1,$value1];
+                }
+
+            }
+
+            $attrs = [];
+            $attrs_select = [];
+
+            foreach ($newAttrs as $item => $value) {
+                $attrs[] = $value;
+                if ($value->check) {
+                    $attrs_select[] = $value;
+                }
+
+            }
 
             $response = [
                 'status' => 'OK',
                 'code' => 200,
                 'message' => __('Datos Obtenidos Correctamente'),
                 'data' => $product,
+                'attrs' => $attrs,
+                'attrs_select' => $attrs_select,
+//                'attrs' => $newAttrs
             ];
 
             return response()->json($response, 200);
@@ -423,9 +502,7 @@ class ProductsController extends BaseController
 
         try {
 
-            $attributeProduct = $this->AttributeProductRepo->all();
-//            $attributeProduct = $this->AttributeProductRepo->allPublic();
-
+            $attributeProduct = $this->AttributeProductRepo->allProductNull();
 
             $images = $this->RecordsRepo->allWhere(['type' => 'image', 'active' => ActiveArchive::$activated]);
             $categories = $this->CategoryProductRepo->allActive();

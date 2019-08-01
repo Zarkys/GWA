@@ -13,9 +13,24 @@ class AttributeProductRepo
 
         return $data;
     }
+
     public function allPublic()
     {
         $data = AttributeProduct::where(['show_attr' => 1])->get();
+
+        return $data;
+    }
+
+    public function allProductNull()
+    {
+        $data = AttributeProduct::where(['id_product' => null])->get();
+
+        return $data;
+    }
+
+    public function allProduct($id)
+    {
+        $data = AttributeProduct::where(['id_product' => $id])->get();
 
         return $data;
     }
@@ -39,6 +54,13 @@ class AttributeProductRepo
     public function delete($id)
     {
         $data = AttributeProduct::destroy($id);
+
+        return $data;
+    }
+
+    public function deleteAll($product)
+    {
+        $data = AttributeProduct::where('id_product', $product)->delete();
 
         return $data;
     }

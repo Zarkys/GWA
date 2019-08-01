@@ -1,5 +1,4 @@
 @include('layouts.header')
-<!-- Custom styles for this page -->
 
 @include('layouts.sidebar')
 @include('layouts.navbar')
@@ -18,6 +17,15 @@
 
     .openbtn {
         margin-top: 80px;
+    }
+
+    .modal-header {
+        padding: 15px;
+        border-bottom: none;
+    }
+
+    .modal-title {
+        font-weight: bold;
     }
 
     .modal-body.choice-modal {
@@ -143,13 +151,13 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-10">
-                        <h6 class="m-0 font-weight-bold text-primary">Modificar Producto</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Editar Producto</h6>
                     </div>
                     <div class="col-md-2">
                         <a href="{{ route('product.list') }}" class="btn btn-warning btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-arrow-left"></i>
-                    </span>
+                            <span class="icon text-white-50">
+                              <i class="fas fa-arrow-left"></i>
+                            </span>
                             <span class="text">Volver</span>
                         </a>
                     </div>
@@ -217,49 +225,30 @@
                                 <textarea v-model="description" v-validate="'required'" class="form-control"
                                           :class="{'input': true, 'is-danger': errors.has('description') }" type="text"
                                           name="description" id="description"
-                                          placeholder="Descripcion de la categoría"></textarea>
+                                          placeholder="Descripcion del prodcu"></textarea>
                                 <i v-show="errors.has('description')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('description')"
                                       class="help is-danger">@{{ errors.first('description') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6">
-                            <button type="button" class="btn btn-labeled btn-success" data-toggle="modal"
-                                    data-target="#myModalAttr">
-                                <span class="uicon btn-label"><i class="fas fa-check"></i></span>
-                                Agrege atributos
-                            </button>
-                            <div class="row">
-                                <div class="col-md-5" v-for="val in attrSelect"
-                                     {{--<div class="col-md-5" v-if="val.check" v-for="val in attrSelect"--}}
-                                     style="margin-right: 1%;margin-top: 1%;background-color: #f5f5f5;border: 1px solid #ccc;border-radius: 4px;">
-                                    <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
-                                    {{--<span class="fa fa-times-circle btn-warning text-center btn-block"--}}
-                                    {{-- style="margin-bottom: 3%!important;"></span>--}}
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             <div class="form-group" v-if="this.images.length > 0">
-                                <button type="button" class="btn btn-labeled btn-success" data-toggle="modal"
-                                        data-target="#myModal">
-                                    <span class="uicon btn-label"><i class="fas fa-file-image"></i></span>
-                                    Seleccionar Imagen
-                                </button>
+                                <label>Seleccionar Imagen</label>
+                                <br>
+                                <a class="btn btn-success btn-icon-split"
+                                   data-toggle="modal" data-target="#myModal">
+                                    <span class="icon text-white-50">
+                                      <i class="fas fa-file-image"></i>
+                                    </span>
+                                </a>
                                 <br>
                                 <div v-if="this.imageSelect.length === 1">
-                                    Imagen @{{this.imageSelect.length}}
+                                    Has seleccionado @{{this.imageSelect.length}} imagen.
                                 </div>
                                 <div v-if="this.imageSelect.length > 1">
-                                    Imagenes @{{this.imageSelect.length}}
+                                    Has seleccionado @{{this.imageSelect.length}} imagenes en total.
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4" v-for="(val,item) in imageSelect"
-                                         style="background-color: rgb(245, 245, 245);border: 1px solid rgb(204, 204, 204);border-radius: 4px;margin-bottom: 1%;margin-top: 1%;">
-                                        <img :src="val" class="img-responsive" style="height: 100px;width: 100%;">
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="form-group" v-if="this.images.length === 0">
                                 <label>No hay imagenes para seleccionar</label>
@@ -273,15 +262,17 @@
 
     </div>
 
+    <!-- The Modal -->
     <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-lg">
 
+            <!-- Modal content-->
             <div class="modal-content modal-lg">
                 <div class="modal-header">
                     <h4 class="modal-title">Selecciona tus imagenes</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body choice-modal">
                     <div class="container-fluid">
                         <div class="row inner-scroll">
                             <div class="col-md-2" v-for="(val,item) in images">
@@ -308,93 +299,8 @@
 
         </div>
     </div>
-
-    <div class="modal fade" id="myModalAttr">
-        <div class="modal-dialog modal-lg">
-
-            <div class="modal-content modal-lg">
-                <div class="modal-header">
-                    <h4 class="modal-title">Crear o Selecciona atributes publicos</h4>
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Nombre</label>
-                                    <input v-model="name_attr" class="form-control"
-                                           type="text"
-                                           name="name_attr" id="name_attr" ref="name_attr"
-                                           placeholder="Nombre del atributo">
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>Valor</label>
-                                    <input v-model="value_attr" class="form-control"
-                                           type="text"
-                                           name="value_attr" id="value_attr" ref="value_attr"
-                                           placeholder="Valor del atributo">
-                                </div>
-                            </div>
-                            {{--<div class="col-md-2">--}}
-                            {{--<div class="form-group">--}}
-                            {{--<label>Publico</label>--}}
-                            {{--<div class="custom-control custom-checkbox">--}}
-                            {{--<input type="checkbox" class="custom-control-input" id="defaultUnchecked"--}}
-                            {{--v-model="checked_attr" name="check-button">--}}
-                            {{--<label class="custom-control-label" for="defaultUnchecked"></label>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Añadir</label>
-                                    <br>
-                                    <button type="button" v-on:click="saveAttr" class="btn btn-success btn-circle">
-                                        <span class="fa fa-plus-circle"></span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                            </div>
-
-                        </div>
-                        <div class="row text-center justify-center" v-if="showErrors">
-                            <div class="col md-6"><i class="fa fa-exclamation-triangle"></i>
-                                <span class="help is-danger">Existen campos requeridos.</span></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-3" v-for="(val,item) in attrs">
-                            <div class="form-group">
-                                <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
-                                {{--<label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>--}}
-                                {{--<br>--}}
-                                <input type="checkbox" v-model="attrSelect" :value="val" :id="val.id">
-                                <label :for="val.id">Agregar</label>
-                                <br>
-                                <span class="fa fa-times-circle btn-danger text-center btn-block"
-                                      @click="removeItem(item)"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
 </div>
-<!-- End of Main Content -->
+
 @include('layouts.footer')
 @include('layouts.footscript')
 
@@ -415,13 +321,12 @@
         el: '#app',
         data() {
             return {
+                id: '',
                 types: [],
                 type: null,
-                showErrors: false,
                 categories: [],
                 images: [],
                 imageSelect: [],
-                attrSelect: [],
                 showArray: [
                     {
                         name: 'Si',
@@ -434,6 +339,7 @@
                 ],
                 category: null,
                 currencies: [],
+                productdb: [],
                 currency: null,
                 message: '',
                 name: '',
@@ -467,15 +373,6 @@
                 price: 0,
                 percentageTemp: '0.0',
                 percentage: 0,
-                attrs: [],
-                saveAttrs: [],
-                // attr:{
-                id_attr: null,
-                checked_attr: true,
-                name_attr: '',
-                value_attr: '',
-                // }
-
             }
         },
         mounted() {
@@ -505,7 +402,7 @@
                         this.imageSelect = this.productdb.images
 
                         this.category = this.productdb.category_product
-                        this.currency = this.productdb.isoCurrency
+                        this.currency = this.productdb.iso_name
                         this.type = this.productdb.type_product
 
                         this.price = this.productdb.price
@@ -513,10 +410,6 @@
                         this.percentage = this.productdb.price_discount
                         this.percentageTemp = this.percentage + " %"
                         this.showPrice = showTemp;
-
-                        this.attrSelect = response.data.attrs_select
-                        this.attrs = response.data.attrs;
-
                     }
                 }
             )
@@ -530,7 +423,6 @@
                 RouteGet_BACK('{{route('product.resources.active')}}', {}).then(
                     response => {
                         if (response.data.code === 200) {
-                            // this.attrs = response.data.attributeProduct;
                             this.images = response.data.images;
 
                             this.categories = response.data.categories;
@@ -547,7 +439,6 @@
 
                                 });
                             }
-
 
                         }
                     })
@@ -582,7 +473,7 @@
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: 'Guardar'
+                            confirmButtonText: 'Modificar'
                         }).then((result) => {
                             if (result.value) {
                                 let form = {
@@ -597,9 +488,7 @@
                                     price: this.price,
                                     percentage: this.percentage,
                                     show_price: this.showPrice.value,
-
                                     images: this.imageSelect,
-                                    attrs: this.attrSelect,
 
                                 }
 
@@ -612,7 +501,7 @@
                                                 response.data.message,
                                                 'success'
                                             ).then((result) => {
-                                                window.location.href = '{{route('product.list')}}';
+{{--                                                window.location.href = '{{route('product.list')}}';--}}
                                             });
 
                                         } else {
@@ -627,39 +516,6 @@
                         })
                     }
                 });
-            },
-            saveAttr() {
-                if (this.name_attr === '' && this.value_attr === '') {
-                    this.showErrors = true;
-                } else {
-
-                    let form = {
-                        show_attr: true,
-                        name: this.name_attr,
-                        value: this.value_attr,
-                    }
-
-                    this.name_attr = ''
-                    this.value_attr = ''
-                    this.showErrors = false;
-
-                    RoutePost_BACK('{{route('attribute.store')}}', form).then(
-                        response => {
-                            if (response.data.code === 200) {
-                                toastrPersonalized.toastr('', response.data.message, 'success');
-                                this.attrs.push(response.data.data)
-
-
-                            } else {
-                                toastrPersonalized.toastr('', 'Existen campos requeridos.', 'warning');
-                            }
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
-                }
-
-
             },
             defaultSelection() {
                 if (this.currency === null) {
@@ -694,52 +550,6 @@
                 }
 
             },
-            removeItem(item) {
-                Swal.fire({
-                    title: 'Eliminar de dase de datos.',
-                    text: 'Esta seguro?',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Eliminar'
-                }).then((result) => {
-                    if (result.value) {
-
-                        let form = {
-                            id: this.attrs[item].id,
-                        }
-                        RoutePost_BACK('{{route('attribute.delete')}}', form).then(
-                            response => {
-                                if (response.data.code === 200) {
-
-                                    let id = this.attrs[item].id
-                                    let name = this.attrs[item].name
-                                    toastrPersonalized.toastr('', 'Has borrado el atributo "' + name + '"', 'info');
-                                    this.attrs.splice(item, 1)
-
-                                    let arrayTemp = this.attrSelect
-
-                                    for (i in arrayTemp) {
-                                        let tmp = arrayTemp[i]
-                                        if (tmp.id === id) {
-                                            this.attrSelect.splice(i, 1)
-                                        }
-
-                                    }
-
-                                } else {
-                                    console.log(response.data);
-                                }
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            });
-
-                    }
-                })
-
-            }
 
         },
         computed: {},
