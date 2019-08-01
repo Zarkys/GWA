@@ -78,7 +78,6 @@
                     response => {
                         if (response.data.code === 200) {
                             this.currencies = response.data.data;
-
                         }
                     })
                     .catch(error => {

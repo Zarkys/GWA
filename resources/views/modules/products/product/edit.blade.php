@@ -374,13 +374,14 @@
                         <div class="col-md-3" v-for="(val,item) in attrs">
                             <div class="form-group">
                                 <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
-                                {{--<label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>--}}
-                                {{--<br>--}}
-                                <input type="checkbox" v-model="attrSelect" :value="val" :id="val.id">
-                                <label :for="val.id">Agregar</label>
-                                <br>
-                                <span class="fa fa-times-circle btn-danger text-center btn-block"
-                                      @click="removeItem(item)"></span>
+                                <strong>(@{{ val.check ?'Product':'Publico' }})<br>
+                                    {{--<label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>--}}
+                                    {{--<br>--}}
+                                    <input type="checkbox" v-model="attrSelect" :value="val" :id="val.id">
+                                    <label :for="val.id">Agregar</label>
+                                    <br>
+                                    <span class="fa fa-times-circle btn-danger text-center btn-block"
+                                          @click="removeItem(item)"></span>
                             </div>
                         </div>
                     </div>

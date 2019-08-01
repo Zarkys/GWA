@@ -374,7 +374,7 @@
                         <div class="col-md-3" v-for="(val,item) in attrs">
                             <div class="form-group">
                                 <strong>@{{ val.name }}: </strong> @{{ val.value }}<br>
-                                <strong>(@{{ val.check ?'Publico':'Product' }})<br>
+                                <strong>(@{{ val.check ?'Product':'Publico' }})<br>
                                     {{--<label>Publico: @{{ val.show_attr ? 'SI': 'NO'}}</label>--}}
                                     {{--<br>--}}
                                     <input type="checkbox" v-model="attrSelect" :value="val" :id="val.id">
