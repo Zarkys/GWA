@@ -12,8 +12,8 @@ class CreateTextsTable extends Migration
          Schema::create('texts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 128)->unique();
-            $table->string('value_es', 128)->unique()->nullable();
-            $table->string('value_en', 128)->unique()->nullable();
+            $table->string('value_es', 128)->nullable();
+            $table->string('value_en', 128)->nullable();
             $table->integer('id_section')->unsigned();
             $table->integer('active')->default(\Modules\Website\Models\Enums\ActiveText::$activated);
             $table->timestamps();
