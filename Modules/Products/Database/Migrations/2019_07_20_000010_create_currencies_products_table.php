@@ -9,7 +9,7 @@ class CreateCurrenciesProductsTable extends Migration
 
     public function up()
     {
-        Schema::create('currencies_products', function (Blueprint $table) {
+        Schema::create('prod_currencies_products', function (Blueprint $table) {
             $table->char('iso', 3);
             $table->string('name', 30);
             $table->string('symbol', 15);
@@ -25,6 +25,6 @@ class CreateCurrenciesProductsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('currencies_products');
+        Schema::dropIfExists('prod_currencies_products');
     }
 }

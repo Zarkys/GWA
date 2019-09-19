@@ -10,7 +10,7 @@ class CreateProductTable extends Migration
     public function up()
     {
 
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('prod_products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('description')->nullable();
@@ -26,14 +26,14 @@ class CreateProductTable extends Migration
             $table->char('currency',3);
             $table->timestamps();
 
-            $table->foreign('id_type')->references('id')->on('types_products')->onDelete('cascade');
-            $table->foreign('id_category')->references('id')->on('categories_products')->onDelete('cascade');
-            $table->foreign('currency')->references('iso')->on('currencies_products')->onDelete('cascade');
+            $table->foreign('id_type')->references('id')->on('prod_types_products')->onDelete('cascade');
+            $table->foreign('id_category')->references('id')->on('prod_categories_products')->onDelete('cascade');
+            $table->foreign('currency')->references('iso')->on('prod_currencies_products')->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('prod_products');
     }
 }

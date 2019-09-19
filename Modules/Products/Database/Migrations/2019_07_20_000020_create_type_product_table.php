@@ -10,7 +10,7 @@ class CreateTypeProductTable extends Migration
 
     public function up()
     {
-        Schema::create('types_products', function (Blueprint $table) {
+        Schema::create('prod_types_products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('description')->nullable();
@@ -24,6 +24,6 @@ class CreateTypeProductTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('types_products');
+        Schema::dropIfExists('prod_types_products');
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Product extends Authenticatable
 {
     use Notifiable;
-    protected $table = 'products';
+    protected $table = 'prod_products';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',

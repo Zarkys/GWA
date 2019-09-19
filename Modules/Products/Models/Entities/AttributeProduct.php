@@ -10,7 +10,7 @@ class AttributeProduct extends Authenticatable
 {
 
     use Notifiable;
-    protected $table = 'attributes_products';
+    protected $table = 'prod_attributes_products';
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [

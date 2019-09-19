@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CurrencyProduct extends Model
 {
 
-    protected $table = 'currencies_products';
+    protected $table = 'prod_currencies_products';
 
     protected $primaryKey = 'iso';
 

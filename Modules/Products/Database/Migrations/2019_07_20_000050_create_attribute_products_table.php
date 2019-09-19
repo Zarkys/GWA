@@ -9,7 +9,7 @@ class CreateAttributeProductsTable extends Migration
 
     public function up()
     {
-        Schema::create('attributes_products', function (Blueprint $table) {
+        Schema::create('prod_attributes_products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('value')->nullable();
@@ -17,13 +17,13 @@ class CreateAttributeProductsTable extends Migration
             $table->integer('id_product')->nullable();
             $table->integer('id_user')->unsigned();
 
-            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('id_product')->references('id')->on('prod_products')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('attributes_products');
+        Schema::dropIfExists('prod_attributes_products');
     }
 }
