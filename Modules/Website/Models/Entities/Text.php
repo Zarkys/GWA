@@ -8,7 +8,7 @@
     
     class Text extends Authenticatable {
         use Notifiable;
-        protected $table      = 'texts';
+        protected $table      = 'sitew_texts';
         protected $primaryKey = 'id';
         protected $fillable = [
             'id',

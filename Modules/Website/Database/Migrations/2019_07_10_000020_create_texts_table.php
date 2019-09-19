@@ -9,7 +9,7 @@ class CreateTextsTable extends Migration
 
     public function up()
     {
-         Schema::create('texts', function (Blueprint $table) {
+         Schema::create('sitew_texts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 128)->unique();
             $table->string('value_es', 128)->nullable();
@@ -18,7 +18,7 @@ class CreateTextsTable extends Migration
             $table->integer('active')->default(\Modules\Website\Models\Enums\ActiveText::$activated);
             $table->timestamps();
 
-            $table->foreign('id_section')->references('id')->on('sections')->onDelete('cascade');
+            $table->foreign('id_section')->references('id')->on('sitew_sections')->onDelete('cascade');
         });
 
     }

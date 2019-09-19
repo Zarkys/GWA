@@ -9,7 +9,7 @@ class Section extends Authenticatable
 {
 
     use Notifiable;
-    protected $table = 'sections';
+    protected $table = 'sitew_sections';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',

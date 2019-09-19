@@ -9,7 +9,7 @@ class CreateSectionsTable extends Migration
 
     public function up()
     {
-         Schema::create('sections', function (Blueprint $table) {
+         Schema::create('sitew_sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
             $table->integer('active')->default(\Modules\Website\Models\Enums\ActiveSection::$activated);
