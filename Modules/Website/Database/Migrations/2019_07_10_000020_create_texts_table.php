@@ -25,6 +25,6 @@ class CreateTextsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('texts');
+        Schema::dropIfExists('sitew_texts');
     }
 }

@@ -38,6 +38,6 @@ class CreateRecordsTable extends Migration
      */
     public function down()
     {
-         Schema::dropIfExists('records');
+         Schema::dropIfExists('recor_records');
     }
 }
