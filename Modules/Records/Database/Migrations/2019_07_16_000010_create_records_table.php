@@ -13,7 +13,7 @@ class CreateRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('records', function (Blueprint $table) {
+        Schema::create('recor_records', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('type');

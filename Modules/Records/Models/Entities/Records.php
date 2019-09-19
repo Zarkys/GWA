@@ -11,7 +11,7 @@ class Records extends Authenticatable
 {
 
     use Notifiable;
-    protected $table = 'records';
+    protected $table = 'recor_records';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
