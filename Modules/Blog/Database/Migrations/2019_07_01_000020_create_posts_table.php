@@ -9,7 +9,7 @@ class CreatePostsTable extends Migration
 
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('blog_posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 128);
             $table->string('slug', 128)->unique();
@@ -22,13 +22,13 @@ class CreatePostsTable extends Migration
             $table->datetime('publication_date')->nullable();
 
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_category')->references('id')->on('categories_blog')->onDelete('cascade');
+            $table->foreign('id_category')->references('id')->on('blog_categories_blog')->onDelete('cascade');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('blog_posts');
     }
 }

@@ -10,7 +10,7 @@ class Post extends Authenticatable
 {
 
     use Notifiable;
-    protected $table = 'posts';
+    protected $table = 'blog_posts';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',

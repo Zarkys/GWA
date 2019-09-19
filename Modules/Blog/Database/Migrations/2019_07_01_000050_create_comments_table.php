@@ -10,7 +10,7 @@ class CreateCommentsTable extends Migration
     public function up()
     {
 
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('blog_comments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
@@ -31,7 +31,7 @@ class CreateCommentsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('blog_comments');
     }
 
 }

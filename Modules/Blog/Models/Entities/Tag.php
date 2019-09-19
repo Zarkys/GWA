@@ -9,7 +9,7 @@ class Tag extends Authenticatable
 {
 
     use Notifiable;
-    protected $table = 'tags';
+    protected $table = 'blog_tags';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',

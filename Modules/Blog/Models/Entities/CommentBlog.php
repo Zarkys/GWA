@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class CommentBlog extends Authenticatable
 {
     use Notifiable;
-    protected $table = 'comments';
+    protected $table = 'blog_comments';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
