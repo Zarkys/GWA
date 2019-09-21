@@ -40,10 +40,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Valor Español</label>
-                                <input type="text" v-model="value_es" id="value_es" name="value_es"
+                                <textarea rows="10" cols="50" type="text" v-model="value_es" id="value_es" name="value_es"
                                        v-validate="'required'" class="form-control"
                                        :class="{'input': true, 'is-danger': errors.has('value_es') }"
                                        placeholder="Valor en Español">
+                                        </textarea>
                                 <i v-show="errors.has('value_es')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('value_es')"
                                       class="help is-danger">@{{ errors.first('value_es') }}</span>
@@ -59,10 +60,11 @@
                              <div v-if="config.name_module === 'Traductor'" class="form-group">
                             <div v-if="config.status === 1" class="form-group">
                                 <label>Valor Ingles</label>
-                                <input type="text" v-model="value_en" id="value_en" name="value_en"
+                                <textarea rows="10" cols="50" type="text" v-model="value_en" id="value_en" name="value_en"
                                        v-validate="'required'" class="form-control"
                                        :class="{'input': true, 'is-danger': errors.has('value_en') }"
-                                       placeholder="Valor en Español">
+                                       placeholder="Valor en Ingles">
+                                </textarea>
                                 <i v-show="errors.has('value_en')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('value_en')"
                                       class="help is-danger">@{{ errors.first('value_en') }}</span>

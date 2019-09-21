@@ -33,17 +33,18 @@
                                 <input type="text" v-model="name" id="name" name="name"
                                        v-validate="'required'" class="form-control"
                                        :class="{'input': true, 'is-danger': errors.has('name') }"
-                                       placeholder="Nombre de la variable">
+                                       placeholder="Nombre de la variable" disabled>
                                 <i v-show="errors.has('name')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('name')"
                                       class="help is-danger">@{{ errors.first('name') }}</span>
                             </div>
                             <div class="form-group">
                                 <label>Español</label>
-                                <input type="text" v-model="value_es" id="value_es" name="value_es"
+                                       <textarea rows="10" cols="50" type="text" v-model="value_es" id="value_es" name="value_es"
                                        v-validate="'required'" class="form-control"
                                        :class="{'input': true, 'is-danger': errors.has('value_es') }"
                                        placeholder="Valor en Español">
+                                        </textarea>
                                 <i v-show="errors.has('value_es')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('value_es')"
                                       class="help is-danger">@{{ errors.first('value_es') }}</span>
@@ -53,16 +54,17 @@
                             <div class="form-group">
                                 <label>Sección</label>
                                 <v-select :options="sectionArray" label="title" v-model="section"
-                                          @input="defaultSelect"></v-select>
+                                          @input="defaultSelect" disabled></v-select>
                             </div>
                             <div v-for="config in config_module">
                              <div v-if="config.name_module === 'Traductor'" class="form-group">
                              <div v-if="config.status === 1" class="form-group">
                                 <label>Ingles</label>
-                                <input type="text" v-model="value_en" id="value_en" name="value_en"
+                                <textarea rows="10" cols="50" type="text" v-model="value_en" id="value_en" name="value_en"
                                        v-validate="'required'" class="form-control"
                                        :class="{'input': true, 'is-danger': errors.has('value_en') }"
                                        placeholder="Valor en Ingles">
+                                </textarea>
                                 <i v-show="errors.has('value_en')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('value_en')"
                                       class="help is-danger">@{{ errors.first('value_en') }}</span>
