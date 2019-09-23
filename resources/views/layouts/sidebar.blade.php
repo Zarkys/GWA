@@ -121,18 +121,23 @@
     @if(Auth::user()->rol===2)
         <li class="nav-item">
             <a class="nav-link" href="{{route('website.section.list')}}">
-                <i class="fas fa-fw fa-chart-area"></i>
+                <i class="fas fa-fw fa-puzzle-piece"></i>
                 <span>Secciones</span></a>
         </li>
     @endif
     <li class="nav-item">
         <a class="nav-link" href="{{route('website.text.list')}}">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Textos</span></a>
+            <i class="fas fa-fw fa-align-center"></i>
+            <span>Textos por sección</span></a>
+    </li>
+     <li class="nav-item">
+        <a class="nav-link" href="{{route('website.image.list')}}">
+            <i class="fas fa-fw fa-image"></i>
+            <span>Imagenes por sección por sección</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{url('goadmin/contacts')}}">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-address-book"></i>
             <span>Contactos</span></a>
     </li>
    <!-- @if(Auth::user()->rol===2)
@@ -158,12 +163,12 @@
         </div>
         <li class="nav-item">
             <a class="nav-link" href="{{url('goadmin/config')}}">
-                <i class="fas fa-fw fa-chart-area"></i>
+                <i class="fas fa-fw fa-tools"></i>
                 <span>Configuracion</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('goadmin/config_module')}}">
-                <i class="fas fa-fw fa-chart-area"></i>
+                <i class="fas fa-fw fa-cubes"></i>
                 <span>Modulos</span></a>
         </li>
 @endif
