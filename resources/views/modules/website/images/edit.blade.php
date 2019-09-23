@@ -143,7 +143,7 @@
             <div class="card-header py-3">
                 <div class="row">
                     <div class="col-md-10">
-                        <h6 class="m-0 font-weight-bold text-primary">Agregar Imagenes por sección</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Actualizando Imágenes por Sección</h6>
                     </div>
                     <div class="col-md-2">
                         <a href="{{ route('website.image.list') }}" class="btn btn-warning btn-icon-split">
@@ -158,7 +158,8 @@
             <div class="card-body">
                 <form>
                     <div class="row">
-                        <div class="col-md-6">
+                       
+                         <div class="col-md-6">
                            <div class="form-group">
                                 <label>Sección</label>
                                 <v-select :options="sections" label="title" v-model="section"
@@ -192,7 +193,7 @@
                             </div>
                         </div>
                     </div>
-                    <button v-on:click="saveRow" type="button" class="btn btn-primary">Guardar</button>
+                    <button v-on:click="updateRow" type="button" class="btn btn-primary">Modificar</button>
                 </form>
             </div>
         </div>
@@ -231,8 +232,10 @@
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
                 </div>
             </div>
+
         </div>
     </div>
+
 </div>
 <!-- End of Main Content -->
 @include('layouts.footer')
@@ -245,7 +248,6 @@
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="{{ asset('/js/vue-select.js') }}"></script>
 <script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
-
 <script>
     Vue.component('v-select', VueSelect.VueSelect)
     Vue.use(VeeValidate);
@@ -262,31 +264,50 @@
                 message: '',
                 section: '',
                 sections: [],
+                // }
 
             }
         },
         mounted() {
             this.listResource()
+
+            var pageURL = window.location.href;
+            this.id = pageURL.substr(pageURL.lastIndexOf('/') + 1);
+
+            var form = {
+                'id': this.id
+            }
+
+            RoutePost_BACK('{{route('website.image.consult')}}', form).then(
+                response => {
+                    if (response.data.code === 200) {
+                        this.imagesdb = response.data.data;
+
+                        this.imageSelect = this.imagesdb.image
+
+                        
+                        this.section = this.imagesdb.section
+
+                        
+                    }
+                }
+            )
+                .catch(error => {
+                    console.log(error);
+                })
+
         },
         methods: {
             listResource() {
                 RouteGet_BACK('{{route('website.image.resources.active')}}', {}).then(
                     response => {
                         if (response.data.code === 200) {
-                            this.images = response.data.images;
+                            // this.attrs = response.data.attributeProduct;
+                            this.images = response.data.image;
+
                             this.sections = response.data.sections;
-                            this.section = this.sections[0]
+                            
 
-
-                            if (this.sections.length === 0) {
-                                Swal.fire(
-                                    'Alerta',
-                                    'Necesita registrar al menos una Sección',
-                                    'warning'
-                                ).then((result) => {
-                                    window.location.href = '{{route('website.section.create')}}';
-                                });
-                            }
                             if (this.images.length === 0) {
 
                                 Swal.fire(
@@ -298,14 +319,16 @@
                                 });
                             }
 
+
                         }
                     })
                     .catch(error => {
                         console.log(error);
                     })
             },
-            saveRow() {
+            updateRow() {
 
+                
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         Swal.fire({
@@ -315,16 +338,17 @@
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: 'Guardar'
+                            confirmButtonText: 'Modificar'
                         }).then((result) => {
                             if (result.value) {
                                 let form = {
+                                    id: this.id,
                                     id_section: this.section.id,
                                     images: this.imageSelect,
 
                                 }
 
-                                RoutePost_BACK('{{route('website.image.store')}}', form).then(
+                                RoutePost_BACK('{{route('website.image.update')}}', form).then(
                                     response => {
                                         if (response.data.code === 200) {
 

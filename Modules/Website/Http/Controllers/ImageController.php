@@ -15,6 +15,7 @@ use Modules\Website\Models\Repositories\ComponentsRepo;
 use Modules\Website\Models\Repositories\ImageRepo;
 use Modules\Website\Models\Repositories\SectionRepo;
 use Modules\Records\Models\Repositories\RecordsRepo;
+use Modules\Records\Models\Enums\ActiveArchive;
 
 class ImageController extends BaseController
 {
@@ -335,7 +336,7 @@ class ImageController extends BaseController
 
         try {
             $images = $this->RecordsRepo->allWhere(['type' => 'image', 'active' => ActiveArchive::$activated]);
-            $section = $this->SectionsRepo->allActive();
+            $sections = $this->SectionRepo->allActive();
 
             foreach ($images as $item => $value) {
                 $size = $value->size;
