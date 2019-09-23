@@ -23,6 +23,6 @@ class CreatePostTagTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('blog_post_tag');
+        Schema::drop('blog_post_tag');
     }
 }

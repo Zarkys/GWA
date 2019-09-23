@@ -25,6 +25,6 @@ class CreateCategoriesBlogTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('blog_categories_blog');
+        Schema::drop('blog_categories_blog');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Contacts extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,9 +18,9 @@ class Contacts extends Migration
             $table->string('name_client');
             $table->string('email_client')->nullable();
             $table->string('phone_client')->nullable();
-            $table->longText('message_client')->nullable(); 
-            $table->integer('active')->unsigned();          
-            $table->timestamps();         
+            $table->longText('message_client')->nullable();
+            $table->integer('active')->unsigned();
+            $table->timestamps();
         });
     }
 

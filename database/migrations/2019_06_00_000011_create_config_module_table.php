@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ConfigWeb extends Migration
+class CreateConfigModuleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class ConfigWeb extends Migration
      */
     public function up()
     {
-        Schema::create('config_web', function (Blueprint $table) {
+        Schema::create('config_module', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_config')->unique();
-            $table->string('value')->nullable();           
+            $table->string('name_module')->unique();
+            $table->integer('status');           
             $table->integer('active')->unsigned();          
             $table->timestamps();         
         });
@@ -29,6 +29,6 @@ class ConfigWeb extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_web');
+        Schema::dropIfExists('config_module');
     }
 }

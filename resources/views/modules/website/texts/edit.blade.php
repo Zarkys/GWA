@@ -40,7 +40,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Español</label>
-                                       <textarea rows="10" cols="50" type="text" v-model="value_es" id="value_es" name="value_es"
+                                <textarea rows="10" cols="50" type="text" v-model="value_es" id="value_es" name="value_es"
                                        v-validate="'required'" class="form-control"
                                        :class="{'input': true, 'is-danger': errors.has('value_es') }"
                                        placeholder="Valor en Español">

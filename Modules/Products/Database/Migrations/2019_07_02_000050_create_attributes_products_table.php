@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttributeProductsTable extends Migration
+class CreateAttributesProductsTable extends Migration
 {
 
     public function up()
@@ -14,11 +14,12 @@ class CreateAttributeProductsTable extends Migration
             $table->string('name')->nullable();
             $table->string('value')->nullable();
             $table->integer('show_attr')->default(0);
-            $table->integer('id_product')->nullable();
+            $table->integer('id_product')->unsigned();
             $table->integer('id_user')->unsigned();
 
             $table->foreign('id_product')->references('id')->on('prod_products')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
 
             'name' => 'Admin User',
             'email'=> 'admin@gmail.com',
-            'rol'=> 2, 
+            'rol'=> \App\Http\Models\Enums\Roles::$admin,
             'email_verified_at'=> null, 
             'password'=> '123456',
             'active'=> 1,

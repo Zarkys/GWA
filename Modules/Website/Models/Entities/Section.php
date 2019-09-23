@@ -19,11 +19,14 @@ class Section extends Authenticatable
         'updated_at',
     ];
 
-    public function Text() {
-            return $this->hasOne(Text::class, 'id_text');
-        } 
-    public function Image() {
-            return $this->hasOne(Image::class, 'id_section');
-        } 
+    public function Text()
+    {
+        return $this->hasOne(Text::class, 'id_text');
+    }
+
+    public function Image()
+    {
+        return $this->hasOne(Image::class, 'id_section');
+    }
 
 }

@@ -60,7 +60,7 @@
                              <div v-if="config.name_module === 'Traductor'" class="form-group">
                             <div v-if="config.status === 1" class="form-group">
                                 <label>Valor Ingles</label>
-                                 <textarea rows="10" cols="50" type="text" v-model="value_en" id="value_en" name="value_en"
+                                <textarea rows="10" cols="50" type="text" v-model="value_en" id="value_en" name="value_en"
                                        v-validate="'required'" class="form-control"
                                        :class="{'input': true, 'is-danger': errors.has('value_en') }"
                                        placeholder="Valor en Ingles">

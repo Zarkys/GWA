@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrdersTable extends Migration
+class CreateProdOrdersTable extends Migration
 {
 
     public function up()
@@ -13,10 +13,11 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('number_order')->nullable();
             $table->integer('id_user')->unsigned();
-            $table->float('amount_total',18,2)->nullable();
+            $table->float('amount_total', 18, 2)->nullable();
 
             $table->integer('status')->default(\Modules\Products\Models\Enums\StatusOrders::$open);
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -25,5 +26,4 @@ class CreateOrdersTable extends Migration
     {
         Schema::dropIfExists('prod_orders');
     }
-
 }

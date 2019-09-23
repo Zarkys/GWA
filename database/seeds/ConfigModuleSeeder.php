@@ -12,10 +12,10 @@ class ConfigModuleSeeder extends Seeder
      */
     public function run()
     {
-        $configmodule = \App\Http\Models\Entities\ConfigModule::create([  
+        $configmodule = \App\Http\Models\Entities\ConfigModule::create([
             'name_module' => 'Traductor',
-            'status'=> ActiveModule::$disabled, 
-            'active' => 1,  
+            'status' => ActiveModule::$disabled,
+            'active' => 1,
         ]);
     }
 }

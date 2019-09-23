@@ -37,6 +37,7 @@ return [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
+            'foreign_key_constraints'=>true
         ],
 
         'mysql' => [
@@ -52,6 +53,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'foreign_key_constraints'=>true
         ],
 
         'pgsql' => [
@@ -65,6 +67,7 @@ return [
             'prefix' => '',
             'schema' => 'public',
             'sslmode' => 'prefer',
+            'foreign_key_constraints'=>true
         ],
 
         'sqlsrv' => [
@@ -76,6 +79,7 @@ return [
             'password' => env('DB_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
+            'foreign_key_constraints'=>true
         ],
 
     ],

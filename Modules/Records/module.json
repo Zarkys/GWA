@@ -8,7 +8,7 @@
     "providers": [
         "Modules\\Records\\Providers\\RecordsServiceProvider"
     ],
-    "aliases": {},
+    "aliases": [],
     "files": [],
     "requires": []
 }

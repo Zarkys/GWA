@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ConfigModule extends Migration
+class CreateAuditActionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class ConfigModule extends Migration
      */
     public function up()
     {
-        Schema::create('config_module', function (Blueprint $table) {
+        Schema::create('audit_action', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_module')->unique();
-            $table->integer('status');           
-            $table->integer('active')->unsigned();          
-            $table->timestamps();         
+            $table->string('name');
+            $table->string('description');
+            $table->integer('active');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ class ConfigModule extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_module');
+        Schema::dropIfExists('audit_action');
     }
 }

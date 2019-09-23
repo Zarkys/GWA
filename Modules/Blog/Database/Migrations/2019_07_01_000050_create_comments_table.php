@@ -31,7 +31,7 @@ class CreateCommentsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('blog_comments');
+        Schema::drop('blog_comments');
     }
 
 }

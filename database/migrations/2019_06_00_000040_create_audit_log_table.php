@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AuditAction extends Migration
+class CreateAuditLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class AuditAction extends Migration
      */
     public function up()
     {
-        Schema::create('audit_action', function (Blueprint $table) {
+        Schema::create('audit_log', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('idunser')->unsigned();
+            $table->integer('idnaction')->unsigned();
             $table->string('description');
-            $table->integer('active');
+
+            $table->foreign('idunser')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('idnaction')->references('id')->on('audit_action')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class AuditAction extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('audit_action');
+        Schema::dropIfExists('audit_log');
     }
 }

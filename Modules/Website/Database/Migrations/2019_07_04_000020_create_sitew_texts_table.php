@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTextsTable extends Migration
+class CreateSitewTextsTable extends Migration
 {
 
     public function up()
@@ -16,10 +16,9 @@ class CreateTextsTable extends Migration
             $table->string('value_en', 500)->nullable();
             $table->integer('id_section')->unsigned();
             $table->integer('active')->default(\Modules\Website\Models\Enums\ActiveText::$activated);
-            $table->timestamps();
-
             $table->foreign('id_section')->references('id')->on('sitew_sections')->onDelete('cascade');
-        });
+            $table->timestamps();
+         });
 
     }
 
