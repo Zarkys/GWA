@@ -24,12 +24,12 @@
             Zona de Blog
         </div>
         <li class="nav-item">
-            <a class="nav-link  @yield('blog_menu')" href="#" data-toggle="collapse" data-target="#collapseBlog"
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBlog"
                aria-expanded="true" aria-controls="collapsePages">
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Blog</span>
             </a>
-            <div id="collapseBlog" class="collapse @yield('blog_submenu')" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div id="collapseBlog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('blog.post.list')}}">Entrada</a>
                     @if(Auth::user()->rol===2)
@@ -55,11 +55,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
 
                     @if(Auth::user()->rol===2)
-{{--                        <a class="collapse-item" href="{{url('goadmin/library')}}">Biblioteca</a>--}}
-{{--                        <a class="collapse-item" href="{{url('goadmin/archive')}}">Agregar archivo</a>--}}
                         <a class="collapse-item" href="{{route('library.archive.list')}}">Biblioteca</a>
                         <a class="collapse-item" href="{{route('records.archive.create')}}">Agregar archivo</a>
-{{--                        <a class="collapse-item" href="{{url('goadmin/archive_folder')}}">Archivos en Carpeta</a>--}}
                     @endif
                 </div>
             </div>

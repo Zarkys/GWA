@@ -64,12 +64,6 @@
 @include('layouts.footer')
 @include('layouts.footscript')
 
-<!-- Additional Scripts -->
-<script src="{{ asset('/js/vue.js') }}"></script>
-<script src="{{ asset('/js/axios.min.js') }}"></script>
-<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
-<script src="{{ asset('/js/axios.js?v='.time()) }}"></script>
-<!-- Custom page Script -->
 <script>
     var app = new Vue({
         el: '#app',

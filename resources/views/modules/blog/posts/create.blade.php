@@ -1,8 +1,8 @@
 @include('layouts.header')
-<!-- Custom styles for this page -->
-
 @include('layouts.sidebar')
 @include('layouts.navbar')
+
+@section('blog_submenu','show')
 <!-- End of Topbar -->
 <div id="app">
     <!-- Begin Page Content -->

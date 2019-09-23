@@ -1,8 +1,7 @@
 @include('layouts.header')
-<!-- Custom styles for this page -->
-
 @include('layouts.sidebar')
 @include('layouts.navbar')
+
 <!-- End of Topbar -->
 <div id="app">
     <!-- Begin Page Content -->
@@ -107,12 +106,6 @@
 @include('layouts.footer')
 @include('layouts.footscript')
 
-<!-- Additional Scripts -->
-<script src="{{ asset('/js/vue.js') }}"></script>
-<script src="{{ asset('/js/axios.min.js') }}"></script>
-<script src="{{ asset('/js/axios.js') }}"></script>
-
-<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
 
 <!-- START DATEPICKER -->
@@ -128,7 +121,6 @@
 <link href="https://cdn.quilljs.com/1.3.4/quill.bubble.css" rel="stylesheet">
 
 {{--TODO NEW SCRIPT--}}
-<script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
 <script src="{{ asset('assets/stringToSlug/jquery.stringToSlug.min.js') }}"></script>
 <script>
     $(document).ready(function () {

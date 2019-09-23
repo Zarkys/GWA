@@ -27,14 +27,14 @@ class ConfigWebRepo
     {
 
 //        $posts = Post::whereIn('active', [0, 1])->count();
-        $contacts = Contact::whereIn('active', [0, 1])->count();
-        $texts = Text::whereIn('active', [0, 1])->count();
+//        $contacts = Contact::whereIn('active', [0, 1])->count();
+//        $texts = Text::whereIn('active', [0, 1])->count();
 //        $comments = Coment::whereIn('active', [0, 1])->count();
 
         $counters = new \stdClass;
         $counters->posts= 0;
-        $counters->contacts= $contacts;
-        $counters->texts= $texts;
+        $counters->contacts= 0;
+        $counters->texts= 0;
         $counters->comments= 0;
 
         return $counters;

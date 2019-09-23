@@ -59,13 +59,6 @@
 @include('layouts.footer')
 @include('layouts.footscript')
 
-<script src="{{ asset('/js/vue.js') }}"></script>
-<script src="{{ asset('/js/axios.min.js') }}"></script>
-<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
-<script src="{{ asset('/js/axios.js?v='.time()) }}"></script>
-
-<script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
-
 <script>
     Vue.use(VeeValidate);
 

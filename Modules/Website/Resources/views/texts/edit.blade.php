@@ -86,12 +86,6 @@
 @include('layouts.footer')
 @include('layouts.footscript')
 
-<!-- Additional Scripts -->
-<script src="{{ asset('/js/vue.js') }}"></script>
-<script src="{{ asset('/js/axios.min.js') }}"></script>
-<script src="{{ asset('/js/axios.js') }}"></script>
-
-<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
 
 <!-- START DATEPICKER -->
@@ -105,9 +99,6 @@
 <link href="https://cdn.quilljs.com/1.3.4/quill.core.css" rel="stylesheet">
 <link href="https://cdn.quilljs.com/1.3.4/quill.snow.css" rel="stylesheet">
 <link href="https://cdn.quilljs.com/1.3.4/quill.bubble.css" rel="stylesheet">
-
-{{--TODO NEW SCRIPT--}}
-<script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
 
 <script>
     Vue.use(VeeValidate)
