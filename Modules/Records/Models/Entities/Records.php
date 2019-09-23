@@ -6,7 +6,6 @@ use App\Http\Models\Entities\User;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
 class Records extends Authenticatable
 {
 

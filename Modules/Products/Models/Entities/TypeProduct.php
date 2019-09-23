@@ -31,8 +31,4 @@ class TypeProduct extends Authenticatable
         return $this->hasOne(User::class, 'id', 'id_user');
     }
 
-//    public function TypeProductAttribute()
-//    {
-//        return $this->hasOne(TypeProductAttribute::class, 'id_type_product');
-//    }
 }

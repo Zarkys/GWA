@@ -41,17 +41,20 @@ class Product extends Authenticatable
     {
         return $this->hasOne(CurrencyProduct::class, 'iso', 'currency');
     }
+
     public function AttributeProduct()
     {
         return $this->hasMany(AttributeProduct::class, 'id_product', 'id');
     }
 
-    public function getImagesAttribute($value) {
+    public function getImagesAttribute($value)
+    {
 
         return json_decode($value);
     }
 
-    public function setImagesAttribute($value) {
+    public function setImagesAttribute($value)
+    {
 
         $this->attributes['images'] = json_encode($value);
     }

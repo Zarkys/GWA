@@ -8,13 +8,13 @@ use Modules\Website\Models\Enums\ActiveSection;
 class SectionRepo
 {
 
-   /* public function all($id_user)
-    {
+    /* public function all($id_user)
+     {
 
-        $section = Section::where('id_user',$id_user)->get();
-        return $section;
+         $section = Section::where('id_user',$id_user)->get();
+         return $section;
 
-    }*/
+     }*/
 
     public function allActive()
     {
@@ -66,6 +66,7 @@ class SectionRepo
 
         return $section;
     }
+
     public function filteractive()
     {
         //Find By parameters (Item)

@@ -20,6 +20,7 @@ class RecordsRepo
 
         return $records;
     }
+
     public function allActive($active)
     {
         $records = Records::where(['active' => $active])->get();

@@ -1,6 +1,7 @@
 <?php
 
 namespace Modules\Products\Models\Entities;
+
 use Illuminate\Database\Seeder;
 
 class CurrenciesProductsTableSeeder extends Seeder
@@ -8,15 +9,6 @@ class CurrenciesProductsTableSeeder extends Seeder
 
     public function run()
     {
-        CurrencyProduct::create([
-            'iso' => 'VEF',
-            'name' => 'Venezuelan Bolívar Fuerte',
-            'symbol' => 'BsF.',
-            'thousand_separator' => '.',
-            'decimal_separator' => ',',
-            'decimals' => 2,
-            'active' => 1
-        ]);
 
         CurrencyProduct::create([
             'iso' => 'USD',
@@ -26,6 +18,16 @@ class CurrenciesProductsTableSeeder extends Seeder
             'decimal_separator' => '.',
             'decimals' => 2,
             'active' => 1
+        ]);
+
+        CurrencyProduct::create([
+            'iso' => 'VEF',
+            'name' => 'Venezuelan Bolívar Fuerte',
+            'symbol' => 'BsF.',
+            'thousand_separator' => '.',
+            'decimal_separator' => ',',
+            'decimals' => 2,
+            'active' => 0
         ]);
 
         CurrencyProduct::create([

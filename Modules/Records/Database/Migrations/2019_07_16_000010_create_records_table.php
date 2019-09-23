@@ -28,8 +28,6 @@ class CreateRecordsTable extends Migration
             $table->foreign('id_user')->references('id')->on('users');
         });
     }
-    
-        // 
 
     /**
      * Reverse the migrations.
@@ -38,6 +36,6 @@ class CreateRecordsTable extends Migration
      */
     public function down()
     {
-         Schema::dropIfExists('recor_records');
+        Schema::dropIfExists('recor_records');
     }
 }

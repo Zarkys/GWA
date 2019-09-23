@@ -6,25 +6,24 @@ use App\Http\Models\Entities\User;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class CategoryProduct extends Authenticatable
+class Order extends Authenticatable
 {
     use Notifiable;
-    protected $table = 'prod_categories_products';
+    protected $table = 'prod_orders';
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
-        'name',
-        'slug',
-        'description',
+        'number_order',
         'id_user',
-        'active',
+        'amount_total',
+        'status',
         'created_at',
         'updated_at',
     ];
 
-    public function Products()
+    public function Details()
     {
-        return $this->hasMany(Product::class, 'id_category', 'id');
+        return $this->hasMany(DetailsOrder::class, 'id_order', 'id');
     }
 
     public function User()
@@ -33,5 +32,3 @@ class CategoryProduct extends Authenticatable
     }
 
 }
-
-

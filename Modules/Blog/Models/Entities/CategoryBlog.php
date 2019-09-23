@@ -24,12 +24,12 @@ class CategoryBlog extends Authenticatable
 
     public function posts()
     {
-        return $this->hasMany(PostBlog::class);
+        return $this->hasMany(Post::class);
     }
 
     public function user()
     {
-        return $this->hasOne(User::class,'id','id_user');
+        return $this->hasOne(User::class, 'id', 'id_user');
     }
 
 }

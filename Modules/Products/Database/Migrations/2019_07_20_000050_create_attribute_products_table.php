@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateAttributeProductsTable extends Migration
 {
 
-   /* public function up()
+    public function up()
     {
         Schema::create('prod_attributes_products', function (Blueprint $table) {
             $table->increments('id');
@@ -25,5 +25,5 @@ class CreateAttributeProductsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('prod_attributes_products');
-    }*/
+    }
 }

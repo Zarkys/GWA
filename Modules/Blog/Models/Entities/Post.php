@@ -29,21 +29,22 @@ class Post extends Authenticatable
 
     public function category()
     {
-        return $this->hasOne(CategoryBlog::class,'id','id_category');
+        return $this->hasOne(CategoryBlog::class, 'id', 'id_category');
     }
 
     public function user()
     {
-        return $this->hasOne(User::class,'id','id_user');
+        return $this->hasOne(User::class, 'id', 'id_user');
     }
 
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }
+
     public function comments()
     {
-        return $this->hasMany(CommentBlog::class,'id_post','id');
+        return $this->hasMany(CommentBlog::class, 'id_post', 'id');
     }
 
 

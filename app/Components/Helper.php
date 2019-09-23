@@ -534,9 +534,10 @@ class Helper
         return round($val, $precision, $mode);
     }
 
-    public static function hashid($value, $length = 6)
+
+    public static function hashid($value, $length = 6, $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890')
     {
-        return (new Hashids($value, $length))->encode(100, 100);
+        return (new Hashids($value, $length, $alphabet))->encode(100, 100);
     }
 
     public static function menuDefault()
