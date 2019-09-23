@@ -26,7 +26,7 @@ class ImageController extends BaseController
     private $RecordsRepo;
     private $ComponentsRepo;
 
-    public function __construct(ImageRepo $ImageRepo,SectionRepo $SectionRepo, UserRepo $UserRepo, RecordsRepo $RecordsRepo, ComponentsRepo $ComponentsRepo)
+    public function __construct(ImageRepo $ImageRepo, SectionRepo $SectionRepo, UserRepo $UserRepo, RecordsRepo $RecordsRepo, ComponentsRepo $ComponentsRepo)
     {
 
         $this->ImageRepo = $ImageRepo;
@@ -113,15 +113,15 @@ class ImageController extends BaseController
     public function listAll(Request $request)
     {
 
-            $image = $this->ImageRepo->all();
-            $response = [
-                'status' => 'OK',
-                'code' => 200,
-                'message' => __('Datos Obtenidos Correctamente'),
-                'data' => $image,
-            ];
+        $image = $this->ImageRepo->all();
+        $response = [
+            'status' => 'OK',
+            'code' => 200,
+            'message' => __('Datos Obtenidos Correctamente'),
+            'data' => $image,
+        ];
 
-            return response()->json($response, 200);
+        return response()->json($response, 200);
 
     }
 
@@ -148,7 +148,7 @@ class ImageController extends BaseController
 
             if (isset($image->id)) {
 
-                $active = $image->active === ActiveImage::$activated ? ActiveImage::$disabled: ActiveImage::$activated;
+                $active = $image->active === ActiveImage::$activated ? ActiveImage::$disabled : ActiveImage::$activated;
 
                 $this->ImageRepo->update($image, ['active' => $active]);
 
@@ -183,7 +183,8 @@ class ImageController extends BaseController
             return response()->json($response, 500);
         }
     }
-     public function delete(Request $request)
+
+    public function delete(Request $request)
     {
 
         try {
@@ -204,7 +205,7 @@ class ImageController extends BaseController
 
                     $image = $this->ImageRepo->delete($image->id);
 
-                } elseif ($active === ActiveImage::$activated ) {
+                } elseif ($active === ActiveImage::$activated) {
                     $image = $this->ImageRepo->delete($image->id);
 
                 } else {
@@ -243,7 +244,6 @@ class ImageController extends BaseController
 
     }
 
- 
 
     public function consult(Request $request)
     {
@@ -330,7 +330,7 @@ class ImageController extends BaseController
         }
     }
 
-        //TODO CONSULT
+    //TODO CONSULT
     public function resourcesActive()
     {
 
