@@ -121,96 +121,96 @@
     <div class="sidebar-heading">
         Zona de Website
     </div>
-    @if(Auth::user()->rol===2)
-        <li class="nav-item">
-            <a class="nav-link" href="{{route('website.section.list')}}">
-                <i class="fas fa-fw fa-puzzle-piece"></i>
-                <span>Secciones</span></a>
-        </li>
-    @endif
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('website.section.list')}}">
+            <i class="fas fa-fw fa-puzzle-piece"></i>
+            <span>Secciones</span></a>
+    </li>
+
     <li class="nav-item">
         <a class="nav-link" href="{{route('website.text.list')}}">
             <i class="fas fa-fw fa-align-center"></i>
             <span>Textos por sección</span></a>
     </li>
-     <li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="{{route('website.image.list')}}">
             <i class="fas fa-fw fa-image"></i>
-            <span>Imagenes por sección por sección</span></a>
+            <span>Imagenes por sección</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{url('goadmin/contacts')}}">
             <i class="fas fa-fw fa-address-book"></i>
             <span>Contactos</span></a>
     </li>
-   <!-- @if(Auth::user()->rol===2)
-        <li class="nav-item">
-            <a class="nav-link" href="{{url('goadmin/config')}}">
+<!-- @if(Auth::user()->rol===2)
+    <li class="nav-item">
+        <a class="nav-link" href="{{url('goadmin/config')}}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Configuracion</span></a>
         </li>
     @endif-->
 
 
-<!-- Divider -->
+        <!-- Divider -->
 
-    <hr class="sidebar-divider">
+        <hr class="sidebar-divider">
 
-    <!-- Heading -->
-
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    @if(Auth::user()->rol===2)
-        <div class="sidebar-heading">
-            Configuraciones
-        </div>
-        <li class="nav-item">
-            <a class="nav-link" href="{{url('goadmin/config')}}">
-                <i class="fas fa-fw fa-tools"></i>
-                <span>Configuracion</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{url('goadmin/config_module')}}">
-                <i class="fas fa-fw fa-cubes"></i>
-                <span>Modulos</span></a>
-        </li>
-@endif
-<!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
+        <!-- Heading -->
 
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    @if(Auth::user()->rol===2)
-        <div class="sidebar-heading">
-            Sistema
-        </div>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
-               aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Usuario</span>
-            </a>
-            <div id="collapseUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-
-
-                    <a class="collapse-item" href="{{url('goadmin/users')}}">Usuario</a>
-
-                </div>
+        <!-- Nav Item - Pages Collapse Menu -->
+        @if(Auth::user()->rol===2)
+            <div class="sidebar-heading">
+                Configuraciones
             </div>
-        </li>
-@endif
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('goadmin/config')}}">
+                    <i class="fas fa-fw fa-tools"></i>
+                    <span>Configuracion</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url('goadmin/config_module')}}">
+                    <i class="fas fa-fw fa-cubes"></i>
+                    <span>Modulos</span></a>
+            </li>
+        @endif
+    <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
 
 
-<!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+        <!-- Nav Item - Pages Collapse Menu -->
+        @if(Auth::user()->rol===2)
+            <div class="sidebar-heading">
+                Sistema
+            </div>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+                   aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Usuario</span>
+                </a>
+                <div id="collapseUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
 
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
+
+                        <a class="collapse-item" href="{{url('goadmin/users')}}">Usuario</a>
+
+                    </div>
+                </div>
+            </li>
+    @endif
+
+
+    <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
 </ul>
 
