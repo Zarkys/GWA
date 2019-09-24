@@ -62,7 +62,7 @@ class ImageController extends BaseController
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'required',
+            'images' => 'required',
             'id_section' => 'required'
         ], $this->custom_message());
 
@@ -80,8 +80,14 @@ class ImageController extends BaseController
 
         try {
 
+            $img = null;
+            if (count($request->get('images')) > 0) {
+                $img = $request->get('images')[0];
+            }
+
             $data = [
-                'image' => $request->get('image'),
+                'image' => $img,
+                'images' => $request->get('images'),
                 'id_section' => $request->get('id_section'),
                 'active' => ActiveSection::$activated,
             ];
@@ -205,7 +211,7 @@ class ImageController extends BaseController
 
                     $image = $this->ImageRepo->delete($image->id);
 
-                } elseif ($active === ActiveImage::$activated) {
+                } elseif (count($sections) > 1) {
                     $image = $this->ImageRepo->delete($image->id);
 
                 } else {
@@ -232,7 +238,7 @@ class ImageController extends BaseController
             return response()->json($response, 500);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -244,11 +250,11 @@ class ImageController extends BaseController
 
     }
 
-
     public function consult(Request $request)
     {
 
         try {
+
             $image = $this->ImageRepo->findbyid($request->get('id'));
 
             $response = [
@@ -276,7 +282,7 @@ class ImageController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'id' => 'required',
-            'image' => 'required',
+            'images' => 'required',
             'id_section' => 'required',
         ], $this->custom_message());
 
@@ -293,20 +299,25 @@ class ImageController extends BaseController
         }
 
         try {
+
+            $img = null;
+            if (count($request->get('images')) > 0) {
+                $img = $request->get('images')[0];
+            }
+
+
             $image = $this->ImageRepo->find($request->get('id'));
             if (isset($image->id)) {
 
                 $data = [
-                    'image' => $request->get('image'),
+                    'image' => $img,
+                    'images' => $request->get('images'),
                     'id_section' => $request->get('id_section'),
                 ];
 
-
                 $image = $this->ImageRepo->update($image, $data);
 
-
             }
-
 
             $response = [
                 'status' => 'OK',
@@ -318,7 +329,6 @@ class ImageController extends BaseController
 
 
         } catch (\Exception $ex) {
-            Log::error($ex);
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,

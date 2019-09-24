@@ -1,6 +1,4 @@
 @include('layouts.header')
-<!-- Custom styles for this page -->
-
 @include('layouts.sidebar')
 @include('layouts.navbar')
 <style>
@@ -399,13 +397,7 @@
 @include('layouts.footer')
 @include('layouts.footscript')
 
-<!-- Additional Scripts -->
-<script src="{{ asset('/js/vue.js') }}"></script>
-<script src="{{ asset('/js/axios.min.js') }}"></script>
-<script src="{{ asset('/js/axios.js') }}"></script>
-<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="{{ asset('/js/vue-select.js') }}"></script>
-<script src="{{ asset('assets/vue-validate/vee-validate.js')}}"></script>
 <script src="{{ asset('assets/money/v-money.min.js') }}"></script>
 
 <script>

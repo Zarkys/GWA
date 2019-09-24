@@ -25,28 +25,27 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Descripción</th>
-                        <th>Editar</th>
+                        <th style="text-align: -webkit-center!important;">Editar</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="type in types">
                         <td width="20%">@{{type.name}}</td>
                         <td width="40%">@{{ type.description | shortText }}</td>
-                        <td width="15%" style="text-align: -webkit-center!important;margin-top: -1%">
+                        <td width="15%" style="text-align: -webkit-center!important;">
                             <a v-if="type.active === 1" href="#" v-on:click="changeActive(type)"
-                               class="btn btn-success btn-block btn-sm">
+                               class="btn btn-success btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-check"></i>
                             </a>
                             <a v-if="type.active === 0" href="#" v-on:click="changeActive(type)"
-                               class="btn btn-warning btn-block btn-sm">
+                               class="btn btn-warning btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-times"></i>
                             </a>
-                            <br>
-                            <a href="#" v-on:click="consultTp(type.id)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="consultTp(type.id)" style="margin-top: 2%!important;"
                                class="btn btn-primary btn-circle">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="#" v-on:click="deleteTp(type)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="deleteTp(type)" style="margin-top: 2%!important;"
                                class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>

@@ -5,8 +5,6 @@ namespace Modules\Products\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Log;
-use Modules\Products\Models\Enums\ActiveProduct;
 use Modules\Products\Models\Repositories\AttributeProductRepo;
 
 class AttributeController extends BaseController
@@ -51,7 +49,7 @@ class AttributeController extends BaseController
             return response()->json($response, 500);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,

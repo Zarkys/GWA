@@ -60,7 +60,6 @@ class CategoryController extends BaseController
             return response()->json($response, 200);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -206,7 +205,7 @@ class CategoryController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'slug' => 'required|unique:categories_blog',
+            'slug' => 'required|unique:prod_categories_products',
             'description' => 'required',
         ], $this->custom_message());
 
@@ -236,14 +235,14 @@ class CategoryController extends BaseController
             $response = [
                 'status' => 'OK',
                 'code' => 200,
-                'message' => __('Registrado  Correctamente'),
+                'message' => __('Registrado Correctamente'),
             ];
 
             return response()->json($response, 200);
 
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -259,6 +258,7 @@ class CategoryController extends BaseController
     {
 
         try {
+
             $category = $this->CategoryProductRepo->findbyid($request->get('id'));
 
             $response = [
@@ -312,7 +312,7 @@ class CategoryController extends BaseController
                     'description' => $request->get('description'),
                 ];
                 $validator = Validator::make($request->all(), [
-                    'slug' => 'required|unique:categories_blog',
+                    'slug' => 'required|unique:prod_categories_products',
                 ]);
                 if (!$validator->fails()) {
 

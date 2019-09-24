@@ -22,22 +22,22 @@
                         <th>Correo Electronico</th>
                         <th>Comentario</th>
                         <th>Fecha</th>
-                        <th>Estatus</th>
+                        <th style="text-align: -webkit-center!important;">Estatus</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="comment in comments">
-                        <td width="10%">@{{ comment.name}}</td>
+                        <td width="15%">@{{ comment.name}}</td>
                         <td width="20%">@{{ comment.email}}</td>
-                        <td width="40%">@{{ comment.comment | shortText}}</td>
+                        <td width="25%">@{{ comment.comment | shortText}}</td>
                         <td width="20%">@{{ comment.publication_date }}</td>
-                        <td width="10%" style="text-align: -webkit-center!important;margin-top: -1%">
+                        <td width="20%" style="text-align: -webkit-center!important;">
                             <a href="#" v-on:click="changeStatus(comment,true)"
-                               class="btn btn-success btn-block btn-sm">
+                               class="btn btn-success btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-check"></i>
                             </a>
                             <a href="#" v-on:click="changeStatus(comment,false)"
-                               class="btn btn-danger btn-block btn-sm">
+                               class="btn btn-danger btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-times"></i>
                             </a>
                         </td>

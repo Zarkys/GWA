@@ -206,7 +206,7 @@ class TagController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'slug' => 'required|unique:tags',
+            'slug' => 'required|unique:blog_tags',
             'description' => 'required',
         ], $this->custom_message());
 
@@ -221,7 +221,7 @@ class TagController extends BaseController
             return response()->json($response);
         }
 
-//        try {
+        try {
 
             $data = [
                 'name' => $request->get('name'),
@@ -242,17 +242,17 @@ class TagController extends BaseController
             return response()->json($response, 200);
 
 
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
+        } catch (\Exception $ex) {
+
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+
+            ];
+
+            return response()->json($response, 500);
+        }
     }
 
     public function consult(Request $request)
@@ -312,7 +312,7 @@ class TagController extends BaseController
                     'description' => $request->get('description'),
                 ];
                 $validator = Validator::make($request->all(), [
-                    'slug' => 'required|unique:tags_blog',
+                    'slug' => 'required|unique:blog_tags',
                 ]);
                 if (!$validator->fails()) {
 

@@ -27,7 +27,7 @@
                         <th>Tipo</th>
                         <th>Categoria</th>
                         <th>Detalles</th>
-                        <th>Editar</th>
+                        <th style="text-align: -webkit-center!important;">Editar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,22 +35,21 @@
                         <td width="20%">@{{ product.name}}</td>
                         <td width="15%">@{{ product.type_product.name }}</td>
                         <td width="15%">@{{ product.category_product.name }}</td>
-                        <td width="30%" v-html="product.detail"></td>
-                        <td width="15%" style="text-align: -webkit-center!important;margin-top: -1%">
+                        <td width="20%" v-html="product.detail"></td>
+                        <td width="20%" style="text-align: -webkit-center!important;">
                             <a v-if="product.active === 1" href="#" v-on:click="changeActive(product)"
-                               class="btn btn-success btn-block btn-sm">
+                               class="btn btn-success btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-check"></i>
                             </a>
                             <a v-if="product.active === 0" href="#" v-on:click="changeActive(product)"
-                               class="btn btn-warning btn-block btn-sm">
+                               class="btn btn-warning btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-times"></i>
                             </a>
-                            <br>
-                            <a href="#" v-on:click="consultData(product.id)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="consultData(product.id)" style="margin-top: 2%!important;"
                                class="btn btn-primary btn-circle">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="#" v-on:click="deleteData(product)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="deleteData(product)" style="margin-top: 2%!important;"
                                class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -66,12 +65,6 @@
 @include('layouts.footer')
 @include('layouts.footscript')
 
-<!-- Additional Scripts -->
-<script src="{{ asset('/js/vue.js') }}"></script>
-<script src="{{ asset('/js/axios.min.js') }}"></script>
-<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
-<script src="{{ asset('/js/axios.js?v='.time()) }}"></script>
-<!-- Custom page Script -->
 <script>
     var app = new Vue({
         el: '#app',

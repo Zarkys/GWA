@@ -206,7 +206,7 @@ class CategoryController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'slug' => 'required|unique:categories_blog',
+            'slug' => 'required|unique:blog_categories_blog',
             'description' => 'required',
         ], $this->custom_message());
 
@@ -312,7 +312,7 @@ class CategoryController extends BaseController
                     'description' => $request->get('description'),
                 ];
                 $validator = Validator::make($request->all(), [
-                    'slug' => 'required|unique:categories_blog',
+                    'slug' => 'required|unique:blog_categories_blog',
                 ]);
                 if (!$validator->fails()) {
 

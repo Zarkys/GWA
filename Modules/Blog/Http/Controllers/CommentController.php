@@ -50,19 +50,19 @@ class CommentController extends BaseController
 
         try {
 
-            $category = $this->CommentRepo->allStatus(StatusCommentBlog::$revision);
+            $comment = $this->CommentRepo->allStatus(StatusCommentBlog::$revision);
 
             $response = [
                 'status' => 'OK',
                 'code' => 200,
                 'message' => __('Datos Obtenidos Correctamente'),
-                'data' => $category,
+                'data' => $comment,
             ];
 
             return response()->json($response, 200);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -91,6 +91,7 @@ class CommentController extends BaseController
 
             return response()->json($response);
         }
+
         try {
 
             $comment = $this->CommentRepo->find($request->get('id'));

@@ -26,5 +26,17 @@ class Image extends Authenticatable
         return $this->hasOne(Section::class, 'id', 'id_section');
     }
 
+    public function getImagesAttribute($value)
+    {
+
+        return json_decode($value);
+    }
+
+    public function setImagesAttribute($value)
+    {
+
+        $this->attributes['images'] = json_encode($value);
+    }
+
 
 }

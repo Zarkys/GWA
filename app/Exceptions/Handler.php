@@ -30,50 +30,50 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception $exception
      * @return void
      */
     public function report(Exception $exception)
     {
-        dd($exception);
-  parent::report($exception);
+//        dd($exception);
+        parent::report($exception);
         $response = [
-            'status'  => 'FAILED',
-            'code'    => 500,
+            'status' => 'FAILED',
+            'code' => 500,
             'message' => _('Ocurrio un error interno') . '.',
 
         ];
 
-        return response()->json($response,500);
+        return response()->json($response, 500);
     }
 
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Exception $exception
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
-  return parent::render($request, $exception);
+//  return parent::render($request, $exception);
         $response = [
-            'status'  => 'FAILED',
-            'code'    => 500,
+            'status' => 'FAILED',
+            'code' => 500,
             'message' => _('Ocurrio un error interno') . '.',
             'content' => $exception->getMessage()
 
         ];
 
-        return response()->json($response,500);
+        return response()->json($response, 500);
     }
-    
+
     protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
-        
+
         return redirect()->guest(route('auth.login'));
     }
 }

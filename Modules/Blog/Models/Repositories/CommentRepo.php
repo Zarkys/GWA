@@ -2,10 +2,7 @@
 
 namespace Modules\Blog\Models\Repositories;
 
-use Modules\Blog\Models\Entities\CategoryBlog;
 use Modules\Blog\Models\Entities\CommentBlog;
-use Modules\Blog\Models\Enums\ActiveCategory;
-use Modules\Blog\Models\Enums\StatusCommentBlog;
 
 class CommentRepo
 {
@@ -19,222 +16,53 @@ class CommentRepo
 
     public function allStatus($status)
     {
-        $menu = CommentBlog::where(['status' => $status])->get();
+        $comments = CommentBlog::where(['status' => $status])->get();
 
-        return $menu;
+        return $comments;
     }
 
     public function find($id)
     {
 
-        $category = CommentBlog::find($id);
+        $comments = CommentBlog::find($id);
 
-        return $category;
+        return $comments;
     }
 
     public function store($data)
     {
 
-        $category = new CommentBlog();
-        $category->fill($data);
-        $category->save();
+        $comments = new CommentBlog();
+        $comments->fill($data);
+        $comments->save();
 
-        return $category;
+        return $comments;
     }
 
-    public function update($category, $data)
+    public function update($comments, $data)
     {
 
-        $category->fill($data);
-        $category->save();
+        $comments->fill($data);
+        $comments->save();
 
-        return $category;
+        return $comments;
     }
 
     public function delete($id)
     {
 
-        $category = CommentBlog::destroy($id);
+        $comments = CommentBlog::destroy($id);
 
-        return $category;
+        return $comments;
     }
 
     public function findbyid($id)
     {
 
-        $category = CommentBlog::find($id);
+        $comments = CommentBlog::find($id);
 
 
-        return $category;
+        return $comments;
     }
-//
-//
-//    public function filteractive()
-//    {
-//        //Find By parameters (Item)
-//        try {
-//            $category = CategoryBlog::whereIn('active', [1])->get();
-//            foreach ($category as $onecategory) {
-//                $categorysuperior = CategoryBlog::find($onecategory->parent_category);
-//                $onecategory->superiorcategory = $categorysuperior;
-//            }
-//
-//            return $category;
-//
-//        } catch (\Exception $ex) {
-//
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//    }
-//
-//    public function filterinactive()
-//    {
-//        //Find By parameters (Item)
-//        try {
-//            $category = CategoryBlog::whereIn('active', [0])->get();
-//            foreach ($category as $onecategory) {
-//                $categorysuperior = CategoryBlog::find($onecategory->parent_category);
-//                $onecategory->superiorcategory = $categorysuperior;
-//            }
-//
-//            return $category;
-//
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//    }
-//
-//    public function filterdeleted()
-//    {
-//        //Find By parameters (Item)
-//        try {
-//            $category = CategoryBlog::whereIn('active', [2])->get();
-//            foreach ($category as $onecategory) {
-//                $categorysuperior = CategoryBlog::find($onecategory->parent_category);
-//                $onecategory->superiorcategory = $categorysuperior;
-//            }
-//
-//            return $category;
-//
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//    }
-//
-//    public function filterby($item, $id)
-//    {
-//        //Find By parameters (Item)
-//        try {
-//            if ($item === 'parent_category') {
-//                $category = CategoryBlog::where('parent_category', $id)
-//                    ->whereIn('active', [0, 1])->get();
-//                foreach ($category as $onecategory) {
-//                    $categorysuperior = CategoryBlog::find($onecategory->parent_category);
-//                    $onecategory->superiorcategory = $categorysuperior;
-//                }
-//            }
-//            return $category;
-//
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//    }
-//
-//    public function findbyunique($item, $string)
-//    {
-//        //Find By parameters (Item)
-//        try {
-//            if ($item === 'name') {
-//
-//
-//                $category = CategoryBlog::where('name', $string)
-//                    ->whereIn('active', [0, 1])->get();
-//                foreach ($category as $onecategory) {
-//                    $categorysuperior = CategoryBlog::find($onecategory->parent_category);
-//                    $onecategory->superiorcategory = $categorysuperior;
-//                }
-//            }
-//
-//            if ($item === 'slug') {
-//
-//
-//                $category = CategoryBlog::where('slug', $string)
-//                    ->whereIn('active', [0, 1])->get();
-//                foreach ($category as $onecategory) {
-//                    $categorysuperior = CategoryBlog::find($onecategory->parent_category);
-//                    $onecategory->superiorcategory = $categorysuperior;
-//                }
-//            }
-//            return $category;
-//
-//        } catch (\Exception $ex) {
-//
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error internor') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//    }
-//
-//    public function checkduplicate($item, $string)
-//    {
-//        //Find By parameters (Item)
-//        try {
-//            if ($item === 'name') {
-//
-//                $category = CategoryBlog::where('name', $string)
-//                    ->whereIn('active', [0, 1])
-//                    ->exists();
-//
-//            }
-//            if ($item === 'slug') {
-//
-//                $category = CategoryBlog::where('slug', $string)
-//                    ->whereIn('active', [0, 1])
-//                    ->exists();
-//
-//            }
-//            return $category;
-//
-//        } catch (\Exception $ex) {
-//
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error internor') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//    }
+
 }

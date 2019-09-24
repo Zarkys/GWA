@@ -12,7 +12,7 @@ class ImageRepo
     {
         $image = Image::with([
             'Section',
-        ])->Orderby('id','desc')->get();
+        ])->Orderby('id', 'desc')->get();
 
         return $image;
     }
@@ -29,7 +29,7 @@ class ImageRepo
             return $image;
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -104,64 +104,65 @@ class ImageRepo
         return $image;
     }
 
-     /*public function filterby($item,$id) {
-            //Find By parameters (Item)
-            try {
-                $strings_es = [];
-                $strings_en = [];
-                    if($item==='id_section'){
-                        //$textstation = TextStation::where('id_text', $id)->get();
+    /*public function filterby($item,$id) {
+           //Find By parameters (Item)
+           try {
+               $strings_es = [];
+               $strings_en = [];
+                   if($item==='id_section'){
+                       //$textstation = TextStation::where('id_text', $id)->get();
 
-                        $text = Text::with([
-                            'Section',
-                        ])->where('id_section', $id)->whereIn('active', [0, 1])->get();
-                      
-                        foreach($text as $t)
-                        {
-                            $strings_es[$t->name] = $t->value_es;
-                            $strings_en[$t->name] = $t->value_en;
-                        }
-                        
-                       
-                    }                 
-                    $object = new \stdClass();
-                    $object->es = $strings_es;
-                    $object->en = $strings_en;
-               
-                    return $object;
+                       $text = Text::with([
+                           'Section',
+                       ])->where('id_section', $id)->whereIn('active', [0, 1])->get();
 
-            } catch (\Exception $ex) {
-                Log::error($ex);
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error interno') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            } 
-    } */
+                       foreach($text as $t)
+                       {
+                           $strings_es[$t->name] = $t->value_es;
+                           $strings_en[$t->name] = $t->value_en;
+                       }
 
- public function findbyunique($item,$string) {
-            //Find By parameters (Item)
-            try {
-                    if($item==='image'){
 
-                        $image = Image::where('image', $string)->whereIn('active', [0, 1])->get();
-                    } 
-                    return $image;
+                   }
+                   $object = new \stdClass();
+                   $object->es = $strings_es;
+                   $object->en = $strings_en;
 
-            } catch (\Exception $ex) {
-                
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error internor') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            } 
-        } 
+                   return $object;
+
+           } catch (\Exception $ex) {
+               Log::error($ex);
+               $response = [
+                   'status'  => 'FAILED',
+                   'code'    => 500,
+                   'message' => __('Ocurrio un error interno') . '.',
+               ];
+
+               return response()->json($response, 500);
+           }
+   } */
+
+    public function findbyunique($item, $string)
+    {
+        //Find By parameters (Item)
+        try {
+            if ($item === 'image') {
+
+                $image = Image::where('image', $string)->whereIn('active', [0, 1])->get();
+            }
+            return $image;
+
+        } catch (\Exception $ex) {
+
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error internor') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
 
     public function store($data)
     {
@@ -181,7 +182,8 @@ class ImageRepo
 
         return $image;
     }
-        public function activate($image, $data)
+
+    public function activate($image, $data)
     {
 
         $image->fill($data);
@@ -189,7 +191,8 @@ class ImageRepo
 
         return $image;
     }
-        public function inactivate($image, $data)
+
+    public function inactivate($image, $data)
     {
 
         $image->fill($data);
@@ -198,7 +201,7 @@ class ImageRepo
         return $image;
     }
 
-   public function delete($id)
+    public function delete($id)
     {
 
         $image = Image::destroy($id);
@@ -206,54 +209,55 @@ class ImageRepo
         return $image;
     }
 
-           public function checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond) {
-            //Find By parameters (Item)
-            try {
-                    if($itemfirst==='image' && $itemsecond==='id_section')
-                    {
+    public function checkduplicate($itemfirst, $stringfirst, $itemsecond, $stringsecond)
+    {
+        //Find By parameters (Item)
+        try {
+            if ($itemfirst === 'image' && $itemsecond === 'id_section') {
 
-                        $image = Image::where('image', $stringfirst)
-                        ->where('id_section', $stringsecond)
-                        ->whereIn('active', [0, 1])
-                        -> exists();
+                $image = Image::where('image', $stringfirst)
+                    ->where('id_section', $stringsecond)
+                    ->whereIn('active', [0, 1])
+                    ->exists();
 
-                    } 
-                    return $image;
+            }
+            return $image;
 
-            } catch (\Exception $ex) {
-                
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error internor') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            } 
-        } 
-        public function checkduplicateUpdate($itemfirst,$stringfirst,$itemsecond,$stringsecond,$idelement) {
-            //Find By parameters (Item)
-            try {
-                    if($itemfirst==='image' && $itemsecond==='id_section')
-                    {
+        } catch (\Exception $ex) {
 
-                        $image = Image::where('image', $stringfirst)
-                        ->where('id','!=',$idelement)
-                        ->whereIn('active', [0, 1])
-                        -> exists();
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error internor') . '.',
+            ];
 
-                    } 
-                    return $image;
-
-            } catch (\Exception $ex) {
-                
-                $response = [
-                    'status'  => 'FAILED',
-                    'code'    => 500,
-                    'message' => _('Ocurrio un error internor') . '.',
-                ];
-                
-                return response()->json($response, 500);
-            } 
+            return response()->json($response, 500);
         }
+    }
+
+    public function checkduplicateUpdate($itemfirst, $stringfirst, $itemsecond, $stringsecond, $idelement)
+    {
+        //Find By parameters (Item)
+        try {
+            if ($itemfirst === 'image' && $itemsecond === 'id_section') {
+
+                $image = Image::where('image', $stringfirst)
+                    ->where('id', '!=', $idelement)
+                    ->whereIn('active', [0, 1])
+                    ->exists();
+
+            }
+            return $image;
+
+        } catch (\Exception $ex) {
+
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error internor') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+    }
 }

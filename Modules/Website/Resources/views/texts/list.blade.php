@@ -30,28 +30,27 @@
                         <th>Español</th>
                         <th>Ingles</th>
                         <th>Sección</th>
-                        <th>Editar</th>
+                        <th style="text-align: -webkit-center">Editar</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="text in texts" class="text-left">
-                        <td width="30%">@{{text.name}}</td>
+                        <td width="20%">@{{text.name}}</td>
                         <td width="20%">@{{text.value_es}}</td>
                         <td width="20%">@{{text.value_en}}</td>
                         <td width="20%">@{{text.section.title}}</td>
-                        <td width="15%" style="text-align: -webkit-center!important;margin-top: -1%">
+                        <td width="20%" style="text-align: -webkit-center">
                             <a v-if="text.active === 1" href="#" v-on:click="changeStatus(text)"
-                               class="btn btn-success btn-block btn-sm"><i class="fas fa-check"></i>
+                               class="btn btn-success btn-circle" style="margin-top: 2%!important;"><i class="fas fa-check"></i>
                             </a>
                             <a v-if="text.active === 0" href="#" v-on:click="changeStatus(text)"
-                               class="btn btn-warning btn-block btn-sm"><i class="fas fa-times"></i>
+                               class="btn btn-warning btn-circle" style="margin-top: 2%!important;"><i class="fas fa-times"></i>
                             </a>
-                            <br>
-                            <a href="#" v-on:click="consultText(text)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="consultText(text)" style="margin-top: 2%!important;"
                                class="btn btn-primary btn-circle">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="#" v-on:click="deleteText(text)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="deleteText(text)" style="margin-top: 2%!important;"
                                class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>

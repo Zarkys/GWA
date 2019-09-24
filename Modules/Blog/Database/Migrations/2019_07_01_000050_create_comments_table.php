@@ -17,13 +17,13 @@ class CreateCommentsTable extends Migration
             $table->text('comment');
             $table->dateTime('publication_date')->nullable();
 
-           /* $table->integer('id_post')->unsigned();
-            $table->integer('id_user')->nullable();
             $table->integer('status')->default(\Modules\Blog\Models\Enums\StatusCommentBlog::$revision);
+            $table->integer('id_post')->unsigned();
+//            $table->integer('id_user')->nullable();
 
             $table->foreign('id_post')->references('id')->on('posts')->onDelete('cascade');
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->timestamps();*/
+//            $table->foreign('id_user')->references('id')->on('users');
+            $table->timestamps();
 
         });
 

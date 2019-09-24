@@ -26,7 +26,7 @@
                         <th>Nombre</th>
                         <th>Descripción</th>
                         <th>Slug</th>
-                        <th>Editar</th>
+                        <th style="text-align: -webkit-center">Editar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,21 +34,20 @@
                         <td width="20%">@{{category.name}}</td>
                         <td width="35%">@{{ category.description | shortText }}</td>
                         <td width="25%">@{{category.slug}}</td>
-                        <td width="20%" style="text-align: -webkit-center!important;margin-top: -1%">
+                        <td width="20%" style="text-align: -webkit-center!important;">
                             <a v-if="category.active === 1" href="#" v-on:click="changeActive(category)"
-                               class="btn btn-success btn-block btn-sm">
+                               class="btn btn-success btn-circle"  style="margin-top: 2%!important;">
                                 <i class="fas fa-check"></i>
                             </a>
                             <a v-if="category.active === 0" href="#" v-on:click="changeActive(category)"
-                               class="btn btn-warning btn-block btn-sm">
+                               class="btn btn-warning btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-times"></i>
                             </a>
-                            <br>
-                            <a href="#" v-on:click="consultCategory(category.id)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="consultCategory(category.id)" style="margin-top: 2%!important;"
                                class="btn btn-primary btn-circle">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="#" v-on:click="deleteCategory(category)" style="margin-top: -20%!important;"
+                            <a href="#" v-on:click="deleteCategory(category)" style="margin-top: 2%!important;"
                                class="btn btn-danger btn-circle">
                                 <i class="fas fa-trash"></i>
                             </a>
@@ -64,12 +63,6 @@
 @include('layouts.footer')
 @include('layouts.footscript')
 
-<!-- Additional Scripts -->
-<script src="{{ asset('/js/vue.js') }}"></script>
-<script src="{{ asset('/js/axios.min.js') }}"></script>
-<script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
-<script src="{{ asset('/js/axios.js?v='.time()) }}"></script>
-<!-- Custom page Script -->
 <script>
     var app = new Vue({
         el: '#app',

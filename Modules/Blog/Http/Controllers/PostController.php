@@ -56,7 +56,7 @@ class PostController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'slug' => 'required|unique:posts',
+            'slug' => 'required|unique:blog_posts',
             'content' => 'required',
 //            'image' => 'required',
             'id_category' => 'required',
@@ -107,8 +107,9 @@ class PostController extends BaseController
 
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
+                $ex,
                 'status' => 'FAILED',
                 'code' => 500,
                 'message' => __('Ocurrio un error interno') . '.',
@@ -122,13 +123,10 @@ class PostController extends BaseController
     public function listAll(Request $request)
     {
 
-//        try {
+        try {
 
             $post = $this->PostRepo->all();
-//            foreach (){
-//
-//            }
-//        $post->totalComments = count($post->Comments);
+
             $response = [
                 'status' => 'OK',
                 'code' => 200,
@@ -138,16 +136,16 @@ class PostController extends BaseController
 
             return response()->json($response, 200);
 
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
+        } catch (\Exception $ex) {
+
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
 
     }
 
@@ -341,7 +339,7 @@ class PostController extends BaseController
                 ];
 
                 $validator = Validator::make($request->all(), [
-                    'slug' => 'unique:posts',
+                    'slug' => 'unique:blog_posts',
                 ]);
                 if (!$validator->fails()) {
                     $data['slug'] = $request->get('slug');

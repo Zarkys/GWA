@@ -60,7 +60,7 @@ class TypeController extends BaseController
             return response()->json($response, 200);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -88,6 +88,7 @@ class TypeController extends BaseController
 
             return response()->json($response);
         }
+
         try {
 
             $type = $this->TypeProductRepo->find($request->get('id'));
@@ -104,9 +105,9 @@ class TypeController extends BaseController
                 ];
 
                 if ($active === ActiveTypeProduct::$activated) {
-                   $this->TypeProductRepo->update($type, ['active' => $active]);
+                    $this->TypeProductRepo->update($type, ['active' => $active]);
                 } elseif (count($types) > 1) {
-                   $this->TypeProductRepo->update($type, ['active' => $active]);
+                    $this->TypeProductRepo->update($type, ['active' => $active]);
                 } else {
                     $response = [
                         'status' => 'OK',
@@ -190,7 +191,6 @@ class TypeController extends BaseController
             return response()->json($response, 500);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -241,7 +241,7 @@ class TypeController extends BaseController
 
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -323,7 +323,7 @@ class TypeController extends BaseController
             return response()->json($response, 200);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
