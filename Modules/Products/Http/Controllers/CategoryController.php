@@ -48,7 +48,7 @@ class CategoryController extends BaseController
 
         try {
 
-            $category = $this->CategoryProductRepo->all($request->user()->id);
+            $category = $this->CategoryProductRepo->all();
 
             $response = [
                 'status' => 'OK',
@@ -189,7 +189,7 @@ class CategoryController extends BaseController
             return response()->json($response, 500);
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -226,7 +226,6 @@ class CategoryController extends BaseController
                 'name' => $request->get('name'),
                 'slug' => $request->get('slug'),
                 'description' => $request->get('description'),
-                'id_user' => $request->user()->id,
                 'active' => ActiveCategory::$activated,
             ];
 

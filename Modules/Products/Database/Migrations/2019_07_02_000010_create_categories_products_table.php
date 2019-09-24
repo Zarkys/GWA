@@ -14,10 +14,8 @@ class CreateCategoriesProductsTable extends Migration
             $table->string('name', 64);
             $table->string('slug', 128)->unique();
             $table->text('description')->nullable();
-            $table->integer('id_user')->unsigned();
             $table->integer('active')->default(1);
 
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
 
         });

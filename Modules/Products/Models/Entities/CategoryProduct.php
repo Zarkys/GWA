@@ -16,7 +16,6 @@ class CategoryProduct extends Authenticatable
         'name',
         'slug',
         'description',
-        'id_user',
         'active',
         'created_at',
         'updated_at',
@@ -25,11 +24,6 @@ class CategoryProduct extends Authenticatable
     public function Products()
     {
         return $this->hasMany(Product::class, 'id_category', 'id');
-    }
-
-    public function User()
-    {
-        return $this->hasOne(User::class, 'id', 'id_user');
     }
 
 }

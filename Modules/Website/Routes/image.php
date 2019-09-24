@@ -2,7 +2,7 @@
 
 //TODO ROUTE ADMIN
 Route::group([
-   // 'middleware' => ['auth'],
+    'middleware' => ['auth'],
     'prefix' => '/website/image',
 ], function () {
 

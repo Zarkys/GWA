@@ -7,10 +7,10 @@ use Modules\Products\Models\Enums\ActiveCategory;
 
 class CategoryProductRepo
 {
-    public function all($id_user)
+    public function all()
     {
 
-        $category = CategoryProduct::where('id_user', $id_user)->get();
+        $category = CategoryProduct::all();
         return $category;
 
     }
