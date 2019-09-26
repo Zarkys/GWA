@@ -3,7 +3,7 @@
 //TODO ROUTE ADMIN
 Route::group([
     'middleware' => ['auth'],
-    'prefix' => '/website/image',
+    'prefix' => '/image',
 ], function () {
 
     //TODO VIEWS
