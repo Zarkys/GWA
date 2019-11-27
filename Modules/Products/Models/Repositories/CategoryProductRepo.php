@@ -15,11 +15,40 @@ class CategoryProductRepo
 
     }
 
+    public function allActiveCurrency($iso)
+    {
+
+        $categories = CategoryProduct::with([
+            'Products' => function ($query) use ($iso){
+                $query->where('currency',$iso)->with([
+                    'TypeProduct',
+                    'CategoryProduct',
+                    'CurrencyProduct',
+                    'AttributeProduct',
+                    'ProductImages' => function ($query) {
+                        $query->with(['ProductRecords']);
+                    },
+                ]);
+            },
+        ])->where(['active' => ActiveCategory::$activated])->get();
+
+        return $categories;
+    }
+
     public function allActive()
     {
-        $menu = CategoryProduct::where(['active' => ActiveCategory::$activated])->get();
+        $categories = CategoryProduct::with([
+            'Products' => function ($query) {
+                $query->with([
+                    'TypeProduct',
+                    'CategoryProduct',
+                    'CurrencyProduct',
+                    'AttributeProduct'
+                ]);
+            },
+        ])->where(['active' => ActiveCategory::$activated])->get();
 
-        return $menu;
+        return $categories;
     }
 
     public function find($id)
@@ -28,6 +57,43 @@ class CategoryProductRepo
         $category = CategoryProduct::find($id);
 
         return $category;
+    }
+
+    public function slug($slug)
+    {
+
+        $category = CategoryProduct::with([
+            'Products' => function ($query) {
+                $query->with([
+                    'TypeProduct',
+                    'CategoryProduct',
+                    'CurrencyProduct',
+                    'AttributeProduct'
+                ]);
+            },
+        ])->where('slug', $slug)->first();
+
+        return $category;
+    }
+
+    public function slugCurrency($slug,$iso)
+    {
+
+        $categories = CategoryProduct::with([
+            'Products' => function ($query) use ($iso){
+                $query->where('currency',$iso)->orderBy('id','desc')->with([
+                    'TypeProduct',
+                    'CategoryProduct',
+                    'CurrencyProduct',
+                    'AttributeProduct',
+                    'ProductImages' => function ($query) {
+                        $query->with(['ProductRecords']);
+                    },
+                ]);
+            },
+        ])->where(['active' => ActiveCategory::$activated,'slug'=> $slug])->first();
+
+        return $categories;
     }
 
     public function store($data)

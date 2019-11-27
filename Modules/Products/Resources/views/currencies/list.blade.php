@@ -80,6 +80,15 @@
                     })
             },
             changeActive(currency) {
+                if (currency.active){
+                    Swal.fire(
+                        'La moneda esta activada',
+                        '',
+                        'info'
+                    ).then((result) => {
+                    });
+                    return false
+                }
                 Swal.fire({
                     title: 'Estas seguro?',
                     text: 'Se cambiara el estatus de la moneda.',
@@ -93,11 +102,15 @@
                         let form = {
                             id: currency.iso
                         }
-                        console.log(form)
                         RoutePost_BACK('{{route('product.currency.change.status')}}', form).then(
                             response => {
                                 if (response.data.code === 200) {
-                                    currency.active = response.data.active;
+
+                                    for (i in this.currencies) {
+                                        this.currencies[i].active = 0
+                                    }
+                                    currency.active = 1
+
                                     Swal.fire(
                                         'Listo',
                                         response.data.message,

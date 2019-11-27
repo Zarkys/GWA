@@ -15,8 +15,11 @@ class ProductRepo
             'TypeProduct',
             'CategoryProduct',
             'CurrencyProduct',
-            'AttributeProduct'
-        ])->get();
+            'AttributeProduct',
+            'ProductImages' => function ($query) {
+                $query->with(['ProductRecords']);
+            },
+        ])->orderBy('id','desc')->get();
 
         return $products;
     }
@@ -29,6 +32,9 @@ class ProductRepo
             'CategoryProduct',
             'CurrencyProduct',
             'AttributeProduct',
+            'ProductImages' => function ($query) {
+                $query->with(['ProductRecords']);
+            },
         ])->where('id', $id)->first();
 
         return $products;
@@ -43,6 +49,38 @@ class ProductRepo
             'CurrencyProduct',
             'AttributeProduct',
         ])->where('active', ActiveProduct::$activated)->get();
+
+        return $products;
+    }
+
+    public function allActiveCurrency($iso)
+    {
+
+        $products = Product::with([
+            'TypeProduct',
+            'CategoryProduct',
+            'CurrencyProduct',
+            'AttributeProduct',
+            'ProductImages' => function ($query) {
+                $query->with(['ProductRecords']);
+            },
+        ])->where(['active' => ActiveProduct::$activated, 'currency' => $iso])->orderBy('id','desc')->get();
+
+        return $products;
+    }
+
+    public function last($iso, $cant = 3)
+    {
+
+        $products = Product::with([
+            'TypeProduct',
+            'CategoryProduct',
+            'CurrencyProduct',
+            'AttributeProduct',
+            'ProductImages' => function ($query) {
+                $query->with(['ProductRecords']);
+            },
+        ])->where(['active' => ActiveProduct::$activated, 'currency' => $iso])->orderBy('id','desc')->take($cant)->get();
 
         return $products;
     }

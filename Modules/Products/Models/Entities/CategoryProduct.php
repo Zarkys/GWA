@@ -23,7 +23,7 @@ class CategoryProduct extends Authenticatable
 
     public function Products()
     {
-        return $this->hasMany(Product::class, 'id_category', 'id');
+        return $this->hasMany(Product::class,'id_category','id');
     }
 
 }

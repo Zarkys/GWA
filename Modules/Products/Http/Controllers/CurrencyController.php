@@ -78,30 +78,19 @@ class CurrencyController extends BaseController
             $currency = $this->CurrencyProductRepo->find($request->get('id'));
 
             if (isset($currency->iso)) {
+
                 $currencies = $this->CurrencyProductRepo->allActive();
-                $active = $currency->active === ActiveCurrency::$activated ? ActiveCurrency::$disabled : ActiveCurrency::$activated;
+                foreach ($currencies as $value) {
+                    $this->CurrencyProductRepo->update($value, ['active' => ActiveCurrency::$disabled]);
+                }
+
+                $this->CurrencyProductRepo->update($currency, ['active' => ActiveCurrency::$activated]);
 
                 $response = [
                     'status' => 'OK',
                     'code' => 200,
-                    'message' => __('Datos Modificados Correctamente') . '.',
-                    'active' => $active
+                    'message' => __('Se Cambio la Moneda Principal Correctamente') . '.',
                 ];
-
-                if ($active === ActiveCurrency::$activated) {
-                    $this->CurrencyProductRepo->update($currency, ['active' => $active]);
-                } elseif (count($currencies) > 1) {
-                    $this->CurrencyProductRepo->update($currency, ['active' => $active]);
-                } else {
-                    $response = [
-                        'status' => 'OK',
-                        'code' => 201,
-                        'message' => __('Debes mantener un item activo') . '.',
-                        'active' => $currency->active
-                    ];
-
-                    return response()->json($response, 201);
-                }
 
                 return response()->json($response, 200);
 

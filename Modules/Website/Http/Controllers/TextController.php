@@ -23,7 +23,7 @@ class TextController extends BaseController
     private $UserRepo;
     private $ComponentsRepo;
 
-    public function __construct(TextRepo $TextRepo,SectionRepo $SectionRepo, UserRepo $UserRepo, ComponentsRepo $ComponentsRepo)
+    public function __construct(TextRepo $TextRepo, SectionRepo $SectionRepo, UserRepo $UserRepo, ComponentsRepo $ComponentsRepo)
     {
 
         $this->TextRepo = $TextRepo;
@@ -61,7 +61,7 @@ class TextController extends BaseController
             'name' => 'required',
             'value_es' => 'required',
 //            'image' => 'required',
-           // 'value_en' => 'required',
+            // 'value_en' => 'required',
             'id_section' => 'required'
         ], $this->custom_message());
 
@@ -117,19 +117,19 @@ class TextController extends BaseController
 
 //        try {
 
-            $text = $this->TextRepo->all();
+        $text = $this->TextRepo->all();
 //            foreach (){
 //
 //            }
 //        $post->totalComments = count($post->Comments);
-            $response = [
-                'status' => 'OK',
-                'code' => 200,
-                'message' => __('Datos Obtenidos Correctamente'),
-                'data' => $text,
-            ];
+        $response = [
+            'status' => 'OK',
+            'code' => 200,
+            'message' => __('Datos Obtenidos Correctamente'),
+            'data' => $text,
+        ];
 
-            return response()->json($response, 200);
+        return response()->json($response, 200);
 
 //        } catch (\Exception $ex) {
 //            Log::error($ex);
@@ -167,7 +167,7 @@ class TextController extends BaseController
 
             if (isset($text->id)) {
 
-                $active = $text->active === ActiveText::$activated ? ActiveText::$disabled: ActiveText::$activated;
+                $active = $text->active === ActiveText::$activated ? ActiveText::$disabled : ActiveText::$activated;
 
                 $this->TextRepo->update($text, ['active' => $active]);
 
@@ -202,7 +202,8 @@ class TextController extends BaseController
             return response()->json($response, 500);
         }
     }
-     public function delete(Request $request)
+
+    public function delete(Request $request)
     {
 
         try {
@@ -223,7 +224,7 @@ class TextController extends BaseController
 
                     $text = $this->TextRepo->delete($text->id);
 
-                } elseif ($active === ActiveText::$activated ) {
+                } elseif ($active === ActiveText::$activated) {
                     $text = $this->TextRepo->delete($text->id);
 
                 } else {
@@ -262,59 +263,59 @@ class TextController extends BaseController
 
     }
 
-   /* public function delete(Request $request)
-    {
+    /* public function delete(Request $request)
+     {
 
-//        try {
+ //        try {
 
-        $text = $this->TextRepo->find($request->get('id'));
+         $text = $this->TextRepo->find($request->get('id'));
 
-        if (isset($text->id)) {
+         if (isset($text->id)) {
 
-            $response = [
-                'status' => 'OK',
-                'code' => 200,
-                'message' => __('Datos Modificados Correctamente') . '.',
-            ];
+             $response = [
+                 'status' => 'OK',
+                 'code' => 200,
+                 'message' => __('Datos Modificados Correctamente') . '.',
+             ];
 
-            if ($text->active === ActiveSection::$disabled) {
+             if ($text->active === ActiveSection::$disabled) {
 
-                $this->TextRepo->delete($text->id);
+                 $this->TextRepo->delete($text->id);
 
-            } else {
-                $response = [
-                    'status' => 'OK',
-                    'code' => 201,
-                    'message' => __('No puedes eliminar el texto publicado') . '.',
-                ];
+             } else {
+                 $response = [
+                     'status' => 'OK',
+                     'code' => 201,
+                     'message' => __('No puedes eliminar el texto publicado') . '.',
+                 ];
 
-                return response()->json($response, 201);
-            }
+                 return response()->json($response, 201);
+             }
 
-            return response()->json($response, 200);
+             return response()->json($response, 200);
 
-        }
+         }
 
-        $response = [
-            'status' => 'FAILED',
-            'code' => 500,
-            'message' => __('Ocurrio un error interno') . '.'
-        ];
+         $response = [
+             'status' => 'FAILED',
+             'code' => 500,
+             'message' => __('Ocurrio un error interno') . '.'
+         ];
 
-        return response()->json($response, 500);
+         return response()->json($response, 500);
 
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
+ //        } catch (\Exception $ex) {
+ //            Log::error($ex);
+ //            $response = [
+ //                'status' => 'FAILED',
+ //                'code' => 500,
+ //                'message' => __('Ocurrio un error interno') . '.',
+ //            ];
+ //
+ //            return response()->json($response, 500);
+ //        }
 
-    }*/
+     }*/
 
     public function consult(Request $request)
     {
@@ -349,7 +350,7 @@ class TextController extends BaseController
             'id' => 'required',
             'name' => 'required',
             'value_es' => 'required',
-           // 'value_en' => 'required',
+            // 'value_en' => 'required',
             'id_section' => 'required',
         ], $this->custom_message());
 
@@ -376,12 +377,12 @@ class TextController extends BaseController
                     'id_section' => $request->get('id_section'),
                 ];
 
-               /* $validator = Validator::make($request->all(), [
-                    'slug' => 'unique:posts',
-                ]);
-                if (!$validator->fails()) {
-                    $data['slug'] = $request->get('slug');
-                }*/
+                /* $validator = Validator::make($request->all(), [
+                     'slug' => 'unique:posts',
+                 ]);
+                 if (!$validator->fails()) {
+                     $data['slug'] = $request->get('slug');
+                 }*/
 
                 $text = $this->TextRepo->update($text, $data);
 

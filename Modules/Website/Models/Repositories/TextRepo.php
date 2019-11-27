@@ -12,7 +12,7 @@ class TextRepo
     {
         $text = Text::with([
             'Section',
-        ])->Orderby('id', 'desc')->get();
+        ])->Orderby('id','desc')->get();
 
         return $text;
     }
@@ -104,65 +104,64 @@ class TextRepo
         return $text;
     }
 
-    public function filterby($item, $id)
-    {
-        //Find By parameters (Item)
-        try {
-            $strings_es = [];
-            $strings_en = [];
-            if ($item === 'id_section') {
-                //$textstation = TextStation::where('id_text', $id)->get();
+     public function filterby($item,$id) {
+            //Find By parameters (Item)
+            try {
+                $strings_es = [];
+                $strings_en = [];
+                    if($item==='id_section'){
+                        //$textstation = TextStation::where('id_text', $id)->get();
 
-                $text = Text::with([
-                    'Section',
-                ])->where('id_section', $id)->whereIn('active', [0, 1])->get();
+                        $text = Text::with([
+                            'Section',
+                        ])->where('id_section', $id)->whereIn('active', [0, 1])->get();
+                      
+                        foreach($text as $t)
+                        {
+                            $strings_es[$t->name] = $t->value_es;
+                            $strings_en[$t->name] = $t->value_en;
+                        }
+                        
+                       
+                    }                 
+                    $object = new \stdClass();
+                    $object->es = $strings_es;
+                    $object->en = $strings_en;
+               
+                    return $object;
 
-                foreach ($text as $t) {
-                    $strings_es[$t->name] = $t->value_es;
-                    $strings_en[$t->name] = $t->value_en;
-                }
+            } catch (\Exception $ex) {
+                Log::error($ex);
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error interno') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+    } 
 
+ public function findbyunique($item,$string) {
+            //Find By parameters (Item)
+            try {
+                    if($item==='title'){
 
-            }
-            $object = new \stdClass();
-            $object->es = $strings_es;
-            $object->en = $strings_en;
+                        $text = Text::where('title', $string)->whereIn('active', [0, 1])->get();
+                    } 
+                    return $text;
 
-            return $object;
-
-        } catch (\Exception $ex) {
-            Log::error($ex);
-            $response = [
-                'status' => 'FAILED',
-                'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
-            ];
-
-            return response()->json($response, 500);
-        }
-    }
-
-    public function findbyunique($item, $string)
-    {
-        //Find By parameters (Item)
-        try {
-            if ($item === 'title') {
-
-                $text = Text::where('title', $string)->whereIn('active', [0, 1])->get();
-            }
-            return $text;
-
-        } catch (\Exception $ex) {
-
-            $response = [
-                'status' => 'FAILED',
-                'code' => 500,
-                'message' => _('Ocurrio un error internor') . '.',
-            ];
-
-            return response()->json($response, 500);
-        }
-    }
+            } catch (\Exception $ex) {
+                
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error internor') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        } 
 
     public function store($data)
     {
@@ -182,8 +181,15 @@ class TextRepo
 
         return $text;
     }
+        public function activate($text, $data)
+    {
 
-    public function activate($text, $data)
+        $text->fill($data);
+        $text->save();
+
+        return $text;
+    }
+        public function inactivate($text, $data)
     {
 
         $text->fill($data);
@@ -192,16 +198,7 @@ class TextRepo
         return $text;
     }
 
-    public function inactivate($text, $data)
-    {
-
-        $text->fill($data);
-        $text->save();
-
-        return $text;
-    }
-
-    public function delete($id)
+   public function delete($id)
     {
 
         $section = Text::destroy($id);
@@ -209,55 +206,54 @@ class TextRepo
         return $section;
     }
 
-    public function checkduplicate($itemfirst, $stringfirst, $itemsecond, $stringsecond)
-    {
-        //Find By parameters (Item)
-        try {
-            if ($itemfirst === 'name' && $itemsecond === 'id_section') {
+           public function checkduplicate($itemfirst,$stringfirst,$itemsecond,$stringsecond) {
+            //Find By parameters (Item)
+            try {
+                    if($itemfirst==='name' && $itemsecond==='id_section')
+                    {
 
-                $text = Text::where('name', $stringfirst)
-                    ->where('id_section', $stringsecond)
-                    ->whereIn('active', [0, 1])
-                    ->exists();
+                        $text = Text::where('name', $stringfirst)
+                        ->where('id_section', $stringsecond)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
 
-            }
-            return $text;
+                    } 
+                    return $text;
 
-        } catch (\Exception $ex) {
+            } catch (\Exception $ex) {
+                
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error internor') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
+        } 
+        public function checkduplicateUpdate($itemfirst,$stringfirst,$itemsecond,$stringsecond,$idelement) {
+            //Find By parameters (Item)
+            try {
+                    if($itemfirst==='name' && $itemsecond==='id_section')
+                    {
 
-            $response = [
-                'status' => 'FAILED',
-                'code' => 500,
-                'message' => _('Ocurrio un error internor') . '.',
-            ];
+                        $text = Text::where('name', $stringfirst)
+                        ->where('id','!=',$idelement)
+                        ->whereIn('active', [0, 1])
+                        -> exists();
 
-            return response()->json($response, 500);
+                    } 
+                    return $text;
+
+            } catch (\Exception $ex) {
+                
+                $response = [
+                    'status'  => 'FAILED',
+                    'code'    => 500,
+                    'message' => _('Ocurrio un error internor') . '.',
+                ];
+                
+                return response()->json($response, 500);
+            } 
         }
-    }
-
-    public function checkduplicateUpdate($itemfirst, $stringfirst, $itemsecond, $stringsecond, $idelement)
-    {
-        //Find By parameters (Item)
-        try {
-            if ($itemfirst === 'name' && $itemsecond === 'id_section') {
-
-                $text = Text::where('name', $stringfirst)
-                    ->where('id', '!=', $idelement)
-                    ->whereIn('active', [0, 1])
-                    ->exists();
-
-            }
-            return $text;
-
-        } catch (\Exception $ex) {
-
-            $response = [
-                'status' => 'FAILED',
-                'code' => 500,
-                'message' => _('Ocurrio un error internor') . '.',
-            ];
-
-            return response()->json($response, 500);
-        }
-    }
 }

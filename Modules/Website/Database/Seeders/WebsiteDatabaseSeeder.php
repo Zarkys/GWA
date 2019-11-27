@@ -4,6 +4,7 @@ namespace Modules\Website\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Website\Models\Entities\SiteswImagesTableSeeder;
 
 class WebsiteDatabaseSeeder extends Seeder
 {
@@ -15,7 +16,6 @@ class WebsiteDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        $this->call(SiteswImagesTableSeeder::class);
     }
 }

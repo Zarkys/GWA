@@ -24,9 +24,4 @@ class Section extends Authenticatable
         return $this->hasOne(Text::class, 'id_text');
     }
 
-    public function Image()
-    {
-        return $this->hasOne(Image::class, 'id_section');
-    }
-
 }

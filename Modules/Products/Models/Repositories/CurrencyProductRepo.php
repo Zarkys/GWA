@@ -23,6 +23,14 @@ class CurrencyProductRepo
         return $data;
     }
 
+    public function findActive()
+    {
+
+        $data = CurrencyProduct::where('active', ActiveCurrency::$activated)->first();
+
+        return $data;
+    }
+
     public function find($id)
     {
 

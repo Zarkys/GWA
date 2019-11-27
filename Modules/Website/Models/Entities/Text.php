@@ -2,12 +2,12 @@
 
 namespace Modules\Website\Models\Entities;
 
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Text extends Authenticatable
 {
-
     use Notifiable;
     protected $table = 'sitew_texts';
     protected $primaryKey = 'id';
@@ -26,5 +26,6 @@ class Text extends Authenticatable
     {
         return $this->hasOne(Section::class, 'id', 'id_section');
     }
+
 
 }

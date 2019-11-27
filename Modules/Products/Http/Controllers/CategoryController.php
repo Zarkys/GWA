@@ -189,7 +189,7 @@ class CategoryController extends BaseController
             return response()->json($response, 500);
 
         } catch (\Exception $ex) {
-
+            Log::error($ex);
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,

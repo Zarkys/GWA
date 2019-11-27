@@ -53,8 +53,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Sección</label>
-                                <v-select :options="sectionArray" label="title" v-model="section"
-                                          @input="defaultSelect" disabled></v-select>
+                                <v-select :options="sectionArray" label="title" v-model="section"></v-select>
                             </div>
                             <div v-for="config in config_module">
                              <div v-if="config.name_module === 'Traductor'" class="form-group">
@@ -145,7 +144,7 @@
                             });
                         }
 
-                        this.section = this.sectionArray[0]
+                        //this.section = this.sectionArray[0]
                     }
                 })
                 .catch(error => {

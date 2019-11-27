@@ -11,26 +11,30 @@ use Illuminate\Support\Facades\Log;
 use Modules\Products\Models\Enums\ActiveProduct;
 use Modules\Products\Models\Repositories\AttributeProductRepo;
 use Modules\Products\Models\Repositories\CategoryProductRepo;
+use Modules\Products\Models\Repositories\ProductImageRepo;
 use Modules\Products\Models\Repositories\ProductRepo;
 use Modules\Products\Models\Repositories\CurrencyProductRepo;
 use Modules\Products\Models\Repositories\TypeProductRepo;
 use Modules\Records\Models\Enums\ActiveArchive;
 use Modules\Records\Models\Repositories\RecordsRepo;
+use phpDocumentor\Reflection\Types\Null_;
 
 class ProductsController extends BaseController
 {
 
     private $ProductRepo;
+    private $ProductImageRepo;
     private $TypeProductRepo;
     private $CurrencyProductRepo;
     private $RecordsRepo;
     private $CategoryProductRepo;
     private $AttributeProductRepo;
 
-    public function __construct(AttributeProductRepo $AttributeProductRepo, CategoryProductRepo $CategoryProductRepo, CurrencyProductRepo $CurrencyProductRepo, RecordsRepo $RecordsRepo, ProductRepo $ProductRepo, TypeProductRepo $TypeProductRepo)
+    public function __construct(AttributeProductRepo $AttributeProductRepo, CategoryProductRepo $CategoryProductRepo, CurrencyProductRepo $CurrencyProductRepo, RecordsRepo $RecordsRepo, ProductRepo $ProductRepo, ProductImageRepo $ProductImageRepo, TypeProductRepo $TypeProductRepo)
     {
 
         $this->ProductRepo = $ProductRepo;
+        $this->ProductImageRepo = $ProductImageRepo;
         $this->TypeProductRepo = $TypeProductRepo;
         $this->CurrencyProductRepo = $CurrencyProductRepo;
         $this->RecordsRepo = $RecordsRepo;
@@ -92,7 +96,7 @@ class ProductsController extends BaseController
             return response()->json($response, 200);
 
         } catch (\Exception $ex) {
-
+            Log::error($ex);
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -163,6 +167,7 @@ class ProductsController extends BaseController
             return response()->json($response, 500);
 
         } catch (\Exception $ex) {
+            Log::error($ex);
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -271,8 +276,8 @@ class ProductsController extends BaseController
                 'id_category' => $request->get('id_category'),
                 'currency' => $request->get('id_currency'),
                 'id_type' => $request->get('id_type'),
-                'price_discount' => $request->get('percentage'),
-                'price' => $request->get('price'),
+                'price_discount' => $request->get('percentage') != 0 ? $request->get('percentage') : null,
+                'price' => $request->get('price') != 0 ? $request->get('price') : null,
                 'show_price' => $request->get('show_price'),
                 'image' => $img,
                 'images' => $request->get('images'),
@@ -294,6 +299,15 @@ class ProductsController extends BaseController
                     ];
 
                     $this->AttributeProductRepo->store($data);
+                }
+
+                foreach ($request->get('images') as $item => $value) {
+                    $data = [
+                        'id_archive' => $value,
+                        'id_product' => $product->id,
+                    ];
+
+                    $this->ProductImageRepo->store($data);
                 }
             }
 
@@ -361,17 +375,15 @@ class ProductsController extends BaseController
                     'id_category' => $request->get('id_category'),
                     'currency' => $request->get('id_currency'),
                     'id_type' => $request->get('id_type'),
-                    'price_discount' => $request->get('percentage'),
-                    'price' => $request->get('price'),
+                    'price_discount' => $request->get('percentage') != 0 ? $request->get('percentage') : null,
+                    'price' => $request->get('price') != 0 ? $request->get('price') : null,
                     'show_price' => $request->get('show_price'),
                     'image' => $img,
-                    'images' => $request->get('images'),
                 ];
 
                 $this->ProductRepo->update($product, $data);
 
                 $this->AttributeProductRepo->deleteAll($product->id);
-
                 foreach ($request->get('attrs') as $item => $value) {
 
                     $data = [
@@ -383,6 +395,16 @@ class ProductsController extends BaseController
                     ];
 
                     $this->AttributeProductRepo->store($data);
+                }
+
+                $this->ProductImageRepo->deleteAll($product->id);
+                foreach ($request->get('images') as $item => $value) {
+                    $data = [
+                        'id_archive' => $value,
+                        'id_product' => $product->id,
+                    ];
+
+                    $this->ProductImageRepo->store($data);
                 }
 
                 $response = [
@@ -426,8 +448,11 @@ class ProductsController extends BaseController
             $product->isoCurrency->iso_name = $product->CurrencyProduct->iso . ' (' . $product->CurrencyProduct->symbol . ')';
             $product->iso_name = $product->CurrencyProduct->iso . ' (' . $product->CurrencyProduct->symbol . ')';
             $product->price = Helper::number($product->price);
-
-
+            $images = [];
+            foreach ($product->ProductImages as $value) {
+                $images[] = $value->ProductRecords[0];
+            }
+            $product->images = $images;
             $newAttrs = [];
 
             $attributes = $this->AttributeProductRepo->allProductNull();
@@ -480,6 +505,36 @@ class ProductsController extends BaseController
                 'attrs' => $attrs,
                 'attrs_select' => $attrs_select,
 //                'attrs' => $newAttrs
+            ];
+
+            return response()->json($response, 200);
+
+        } catch (\Exception $ex) {
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+
+    }
+
+    public function imageDelete(Request $request)
+    {
+
+        try {
+
+            $product = $this->ProductImageRepo->find($request->get('product'), $request->get('image'));
+            if (isset($product->id)) {
+                $this->ProductImageRepo->delete($product->id);
+            }
+
+            $response = [
+                'status' => 'OK',
+                'code' => 200,
+                'message' => __('Datos Obtenidos Correctamente'),
             ];
 
             return response()->json($response, 200);

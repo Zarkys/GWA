@@ -36,15 +36,17 @@
                     <tbody>
                     <tr v-for="text in texts" class="text-left">
                         <td width="20%">@{{text.name}}</td>
-                        <td width="20%">@{{text.value_es}}</td>
+                        <td width="20%">@{{text.value_es | shortText}}</td>
                         <td width="20%">@{{text.value_en}}</td>
                         <td width="20%">@{{text.section.title}}</td>
                         <td width="20%" style="text-align: -webkit-center">
                             <a v-if="text.active === 1" href="#" v-on:click="changeStatus(text)"
-                               class="btn btn-success btn-circle" style="margin-top: 2%!important;"><i class="fas fa-check"></i>
+                               class="btn btn-success btn-circle" style="margin-top: 2%!important;"><i
+                                        class="fas fa-check"></i>
                             </a>
                             <a v-if="text.active === 0" href="#" v-on:click="changeStatus(text)"
-                               class="btn btn-warning btn-circle" style="margin-top: 2%!important;"><i class="fas fa-times"></i>
+                               class="btn btn-warning btn-circle" style="margin-top: 2%!important;"><i
+                                        class="fas fa-times"></i>
                             </a>
                             <a href="#" v-on:click="consultText(text)" style="margin-top: 2%!important;"
                                class="btn btn-primary btn-circle">
@@ -180,6 +182,21 @@
             consultText(text) {
                 window.location.href = 'edit/' + text.id;
             },
+        },
+        filters: {
+            shortText: function (value) {
+                if (!value) {
+                    return ''
+                } else {
+                    if (value.length > 90) {
+                        return value.substr(0, 90) + " . . ."
+                    } else {
+                        return value
+                    }
+
+                }
+
+            }
         },
         computed: {},
     })

@@ -1,112 +1,65 @@
 @include('layouts.header')
-<!-- Custom styles for this page -->
-
-
 @include('layouts.sidebar')
 @include('layouts.navbar')
 <!-- End of Topbar -->
 <div id="app">
-<!-- Begin Page Content -->
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Usuarios</h1>
-    </div>
-
-
-
-    <p class="mb-4">En esta lista puedes visualizar todos los Usarios que existen actualmente </p>
-   
-       
-
-        <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-            <div class="row">
-                <div class="col-md-8">
-                <h6 class="m-0 font-weight-bold text-primary">Lista de Usuarios</h6>
+                <div class="row">
+                    <div class="col-md-10">
+                        <h6 class="m-0 font-weight-bold text-primary">Lista de Usuarios</h6>
+                    </div>
+                    {{--<div class="col-md-2">--}}
+                    {{--<a href="{{route('product.category.create')}}" class="btn btn-primary btn-icon-split">--}}
+                    {{--<span class="icon text-white-50"><i class="fas fa-plus"></i></span>--}}
+                    {{--<span class="text">Crear</span>--}}
+                    {{--</a>--}}
+                    {{--</div>--}}
                 </div>
-                <div class="col-md-4">
-                <a href="users/new" class="btn btn-primary btn-icon-split">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Nuevo Usuario</span>
-                  </a>
-                </div>
-            </div>
-                
-                
             </div>
             <div class="card-body">
-            <ul class="list-group">
-                            <li class="list-group-item">
-                            <div class="row">
-                            <div class="col-md-3">
-                             <strong>Nombre</strong>
-                            </div>
-                            <div class="col-md-4">
-                             <strong>Email</strong>
-                            </div>
-                            <div class="col-md-3">
-                              <strong>Rol</strong>
-                            </div>
-                            <div class="col-md-2">
-                          
-                            </div>
-                            </div>
-                            </li>
-        
-                        </ul>
-                <ul class="list-group">
-                    <li class="list-group-item" v-for="user in users">
-                    <div class="row">
-                    <div class="col-md-3">
-                    @{{user.name}}
-                    </div>
-                    <div class="col-md-4">
-                    @{{user.email}}
-                    </div>
-                    <div class="col-md-3">
-                    @{{user.rol.name}}
-                    </div>
-                    <div class="col-md-2">
-                    <a href="#" v-on:click="updateRow(user.id)" class="btn btn-primary btn-circle">
-                    <i class="fas fa-edit"></i>
-                    </a>
-
-                    <a v-if="user.active === 1" href="#" v-on:click="checkRow(user.id)" class="btn btn-success btn-circle">
-                    <i class="fas fa-check"></i>
-                    </a>
-                    <a v-if="user.active === 0" href="#" v-on:click="activeRow(user.id)" class="btn btn-warning btn-circle">
-                    <i class="fas fa-times"></i>
-                    </a>
-                    <a href="#" v-on:click="trashRow(user.id)" class="btn btn-danger btn-circle">
-                    <i class="fas fa-trash"></i>
-                    </a>
-                    </div>
-                    </div>
-                    </li>
-
-                </ul>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Rol</th>
+                        <th style="text-align: -webkit-center!important;">Administrar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(user,item) in users">
+                        <td width="25%">@{{user.name}} @{{user.last_name}}</td>
+                        <td width="30%">@{{ user.email }}</td>
+                        <td width="25%"> @{{user.rol.name}}</td>
+                        <td width="20%" style="text-align: -webkit-center!important;">
+                            <a v-if="user.active === 1" href="#" v-on:click="changeActive(user)"
+                               class="btn btn-success btn-circle">
+                                <i class="fas fa-check"></i>
+                            </a>
+                            <a v-if="user.active === 0" href="#" v-on:click="changeActive(user)"
+                               class="btn btn-warning btn-circle">
+                                <i class="fas fa-times"></i>
+                            </a>
+                            <a href="#" v-on:click="trashRow(user.id,item)" class="btn btn-danger btn-circle">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
     </div>
-   
-    <!-- /.container-fluid -->
-
-
-
 </div>
-</div>
-<!-- End of Main Content -->
+
 @include('layouts.footer')
 @include('layouts.footscript')
 
 <!-- Additional Scripts -->
- <script src="{{ asset('/js/vue.js') }}"></script>
+<script src="{{ asset('/js/vue.js') }}"></script>
 <script src="{{ asset('/js/axios.min.js') }}"></script>
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 <script src="{{ asset('/js/axios.js') }}"></script>
@@ -121,34 +74,20 @@
             }
         },
         mounted() {
-            loadElements('user', '').then(
-                    response => {
-                        if (response.data.code !== 500) {
+            RouteGet_BACK('{{route('api.user')}}', {}).then(
+                response => {
+                    if (response.data.code === 200) {
+                        this.users = response.data.data;
 
-                            console.log(response.data.data)
-                            this.users = response.data.data;
-                            console.log(this.users);
-
-                        } else {
-                            console.log(response.data);
-                        }
-                    })
+                    }
+                })
                 .catch(error => {
                     console.log(error);
                 })
 
-
-
         },
         methods: {
-            back() {
-
-            },
-            editSubmit() {
-
-            },
-            trashRow(idelement){
-                console.log(idelement);
+            trashRow(id, item) {
                 Swal.fire({
                     title: 'Estas seguro de eliminar el elemento?',
                     text: "Debes estar seguro antes de continuar",
@@ -157,36 +96,77 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Eliminar'
-                    }).then((result) => {
+                }).then((result) => {
                     if (result.value) {
-                      
-                       
 
-                            trashElement('user/change/delete/'+idelement, '').then(
-                                    response => {
-                                        if (response.data.code !== 500) {                          
-                                           // this.typeattributes = response.data.data; 
-                                           Swal.fire(
-                                                'Elemento Eliminado',
-                                                'Elemento eliminado correctamente',
-                                                'success'
-                                                ).then((result) => {
-                                                    window.location.href = 'users';
-                                                });
-                                               
-                                            
-                                        } else {
-                                            console.log(response.data);
-                                        }
-                                    })
-                                .catch(error => {
-                                    console.log(error);
-                                });
+                        let form = {
+                            id: id
+                        }
+                        RoutePost_BACK('{{route('api.user.delete')}}', form).then(
+                            response => {
+                                if (response.data.code === 200) {
+
+                                    this.users.splice(item, 1);
+
+                                    Swal.fire(
+                                        'Elemento Eliminado',
+                                        'Elemento eliminado correctamente',
+                                        'success'
+                                    ).then((result) => {
+                                    });
+
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
 
                     }
-                    })
+                })
             },
-            checkRow(idelement){
+            changeActive(val) {
+                Swal.fire({
+                    title: 'Estas seguro?',
+                    text: 'Se cambiara el estatus del usuario.',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Cambiar'
+                }).then((result) => {
+                    if (result.value) {
+                        let form = {
+                            id: val.id
+                        }
+                        RoutePost_BACK('{{route('api.user.change.active')}}', form).then(
+                            response => {
+                                if (response.data.code === 200) {
+                                    val.active = response.data.active;
+                                    Swal.fire(
+                                        'Listo',
+                                        response.data.message,
+                                        'success'
+                                    ).then((result) => {
+                                    });
+
+                                } else {
+                                    Swal.fire(
+                                        'Alerta',
+                                        response.data.message,
+                                        'warning'
+                                    ).then((result) => {
+                                    });
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
+
+                    }
+                })
+
+            },
+            checkRow(idelement) {
                 console.log(idelement);
                 Swal.fire({
                     title: 'Estas seguro de cambiar el estatus del elemento?',
@@ -196,36 +176,35 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Cambiar'
-                    }).then((result) => {
+                }).then((result) => {
                     if (result.value) {
-                      
-                       
 
-                        inactiveElement('user/change/inactive/'+idelement, '').then(
-                                    response => {
-                                        if (response.data.code !== 500) {                          
-                                           // this.typeattributes = response.data.data; 
-                                           Swal.fire(
-                                                'Estatus Cambiado',
-                                                'Estatus modificado correctamente',
-                                                'success'
-                                                ).then((result) => {
-                                                    window.location.href = 'users';
-                                                });
-                                               
-                                            
-                                        } else {
-                                            console.log(response.data);
-                                        }
-                                    })
-                                .catch(error => {
-                                    console.log(error);
-                                });
+
+                        inactiveElement('user/change/inactive/' + idelement, '').then(
+                            response => {
+                                if (response.data.code !== 500) {
+                                    // this.typeattributes = response.data.data;
+                                    Swal.fire(
+                                        'Estatus Cambiado',
+                                        'Estatus modificado correctamente',
+                                        'success'
+                                    ).then((result) => {
+                                        window.location.href = 'users';
+                                    });
+
+
+                                } else {
+                                    console.log(response.data);
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
 
                     }
-                    })
+                })
             },
-            activeRow(idelement){
+            activeRow(idelement) {
                 console.log(idelement);
                 Swal.fire({
                     title: 'Estas seguro de cambiar el estatus del elemento?',
@@ -235,46 +214,34 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Cambiar'
-                    }).then((result) => {
+                }).then((result) => {
                     if (result.value) {
-                      
-                       
 
-                        inactiveElement('user/change/active/'+idelement, '').then(
-                                    response => {
-                                        if (response.data.code !== 500) {                          
-                                           // this.typeattributes = response.data.data; 
-                                           Swal.fire(
-                                                'Estatus Cambiado',
-                                                'Estatus modificado correctamente',
-                                                'success'
-                                                ).then((result) => {
-                                                    window.location.href = 'users';
-                                                });
-                                               
-                                            
-                                        } else {
-                                            console.log(response.data);
-                                        }
-                                    })
-                                .catch(error => {
-                                    console.log(error);
-                                });
+
+                        inactiveElement('user/change/active/' + idelement, '').then(
+                            response => {
+                                if (response.data.code !== 500) {
+                                    // this.typeattributes = response.data.data;
+                                    Swal.fire(
+                                        'Estatus Cambiado',
+                                        'Estatus modificado correctamente',
+                                        'success'
+                                    ).then((result) => {
+                                        window.location.href = 'users';
+                                    });
+
+
+                                } else {
+                                    console.log(response.data);
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
 
                     }
-                    })
+                })
             },
-            updateRow(idelement)
-            {
-                window.location.href = 'users/update/'+idelement;
-            },
-            cleanform() {
-
-            }
-
-        },
-        computed: {
-
-        },
+        }
     })
 </script>

@@ -17,7 +17,7 @@ class CurrenciesProductsTableSeeder extends Seeder
             'thousand_separator' => ',',
             'decimal_separator' => '.',
             'decimals' => 2,
-            'active' => 1
+            'active' => 0
         ]);
 
         CurrencyProduct::create([
@@ -27,7 +27,7 @@ class CurrenciesProductsTableSeeder extends Seeder
             'thousand_separator' => '.',
             'decimal_separator' => ',',
             'decimals' => 2,
-            'active' => 0
+            'active' => 1
         ]);
 
         CurrencyProduct::create([

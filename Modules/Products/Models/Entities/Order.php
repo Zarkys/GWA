@@ -17,6 +17,9 @@ class Order extends Authenticatable
         'id_user',
         'amount_total',
         'status',
+        'dni',
+        'address',
+        'type',
         'created_at',
         'updated_at',
     ];

@@ -26,6 +26,7 @@ class CurrencyProduct extends Model
         'active'
     ];
 
+
     public function getFullNameAttribute()
     {
         return $this->iso . ' - ' . $this->name;

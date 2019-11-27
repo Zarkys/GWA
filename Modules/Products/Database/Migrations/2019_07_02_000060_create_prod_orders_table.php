@@ -14,6 +14,9 @@ class CreateProdOrdersTable extends Migration
             $table->string('number_order')->nullable();
             $table->integer('id_user')->unsigned();
             $table->float('amount_total', 18, 2)->nullable();
+            $table->string('dni')->nullable();
+            $table->string('address')->nullable();
+            $table->integer('type')->nullable();
 
             $table->integer('status')->default(\Modules\Products\Models\Enums\StatusOrders::$open);
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');

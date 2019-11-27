@@ -41,7 +41,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -69,7 +69,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -97,7 +97,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -125,7 +125,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -153,7 +153,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -180,7 +180,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -207,7 +207,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -259,7 +259,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno1') . '.',
+                'message' => __('Ocurrio un error interno1') . '.',
 
             ];
 
@@ -305,7 +305,7 @@ class ContactController extends BaseController
                 $response = [
                     'status' => 'FAILED',
                     'code' => 409,
-                    'message' => _('El tipo de producto fue registrado anteriormente') . '.',
+                    'message' => __('El tipo de producto fue registrado anteriormente') . '.',
 
                 ];
 
@@ -316,7 +316,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -353,7 +353,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);
@@ -385,7 +385,7 @@ class ContactController extends BaseController
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
-                'message' => _('Ocurrio un error interno') . '.',
+                'message' => __('Ocurrio un error interno') . '.',
             ];
 
             return response()->json($response, 500);

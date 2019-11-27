@@ -61,8 +61,10 @@ class ImageController extends BaseController
     //TODO CRUD POST
     public function store(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
-            'images' => 'required',
+            'image' => 'required',
+            'name' => 'required',
             'id_section' => 'required'
         ], $this->custom_message());
 
@@ -80,14 +82,9 @@ class ImageController extends BaseController
 
         try {
 
-            $img = null;
-            if (count($request->get('images')) > 0) {
-                $img = $request->get('images')[0];
-            }
-
             $data = [
-                'image' => $img,
-                'images' => $request->get('images'),
+                'id_archive' => $request->get('image'),
+                'name' => $request->get('name'),
                 'id_section' => $request->get('id_section'),
                 'active' => ActiveSection::$activated,
             ];
@@ -104,7 +101,7 @@ class ImageController extends BaseController
 
 
         } catch (\Exception $ex) {
-            Log::error($ex);
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -120,6 +117,12 @@ class ImageController extends BaseController
     {
 
         $image = $this->ImageRepo->all();
+        foreach ($image as $value) {
+            if (isset($value->SiteRecords->url)) {
+                $value->image = $value->SiteRecords->url;
+            }
+
+        }
         $response = [
             'status' => 'OK',
             'code' => 200,
@@ -282,7 +285,8 @@ class ImageController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'id' => 'required',
-            'images' => 'required',
+            'name' => 'required',
+            'image' => 'required',
             'id_section' => 'required',
         ], $this->custom_message());
 
@@ -300,22 +304,17 @@ class ImageController extends BaseController
 
         try {
 
-            $img = null;
-            if (count($request->get('images')) > 0) {
-                $img = $request->get('images')[0];
-            }
-
-
             $image = $this->ImageRepo->find($request->get('id'));
+
             if (isset($image->id)) {
 
                 $data = [
-                    'image' => $img,
-                    'images' => $request->get('images'),
+                    'name' => $request->get('name'),
+                    'id_archive' => $request->get('image'),
                     'id_section' => $request->get('id_section'),
                 ];
 
-                $image = $this->ImageRepo->update($image, $data);
+                $this->ImageRepo->update($image, $data);
 
             }
 
@@ -392,7 +391,6 @@ class ImageController extends BaseController
         }
 
     }
-
 
     public function custom_message()
     {

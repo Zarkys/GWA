@@ -11,10 +11,11 @@ class CreateSitewImagesTable extends Migration
     {
         Schema::create('sitew_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('image')->nullable();
-            $table->json('images')->nullable();
+            $table->string('name', 128)->unique();
+            $table->integer('id_archive')->nullable();
             $table->integer('id_section')->unsigned();
             $table->integer('active')->default(\Modules\Website\Models\Enums\ActiveImage::$activated);
+
             $table->foreign('id_section')->references('id')->on('sitew_sections')->onDelete('cascade');
             $table->timestamps();
         });

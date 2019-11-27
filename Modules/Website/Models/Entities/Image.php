@@ -2,9 +2,9 @@
 
 namespace Modules\Website\Models\Entities;
 
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Modules\Records\Models\Entities\Records;
 
 class Image extends Authenticatable
 {
@@ -13,8 +13,8 @@ class Image extends Authenticatable
     protected $primaryKey = 'id';
     protected $fillable = [
         'id',
-        'image',
-        'images',
+        'name',
+        'id_archive',
         'id_section',
         'active',
         'created_at',
@@ -26,17 +26,9 @@ class Image extends Authenticatable
         return $this->hasOne(Section::class, 'id', 'id_section');
     }
 
-    public function getImagesAttribute($value)
+    public function SiteRecords()
     {
-
-        return json_decode($value);
+        return $this->hasOne(Records::class, 'id', 'id_archive');
     }
-
-    public function setImagesAttribute($value)
-    {
-
-        $this->attributes['images'] = json_encode($value);
-    }
-
 
 }

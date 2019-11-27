@@ -157,14 +157,20 @@
                 <form>
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Sección</label>
                                 <v-select :options="sections" label="title" v-model="section"
                                           @input="defaultSelection"></v-select>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Variable</label>
+                                <input type="text" class="form-control" v-model="nameVar">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <br>
                             <div class="form-group" v-if="this.images.length > 0">
                                 <button type="button" class="btn btn-labeled btn-success" data-toggle="modal"
@@ -176,13 +182,10 @@
                                 <div v-if="this.imageSelect.length === 1">
                                     Imagen @{{this.imageSelect.length}}
                                 </div>
-                                <div v-if="this.imageSelect.length > 1">
-                                    Imagenes @{{this.imageSelect.length}}
-                                </div>
                                 <div class="row">
-                                    <div class="col-md-4" v-for="(val,item) in imageSelect"
+                                    <div class="col-md-6" v-for="(val,item) in imageSelect"
                                          style="background-color: rgb(245, 245, 245);border: 1px solid rgb(204, 204, 204);border-radius: 4px;margin-bottom: 1%;margin-top: 1%;">
-                                        <img :src="val" class="img-responsive" style="height: 100px;width: 100%;">
+                                        <img :src="images[val].url" class="img-responsive" style="height: 100px;width: 100%;">
                                     </div>
                                 </div>
                             </div>
@@ -215,7 +218,7 @@
                                         <label class="block-check">
                                             <img :src="val.url"
                                                  class="img-responsive"/>
-                                            <input type="checkbox" v-model="imageSelect" :value="val.url">
+                                            <input type="checkbox" v-model="imageSelect" :value="item" @click="oneImg(item)">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -244,6 +247,10 @@
     Vue.component('v-select', VueSelect.VueSelect)
     Vue.use(VeeValidate);
 
+    setTimeout(function () {
+       app.imgDb()
+    }, 2000)
+
     var app = new Vue({
         el: '#app',
         data() {
@@ -254,9 +261,11 @@
                 images: [],
                 imageSelect: [],
                 message: '',
+                nameVar: '',
                 section: '',
                 imagesdb: [],
                 sections: [],
+                imageSelectFinal: [],
 
             }
         },
@@ -274,8 +283,8 @@
                 response => {
                     if (response.data.code === 200) {
                         this.imagesdb = response.data.data;
-
-                        this.imageSelect = this.imagesdb.images
+this.nameVar = this.imagesdb.name
+                        //this.imageSelect = [this.imagesdb.site_records.url]
 
                         this.section = this.imagesdb.section
 
@@ -315,7 +324,29 @@
                         console.log(error);
                     })
             },
+            imgDb() {
+
+                for (i in this.images) {
+                    let id = this.images[i].id
+
+                        if (this.imagesdb.site_records.id === id) {
+                            this.imageSelect.push(parseInt(i))
+                        }
+
+                }
+            },
+            oneImg(item){
+              this.imageSelect=[]
+              this.imageSelect=[item]
+
+            },
             updateRow() {
+
+                this.imageSelectFinal = []
+                for (i in this.imageSelect) {
+                    let position = this.imageSelect[i]
+                    this.imageSelectFinal.push(this.images[position].id)
+                }
 
                 this.$validator.validateAll().then((result) => {
                     if (result) {
@@ -332,7 +363,8 @@
                                 let form = {
                                     id: this.id,
                                     id_section: this.section.id,
-                                    images: this.imageSelect,
+                                    name: this.nameVar,
+                                    image: this.imageSelectFinal[0],
 
                                 }
 
@@ -371,4 +403,4 @@
         },
         computed: {},
     })
-</script>
+</script>                                                                                                                                                                                                                                                                                                                                                                                                                                                       

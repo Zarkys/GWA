@@ -54,6 +54,13 @@ Route::group([
     ]);
 
 
+    //TODO PRODUCT IMAGE
+    Route::post('/product/image/delete', [
+        'as' => 'product.image.delete',
+        'uses' => 'ProductsController@imageDelete',
+    ]);
+
+
     //TODO CONSULT RESOURCES - PRODUCT
     Route::get('/resources/active', [
         'as' => 'product.resources.active',

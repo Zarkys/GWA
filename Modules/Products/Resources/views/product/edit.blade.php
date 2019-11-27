@@ -255,7 +255,11 @@
                                 <div class="row">
                                     <div class="col-md-4" v-for="(val,item) in imageSelect"
                                          style="background-color: rgb(245, 245, 245);border: 1px solid rgb(204, 204, 204);border-radius: 4px;margin-bottom: 1%;margin-top: 1%;">
-                                        <img :src="val" class="img-responsive" style="height: 100px;width: 100%;">
+                                        <img :src="images[val].url" class="img-responsive"
+                                             style="height: 100px;width: 100%;">
+                                        <br>
+                                        <span class="fa fa-times-circle btn-danger text-center btn-block"
+                                              @click="deleteSelectedImage(item,val)"></span>
                                     </div>
                                 </div>
                             </div>
@@ -264,7 +268,9 @@
                             </div>
                         </div>
                     </div>
-                    <button v-on:click="updateRow" type="button" class="btn btn-primary">Modificar</button>
+                    <div class="text-right">
+                        <button v-on:click="updateRow" type="button" class="btn btn-primary">Modificar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -288,7 +294,7 @@
                                         <label class="block-check">
                                             <img :src="val.url"
                                                  class="img-responsive"/>
-                                            <input type="checkbox" v-model="imageSelect" :value="val.url">
+                                            <input type="checkbox" v-model="imageSelect" :value="item">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -404,6 +410,10 @@
     Vue.component('v-select', VueSelect.VueSelect)
     Vue.use(VeeValidate);
 
+    setTimeout(function () {
+        app.imgDb()
+    }, 2000)
+
     var app = new Vue({
         el: '#app',
         data() {
@@ -414,6 +424,7 @@
                 categories: [],
                 images: [],
                 imageSelect: [],
+                imageSelectFinal: [],
                 attrSelect: [],
                 showArray: [
                     {
@@ -495,7 +506,20 @@
 
                         this.name = this.productdb.name
                         this.description = this.productdb.description
-                        this.imageSelect = this.productdb.images
+
+                        // console.log(this.images)
+                        // for (i in this.images) {
+                        //     let id = this.images[i].id
+                        //     console.log(id)
+                        //     for (v in this.productdb.images) {
+                        //         console.log(this.productdb.images[v].id ,id)
+                        //         if (this.productdb.images[v].id === id) {
+                        //             this.imageSelect = v
+                        //         }
+                        //     }
+                        //
+                        // }
+                        // this.imageSelect = this.productdb.images
 
                         this.category = this.productdb.category_product
                         this.currency = this.productdb.isoCurrency
@@ -519,6 +543,20 @@
 
         },
         methods: {
+            imgDb() {
+
+                for (i in this.images) {
+                    let id = this.images[i].id
+
+                    for (v in this.productdb.images) {
+
+                        if (this.productdb.images[v].id === id) {
+                            this.imageSelect.push(parseInt(i))
+                        }
+                    }
+
+                }
+            },
             listResource() {
                 RouteGet_BACK('{{route('product.resources.active')}}', {}).then(
                     response => {
@@ -549,6 +587,12 @@
                     })
             },
             updateRow() {
+                this.imageSelectFinal = []
+                for (i in this.imageSelect) {
+                    let position = this.imageSelect[i]
+                    this.imageSelectFinal.push(this.images[position].id)
+
+                }
 
                 this.price = parseFloat(this.priceTemp)
                 this.percentage = 0.0
@@ -591,7 +635,7 @@
                                     percentage: this.percentage,
                                     show_price: this.showPrice.value,
 
-                                    images: this.imageSelect,
+                                    images: this.imageSelectFinal,
                                     attrs: this.attrSelect,
 
                                 }
@@ -685,6 +729,44 @@
                     }
 
                 }
+
+            },
+            deleteSelectedImage(item, item2) {
+                Swal.fire({
+                    title: 'Eliminar imagen del producto.',
+                    text: 'Esta seguro?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar'
+                }).then((result) => {
+                    if (result.value) {
+
+                        let idImg = this.images[item2].id
+
+                        let form = {
+                            product: parseInt(this.id),
+                            image: idImg,
+                        }
+
+                        RoutePost_BACK('{{route('product.image.delete')}}', form).then(
+                            response => {
+                                if (response.data.code === 200) {
+                                    this.imageSelect.splice(item, 1)
+
+                                    toastrPersonalized.toastr('', 'Has borrado la imagen', 'info');
+
+                                } else {
+                                    console.log(response.data);
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            });
+
+                    }
+                })
 
             },
             removeItem(item) {

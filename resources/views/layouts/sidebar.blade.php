@@ -29,16 +29,16 @@
                 <i class="fas fa-fw fa-folder"></i>
                 <span>Blog</span>
             </a>
-            <div id="collapseBlog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{route('blog.post.list')}}">Entrada</a>
-                    @if(Auth::user()->rol===2)
-                        <a class="collapse-item" href="{{route('blog.category.list')}}">Categoría</a>
-                        <a class="collapse-item" href="{{route('blog.tag.list')}}">Etiqueta</a>
-                        <a class="collapse-item" href="{{route('blog.comment.list')}}">Comentarios</a>
-                    @endif
-                </div>
-            </div>
+            {{--<div id="collapseBlog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">--}}
+                {{--<div class="bg-white py-2 collapse-inner rounded">--}}
+                    {{--<a class="collapse-item" href="{{route('blog.post.list')}}">Entrada</a>--}}
+                    {{--@if(Auth::user()->rol===2)--}}
+                        {{--<a class="collapse-item" href="{{route('blog.category.list')}}">Categoría</a>--}}
+                        {{--<a class="collapse-item" href="{{route('blog.tag.list')}}">Etiqueta</a>--}}
+                        {{--<a class="collapse-item" href="{{route('blog.comment.list')}}">Comentarios</a>--}}
+                    {{--@endif--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </li>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -53,11 +53,8 @@
             <div id="collapseMedios" class="collapse" aria-labelledby="headingPages"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-
-                    @if(Auth::user()->rol===2)
                         <a class="collapse-item" href="{{route('library.archive.list')}}">Biblioteca</a>
                         <a class="collapse-item" href="{{route('records.archive.create')}}">Agregar archivo</a>
-                    @endif
                 </div>
             </div>
         </li>
@@ -77,8 +74,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
 
                     @if(Auth::user()->rol==2)
-                        <a class="collapse-item" href="{{route('sliders.image.create')}}">Agregar Imagen</a>
-                        <a class="collapse-item" href="{{route('sliders.image.list')}}">Lista</a>
+                        {{--<a class="collapse-item" href="{{route('sliders.image.create')}}">Agregar Imagen</a>--}}
+                        {{--<a class="collapse-item" href="{{route('sliders.image.list')}}">Lista</a>--}}
                     @endif
                 </div>
             </div>
@@ -99,8 +96,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
 
                     @if(Auth::user()->rol==2)
-                        <a class="collapse-item" href="{{route('doctors.doctor.list')}}">Médicos</a>
-                        <a class="collapse-item" href="{{route('doctors.specialty.list')}}">Especialistas</a>
+                        {{--<a class="collapse-item" href="{{route('doctors.doctor.list')}}">Médicos</a>--}}
+                        {{--<a class="collapse-item" href="{{route('doctors.specialty.list')}}">Especialistas</a>--}}
                     @endif
                 </div>
             </div>
@@ -122,10 +119,10 @@
             <div id="collapseCatalog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
-                    <a class="collapse-item" href="{{route('product.list')}}">Producto</a>
-                    <a class="collapse-item" href="{{route('product.category.list')}}">Categoría</a>
-                    <a class="collapse-item" href="{{route('product.type.list')}}">Tipo</a>
-                    <a class="collapse-item" href="{{route('product.currency.list')}}">Monedas</a>
+                    {{--<a class="collapse-item" href="{{route('product.list')}}">Producto</a>--}}
+                    {{--<a class="collapse-item" href="{{route('product.category.list')}}">Categoría</a>--}}
+                    {{--<a class="collapse-item" href="{{route('product.type.list')}}">Tipo</a>--}}
+                    {{--<a class="collapse-item" href="{{route('product.currency.list')}}">Monedas</a>--}}
                 </div>
             </div>
         </li>
@@ -138,8 +135,8 @@
             </a>
             <div id="collapseOrder" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{route('order.list.pending')}}">Pendientes</a>
-                    <a class="collapse-item" href="{{route('order.list.attended')}}">Atendidas</a>
+                    {{--<a class="collapse-item" href="{{route('order.list.pending')}}">Pendientes</a>--}}
+                    {{--<a class="collapse-item" href="{{route('order.list.attended')}}">Atendidas</a>--}}
                 </div>
             </div>
         </li>
@@ -166,22 +163,22 @@
         Zona de Website
     </div>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('website.section.list')}}">
-            <i class="fas fa-fw fa-puzzle-piece"></i>
-            <span>Secciones</span></a>
-    </li>
+    {{--<li class="nav-item">--}}
+        {{--<a class="nav-link" href="{{route('website.section.list')}}">--}}
+            {{--<i class="fas fa-fw fa-puzzle-piece"></i>--}}
+            {{--<span>Secciones</span></a>--}}
+    {{--</li>--}}
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('website.text.list')}}">
-            <i class="fas fa-fw fa-align-center"></i>
-            <span>Textos por sección</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{route('website.image.list')}}">
-            <i class="fas fa-fw fa-image"></i>
-            <span>Imagenes por sección</span></a>
-    </li>
+    {{--<li class="nav-item">--}}
+        {{--<a class="nav-link" href="{{route('website.text.list')}}">--}}
+            {{--<i class="fas fa-fw fa-align-center"></i>--}}
+            {{--<span>Textos por sección</span></a>--}}
+    {{--</li>--}}
+    {{--<li class="nav-item">--}}
+        {{--<a class="nav-link" href="{{route('website.image.list')}}">--}}
+            {{--<i class="fas fa-fw fa-image"></i>--}}
+            {{--<span>Imagenes por sección</span></a>--}}
+    {{--</li>--}}
     <li class="nav-item">
         <a class="nav-link" href="{{url('goadmin/contacts')}}">
             <i class="fas fa-fw fa-address-book"></i>

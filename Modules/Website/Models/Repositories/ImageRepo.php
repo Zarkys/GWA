@@ -12,7 +12,18 @@ class ImageRepo
     {
         $image = Image::with([
             'Section',
+            'SiteRecords',
         ])->Orderby('id', 'desc')->get();
+
+        return $image;
+    }
+
+    public function allWhere($section)
+    {
+        $image = Image::with([
+            'Section',
+            'SiteRecords',
+        ])->where(['id_section'=>$section])->Orderby('id', 'desc')->get();
 
         return $image;
     }
@@ -89,7 +100,9 @@ class ImageRepo
     public function find($id)
     {
 
-        $image = Image::find($id);
+        $image = Image::with([
+            'SiteRecords',
+        ])->find($id);
 
         return $image;
     }
@@ -99,48 +112,11 @@ class ImageRepo
 
         $image = Image::with([
             'Section',
+            'SiteRecords',
         ])->where('id', $id)->first();
 
         return $image;
     }
-
-    /*public function filterby($item,$id) {
-           //Find By parameters (Item)
-           try {
-               $strings_es = [];
-               $strings_en = [];
-                   if($item==='id_section'){
-                       //$textstation = TextStation::where('id_text', $id)->get();
-
-                       $text = Text::with([
-                           'Section',
-                       ])->where('id_section', $id)->whereIn('active', [0, 1])->get();
-
-                       foreach($text as $t)
-                       {
-                           $strings_es[$t->name] = $t->value_es;
-                           $strings_en[$t->name] = $t->value_en;
-                       }
-
-
-                   }
-                   $object = new \stdClass();
-                   $object->es = $strings_es;
-                   $object->en = $strings_en;
-
-                   return $object;
-
-           } catch (\Exception $ex) {
-               Log::error($ex);
-               $response = [
-                   'status'  => 'FAILED',
-                   'code'    => 500,
-                   'message' => __('Ocurrio un error interno') . '.',
-               ];
-
-               return response()->json($response, 500);
-           }
-   } */
 
     public function findbyunique($item, $string)
     {

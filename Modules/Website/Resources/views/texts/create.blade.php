@@ -40,10 +40,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Valor Español</label>
-                                <textarea rows="10" cols="50" type="text" v-model="value_es" id="value_es" name="value_es"
-                                       v-validate="'required'" class="form-control"
-                                       :class="{'input': true, 'is-danger': errors.has('value_es') }"
-                                       placeholder="Valor en Español">
+                                <textarea rows="10" cols="50" type="text" v-model="value_es" id="value_es"
+                                          name="value_es"
+                                          v-validate="'required'" class="form-control"
+                                          :class="{'input': true, 'is-danger': errors.has('value_es') }"
+                                          placeholder="Valor en Español">
                                         </textarea>
                                 <i v-show="errors.has('value_es')" class="fa fa-exclamation-triangle"></i>
                                 <span v-show="errors.has('value_es')"
@@ -56,25 +57,27 @@
                                 <v-select :options="sectionArray" label="title" v-model="section"
                                           @input="defaultSelect"></v-select>
                             </div>
-                             <div v-for="config in config_module">
-                             <div v-if="config.name_module === 'Traductor'" class="form-group">
-                            <div v-if="config.status === 1" class="form-group">
-                                <label>Valor Ingles</label>
-                                <textarea rows="10" cols="50" type="text" v-model="value_en" id="value_en" name="value_en"
-                                       v-validate="'required'" class="form-control"
-                                       :class="{'input': true, 'is-danger': errors.has('value_en') }"
-                                       placeholder="Valor en Ingles">
+                            <div v-for="config in config_module">
+                                <div v-if="config.name_module === 'Traductor'" class="form-group">
+                                    <div v-if="config.status === 1" class="form-group">
+                                        <label>Valor Ingles</label>
+                                        <textarea rows="10" cols="50" type="text" v-model="value_en" id="value_en"
+                                                  name="value_en"
+                                                  v-validate="'required'" class="form-control"
+                                                  :class="{'input': true, 'is-danger': errors.has('value_en') }"
+                                                  placeholder="Valor en Ingles">
                                 </textarea>
-                                <i v-show="errors.has('value_en')" class="fa fa-exclamation-triangle"></i>
-                                <span v-show="errors.has('value_en')"
-                                      class="help is-danger">@{{ errors.first('value_en') }}</span>
-                            </div>
-                            </div>
+                                        <i v-show="errors.has('value_en')" class="fa fa-exclamation-triangle"></i>
+                                        <span v-show="errors.has('value_en')"
+                                              class="help is-danger">@{{ errors.first('value_en') }}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -104,8 +107,7 @@
 
     var app = new Vue({
         el: '#app',
-        components: {
-        },
+        components: {},
         data() {
             return {
                 name: '',
@@ -116,16 +118,15 @@
             }
         },
         mounted() {
-             loadOneElement('configmodule', '').then(
-                    response => {
-                        if (response.data.code !== 500) {
-                            this.config_module = response.data.data;
-                        }
-                     else {
-                            console.log(response.data);
-                        }  
-                         
-                    })
+            loadOneElement('configmodule', '').then(
+                response => {
+                    if (response.data.code !== 500) {
+                        this.config_module = response.data.data;
+                    } else {
+                        console.log(response.data);
+                    }
+
+                })
                 .catch(error => {
                     console.log(error);
                 });
@@ -155,43 +156,43 @@
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         Swal.fire({
-                                title: 'Estas seguro de guardar el elemento?',
-                                text: "Debes estar seguro antes de continuar",
-                                type: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Guardar'
-                            }).then((result) => {
-                                if (result.value) {
-                                    let form = {
-                                        name: this.name,
-                                        value_es: this.value_es,
-                                        value_en: this.value_en,
-                                        id_section: this.section.id,
-                                    }
-
-                                    RoutePost_BACK('{{route('website.text.store')}}', form).then(
-                                        response => {
-                                            if (response.data.code !== 500) {
-                                                Swal.fire(
-                                                    'Listo',
-                                                    response.data.message,
-                                                    'success'
-                                                ).then((result) => {
-                                                    window.location.href = '{{route( 'website.text.list')}}';
-                                                });
-
-                                            } else {
-                                                console.log(response.data);
-                                            }
-                                        })
-                                        .catch(error => {
-                                            console.log(error);
-                                        });
-
+                            title: 'Estas seguro de guardar el elemento?',
+                            text: "Debes estar seguro antes de continuar",
+                            type: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Guardar'
+                        }).then((result) => {
+                            if (result.value) {
+                                let form = {
+                                    name: this.name,
+                                    value_es: this.value_es,
+                                    value_en: this.value_en,
+                                    id_section: this.section.id,
                                 }
-                            })
+
+                                RoutePost_BACK('{{route('website.text.store')}}', form).then(
+                                    response => {
+                                        if (response.data.code !== 500) {
+                                            Swal.fire(
+                                                'Listo',
+                                                response.data.message,
+                                                'success'
+                                            ).then((result) => {
+                                                window.location.href = '{{route( 'website.text.list')}}';
+                                            });
+
+                                        } else {
+                                            console.log(response.data);
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.log(error);
+                                    });
+
+                            }
+                        })
 
                     }
                 })

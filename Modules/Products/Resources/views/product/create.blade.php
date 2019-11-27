@@ -257,7 +257,11 @@
                                 <div class="row">
                                     <div class="col-md-4" v-for="(val,item) in imageSelect"
                                          style="background-color: rgb(245, 245, 245);border: 1px solid rgb(204, 204, 204);border-radius: 4px;margin-bottom: 1%;margin-top: 1%;">
-                                        <img :src="val" class="img-responsive" style="height: 100px;width: 100%;">
+                                        <img :src="images[val].url" class="img-responsive"
+                                             style="height: 100px;width: 100%;">
+                                        <br>
+                                        <span class="fa fa-times-circle btn-danger text-center btn-block"
+                                              @click="deleteSelectedImage(item,val)"></span>
                                     </div>
                                 </div>
                             </div>
@@ -266,7 +270,9 @@
                             </div>
                         </div>
                     </div>
-                    <button v-on:click="saveRow" type="button" class="btn btn-primary">Guardar</button>
+                    <div class="text-right">
+                        <button v-on:click="saveRow" type="button" class="btn btn-primary">Guardar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -290,7 +296,7 @@
                                         <label class="block-check">
                                             <img :src="val.url"
                                                  class="img-responsive"/>
-                                            <input type="checkbox" v-model="imageSelect" :value="val.url">
+                                            <input type="checkbox" v-model="imageSelect" :value="item">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -415,6 +421,7 @@
                 categories: [],
                 images: [],
                 imageSelect: [],
+                imageSelectFinal: [],
                 attrSelect: [],
                 showArray: [
                     {
@@ -532,6 +539,12 @@
                     })
             },
             saveRow() {
+                this.imageSelectFinal = []
+                for (i in this.imageSelect) {
+                    let position = this.imageSelect[i]
+                    this.imageSelectFinal.push(this.images[position].id)
+
+                }
 
                 this.price = parseFloat(this.priceTemp)
                 this.percentage = 0.0
@@ -572,7 +585,7 @@
                                     price: this.price,
                                     percentage: this.percentage,
                                     show_price: this.showPrice.value,
-                                    images: this.imageSelect,
+                                    images: this.imageSelectFinal,
 
                                     attrs: this.attrSelect,
 
@@ -714,7 +727,24 @@
                     }
                 })
 
-            }
+            },
+            deleteSelectedImage(item, item2) {
+                Swal.fire({
+                    title: 'Eliminar imagen del producto.',
+                    text: 'Esta seguro?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Eliminar'
+                }).then((result) => {
+                    if (result.value) {
+                        this.imageSelect.splice(item, 1)
+
+                    }
+                })
+
+            },
 
         },
         computed: {},

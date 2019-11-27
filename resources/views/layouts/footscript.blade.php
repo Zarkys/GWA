@@ -9,7 +9,8 @@
 
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
 
-<script type="text/javascript">
+<script >
+    Vue.use(VeeValidate);
     $(function () {
 
     })

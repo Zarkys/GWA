@@ -15,7 +15,6 @@ class Product extends Authenticatable
         'name',
         'description',
         'image',
-        'images',
         'price',
         'price_discount',
         'active',
@@ -47,17 +46,9 @@ class Product extends Authenticatable
         return $this->hasMany(AttributeProduct::class, 'id_product', 'id');
     }
 
-    public function getImagesAttribute($value)
+    public function ProductImages()
     {
-
-        return json_decode($value);
+        return $this->hasMany(ProductImage::class, 'id_product', 'id');
     }
-
-    public function setImagesAttribute($value)
-    {
-
-        $this->attributes['images'] = json_encode($value);
-    }
-
 
 }
