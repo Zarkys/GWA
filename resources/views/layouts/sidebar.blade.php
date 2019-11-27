@@ -61,6 +61,50 @@
                 </div>
             </div>
         </li>
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Zona de Sliders
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSliders"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-film"></i>
+                <span>Sliders</span>
+            </a>
+            <div id="collapseSliders" class="collapse" aria-labelledby="headingPages"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+
+                    @if(Auth::user()->rol==2)
+                        <a class="collapse-item" href="{{route('sliders.image.create')}}">Agregar Imagen</a>
+                        <a class="collapse-item" href="{{route('sliders.image.list')}}">Lista</a>
+                    @endif
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Zona Médica
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMedic"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-stethoscope"></i>
+                <span>Área de Médicos</span>
+            </a>
+            <div id="collapseMedic" class="collapse" aria-labelledby="headingPages"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+
+                    @if(Auth::user()->rol==2)
+                        <a class="collapse-item" href="{{route('doctors.doctor.list')}}">Médicos</a>
+                        <a class="collapse-item" href="{{route('doctors.specialty.list')}}">Especialistas</a>
+                    @endif
+                </div>
+            </div>
+        </li>
         <hr class="sidebar-divider">
 
         <!-- Heading -->
