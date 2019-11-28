@@ -4,7 +4,6 @@ namespace Modules\Records\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Collection;
 use Modules\Records\Models\Repositories\RecordsRepo;
 
 class LibraryController extends BaseController
@@ -18,7 +17,6 @@ class LibraryController extends BaseController
         $this->RecordsRepo = $RecordsRepo;
     }
 
-//    TODO VIEWS LIBRARY
     public function list()
     {
 
@@ -26,7 +24,6 @@ class LibraryController extends BaseController
 
     }
 
-//    TODO CRUD LIBRARY
     public function listAll()
     {
         try {
@@ -109,7 +106,6 @@ class LibraryController extends BaseController
                 $pow = min($pow, count($units) - 1);
 
                 $size /= pow(1024, $pow);
-//             $bytes /= (1 << (10 * $pow));
 
                 $value->size = number_format($size, 2) . ' ' . $units[$pow];
                 $value->dimension = $value->dimension . 'px';
@@ -120,21 +116,17 @@ class LibraryController extends BaseController
                     $value->typeExtension = explode('.', $value->name)[1];
 
                     if ($value->typeExtension === 'pdf' || $value->typeExtension === 'docx') {
-                        $value->urlTemp = 'http://docs.google.com/gview?url='.$value->url.'&embedded=true';
-//                        $value->urlTemp = 'http://docs.google.com/gview?url=http://www.picssel.com/demos/downloads/Fancybox.doc&embedded=true';
+                        $value->urlTemp = 'http://docs.google.com/gview?url=' . $value->url . '&embedded=true';
                     } else {
                         $value->typeView = false;
                         $value->urlTemp = '';
                     }
                 }
+                $value->url = env('URL_DOMAIN') . $value->url;
                 $value->typeExtension = is_null($value->typeExtension) ? '' : '(' . $value->typeExtension . ')';
 
 
             }
-
-//            while (true) {
-//                sleep(10);
-//            }
 
             $response = [
                 'status' => 'OK',

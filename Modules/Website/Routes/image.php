@@ -2,6 +2,21 @@
 
 //TODO ROUTE ADMIN
 Route::group([
+   // 'middleware' => ['auth'],
+    'prefix' => '/website/image',
+], function () {
+
+    
+    Route::get('/filterby/{string}', [
+        'as' => 'website.image.filterby',
+        'uses' => 'ImageController@filterby',
+    ]);
+
+
+});
+
+//TODO ROUTE ADMIN
+Route::group([
     'middleware' => ['auth'],
     'prefix' => '/image',
 ], function () {

@@ -34,8 +34,19 @@
                                       class="help is-danger">@{{ errors.first('title') }}</span>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input v-model="description" v-validate="'required'" class="form-control"
+                                       :class="{'input': true, 'is-danger': errors.has('description') }" type="text"
+                                       name="description" id="description" placeholder="Descripción de la seccion">
+                                <i v-show="errors.has('description')" class="fa fa-exclamation-triangle"></i>
+                                <span v-show="errors.has('description')"
+                                      class="help is-danger">@{{ errors.first('description') }}</span>
+                            </div>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
             </div>
@@ -56,6 +67,7 @@
             return {
                 message: '',
                 title: '',
+                description: '',
             }
         },
         mounted() {
@@ -69,6 +81,7 @@
                 response => {
                     if (response.data.code !== 500) {
                         this.title = response.data.data.title;
+                        this.description = response.data.data.description;
                     } else {
                         console.log(response.data);
                     }
@@ -94,6 +107,7 @@
                                 let form = {
                                     id: this.id,
                                     title: this.title,
+                                    description: this.description,
                                 }
                                 RoutePost_BACK('{{route('website.section.update')}}', form).then(
                                     response => {

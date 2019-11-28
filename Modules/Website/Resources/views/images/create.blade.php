@@ -160,7 +160,11 @@
                             <div class="form-group">
                                 <label>Sección</label>
                                 <v-select :options="sections" label="title" v-model="section"
-                                          @input="defaultSelection"></v-select>
+                                          @input="defaultSelection">
+                                </v-select>
+                                <div style="width: 95%;text-align: -webkit-left;margin: 2%;color: black;font-size: medium;">
+                                    <strong>Descripción: </strong>@{{ this.section.description === '' ?'- - -':this.section.description }}
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -182,9 +186,10 @@
                                     Imagen @{{this.imageSelect.length}}
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6" v-for="(val,item) in imageSelect"
+                                    <div class="col-md-12" v-for="(val,item) in imageSelect"
                                          style="background-color: rgb(245, 245, 245);border: 1px solid rgb(204, 204, 204);border-radius: 4px;margin-bottom: 1%;margin-top: 1%;">
-                                        <img :src="images[val].url" class="img-responsive" style="height: 100px;width: 100%;">
+                                        <img :src="images[val].url" class="img-responsive"
+                                             style="height: 250px;width: 250px;margin-left: 13%;">
                                     </div>
                                 </div>
                             </div>
@@ -211,13 +216,14 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row inner-scroll">
-                            <div class="col-md-2" v-for="(val,item) in images">
+                            <div class="col-md-4" v-for="(val,item) in images">
                                 <div class="gallery-card">
                                     <div class="gallery-card-body">
                                         <label class="block-check">
                                             <img :src="val.url"
                                                  class="img-responsive"/>
-                                            <input type="checkbox" v-model="imageSelect" :value="item" @click="oneImg(item)">
+                                            <input type="checkbox" v-model="imageSelect" :value="item"
+                                                   @click="oneImg(item)">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
@@ -256,6 +262,7 @@
                 nameVar: '',
                 message: '',
                 section: '',
+                descriptionSection: 'asdas d',
                 sections: [],
                 imageSelectFinal: [],
 
@@ -300,9 +307,9 @@
                         console.log(error);
                     })
             },
-            oneImg(item){
-                this.imageSelect=[]
-                this.imageSelect=[item]
+            oneImg(item) {
+                this.imageSelect = []
+                this.imageSelect = [item]
 
             },
             saveRow() {

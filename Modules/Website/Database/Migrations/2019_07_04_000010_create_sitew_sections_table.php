@@ -9,9 +9,10 @@ class CreateSitewSectionsTable extends Migration
 
     public function up()
     {
-         Schema::create('sitew_sections', function (Blueprint $table) {
+        Schema::create('sitew_sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->unique();
+            $table->string('description')->nullable();
             $table->integer('active')->default(\Modules\Website\Models\Enums\ActiveSection::$activated);
             $table->timestamps();
         });
@@ -19,6 +20,6 @@ class CreateSitewSectionsTable extends Migration
 
     public function down()
     {
-       Schema::dropIfExists('sitew_sections');
+        Schema::dropIfExists('sitew_sections');
     }
 }

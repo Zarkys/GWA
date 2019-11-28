@@ -23,6 +23,20 @@
                 </div>
             </div>
             <div class="card-body">
+            <div class="row">
+                            <div class="col-md-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Filtrar por Seccion</h6>
+                           
+                            </div>
+                            <div class="col-md-3">
+                                    <v-select :options="sections" label="title" v-model="section" @@input="onChange"></v-select>
+                            </div>
+                            <div class="col-md-3">
+                                    
+                           
+                            </div>
+                        </div>
+                        <br>
                 <table class="table table-hover">
                     <thead>
                     <tr class="text-left">
@@ -36,17 +50,15 @@
                     <tbody>
                     <tr v-for="text in texts" class="text-left">
                         <td width="20%">@{{text.name}}</td>
-                        <td width="20%">@{{text.value_es | shortText}}</td>
+                        <td width="20%">@{{text.value_es}}</td>
                         <td width="20%">@{{text.value_en}}</td>
-                        <td width="20%">@{{text.section.title}}</td>
+                        <td width="20%">@{{text.section.title}}<br><strong>@{{text.section.description}}</strong></td>
                         <td width="20%" style="text-align: -webkit-center">
-                            <a v-if="text.active === 1" href="#" v-on:click="changeStatus(text)"
-                               class="btn btn-success btn-circle" style="margin-top: 2%!important;"><i
-                                        class="fas fa-check"></i>
+                            <a v-if="text.active == 1" href="#" v-on:click="changeStatus(text)"
+                               class="btn btn-success btn-circle" style="margin-top: 2%!important;"><i class="fas fa-check"></i>
                             </a>
-                            <a v-if="text.active === 0" href="#" v-on:click="changeStatus(text)"
-                               class="btn btn-warning btn-circle" style="margin-top: 2%!important;"><i
-                                        class="fas fa-times"></i>
+                            <a v-if="text.active == 0" href="#" v-on:click="changeStatus(text)"
+                               class="btn btn-warning btn-circle" style="margin-top: 2%!important;"><i class="fas fa-times"></i>
                             </a>
                             <a href="#" v-on:click="consultText(text)" style="margin-top: 2%!important;"
                                class="btn btn-primary btn-circle">
@@ -69,19 +81,60 @@
 @include('layouts.footer')
 @include('layouts.footscript')
 
+<script src="https://unpkg.com/vue-select@latest"></script>
+
+
 <script>
+Vue.component('v-select', VueSelect.VueSelect)
     var app = new Vue({
         el: '#app',
         data() {
             return {
                 message: '',
                 texts: [],
+                sections:[],
+                section:''
+
             }
         },
         mounted() {
+            RouteGet_BACK('{{route('website.section.list.all')}}', {}).then(
+            // loadElements('../../website/section/list/all', '').then(
+                    response => {
+                        if (response.data.code !== 500) {                          
+                            this.sections = response.data.data; 
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                }); 
             this.listText()
         },
         methods: {
+            
+                onChange () {
+                    let form ={
+                        id:this.section.id
+                    }
+                loadElements('{{route('website.text.filterbysection.id_post')}}', form).then(
+                // loadElements('../../website/text/filterbysection/'+this.section.id, '').then(
+                    response => {
+                        if (response.data.code !== 500) {
+
+                            
+                            this.texts = response.data.data;
+                         
+
+                        } else {
+                            console.log(response.data);
+                        }
+                    })
+                .catch(error => {
+                    console.log(error);
+                })
+                },
             listText() {
                 RouteGet_BACK('{{route('website.text.list.all')}}', {}).then(
                     response => {
@@ -182,21 +235,6 @@
             consultText(text) {
                 window.location.href = 'edit/' + text.id;
             },
-        },
-        filters: {
-            shortText: function (value) {
-                if (!value) {
-                    return ''
-                } else {
-                    if (value.length > 90) {
-                        return value.substr(0, 90) + " . . ."
-                    } else {
-                        return value
-                    }
-
-                }
-
-            }
         },
         computed: {},
     })

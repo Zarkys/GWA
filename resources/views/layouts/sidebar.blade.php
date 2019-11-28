@@ -30,14 +30,14 @@
                 <span>Blog</span>
             </a>
             {{--<div id="collapseBlog" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">--}}
-                {{--<div class="bg-white py-2 collapse-inner rounded">--}}
-                    {{--<a class="collapse-item" href="{{route('blog.post.list')}}">Entrada</a>--}}
-                    {{--@if(Auth::user()->rol===2)--}}
-                        {{--<a class="collapse-item" href="{{route('blog.category.list')}}">Categoría</a>--}}
-                        {{--<a class="collapse-item" href="{{route('blog.tag.list')}}">Etiqueta</a>--}}
-                        {{--<a class="collapse-item" href="{{route('blog.comment.list')}}">Comentarios</a>--}}
-                    {{--@endif--}}
-                {{--</div>--}}
+            {{--<div class="bg-white py-2 collapse-inner rounded">--}}
+            {{--<a class="collapse-item" href="{{route('blog.post.list')}}">Entrada</a>--}}
+            {{--@if(Auth::user()->rol===2)--}}
+            {{--<a class="collapse-item" href="{{route('blog.category.list')}}">Categoría</a>--}}
+            {{--<a class="collapse-item" href="{{route('blog.tag.list')}}">Etiqueta</a>--}}
+            {{--<a class="collapse-item" href="{{route('blog.comment.list')}}">Comentarios</a>--}}
+            {{--@endif--}}
+            {{--</div>--}}
             {{--</div>--}}
         </li>
         <hr class="sidebar-divider">
@@ -53,8 +53,8 @@
             <div id="collapseMedios" class="collapse" aria-labelledby="headingPages"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('library.archive.list')}}">Biblioteca</a>
-                        <a class="collapse-item" href="{{route('records.archive.create')}}">Agregar archivo</a>
+                    <a class="collapse-item" href="{{route('library.archive.list')}}">Biblioteca</a>
+                    <a class="collapse-item" href="{{route('records.archive.create')}}">Agregar archivo</a>
                 </div>
             </div>
         </li>
@@ -72,11 +72,8 @@
             <div id="collapseSliders" class="collapse" aria-labelledby="headingPages"
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-
-                    @if(Auth::user()->rol==2)
-                        {{--<a class="collapse-item" href="{{route('sliders.image.create')}}">Agregar Imagen</a>--}}
-                        {{--<a class="collapse-item" href="{{route('sliders.image.list')}}">Lista</a>--}}
-                    @endif
+                    <a class="collapse-item" href="{{route('sliders.image.create')}}">Agregar Imagen</a>
+                    <a class="collapse-item" href="{{route('sliders.image.list')}}">Lista</a>
                 </div>
             </div>
         </li>
@@ -95,14 +92,35 @@
                  data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
 
-                    @if(Auth::user()->rol==2)
-                        {{--<a class="collapse-item" href="{{route('doctors.doctor.list')}}">Médicos</a>--}}
-                        {{--<a class="collapse-item" href="{{route('doctors.specialty.list')}}">Especialistas</a>--}}
-                    @endif
+                    {{--<a class="collapse-item" href="{{route('doctors.doctor.list')}}">Médicos</a>--}}
+                    {{--<a class="collapse-item" href="{{route('doctors.specialty.list')}}">Especialistas</a>--}}
+
                 </div>
             </div>
         </li>
         <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Zona Website
+        </div>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSection"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-stethoscope"></i>
+                <span>Seccion</span>
+            </a>
+            <div id="collapseSection" class="collapse" aria-labelledby="headingPages"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+
+                    <a class="collapse-item" href="{{route('website.section.list')}}">Secciones</a>
+                    <a class="collapse-item" href="{{route('website.text.list')}}">Textos por sección</a>
+                    <a class="collapse-item" href="{{route('website.image.list')}}">Imagenes por sección</a>
+
+                </div>
+            </div>
+        </li>
+        <hr class="sidebar-divider">
+
 
         <!-- Heading -->
         <div class="sidebar-heading">
@@ -164,20 +182,20 @@
     </div>
 
     {{--<li class="nav-item">--}}
-        {{--<a class="nav-link" href="{{route('website.section.list')}}">--}}
-            {{--<i class="fas fa-fw fa-puzzle-piece"></i>--}}
-            {{--<span>Secciones</span></a>--}}
+    {{--<a class="nav-link" href="{{route('website.section.list')}}">--}}
+    {{--<i class="fas fa-fw fa-puzzle-piece"></i>--}}
+    {{--<span>Secciones</span></a>--}}
     {{--</li>--}}
 
     {{--<li class="nav-item">--}}
-        {{--<a class="nav-link" href="{{route('website.text.list')}}">--}}
-            {{--<i class="fas fa-fw fa-align-center"></i>--}}
-            {{--<span>Textos por sección</span></a>--}}
+    {{--<a class="nav-link" href="{{route('website.text.list')}}">--}}
+    {{--<i class="fas fa-fw fa-align-center"></i>--}}
+    {{--<span>Textos por sección</span></a>--}}
     {{--</li>--}}
     {{--<li class="nav-item">--}}
-        {{--<a class="nav-link" href="{{route('website.image.list')}}">--}}
-            {{--<i class="fas fa-fw fa-image"></i>--}}
-            {{--<span>Imagenes por sección</span></a>--}}
+    {{--<a class="nav-link" href="{{route('website.image.list')}}">--}}
+    {{--<i class="fas fa-fw fa-image"></i>--}}
+    {{--<span>Imagenes por sección</span></a>--}}
     {{--</li>--}}
     <li class="nav-item">
         <a class="nav-link" href="{{url('goadmin/contacts')}}">

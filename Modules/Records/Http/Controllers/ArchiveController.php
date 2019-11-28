@@ -4,7 +4,6 @@ namespace Modules\Records\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use Modules\Records\Models\Repositories\RecordsRepo;
@@ -20,7 +19,6 @@ class ArchiveController extends BaseController
         $this->RecordsRepo = $RecordsRepo;
     }
 
-//    TODO VIEWS ARCHIVE
     public function create()
     {
 
@@ -28,18 +26,14 @@ class ArchiveController extends BaseController
 
     }
 
-//    TODO CRUD ARCHIVE
     public function store(Request $request)
     {
-
-//        return $request->all();
-        $mime = ComponentController::Mime($request->file('file')->getMimeType());
 
         $validator = Validator::make($request->all(), [
             'file' => 'required',
         ]);
-
         if ($validator->fails()) {
+
             $response = [
                 'status' => 'FAILED',
                 'code' => 500,
@@ -51,34 +45,12 @@ class ArchiveController extends BaseController
 
         try {
 
+            $mime = ComponentController::Mime($request->file('file')->getMimeType());
+
             if ($mime['code'] === 200) {
                 $type = $mime['type'];
-                $component = [];
-                if ($type === 'image') {
-
-                    $validator = Validator::make($request->all(), [
-                        'file' => 'image|max:1024',
-                    ]);
-
-                    if ($validator->fails()) {
-                        $response = [
-                            'status' => 'FAILED',
-                            'code' => 500,
-                            'message' => __('Ocurrio un error interno') . '.',
-                            'data' => $validator->errors()->getMessages()
-                        ];
-
-                        return response()->json($response, 500);
-                    }
-
-                    $component = ComponentController::uploadFile_Img($request, $type);
-
-
-                } else if ($type === 'office' || $type === 'video' || $type === 'audio') {
-
-                    $component = ComponentController::uploadFile($request, $type);
-
-                }
+                $idLast = $this->RecordsRepo->lastId();
+                $component = ComponentController::uploadFile($request, $type, $idLast);
 
                 $data = [
                     'name' => $component['name'],
@@ -89,7 +61,6 @@ class ArchiveController extends BaseController
                     'id_user' => $request->user()->id,
                 ];
                 $this->RecordsRepo->store($data);
-
 
                 $response = [
                     'status' => 'OK',
@@ -109,6 +80,7 @@ class ArchiveController extends BaseController
                 ];
 
                 return response()->json($response, 500);
+
             }
 
 

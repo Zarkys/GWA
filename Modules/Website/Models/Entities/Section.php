@@ -14,6 +14,7 @@ class Section extends Authenticatable
     protected $fillable = [
         'id',
         'title',
+        'description',
         'active',
         'created_at',
         'updated_at',

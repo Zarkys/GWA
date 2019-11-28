@@ -20,6 +20,15 @@ class RecordsRepo
 
         return $records;
     }
+
+    public function lastId()
+    {
+        $record = Records::all()->last();
+
+        return isset($record->id)?$record->id:1;
+    }
+
+
     public function allActive($active)
     {
         $records = Records::where(['active' => $active])->get();

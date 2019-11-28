@@ -34,6 +34,17 @@
                                       class="help is-danger">@{{ errors.first('title') }}</span>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <input v-model="description" v-validate="'required'" class="form-control"
+                                       :class="{'input': true, 'is-danger': errors.has('description') }" type="text"
+                                       name="description" id="description" placeholder="Descripción de la seccion">
+                                <i v-show="errors.has('description')" class="fa fa-exclamation-triangle"></i>
+                                <span v-show="errors.has('description')"
+                                      class="help is-danger">@{{ errors.first('description') }}</span>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -57,6 +68,7 @@
             return {
                 message: '',
                 title: '',
+                description: '',
                 texts: {},
                 parentcategory: '',
                 parentscategories: []
@@ -81,6 +93,7 @@
                             if (result.value) {
                                 let form = {
                                     title: this.title,
+                                    description: this.description,
                                 }
                                 RoutePost_BACK('{{route('website.section.store')}}', form).then(
                                     response => {

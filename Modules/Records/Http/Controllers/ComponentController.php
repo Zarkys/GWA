@@ -5,6 +5,7 @@ namespace Modules\Records\Http\Controllers;
 use App\Components\Helper;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 
 class ComponentController extends BaseController
@@ -19,6 +20,7 @@ class ComponentController extends BaseController
             'image/cgm', //TODO cgm
             'image/jpeg', //TODO jpeg jpg jpe
             'image/png', //TODO png
+            'image/webp',
         ];
         $arrayAudio = [
             'audio/mpeg', //TODO mpga mp2 mp2a mp3 m2a m3a
@@ -65,40 +67,6 @@ class ComponentController extends BaseController
 
     }
 
-    public static function uploadFile($request, $type)
-    {
-
-        $data = [
-            'name' => null,
-            'url' => '',
-            'size' => '',
-            'dimension' => '',
-        ];
-
-        $file = $request->file('file');
-        if (is_file($file)) {
-
-            $extension = $file->getClientOriginalExtension();
-            $name = Helper::hashid(strtotime(date('Y-m-d H:i:s')), 10) . "." . $extension;
-
-            \Storage::put('/records/' . $type . '/' . $name, \File::get($file));
-
-            $pathTemp = 'upload/records/' . $type . '/' . $name;
-            $path = asset($pathTemp);
-            $dimension = is_null(getimagesize($path)[0]) ? '- - -' : getimagesize($path)[0] . 'x' . getimagesize($path)[1];
-
-            $data['name'] = $name;
-            $data['url'] = $path;
-            $data['size'] = filesize(public_path($pathTemp));
-            $data['dimension'] = $dimension;
-
-        }
-
-        return $data;
-
-
-    }
-
     public static function uploadFile_Img($request, $type, $width = 1000, $height = 800)
     {
 
@@ -128,6 +96,68 @@ class ComponentController extends BaseController
         }
 
         return $data;
+
+
+    }
+
+    public static function uploadFile($request, $type,$id)
+    {
+        try {
+
+            $data = [
+                'name' => null,
+                'url' => '',
+                'size' => '- - -',
+                'dimension' => '- - -',
+            ];
+
+            $file = $request->file('file');
+            if (is_file($file)) {
+                $id = $id+1;
+
+                //Get Extension of file
+                $extension = $file->getClientOriginalExtension();
+
+                //Generate Unique Name with HASH
+                $name =  rand(). $id . "." . $extension;
+//                $name = Helper::hashid(strtotime(date('H:i:s')), 10) ."." . $extension;
+
+                //Define location of path to save Image
+                $location = '/records/' . $type . '/' . $name;
+
+                //Saving the image on Public Folder
+                $path_save = \Storage::disk('public')->put($location, \File::get($file));
+
+                //Get the path of image saved
+                $path = env('URL_DOMAIN').'/upload' . $location;
+                $pathDB = '/upload' . $location;
+                Log::debug('File Name:'.$name.'- Extension: '.$extension.'- Type: '.$type.'- path: '.$path);
+
+                $data['name'] = $name;
+                $data['url'] = $pathDB;
+
+                //Get dimension of image
+                $dimension = is_null(getimagesize($path)[0]) ? '- - -' : getimagesize($path)[0] . 'x' . getimagesize($path)[1];
+
+                $data['size'] = \Storage::disk('public')->size($location);
+
+                $data['dimension'] =$dimension;
+
+
+            }
+
+            return $data;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return $response;
+        }
 
 
     }

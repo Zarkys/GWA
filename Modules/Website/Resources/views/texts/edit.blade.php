@@ -53,7 +53,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Sección</label>
-                                <v-select :options="sectionArray" label="title" v-model="section"></v-select>
+                                <v-select :options="sectionArray" label="title" v-model="section"
+                                          @input="defaultSelect"></v-select>
+                                <div style="width: 95%;text-align: -webkit-left;margin: 2%;color: black;font-size: medium;">
+                                    <strong>Descripción: </strong>@{{ this.section.description === '' ?'- - -':this.section.description }}
+                                </div>
                             </div>
                             <div v-for="config in config_module">
                              <div v-if="config.name_module === 'Traductor'" class="form-group">

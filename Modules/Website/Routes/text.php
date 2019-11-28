@@ -2,6 +2,21 @@
 
 //TODO ROUTE ADMIN
 Route::group([
+   // 'middleware' => ['auth'],
+    'prefix' => '/website/text',
+], function () {
+
+
+    Route::get('/filterby/{item}/{string}', [
+        'as' => 'website.text.filterby.item',
+        'uses' => 'TextController@filterby',
+    ]);
+
+
+});
+
+//TODO ROUTE ADMIN
+Route::group([
     'middleware' => ['auth'],
     'prefix' => '/website/text',
 ], function () {
@@ -29,6 +44,16 @@ Route::group([
     Route::get('/list/all', [
         'as' => 'website.text.list.all',
         'uses' => 'TextController@listAll',
+    ]);
+
+     Route::get('/filterbysection/{id}', [
+        'as' => 'website.text.filterbysection.id',
+        'uses' => 'TextController@filterbysection',
+    ]);
+
+     Route::post('/filterbysection/id', [
+        'as' => 'website.text.filterbysection.id_post',
+        'uses' => 'TextController@filterbysection_post',
     ]);
 
     Route::post('/change/status', [

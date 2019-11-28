@@ -24,18 +24,20 @@
                     <thead>
                     <tr>
                         <th>Título</th>
+                        <th>Descripcion</th>
                         <th style="text-align: -webkit-center!important;">Editar</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="section in sections">
-                        <td width="80%">@{{section.title}}</td>
+                        <td width="30%">@{{section.title}}</td>
+                        <td width="50%">@{{section.description}}</td>
                         <td width="20%" style="text-align: -webkit-center!important;">
-                            <a v-if="section.active === 1" href="#" v-on:click="changeActive(section)"
+                            <a v-if="section.active == 1" href="#" v-on:click="changeActive(section)"
                                class="btn btn-success btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-check"></i>
                             </a>
-                            <a v-if="section.active === 0" href="#" v-on:click="changeActive(section)"
+                            <a v-if="section.active == 0" href="#" v-on:click="changeActive(section)"
                                class="btn btn-warning btn-circle" style="margin-top: 2%!important;">
                                 <i class="fas fa-times"></i>
                             </a>
@@ -72,7 +74,7 @@
             this.listSections()
         },
         methods: {
-            listSections(){
+            listSections() {
                 RouteGet_BACK('{{route('website.section.list.all')}}', {}).then(
                     response => {
                         if (response.data.code !== 500) {
@@ -174,7 +176,7 @@
         filters: {
             shortText: function (value) {
                 if (!value) return ''
-                return value.substr(0, 75)+" . . ."
+                return value.substr(0, 75) + " . . ."
             }
         },
         computed: {},

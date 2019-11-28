@@ -58,6 +58,33 @@ class ImageController extends BaseController
 
     }
 
+    public function filterby($id)
+    {
+
+        try {
+            $Image = $this->ImageRepo->filterby($id);
+
+            $response = [
+                'status' => 'OK',
+                'code' => 200,
+                'message' => __('Datos Obtenidos Correctamente'),
+                'data' => $Image,
+            ];
+
+            return response()->json($response, 200);
+
+        } catch (\Exception $ex) {
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+
+    }
+
     //TODO CRUD POST
     public function store(Request $request)
     {
@@ -119,7 +146,8 @@ class ImageController extends BaseController
         $image = $this->ImageRepo->all();
         foreach ($image as $value) {
             if (isset($value->SiteRecords->url)) {
-                $value->image = $value->SiteRecords->url;
+                $value->image = env('URL_DOMAIN') . $value->SiteRecords->url;
+                $value->SiteRecords->url = env('URL_DOMAIN') . $value->SiteRecords->url;
             }
 
         }
@@ -260,6 +288,10 @@ class ImageController extends BaseController
 
             $image = $this->ImageRepo->findbyid($request->get('id'));
 
+            if (isset($image->SiteRecords->id)) {
+                $image->SiteRecords->url = env('URL_DOMAIN') . $image->SiteRecords->url;
+            }
+
             $response = [
                 'status' => 'OK',
                 'code' => 200,
@@ -348,6 +380,10 @@ class ImageController extends BaseController
             $sections = $this->SectionRepo->allActive();
 
             foreach ($images as $item => $value) {
+
+                $value->url = env('URL_DOMAIN') . $value->url;
+
+
                 $size = $value->size;
 
                 $units = array('B', 'KB', 'MB', 'GB');
@@ -357,7 +393,6 @@ class ImageController extends BaseController
                 $pow = min($pow, count($units) - 1);
 
                 $size /= pow(1024, $pow);
-//             $bytes /= (1 << (10 * $pow));
 
                 $value->size = number_format($size, 2) . ' ' . $units[$pow];
                 $value->dimension = $value->dimension . 'px';

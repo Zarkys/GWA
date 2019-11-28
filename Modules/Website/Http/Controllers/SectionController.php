@@ -219,35 +219,36 @@ class SectionController extends BaseController
             return response()->json($response);
         }
 
-//        try {
+        try {
 
-        $data = [
-            'title' => $request->get('title'),
-            'active' => ActiveSection::$activated,
-        ];
+            $data = [
+                'title' => $request->get('title'),
+                'description' => $request->get('description'),
+                'active' => ActiveSection::$activated,
+            ];
 
-        $this->SectionRepo->store($data);
+            $this->SectionRepo->store($data);
 
-        $response = [
-            'status' => 'OK',
-            'code' => 200,
-            'message' => __('Registrado  Correctamente'),
-        ];
+            $response = [
+                'status' => 'OK',
+                'code' => 200,
+                'message' => __('Registrado  Correctamente'),
+            ];
 
-        return response()->json($response, 200);
+            return response()->json($response, 200);
 
 
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+
+            ];
+
+            return response()->json($response, 500);
+        }
     }
 
     public function consult(Request $request)
@@ -303,6 +304,7 @@ class SectionController extends BaseController
             if (isset($section->id)) {
                 $data = [
                     'title' => $request->get('title'),
+                    'description' => $request->get('description')
                 ];
                 /* $validator = Validator::make($request->all(), [
                      'slug' => 'required|unique:tags_blog',

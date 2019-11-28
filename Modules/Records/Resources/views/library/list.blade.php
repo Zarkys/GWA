@@ -2,7 +2,7 @@
 @include('layouts.sidebar')
 @include('layouts.navbar')
 
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/nprogress/nprogress.css?v='.time()) }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/nprogress/nprogress.css?v=20190827') }}"/>
 <style type="text/css">
 
     #nprogress .bar {
@@ -165,9 +165,9 @@
 <script src="{{ asset('/js/vue.js') }}"></script>
 <script src="{{ asset('/js/axios.min.js') }}"></script>
 <script src="{{ asset('/js/sweetalert2@8.js') }}"></script>
-<script src="{{ asset('/js/axios.js?v='.time()) }}"></script>
+<script src="{{ asset('/js/axios.js?v=20190827') }}"></script>
 
-<script src="{{ asset('assets/nprogress/nprogress.js?v='.time()) }}"></script>
+<script src="{{ asset('assets/nprogress/nprogress.js?v=20190827') }}"></script>
 <script type="text/javascript">
     $(function () {
         loadProgressBar()

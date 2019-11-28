@@ -412,175 +412,91 @@ class TextController extends BaseController
         }
     }
 
+
+    public function filterbysection($id)
+    {
+
+        try {
+            $text = $this->TextRepo->filterbysection($id);
+
+            $response = [
+                'status' => 'OK',
+                'code' => 200,
+                'message' => __('Datos Obtenidos Correctamente'),
+                'data' => $text,
+            ];
+
+            return response()->json($response, 200);
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+
+    }
+
+    public function filterbysection_post(Request $request)
+    {
+
+        try {
+            $text = $this->TextRepo->filterbysection($request->get('id'));
+
+            $response = [
+                'status' => 'OK',
+                'code' => 200,
+                'message' => __('Datos Obtenidos Correctamente'),
+                'data' => $text,
+            ];
+
+            return response()->json($response, 200);
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+
+    }
+
+    public function filterby($item, $id)
+    {
+
+        try {
+            $Text = $this->TextRepo->filterby($item, $id);
+
+            $response = [
+                'status' => 'OK',
+                'code' => 200,
+                'message' => __('Datos Obtenidos Correctamente'),
+                'data' => $Text,
+            ];
+
+            return response()->json($response, 200);
+
+        } catch (\Exception $ex) {
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+
+    }
 //
-////    TODO OLD
-//    public function index()
-//    {
-//
-//        try {
-//            $post = $this->PostRepo->all();
-//
-//            $response = [
-//                'status' => 'OK',
-//                'code' => 200,
-//                'message' => __('Datos Obtenidos Correctamente'),
-//                'data' => $post,
-//            ];
-//
-//            return response()->json($response, 200);
-//
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//
-//    }
-//
-//    public function filteractive()
-//    {
-//
-//        try {
-//            $post = $this->PostRepo->filteractive();
-//
-//            $response = [
-//                'status' => 'OK',
-//                'code' => 200,
-//                'message' => __('Datos Obtenidos Correctamente'),
-//                'data' => $post,
-//            ];
-//
-//            return response()->json($response, 200);
-//
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//
-//    }
-//
-//    public function filterinactive()
-//    {
-//
-//        try {
-//            $post = $this->PostRepo->filterinactive();
-//
-//            $response = [
-//                'status' => 'OK',
-//                'code' => 200,
-//                'message' => __('Datos Obtenidos Correctamente'),
-//                'data' => $post,
-//            ];
-//
-//            return response()->json($response, 200);
-//
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//
-//    }
-//
-//    public function filterdeleted()
-//    {
-//
-//        try {
-//            $post = $this->PostRepo->filterdeleted();
-//
-//            $response = [
-//                'status' => 'OK',
-//                'code' => 200,
-//                'message' => __('Datos Obtenidos Correctamente'),
-//                'data' => $post,
-//            ];
-//
-//            return response()->json($response, 200);
-//
-//        } catch (\Exception $ex) {
-//            Log::error($ex);
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//
-//    }
-//
-//    public function findbyid($id)
-//    {
-//
-//        try {
-//            $post = $this->PostRepo->findbyid($id);
-//
-//            $response = [
-//                'status' => 'OK',
-//                'code' => 200,
-//                'message' => __('Datos Obtenidos Correctamente'),
-//                'data' => $post,
-//            ];
-//
-//            return response()->json($response, 200);
-//
-//        } catch (\Exception $ex) {
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//
-//    }
-//
-//    public function filterby($item, $id)
-//    {
-//
-//        try {
-//            $Post = $this->PostRepo->filterby($item, $id);
-//
-//            $response = [
-//                'status' => 'OK',
-//                'code' => 200,
-//                'message' => __('Datos Obtenidos Correctamente'),
-//                'data' => $Post,
-//            ];
-//
-//            return response()->json($response, 200);
-//
-//        } catch (\Exception $ex) {
-//            $response = [
-//                'status' => 'FAILED',
-//                'code' => 500,
-//                'message' => __('Ocurrio un error interno') . '.',
-//            ];
-//
-//            return response()->json($response, 500);
-//        }
-//
-//    }
-//
-//    public function findbyunique($item, $string)
+//   /* public function findbyunique($item, $string)
 //    {
 //
 //        try {

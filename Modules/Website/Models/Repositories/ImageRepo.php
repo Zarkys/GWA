@@ -3,8 +3,9 @@
 namespace Modules\Website\Models\Repositories;
 
 use Modules\Website\Models\Entities\Image;
+use Modules\Records\Models\Entities\Records;
 use Modules\Website\Models\Enums\ActiveImage;
-
+use Illuminate\Support\Facades\Log;
 
 class ImageRepo
 {
@@ -23,7 +24,7 @@ class ImageRepo
         $image = Image::with([
             'Section',
             'SiteRecords',
-        ])->where(['id_section'=>$section])->Orderby('id', 'desc')->get();
+        ])->where(['id_section' => $section])->Orderby('id', 'desc')->get();
 
         return $image;
     }
@@ -33,7 +34,7 @@ class ImageRepo
         //Find By parameters (Item)
         try {
 
-            $image = Image::with(['Section',
+            $image = Image::with(['Section', 'SiteRecords',
             ])->whereIn('active', [1])->get();
 
 
@@ -95,6 +96,46 @@ class ImageRepo
 
             return response()->json($response, 500);
         }
+    }
+
+    public function filterby($id)
+    {
+
+        try {
+
+            $strings_images = [];
+            $image = Image::with([
+                'Section', 'SiteRecords',
+            ])->where('id_section', $id)->whereIn('active', [0, 1])->get();
+
+            foreach ($image as $i) {
+
+                $urlsite_records = '';
+                if (isset($i->SiteRecords->url)) {
+                    $urlsite_records = env('URL_DOMAIN') . $i->SiteRecords->url;
+                }
+
+                $strings_images[$i->name] = $urlsite_records;
+            }
+
+
+            $object = new \stdClass();
+            $object->image_url = $strings_images;
+
+            return $object;
+
+        } catch (\Exception $ex) {
+            Log::error($ex);
+            $response = [
+                'status' => 'FAILED',
+                'code' => 500,
+                'message' => __('Ocurrio un error interno') . '.',
+            ];
+
+            return response()->json($response, 500);
+        }
+
+
     }
 
     public function find($id)

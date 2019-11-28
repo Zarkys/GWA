@@ -6,7 +6,7 @@ namespace Modules\Website\Models\Repositories;
 use Modules\Website\Models\Entities\Section;
 use Modules\Website\Models\Enums\ActiveSection;
 use Modules\Website\Models\Enums\ActiveText;
-
+use Illuminate\Support\Facades\Log;
 
 class ComponentsRepo
 {
