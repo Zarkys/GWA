@@ -7,7 +7,7 @@ Route::group([
     ],
 ], function () {
 
-    Route::get('/profile/asd', [
+    Route::get('/profile', [
         'as' => 'profile.view',
         'uses' => 'Api\ProfileController@profile',
     ]);
