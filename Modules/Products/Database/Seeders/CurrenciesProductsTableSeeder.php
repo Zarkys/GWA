@@ -1,8 +1,9 @@
 <?php
 
-namespace Modules\Products\Models\Entities;
+namespace Modules\Products\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Products\Models\Entities\CurrencyProduct;
 
 class CurrenciesProductsTableSeeder extends Seeder
 {
@@ -17,67 +18,67 @@ class CurrenciesProductsTableSeeder extends Seeder
             'thousand_separator' => ',',
             'decimal_separator' => '.',
             'decimals' => 2,
-            'active' => 0
-        ]);
-
-        CurrencyProduct::create([
-            'iso' => 'VEF',
-            'name' => 'Venezuelan Bolívar Fuerte',
-            'symbol' => 'BsF.',
-            'thousand_separator' => '.',
-            'decimal_separator' => ',',
-            'decimals' => 2,
             'active' => 1
         ]);
 
-        CurrencyProduct::create([
-            'iso' => 'BRL',
-            'name' => 'Real Brasilero',
-            'symbol' => 'R',
-            'thousand_separator' => ',',
-            'decimal_separator' => '.',
-            'decimals' => 2,
-            'active' => 0
-        ]);
-
-        CurrencyProduct::create([
-            'iso' => 'PEN',
-            'name' => 'Soles Peruanos',
-            'symbol' => 'S/',
-            'thousand_separator' => ',',
-            'decimal_separator' => '.',
-            'decimals' => 2,
-            'active' => 0
-        ]);
-
-        CurrencyProduct::create([
-            'iso' => 'COP',
-            'name' => 'Pesos colombianos',
-            'symbol' => '$',
-            'thousand_separator' => ',',
-            'decimal_separator' => '.',
-            'decimals' => 2,
-            'active' => 0
-        ]);
-
-        CurrencyProduct::create([
-            'iso' => 'CLP',
-            'name' => 'Pesos chiles',
-            'symbol' => '$',
-            'thousand_separator' => ',',
-            'decimal_separator' => '.',
-            'decimals' => 2,
-            'active' => 0
-        ]);
-
-        CurrencyProduct::create([
-            'iso' => 'EUR',
-            'name' => 'Euros',
-            'symbol' => '€',
-            'thousand_separator' => ',',
-            'decimal_separator' => '.',
-            'decimals' => 2,
-            'active' => 0
-        ]);
+//        CurrencyProduct::create([
+//            'iso' => 'VEF',
+//            'name' => 'Venezuelan Bolívar Fuerte',
+//            'symbol' => 'BsF.',
+//            'thousand_separator' => '.',
+//            'decimal_separator' => ',',
+//            'decimals' => 2,
+//            'active' => 0
+//        ]);
+//
+//        CurrencyProduct::create([
+//            'iso' => 'BRL',
+//            'name' => 'Real Brasilero',
+//            'symbol' => 'R',
+//            'thousand_separator' => ',',
+//            'decimal_separator' => '.',
+//            'decimals' => 2,
+//            'active' => 0
+//        ]);
+//
+//        CurrencyProduct::create([
+//            'iso' => 'PEN',
+//            'name' => 'Soles Peruanos',
+//            'symbol' => 'S/',
+//            'thousand_separator' => ',',
+//            'decimal_separator' => '.',
+//            'decimals' => 2,
+//            'active' => 0
+//        ]);
+//
+//        CurrencyProduct::create([
+//            'iso' => 'COP',
+//            'name' => 'Pesos colombianos',
+//            'symbol' => '$',
+//            'thousand_separator' => ',',
+//            'decimal_separator' => '.',
+//            'decimals' => 2,
+//            'active' => 0
+//        ]);
+//
+//        CurrencyProduct::create([
+//            'iso' => 'CLP',
+//            'name' => 'Pesos chiles',
+//            'symbol' => '$',
+//            'thousand_separator' => ',',
+//            'decimal_separator' => '.',
+//            'decimals' => 2,
+//            'active' => 0
+//        ]);
+//
+//        CurrencyProduct::create([
+//            'iso' => 'EUR',
+//            'name' => 'Euros',
+//            'symbol' => '€',
+//            'thousand_separator' => ',',
+//            'decimal_separator' => '.',
+//            'decimals' => 2,
+//            'active' => 0
+//        ]);
     }
 }

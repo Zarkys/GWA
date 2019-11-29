@@ -58,8 +58,9 @@
                         </div>
 
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -72,9 +73,9 @@
 
 <script src="{{ asset('assets/stringToSlug/jquery.stringToSlug.min.js') }}"></script>
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $("#name, #slug").stringToSlug({
-            callback: function(text){
+            callback: function (text) {
                 $('#slug').val(text);
             }
         });

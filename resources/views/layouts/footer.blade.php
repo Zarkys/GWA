@@ -1,3 +1,4 @@
+</div>
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
@@ -6,9 +7,7 @@
     </div>
 </footer>
 
-<!-- End of Footer -->
 </div>
-<!-- End of Content Wrapper -->
 </div>
 
 <a class="scroll-to-top rounded" href="#page-top">

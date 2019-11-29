@@ -189,7 +189,7 @@
                                     <div class="col-md-12" v-for="(val,item) in imageSelect"
                                          style="background-color: rgb(245, 245, 245);border: 1px solid rgb(204, 204, 204);border-radius: 4px;margin-bottom: 1%;margin-top: 1%;">
                                         <img :src="images[val].url" class="img-responsive"
-                                             style="height: 250px;width: 250px;margin-left: 13%;">
+                                             style="height: 250px;width: 250px;margin-left: 11%;">
                                     </div>
                                 </div>
                             </div>

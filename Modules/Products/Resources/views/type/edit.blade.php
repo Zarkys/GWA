@@ -34,7 +34,7 @@
                                       class="help is-danger">@{{ errors.first('name') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Descripcion</label>
                                 <input v-model="description" v-validate="'required'" class="form-control"
@@ -47,8 +47,9 @@
                         </div>
 
                     </div>
-
+                    <div class="text-right">
                     <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
                 </form>
             </div>
         </div>

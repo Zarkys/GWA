@@ -65,6 +65,7 @@ class WebController extends BaseController
 
                 $images = [];
                 foreach ($value->ProductImages as $val) {
+                    $val->ProductRecords[0]->url = env('URL_DOMAIN').$val->ProductRecords[0]->url;
                     $images[] = $val->ProductRecords[0]->url;
                 }
                 $value->images = $images;
@@ -370,6 +371,7 @@ class WebController extends BaseController
 
                 $images = [];
                 foreach ($value->ProductImages as $val) {
+                    $val->ProductRecords[0]->url = env('URL_DOMAIN').$val->ProductRecords[0]->url;
                     $images[] = $val->ProductRecords[0]->url;
                 }
                 $value->images = $images;

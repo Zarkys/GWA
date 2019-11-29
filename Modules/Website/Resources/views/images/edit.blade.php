@@ -44,7 +44,7 @@
         background-clip: border-box;
         border: 1px solid rgba(0, 0, 0, .125);
         border-radius: .25rem;
-        height: 150px;
+        height: 132px;
         margin-bottom: 14px;
     }
 
@@ -56,8 +56,8 @@
     }
 
     .gallery-card img {
-        height: 150px !important;
-        width: 150px !important;
+        height: 130px;
+        width: 100%;
     }
 
     label {
@@ -190,7 +190,7 @@
                                     <div class="col-md-12" v-for="(val,item) in imageSelect"
                                          style="background-color: rgb(245, 245, 245);border: 1px solid rgb(204, 204, 204);border-radius: 4px;margin-bottom: 1%;margin-top: 1%;">
                                         <img :src="images[val].url" class="img-responsive"
-                                             style="height: 250px;width: 250px;margin-left: 13%;">
+                                             style="height: 250px;width: 250px;margin-left: 11%;">
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row inner-scroll">
-                            <div class="col-md-3" v-for="(val,item) in images">
+                            <div class="col-md-4" v-for="(val,item) in images">
                                 <div class="gallery-card">
                                     <div class="gallery-card-body">
                                         <label class="block-check">
@@ -230,7 +230,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                         </div>
                     </div>

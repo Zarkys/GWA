@@ -1,8 +1,9 @@
 <?php
 
-namespace Modules\Products\Models\Entities;
+namespace Modules\Products\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Products\Models\Entities\TypeProduct;
 
 class TypesProductsTableSeeder extends Seeder
 {

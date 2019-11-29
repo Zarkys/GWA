@@ -1,8 +1,9 @@
 <?php
 
+//TODO hacer una copia de esta ruta y pegarla dentro del directorio de rutas WEBSITE_PUBLIC
 Route::group([
-//    'middleware' => ['auth'],
-    'namespace' => '\Modules\Blog\Http\Controllers'
+    'namespace' => '\Modules\Blog\Http\Controllers',
+    'prefix' => '/web/'
 ], function () {
 
     Route::get('/blog', [

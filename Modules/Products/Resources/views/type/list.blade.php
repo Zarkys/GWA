@@ -175,8 +175,17 @@
         },
         filters: {
             shortText: function (value) {
-                if (!value) return ''
-                return value.substr(0, 75)+" . . ."
+                if (!value) {
+                    return ''
+                } else {
+                    if (value.length > 90) {
+                        return value.substr(0, 90) + " . . ."
+                    } else {
+                        return value
+                    }
+
+                }
+
             }
         },
         computed: {},

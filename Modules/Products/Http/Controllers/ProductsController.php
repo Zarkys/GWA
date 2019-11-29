@@ -450,7 +450,9 @@ class ProductsController extends BaseController
             $product->price = Helper::number($product->price);
             $images = [];
             foreach ($product->ProductImages as $value) {
-                $images[] = $value->ProductRecords[0];
+                $valueTmp = $value->ProductRecords[0];
+                $valueTmp->url = env('URL_DOMAIN').$valueTmp->url;
+                $images[] = $valueTmp;
             }
             $product->images = $images;
             $newAttrs = [];
@@ -503,8 +505,7 @@ class ProductsController extends BaseController
                 'message' => __('Datos Obtenidos Correctamente'),
                 'data' => $product,
                 'attrs' => $attrs,
-                'attrs_select' => $attrs_select,
-//                'attrs' => $newAttrs
+                'attrs_select' => $attrs_select
             ];
 
             return response()->json($response, 200);
@@ -587,6 +588,7 @@ class ProductsController extends BaseController
 
                 $value->typeExtension = is_null($value->typeExtension) ? '' : '(' . $value->typeExtension . ')';
 
+                $value->url = env('URL_DOMAIN').$value->url;
 
             }
             $response = [

@@ -1,8 +1,9 @@
 <?php
 
-namespace Modules\Products\Models\Entities;
+namespace Modules\Products\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Products\Models\Entities\CategoryProduct;
 
 class CategoriesProductsTableSeeder extends Seeder
 {
@@ -11,8 +12,9 @@ class CategoriesProductsTableSeeder extends Seeder
     {
 
         CategoryProduct::create([
-            'name' => 'No Definido',
+            'name' => 'Categoria por defecto',
             'slug' => 'no-definido',
+            'description' => '- - -',
             'active' => 1
         ]);
 
